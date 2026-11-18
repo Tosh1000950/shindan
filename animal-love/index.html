@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恋愛どうぶつ診断 | Tosh1</title>
+<meta name="description" content="12の質問で分かる、あなたの恋愛タイプ。あなたはどの動物？エンタメ診断です。">
+<meta property="og:title" content="恋愛どうぶつ診断 | Tosh1">
+<meta property="og:description" content="12の質問で分かる、あなたの恋愛タイプはどの動物？">
+<meta property="og:image" content="https://tosh1000950.github.io/shindan/animal-love/assets/ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{ --ink:#3a3340; --sub:#7a7284; --card:#ffffff; --bg:#fdf3f6; --accent:#ff7aa8;}
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+body{ margin:0; font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif; background:var(--bg); color:var(--ink);}
+.wrap{ max-width:520px; margin:0 auto; padding:20px 16px 48px;}
+.screen{ display:none;}
+.screen.on{ display:block; animation:fade.25s ease;}
+@keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+.hero{ text-align:center; padding:28px 8px 8px;}
+img.banner{ width:100%; border-radius:20px; display:block;}
+h1{ font-size:30px; margin:14px 0 6px;}
+.lead{ color:var(--sub); font-size:14px; line-height:1.7; margin:0 0 6px;}
+.note{ color:var(--sub); font-size:11px;}
+.btn{ display:block; width:100%; border:none; cursor:pointer; border-radius:999px; padding:16px; font-size:17px; font-weight:700; font-family:inherit;}
+.btn-main{ background:var(--accent); color:#fff; box-shadow:0 6px 16px rgba(255,122,168,.35); margin-top:22px;}
+.btn-sub{ background:#fff; color:var(--ink); border:2px solid #f0dbe4; margin-top:10px; font-size:15px;}
+.btn:active{ transform:scale(.98);}
+.collection{ text-align:center; margin-top:16px; font-size:13px; color:var(--sub);}
+.bar{ height:10px; background:#f6dde7; border-radius:99px; overflow:hidden; margin:14px 0 6px;}
+.bar i{ display:block; height:100%; background:var(--accent); border-radius:99px; transition:width.3s;}
+.qcount{ font-size:12px; color:var(--sub); text-align:right;}
+.qtext{ font-size:20px; font-weight:700; line-height:1.5; margin:18px 2px 20px;}
+.opt{ display:block; width:100%; text-align:left; background:var(--card); border:2px solid #f3e2ea; border-radius:16px; padding:15px 16px; font-size:15px; font-family:inherit; color:var(--ink); cursor:pointer; margin-bottom:10px; line-height:1.5;}
+.opt:active{ border-color:var(--accent); background:#fff5f8;}
+.back{ background:none; border:none; color:var(--sub); font-size:13px; cursor:pointer; font-family:inherit; padding:8px 0;}
+.result-card{ background:var(--card); border-radius:24px; padding:28px 20px 24px; text-align:center; box-shadow:0 10px 30px rgba(190,120,150,.15);}
+.avatar{ width:132px; height:132px; border-radius:50%; margin:0 auto 10px; overflow:hidden;}
+.avatar img{ width:100%; height:100%; object-fit:cover; display:block;}
+.rname{ font-size:25px; font-weight:800; line-height:1.4; margin:6px 0 4px;}
+.rcatch{ color:var(--accent); font-weight:700; font-size:15px; margin:0 0 14px;}
+.rdesc{ text-align:left; font-size:14px; line-height:1.9; color:#554c5e;}
+.points{ text-align:left; margin:16px 0 0; padding:14px 16px; background:#fdf6f9; border-radius:14px; font-size:13.5px; line-height:1.8;}
+.points b{ color:var(--accent);}
+.compat{ margin-top:12px; font-size:13.5px; color:var(--sub);}
+.compat b{ color:var(--ink);}
+.alltypes{ margin-top:26px;}
+.alltypes h2{ font-size:16px; text-align:center;}
+.grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
+.grid div{ background:#fff; border-radius:14px; padding:10px 2px; text-align:center; font-size:22px;}
+.grid img{ width:52px; height:52px; border-radius:50%; object-fit:cover;}
+.grid small{ display:block; font-size:10px; color:var(--sub); margin-top:3px; line-height:1.3;}
+.got{ outline:2px solid var(--accent);}
+footer{ text-align:center; color:var(--sub); font-size:11px; margin-top:30px; line-height:1.8;}
+footer a{ color:var(--sub);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- スタート -->
+<section id="s-start" class="screen on">
+<div class="hero">
+<img class="banner" src="assets/top.jpg" alt="8匹の動物マスコット">
+<h1>恋愛どうぶつ診断</h1>
+<p class="lead">12の質問に答えるだけ。<br>あなたの恋愛タイプは、どの動物？</p>
+<p class="note">※エンタメ診断です。気軽に楽しんでね。</p>
+<button class="btn btn-main" id="btn-start">診断をはじめる</button>
+<div class="collection" id="collection-start"></div>
+</div>
+<div class="alltypes">
+<h2>ぜんぶで8タイプ</h2>
+<div class="grid" id="grid-start"></div>
+</div>
+</section>
+
+<!-- 質問 -->
+<section id="s-quiz" class="screen">
+<div class="bar"><i id="bar-fill" style="width:0%"></i></div>
+<div class="qcount" id="q-count"></div>
+<div class="qtext" id="q-text"></div>
+<div id="q-opts"></div>
+<button class="back" id="btn-back">← もどる</button>
+</section>
+
+<!-- 結果 -->
+<section id="s-result" class="screen">
+<div class="result-card">
+<div class="avatar" id="r-avatar"></div>
+<p style="margin:0;color:var(--sub);font-size:12px;">あなたの恋愛タイプは…</p>
+<div class="rname" id="r-name"></div>
+<p class="rcatch" id="r-catch"></p>
+<div class="rdesc" id="r-desc"></div>
+<div class="points" id="r-points"></div>
+<p class="compat" id="r-compat"></p>
+</div>
+<button class="btn btn-main" id="btn-card">📸 結果カードを画像で保存</button>
+<button class="btn btn-sub" id="btn-share">𝕏 で結果をシェア</button>
+<div id="card-preview" style="display:none;margin-top:16px;text-align:center;">
+<img id="card-img" alt="結果カード" style="width:100%;max-width:340px;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.15);">
+<p style="color:var(--sub);font-size:12px;margin:10px 0;">画像を長押し（PCでは右クリック）でも保存できます</p>
+<a id="card-dl" class="btn btn-main" href="#" download style="text-decoration:none;margin-top:0;">⬇ この画像をダウンロード</a>
+</div>
+<button class="btn btn-sub" id="btn-retry">もう一度診断する</button>
+<div class="collection" id="collection-result"></div>
+<div class="alltypes">
+<h2>タイプ図鑑</h2>
+<div class="grid" id="grid-result"></div>
+</div>
+</section>
+
+<footer>
+<a href="../../">Tosh1 トップページ</a> ｜ 恋愛どうぶつ診断<br>
+結果はエンタメとして楽しんでください。
+</footer>
+</div>
+
+<script>
+const TYPES = {
+dog: { key:"CSF", emoji:"🐶", color:"#ffe3c2", name:"まっすぐ全力ラブな忠犬タイプ", catch:"好きになったら、一直線。",
+desc:"好きな気持ちを隠すのが苦手で、思ったことは言葉と行動でまっすぐ伝えられる人。相手のために時間を作るのが苦にならず、尽くすこと自体が幸せなタイプです。一方で、頑張りが相手に伝わらないと急に不安になることも。でもその一途さは、隣にいる人を一番安心させる力でもあります。",
+points:["好きの表現が分かりやすくて相手が安心する","記念日や約束をちゃんと大事にする","落ち込んだ相手にすぐ気づける"],
+compat:["うさぎタイプ","ペンギンタイプ"]},
+penguin: { key:"CSL", emoji:"🐧", color:"#d6ecff", name:"一人を長く大事にするペンギンタイプ", catch:"浮気？ 知らない言葉です。",
+desc:"一度「この人」と決めたら、長く穏やかに育てていく恋愛が得意な人。派手な盛り上がりより、日常の小さな約束を守り続けることで信頼を作ります。慎重なので距離が縮まるまで時間はかかりますが、その分いったん結ばれた絆はとても強い。安心感では8タイプ中いちばんです。",
+points:["長続きする恋愛になりやすい","相手の生活リズムまで大切にできる","約束を守る誠実さが武器"],
+compat:["忠犬タイプ","パンダタイプ"]},
+cat: { key:"CHF", emoji:"🐱", color:"#ffd9e8", name:"甘えたいのに素直じゃない猫タイプ", catch:"本当は、かまってほしい。",
+desc:"好きな人のそばにいたい気持ちは人一倍なのに、いざとなると素直になれずツンとしてしまう人。そのギャップに振り回されつつも、放っておけないのがこのタイプの魅力です。気分に波があるように見えて、実は相手の反応をよく見ている繊細さの裏返し。本気で甘えられる相手に出会うと、最強のパートナーになります。",
+points:["ギャップで相手をドキドキさせられる","甘えられた時の破壊力がすごい","相手の変化によく気づく観察眼"],
+compat:["パンダタイプ","忠犬タイプ"]},
+rabbit: { key:"CHL", emoji:"🐰", color:"#e9defc", name:"不安で寄り添いたいうさぎタイプ", catch:"そばにいてくれると、ほっとする。",
+desc:"好きな人と気持ちが通じているか、つい確認したくなる繊細な人。返信の間隔や言葉の端々から相手の気持ちを読み取ろうとするのは、それだけ本気で向き合っている証拠です。優しくて聞き上手なので、相手の弱いところを受け止めるのが得意。安心できる関係の中では、誰より深く愛情を注げます。",
+points:["相手の気持ちに寄り添う共感力","弱さを見せられる関係を作れる","小さな幸せを一緒に喜べる"],
+compat:["忠犬タイプ","ペンギンタイプ"]},
+bird: { key:"DSF", emoji:"🐦", color:"#d2f2e9", name:"明るく自由な小鳥タイプ", catch:"恋も人生も、身軽に楽しく。",
+desc:"恋愛だけに縛られず、自分の世界も相手の世界も大切にできる自立した人。明るくて話しやすく、一緒にいると新しい発見が多いので、相手を飽きさせません。重たい空気が苦手で、深刻になる前に笑いに変えられるのも強み。自由でいるのに選ばれている、という関係が一番輝きます。",
+points:["一緒にいて楽しい空気作りが上手","相手の自由も尊重できる","新しいデートの提案が豊富"],
+compat:["狐タイプ","一匹狼タイプ"]},
+panda: { key:"DSL", emoji:"🐼", color:"#dcf5d8", name:"マイペース癒し系パンダタイプ", catch:"急がない恋が、いちばん強い。",
+desc:"自分のペースを崩さず、穏やかな空気で相手を癒せる人。焦って距離を詰めないので、相手は「素の自分でいていい」と安心できます。気持ちの表現は控えめでも、長く一緒にいるほど味が出るタイプ。派手さはないけれど、気づけば「この人がいない日常は物足りない」と思わせる、不思議な存在感があります。",
+points:["一緒にいると緊張がほどける癒し力","長く付き合うほど魅力が増す","相手のペースを急かさない優しさ"],
+compat:["猫タイプ","ペンギンタイプ"]},
+fox: { key:"DHF", emoji:"🦊", color:"#ffe0cc", name:"駆け引き上手な小悪魔狐タイプ", catch:"落とすのは、こっちの役目。",
+desc:"相手の反応を見ながら距離を縮めるのが上手な、恋愛の空気を読む人。あと一歩で届きそうな絶妙な距離感で、相手の「もっと知りたい」を引き出します。ミステリアスに見えますが、実は相手のことをよく観察している努力家。本当に心を許した相手には、意外なほど一途な一面も見せます。",
+points:["ドキドキさせる距離感の演出が天才的","相手の好みを掴む観察力","退屈させない会話の引き出し"],
+compat:["小鳥タイプ","忠犬タイプ"]},
+wolf: { key:"DHL", emoji:"🐺", color:"#e2e2ea", name:"クールな一匹狼タイプ", catch:"簡単には、懐かない。でも本気は深い。",
+desc:"誰にでも心を開くわけではなく、一人の時間と自分の軸を大切にする人。その分、選んだ相手への気持ちは本物で、言葉より行動で示す誠実さがあります。ベタベタした関係は苦手でも、ピンチの時に一番頼りになるのがこのタイプ。静かな愛情は、長く一緒にいるほど伝わっていきます。",
+points:["言葉より行動で示す信頼感","自立していて相手に依存しない","ここぞという時に頼れる"],
+compat:["小鳥タイプ","狐タイプ"]},
+};
+const TYPE_LIST = Object.entries(TYPES).map(([id,t])=>({id,...t}));
+
+// 軸: A=距離(C:近い/D:距離感) B=表現(S:ストレート/H:奥手) C=速度(F:情熱/L:ゆっくり)
+// 各問4択のうち2択が一方の極。2-2同点の時はその軸の最初の質問の回答で決める。
+const QUESTIONS = [
+{ axis:"A", text:"好きな人との理想の休日は？", opts:[
+{t:"朝から夜まで、ずっと一緒にまったり過ごす", v:"C"}, {t:"用事にも一緒について行っちゃう", v:"C"},
+{t:"同じ空間でも、別々のことをしてる時間が心地いい", v:"D"}, {t:"会わない日があっても平気。その分、会う日が楽しみ", v:"D"}]},
+{ axis:"B", text:"「好き」って気持ち、どう伝える？", opts:[
+{t:"言葉でちゃんと伝える", v:"S"}, {t:"プレゼントや行動で分かりやすく示す", v:"S"},
+{t:"態度で察してほしい", v:"H"}, {t:"照れて、つい冗談に逃げちゃう", v:"H"}]},
+{ axis:"C", text:"気になる人ができたら？", opts:[
+{t:"すぐ話しかけて距離を縮める", v:"F"}, {t:"早めに二人で出かける約束を取りつける", v:"F"},
+{t:"まずは友達期間を長く取る", v:"L"}, {t:"相手のことをよく知ってから動く", v:"L"}]},
+{ axis:"A", text:"好きな人との連絡スタイルは？", opts:[
+{t:"他愛ないことも、すぐ共有したい", v:"C"}, {t:"既読がつかないと少し気になる", v:"C"},
+{t:"連絡は用がある時で十分", v:"D"}, {t:"返事のペースはお互い自由がいい", v:"D"}]},
+{ axis:"B", text:"相手に嫉妬しちゃった時は？", opts:[
+{t:"正直に「嫉妬した」って言う", v:"S"}, {t:"不安なことは話し合いたい", v:"S"},
+{t:"顔には出るけど、言えない", v:"H"}, {t:"平気なふりをしてしまう", v:"H"}]},
+{ axis:"C", text:"告白のタイミングは？", opts:[
+{t:"気持ちが盛り上がった時が、その時", v:"F"}, {t:"ライバルが出てくる前に動く", v:"F"},
+{t:"確信が持てるまで待つ", v:"L"}, {t:"自然な流れに任せる", v:"L"}]},
+{ axis:"A", text:"寂しくなった時は？", opts:[
+{t:"すぐ声が聞きたくなる", v:"C"}, {t:"会えるなら今日会いたい", v:"C"},
+{t:"一人の時間で回復してから会いたい", v:"D"}, {t:"寂しくても相手の都合を優先する", v:"D"}]},
+{ axis:"B", text:"記念日の過ごし方は？", opts:[
+{t:"サプライズを盛大に仕掛ける", v:"S"}, {t:"手紙で気持ちを伝える", v:"S"},
+{t:"いつもより少しだけ優しくする", v:"H"}, {t:"特別なことはしないけど、絶対に忘れない", v:"H"}]},
+{ axis:"C", text:"付き合い始めたら？", opts:[
+{t:"最初から全力で盛り上がりたい", v:"F"}, {t:"毎日がイベントみたいだと楽しい", v:"F"},
+{t:"日常を少しずつ重ねていくのが幸せ", v:"L"}, {t:"長く続く関係を最初から意識する", v:"L"}]},
+{ axis:"A", text:"二人の距離感で大事なのは？", opts:[
+{t:"誰より一番近くにいたい", v:"C"}, {t:"スキンシップ多めだと落ち着く", v:"C"},
+{t:"パーソナルスペースは大事にしたい", v:"D"}, {t:"ベタベタより、信頼で繋がりたい", v:"D"}]},
+{ axis:"B", text:"ケンカしちゃったら？", opts:[
+{t:"その場で言い合って解決したい", v:"S"}, {t:"気持ちを言葉にして伝える", v:"S"},
+{t:"感情的になりそうで、黙ってしまう", v:"H"}, {t:"時間を置いて、態度で仲直りの合図を出す", v:"H"}]},
+{ axis:"C", text:"恋愛で一番大事だと思うのは？", opts:[
+{t:"ドキドキと情熱", v:"F"}, {t:"一目惚れみたいな勢いも信じてる", v:"F"},
+{t:"一緒にいる時の安心感", v:"L"}, {t:"時間をかけて育つ信頼", v:"L"}]},
+];
+
+let answers = [], cur = 0, resultType = null;
+const $ = id => document.getElementById(id);
+function show(id){ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on")); $(id).classList.add("on"); window.scrollTo(0,0);}
+function gotSet(){ try{ return new Set(JSON.parse(localStorage.getItem("animal-love-got")||"[]"));}catch(e){ return new Set();}}
+function renderGrid(el){
+const got = gotSet();
+el.innerHTML = TYPE_LIST.map(t=>`<div class="${got.has(t.id)?"got":""}"><img src="assets/${t.id}.jpg" alt=""><small>${t.name.replace(/タイプ$/,"")}</small></div>`).join("");
+}
+function renderCollection(){
+const n = gotSet().size;
+const txt = n? `図鑑コレクション： ${n} / 8 タイプ`: "まだ図鑑は空っぽ。診断して集めよう！";
+$("collection-start").textContent = txt; $("collection-result").textContent = txt;
+}
+function start(){ answers = []; cur = 0; show("s-quiz"); renderQ();}
+function renderQ(){
+const q = QUESTIONS[cur];
+$("q-count").textContent = `Q${cur+1} / ${QUESTIONS.length}`;
+$("bar-fill").style.width = (cur/QUESTIONS.length*100)+"%";
+$("q-text").textContent = q.text;
+$("q-opts").innerHTML = "";
+q.opts.forEach(o=>{
+const b = document.createElement("button"); b.className="opt"; b.textContent=o.t;
+b.onclick = ()=>{ answers[cur]=o.v; cur++; cur<QUESTIONS.length? renderQ(): finish();};
+$("q-opts").appendChild(b);
+});
+$("btn-back").style.visibility = cur? "visible": "hidden";
+}
+function judge(){
+const axes = { A:["C","D"], B:["S","H"], C:["F","L"]};
+let key = "";
+for(const ax of ["A","B","C"]){
+const idxs = QUESTIONS.map((q,i)=>q.axis===ax?i:-1).filter(i=>i>=0);
+const cnt = {}; axes[ax].forEach(p=>cnt[p]=0);
+idxs.forEach(i=>cnt[answers[i]]++);
+let win;
+if(cnt[axes[ax][0]]!== cnt[axes[ax][1]]) win = cnt[axes[ax][0]] > cnt[axes[ax][1]]? axes[ax][0]: axes[ax][1];
+else win = answers[idxs[0]];
+key += win;
+}
+return TYPE_LIST.find(t=>t.key===key);
+}
+function finish(){
+resultType = judge();
+const got = gotSet(); got.add(resultType.id);
+try{ localStorage.setItem("animal-love-got", JSON.stringify([...got]));}catch(e){}
+$("r-avatar").style.background = resultType.color;
+$("r-avatar").innerHTML = `<img src="assets/${resultType.id}.jpg" alt="">`;
+$("r-name").textContent = resultType.name;
+$("r-catch").textContent = resultType.catch;
+$("r-desc").textContent = resultType.desc;
+$("r-points").innerHTML = "<b>あなたの恋愛の強み</b><br>" + resultType.points.map(p=>"・"+p).join("<br>");
+$("r-compat").innerHTML = "相性がいいのは <b>" + resultType.compat.join("</b> と <b>") + "</b>";
+renderGrid($("grid-result")); renderCollection();
+show("s-result");
+}
+function shareText(){
+return `わたしは「${resultType.name}」でした！ ${resultType.catch}\nあなたは何タイプ？ #恋愛どうぶつ診断`;
+}
+function makeCard(){
+const c = document.createElement("canvas"); c.width=1080; c.height=1350;
+const x = c.getContext("2d");
+const img = new Image();
+img.onload = ()=>{
+x.fillStyle = resultType.color; x.fillRect(0,0,1080,1350);
+x.fillStyle = "#ffffff"; x.beginPath(); x.roundRect(60,60,960,1230,48); x.fill();
+x.textAlign = "center"; x.fillStyle = "#7a7284";
+x.font = "600 40px sans-serif"; x.fillText("恋愛どうぶつ診断", 540, 190);
+x.save(); x.beginPath(); x.arc(540,360,165,0,Math.PI*2); x.clip();
+x.drawImage(img, 375, 195, 330, 330); x.restore();
+x.fillStyle = "#3a3340"; x.font = "800 58px sans-serif";
+if(x.measureText(resultType.name).width > 880){ x.font = "800 42px sans-serif"; }
+x.fillText(resultType.name, 540, 590);
+x.fillStyle = "#ff7aa8"; x.font = "700 44px sans-serif";
+x.fillText(resultType.catch, 540, 690);
+x.fillStyle = "#7a7284"; x.font = "400 34px sans-serif";
+x.fillText("相性◎ " + resultType.compat.join(" ・ "), 540, 800);
+x.fillStyle = "#b9aec2"; x.font = "600 36px sans-serif";
+x.fillText("tosh1000950.github.io", 540, 1180);
+c.toBlob(b=>{
+if(!b){ return; }
+const u = URL.createObjectURL(b);
+$("card-img").src = u;
+const dl = $("card-dl"); dl.href = u; dl.download = "renai-doubutsu-" + resultType.id + ".png";
+$("card-preview").style.display = "block";
+$("card-preview").scrollIntoView({behavior:"smooth"});
+}, "image/png");
+};
+img.src = "assets/" + resultType.id + ".jpg";
+}
+$("btn-start").onclick = start;
+$("btn-back").onclick = ()=>{ if(cur>0){ cur--; renderQ();}};
+$("btn-retry").onclick = start;
+$("btn-card").onclick = makeCard;
+async function getCardFile(){
+if($("card-preview").style.display === "none" || !$("card-img").src.startsWith("blob:")){
+makeCard();
+for(let i=0;i<40;i++){ await new Promise(r=>setTimeout(r,100)); if($("card-img").src.startsWith("blob:")) break; }
+}
+if(!$("card-img").src.startsWith("blob:")) return null;
+const b = await (await fetch($("card-img").src)).blob();
+return new File([b], "renai-doubutsu-" + resultType.id + ".png", { type:"image/png" });
+}
+$("btn-share").onclick = async ()=>{
+const url = "https://tosh1000950.github.io/shindan/animal-love/share/" + resultType.id + ".html";
+const text = shareText();
+try{
+const file = await getCardFile();
+if(file && navigator.canShare && navigator.canShare({ files:[file] })){
+if(/iPhone|iPad|iPod/.test(navigator.userAgent)){ await navigator.share({ files:[file], text:text + "\n" + url }); } else { await navigator.share({ files:[file], text:text, url:url }); }
+return;
+}
+}catch(e){ if(e && e.name === "AbortError"){ return; } }
+if(navigator.share){
+try{ await navigator.share({ title:"恋愛どうぶつ診断", text:text + "\n" + url }); return; }
+catch(e){ if(e && e.name === "AbortError"){ return; } }
+}
+const intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(url);
+const w = window.open(intent, "_blank");
+if(!w){ location.href = intent; }
+};
+renderGrid($("grid-start")); renderCollection();
+</script>
+</body>
+</html>
