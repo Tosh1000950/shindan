@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本当の性格 宝石診断 | Tosh1</title>
+<meta name="description" content="20の質問でわかる、あなたの本当の性格を宝石に例える診断。16タイプの宝石から、あなたらしい輝きを見つけよう。">
+<meta property="og:title" content="本当の性格 宝石診断 | Tosh1">
+<meta property="og:description" content="20の質問でわかる、16タイプの宝石診断。あなたの本当の性格はどの宝石？">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tosh1000950.github.io/shindan/gem-personality/">
+<meta property="og:image" content="https://tosh1000950.github.io/shindan/gem-personality/assets/ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZY9E6YLPBM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'G-ZY9E6YLPBM');
+</script>
+<style>
+:root{ --bg:#f6f3fb; --ink:#3d3654; --sub:#8a81a3; --accent:#7a5fd0; --card:#ffffff; }
+*{ margin:0; padding:0; box-sizing:border-box; }
+body{ font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif; background:var(--bg); color:var(--ink); -webkit-text-size-adjust:100%; }
+.wrap{ max-width:520px; margin:0 auto; padding:16px 16px 40px; }
+.screen{ display:none; }
+.screen.on{ display:block; animation:fade.25s ease; }
+@keyframes fade{ from{ opacity:0; transform:translateY(6px);} to{ opacity:1; transform:none;} }
+.hero{ text-align:center; padding:28px 8px 8px; }
+img.banner{ width:100%; border-radius:20px; display:block; }
+.hero h1{ font-size:26px; margin:18px 0 8px; letter-spacing:.02em; }
+.hero p{ color:var(--sub); font-size:14px; line-height:1.7; }
+.btn{ display:block; width:100%; border:none; cursor:pointer; background:var(--accent); color:#fff; font-size:17px; font-weight:700; padding:15px; border-radius:99px; margin-top:22px; box-shadow:0 4px 0 #5d43ab; font-family:inherit; }
+.btn:active{ transform:translateY(2px); box-shadow:0 2px 0 #5d43ab; }
+.btn.sub{ background:#fff; color:var(--accent); border:2px solid var(--accent); box-shadow:none; font-size:14px; padding:11px; }
+.meta{ text-align:center; color:var(--sub); font-size:12px; margin-top:12px; }
+.progress{ margin:10px 0 18px; }
+.progress .num{ font-size:12px; color:var(--sub); text-align:right; margin-bottom:5px; }
+.bar{ height:8px; background:#e9e2f7; border-radius:99px; overflow:hidden; }
+.bar i{ display:block; height:100%; background:var(--accent); border-radius:99px; transition:width.3s; }
+.q{ font-size:19px; font-weight:700; line-height:1.6; min-height:64px; display:flex; align-items:center; justify-content:center; text-align:center; padding:0 4px; }
+.opts{ display:flex; flex-direction:column; gap:11px; margin-top:10px; }
+.opt{ background:var(--card); border:2px solid #eee7fa; border-radius:16px; padding:15px 16px; font-size:15px; text-align:left; cursor:pointer; font-family:inherit; color:var(--ink); line-height:1.5; }
+.opt:active{ border-color:var(--accent); background:#f3efff; }
+.note{ text-align:center; color:var(--sub); font-size:12px; line-height:1.7; margin:14px 0; }
+.gender-opts{ display:flex; flex-direction:column; gap:11px; margin-top:16px; }
+.result-card{ background:var(--card); border-radius:24px; padding:28px 20px; text-align:center; box-shadow:0 6px 24px rgba(122,95,208,.12); }
+.result-card .label{ font-size:12px; color:var(--sub); letter-spacing:.15em; }
+.avatar{ width:150px; height:150px; border-radius:50%; overflow:hidden; margin:14px auto 6px; border:4px solid #f0eaff; background:#f7f3ff; }
+.avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+.result-card h2{ font-size:27px; margin:6px 0 2px; }
+.catch{ color:var(--accent); font-weight:700; font-size:15px; margin-bottom:12px; }
+.desc{ font-size:14px; line-height:1.9; text-align:left; }
+.points{ text-align:left; margin:16px 0 0; font-size:14px; line-height:1.8; list-style:none; }
+.points li::before{ content:"💎 "; }
+.points b{ color:var(--accent); }
+.axes{ margin:18px 0 4px; text-align:left; }
+.axis-row{ margin-bottom:10px; }
+.axis-row .cap{ display:flex; justify-content:space-between; font-size:11px; color:var(--sub); margin-bottom:4px; }
+.axis-row .cap b{ color:var(--ink); font-size:12px; }
+.axisbar{ height:10px; background:#eee9fa; border-radius:99px; position:relative; }
+.axisbar i{ position:absolute; top:50%; width:16px; height:16px; border-radius:50%; background:var(--accent); transform:translate(-50%,-50%); border:3px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.2); }
+.compat{ margin-top:16px; font-size:13px; color:var(--sub); line-height:1.7; }
+.compat b{ color:var(--ink); }
+.row2{ display:flex; gap:10px; }
+.row2 .btn{ margin-top:16px; }
+.alltypes{ margin-top:30px; }
+.alltypes h2{ font-size:16px; text-align:center; }
+.alltypes p{ font-size:12px; color:var(--sub); text-align:center; margin:6px 0 12px; }
+.grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+.grid div{ background:#fff; border-radius:14px; padding:10px 2px; text-align:center; font-size:22px; }
+.grid img{ width:52px; height:52px; border-radius:50%; object-fit:cover; }
+.grid small{ display:block; font-size:10px; color:var(--sub); margin-top:3px; line-height:1.3; }
+.got{ outline:2px solid var(--accent); }
+footer{ text-align:center; color:var(--sub); font-size:11px; margin-top:34px; line-height:1.8; }
+footer a{ color:var(--sub); }
+.break-emoji{ font-size:56px; text-align:center; margin:34px 0 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- トップ -->
+  <section id="scr-top" class="screen on">
+    <div class="hero">
+      <img class="banner" src="assets/top.jpg" alt="16種類の宝石マスコット">
+      <h1>本当の性格 宝石診断</h1>
+      <p>20の質問に答えると、あなたの本当の性格が<br>16種類の宝石のどれに似ているか分かります。</p>
+    </div>
+    <button class="btn" id="btn-start">診断をはじめる</button>
+    <button class="btn sub" id="btn-resume" style="display:none">つづきから再開する</button>
+    <p class="meta">全20問・約2分 ／ 結果は画像で保存できます</p>
+    <div class="alltypes">
+      <h2>宝石図鑑（<span id="got-count">0</span>/16）</h2>
+      <p>結果になった宝石がここに集まります</p>
+      <div class="grid" id="grid-top"></div>
+    </div>
+  </section>
+
+  <!-- 性別（任意・統計用） -->
+  <section id="scr-gender" class="screen">
+    <p class="q" style="margin-top:26px">はじめに、差し支えなければ<br>教えてください</p>
+    <p class="note">統計のためにだけ使います。結果には一切影響しません。<br>答えたくない場合はスキップできます。</p>
+    <div class="gender-opts">
+      <button class="opt" data-gender="female">女性</button>
+      <button class="opt" data-gender="male">男性</button>
+      <button class="opt" data-gender="other">その他</button>
+      <button class="opt" data-gender="skip">答えたくない（スキップ）</button>
+    </div>
+  </section>
+
+  <!-- 質問 -->
+  <section id="scr-q" class="screen">
+    <div class="progress">
+      <div class="num"><span id="q-num">1</span> / 20（<span id="q-pct">0</span>%）</div>
+      <div class="bar"><i id="q-bar" style="width:0%"></i></div>
+    </div>
+    <p class="q" id="q-text"></p>
+    <div class="opts" id="q-opts"></div>
+    <button class="btn sub" id="btn-back" style="margin-top:18px">← もどる</button>
+  </section>
+
+  <!-- 休憩 -->
+  <section id="scr-break" class="screen">
+    <div class="break-emoji">💎</div>
+    <p class="q">ちょうど半分まできたよ！</p>
+    <p class="note">ここまでの回答は自動で保存されています。<br>少し休んでからでも大丈夫。</p>
+    <button class="btn" id="btn-break-next">つづける</button>
+  </section>
+
+  <!-- 結果 -->
+  <section id="scr-result" class="screen">
+    <div class="result-card">
+      <p class="label">あなたの本当の性格は…</p>
+      <div class="avatar"><img id="r-img" src="" alt=""></div>
+      <h2 id="r-name"></h2>
+      <p class="catch" id="r-catch"></p>
+      <p class="desc" id="r-desc"></p>
+      <ul class="points" id="r-points"></ul>
+      <div class="axes" id="r-axes"></div>
+      <p class="compat" id="r-compat"></p>
+    </div>
+    <div class="row2">
+      <button class="btn" id="btn-share">Xでシェア</button>
+      <button class="btn" id="btn-card">画像を保存</button>
+    </div>
+    <div id="card-preview" style="display:none;margin-top:16px;text-align:center;">
+<img id="card-img" alt="結果カード" style="width:100%;max-width:340px;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.15);">
+<p class="note">画像を長押し（PCでは右クリック）でも保存できます</p>
+<a id="card-dl" class="btn" href="#" download style="text-decoration:none;">⬇ この画像をダウンロード</a>
+</div>
+<button class="btn sub" id="btn-retry">もう一度診断する</button>
+    <div class="alltypes">
+      <h2>宝石図鑑（<span id="got-count2">0</span>/16）</h2>
+      <p>結果になった宝石がここに集まります</p>
+      <div class="grid" id="grid-result"></div>
+    </div>
+  </section>
+
+  <footer>
+    エンタメ診断です。結果は気軽に楽しんでください。<br>
+    匿名の統計（結果の種類など）を今後の改善に利用しています。<br>
+    <a href="../../">Tosh1 トップへ</a>
+  </footer>
+</div>
+
+<script>
+"use strict";
+const DIAGNOSIS_ID = "gem-personality";
+const STATS_URL = "https://script.google.com/macros/s/AKfycbzywRRO-oaAFc4HR1jTKqv-6asGxOiKlzzYMn0hQ8-5eLjy89kFb0w4KzxlhnwjWeoqGg/exec";
+
+/* 軸: [キー, 左極ラベル, 右極ラベル, 表示名]  スコアは左極がプラス */
+const AXES = [
+  { key:"E", left:"外向", right:"内向", name:"人との関わり方" },
+  { key:"T", left:"論理", right:"感性", name:"考え方" },
+  { key:"J", left:"計画", right:"柔軟", name:"進め方" },
+  { key:"D", left:"安定", right:"情熱", name:"心の温度" }
+];
+/* 質問: axis, q, options は [文, 重み] 重み +2/+1=左極, -1/-2=右極 */
+const QUESTIONS = [
+  { axis:0, q:"休みの日、理想の過ごし方は？", o:[["友達と集まってワイワイ過ごす",2],["気の合う数人とお出かけする",1],["家で好きなことをして過ごす",-1],["一人で静かに充電する",-2]] },
+  { axis:1, q:"大事な決断の決め手は？", o:[["データと根拠",2],["コスパと効率",1],["直感と好き嫌い",-1],["関わる人の気持ち",-2]] },
+  { axis:2, q:"旅行の準備はどうする？", o:[["行程表まで作り込む",2],["主要な予約だけ済ませる",1],["現地で気分で決める",-1],["ノープランで出発する",-2]] },
+  { axis:3, q:"あなたの感情の波は？", o:[["ほぼ一定で穏やか",2],["滅多に乱れない",1],["嬉しいと大きく上がる",-1],["喜怒哀楽がはっきりしている",-2]] },
+  { axis:0, q:"初対面の人が多い場では？", o:[["自分から話しかけに行く",2],["笑顔で輪に入る",1],["声をかけられたら話す",-1],["端の方で様子を見る",-2]] },
+  { axis:1, q:"友達に悩みを相談されたら？", o:[["解決策を一緒に考える",2],["原因を整理してあげる",1],["まず共感して聞く",-1],["気持ちを丸ごと受け止める",-2]] },
+  { axis:2, q:"締切への向き合い方は？", o:[["早めに終わらせて安心したい",2],["計画的にコツコツ進める",1],["直前に集中して仕上げる",-1],["ギリギリの方が燃える",-2]] },
+  { axis:3, q:"好きなものにハマると？", o:[["長くコツコツ続ける",2],["じっくり深めていく",1],["一気にのめり込む",-1],["全力で燃え上がる",-2]] },
+  { axis:0, q:"考えをまとめたいときは？", o:[["話しながら考える",2],["誰かに聞いてもらうと進む",1],["メモしながら一人で考える",-1],["頭の中だけで完結させる",-2]] },
+  { axis:1, q:"褒められて一番嬉しいのは？", o:[["的確で有能だね",2],["頼りになるね",1],["優しくて温かいね",-1],["センスがいいね",-2]] },
+  { axis:2, q:"部屋や机の状態は？", o:[["物の定位置が決まっている",2],["大体片付いている",1],["散らかっていても把握している",-1],["カオスだけど平気",-2]] },
+  { axis:3, q:"トラブルが起きたら？", o:[["まず冷静に対処する",2],["落ち着いて状況を確認する",1],["ドキドキしながら動く",-1],["感情が先に出てしまう",-2]] },
+  { axis:0, q:"グループの中でのあなたは？", o:[["自然と仕切っている",2],["盛り上げ役になる",1],["サポート役が多い",-1],["黙々と作業している",-2]] },
+  { axis:1, q:"意見が対立したら？", o:[["論点をはっきりさせたい",2],["落とし所を探る",1],["相手の立場を想像する",-1],["波風は立てたくない",-2]] },
+  { axis:2, q:"予定が急に変わると？", o:[["代替案をすぐ組み直す",2],["少し困るけど対応する",1],["むしろワクワクする",-1],["臨機応変が一番好き",-2]] },
+  { axis:3, q:"周りから言われる印象は？", o:[["穏やかで安定している",2],["落ち着いている",1],["表情が豊か",-1],["情熱的でドラマチック",-2]] },
+  { axis:0, q:"元気が出るのはどんなとき？", o:[["人と会って話した後",2],["楽しい予定が近づいたとき",1],["一人の時間を持てた後",-1],["静かな場所にいるとき",-2]] },
+  { axis:1, q:"納得できないことがあると？", o:[["理由を言語化したくなる",2],["代替案を探したくなる",1],["モヤモヤが残り続ける",-1],["雰囲気を優先して流す",-2]] },
+  { axis:2, q:"買い物のスタイルは？", o:[["リストを作ってから行く",2],["目当てを決めて行く",1],["見て回ってから決める",-1],["一目惚れで買ってしまう",-2]] },
+  { axis:3, q:"理想の生き方に近いのは？", o:[["着実に積み上げていく",2],["平和で穏やかに暮らす",1],["ワクワクを追いかける",-1],["劇的な変化も楽しむ",-2]] }
+];
+/* タイプ: code = E/T/J/D の各軸 左極なら1文字目、右極なら2文字目 (E/I, T/F, J/P, D/H) */
+const TYPES = {
+  ETJD:{ id:"diamond", name:"ダイヤモンド", color:"#8fa8c8", catch:"揺るがない、王者の輝き", desc:"どんな場面でも自分を見失わない、芯の強さがあなたの魅力。プレッシャーがかかるほど冷静になれるタイプで、周りからは「あの人がいれば大丈夫」と頼りにされています。完璧を求めるあまり自分に厳しくなりがちですが、その真面目さこそが誰にも真似できない輝きの源です。", points:["<b>判断が速くて正確</b>。迷いが少ない","<b>責任感が強い</b>。任されたことは最後までやり切る","<b>本番に強い</b>。緊張する場面ほど実力が出る"], compat:["peridot","rosequartz"] },
+  ETJH:{ id:"ruby", name:"ルビー", color:"#d43d4f", catch:"情熱で引っ張るリーダー", desc:"目標を見つけたら一直線。熱い想いと確かな実行力をあわせ持つあなたは、集団のエンジンそのものです。困難があるほど燃えるタイプで、その姿に周りの人も自然と引き上げられます。たまに熱が入りすぎて周りが見えなくなることもありますが、それも含めて人を惹きつける魅力です。", points:["<b>行動力がある</b>。考えるより先に動ける","<b>人を巻き込む熱さ</b>。場の温度を上げられる","<b>負けず嫌い</b>。悔しさを力に変えられる"], compat:["aquamarine","pearl"] },
+  ETPD:{ id:"topaz", name:"トパーズ", color:"#e0a91f", catch:"明るさで切り開く実行者", desc:"アイデアを思いついたら、まず試してみる。その軽やかな行動力があなたの武器です。難しいことも「なんとかなる」で乗り越えてきた経験が多く、周りからは頼れるムードメーカーとして見られています。飽きっぽさは好奇心の裏返し。興味の幅広さが、いつか大きな強みになります。", points:["<b>フットワークが軽い</b>。新しいことに強い","<b>切り替えが早い</b>。失敗を引きずらない","<b>場を明るくする</b>。いるだけで空気が和む"], compat:["moonstone","turquoise"] },
+  ETPH:{ id:"garnet", name:"ガーネット", color:"#a02c3a", catch:"深く燃える、情の挑戦者", desc:"表面はクールでも、内側には誰より熱い炎を持っているあなた。一度「やる」と決めたことへの集中力は圧倒的で、好きなことのためなら努力を努力と思いません。人に対しても情が深く、大切な人のためには本気で怒れる、義理堅いところがあります。", points:["<b>集中力がすごい</b>。没頭すると周りが見えないほど","<b>情に厚い</b>。大切な人を全力で守る","<b>本音でぶつかれる</b>。駆け引きが苦手な正直者"], compat:["pearl","emerald"] },
+  EFJD:{ id:"pearl", name:"パール", color:"#c9a86a", catch:"上品な気配りの達人", desc:"誰に対しても柔らかく、場の空気を読む力に長けたあなた。細やかな気配りができるので、年齢を問わず好かれるタイプです。自分のことより周りの心地よさを優先しがちで、疲れを溜め込むことも。でも、その優しさに救われている人が確実にいます。", points:["<b>気配り上手</b>。困っている人にすぐ気づく","<b>品がある</b>。言葉遣いや所作が丁寧","<b>調整役として優秀</b>。対立を柔らかく収められる"], compat:["garnet","citrine"] },
+  EFJH:{ id:"rosequartz", name:"ローズクォーツ", color:"#e58bb1", catch:"愛され上手な、愛情の人", desc:"好きという気持ちに素直で、その熱量がそのまま魅力になるあなた。感情表現が豊かで、一緒にいる人の心まで温かくしてしまいます。落ち込むときは深く落ちますが、立ち直りのエネルギーも人一倍。人を愛すること、人に愛されることの両方に長けた、幸福感の強いタイプです。", points:["<b>愛情表現が豊か</b>。気持ちを伝えられる","<b>共感力が高い</b>。相手の気持ちが手に取るように分かる","<b>立ち直りが早い</b>。寝たら大体リセットできる"], compat:["sapphire","lapis"] },
+  EFPD:{ id:"citrine", name:"シトリン", color:"#e8933a", catch:"太陽みたいなムードメーカー", desc:"いるだけで場が明るくなる、天性の太陽タイプ。新しい人ともすぐ打ち解け、楽しそうなことには真っ先に飛び込んでいきます。深く悩むより「まあいっか」で前を向ける楽観性は、周りの人の心まで軽くする才能です。気分屋な一面も、愛嬌として許されてしまう人徳があります。", points:["<b>誰とでも仲良くなれる</b>。人見知りをしない","<b>楽観的</b>。ピンチでも楽しさを見つけられる","<b>誘いに強い</b>。楽しいことのアンテナが高い"], compat:["amethyst","pearl"] },
+  EFPH:{ id:"opal", name:"オパール", color:"#a678d8", catch:"七色に変わる、自由な表現者", desc:"見る角度で色が変わるオパールのように、多面的な魅力を持つあなた。感受性が鋭く、普通の人が見過ごす美しさや面白さに気づけます。気分や環境で表情がコロコロ変わるので掴みどころがないと言われますが、それは豊かな感性の証拠。あなたの「好き」は、誰かの新しい世界を開きます。", points:["<b>感性が鋭い</b>。センスの良さを褒められがち","<b>表現が豊か</b>。話していて飽きさせない","<b>自由を愛する</b>。型にはめられるのが苦手"], compat:["emerald","diamond"] },
+  ITJD:{ id:"sapphire", name:"サファイア", color:"#3d5ad4", catch:"冷静で知的な、信頼の青", desc:"感情に流されず、物事を深く正確に捉えるあなた。知識欲が強く、「なぜ」を追求する時間が何よりの楽しみというタイプです。口数は多くなくても、発言には重みがあり、重要な場面でこそ頼られます。誠実で嘘がつけないところも、静かな信頼を集める理由です。", points:["<b>分析力が高い</b>。本質を見抜くのが得意","<b>誠実</b>。約束とルールを大切にする","<b>専門性が武器</b>。深く掘るほど輝く"], compat:["rosequartz","amethyst"] },
+  ITJH:{ id:"amethyst", name:"アメジスト", color:"#8b5fd6", catch:"静かに燃える、探究者", desc:"外は静かでも、頭の中ではいつも壮大な思考が巡っているあなた。興味を持った分野はとことん掘り下げ、気づけば専門家レベルになっていることも。自分の世界を大切にするので単独行動が苦にならず、その集中力が大きな成果を生みます。内に秘めた情熱は、知る人ぞ知る魅力です。", points:["<b>探究心が強い</b>。好きな分野の知識量がすごい","<b>集中力が高い</b>。一人で深く潜れる","<b>洞察力がある</b>。人の本音に気づきやすい"], compat:["citrine","sapphire"] },
+  ITPD:{ id:"lapis", name:"ラピスラズリ", color:"#33549e", catch:"知性で旅する、マイペース派", desc:"群れるより、自分のペースで世界を広げていくあなた。好奇心の向くままに知識を集めるのが好きで、雑学や意外な引き出しの多さで驚かれるタイプです。縛られることを嫌い、自由な環境でこそ力を発揮します。飄々としていますが、決して冷めているわけではなく、興味への愛は深いです。", points:["<b>知識の引き出しが多い</b>。話のネタが尽きない","<b>マイペース</b>。流行に流されない","<b>発想が柔軟</b>。意外な組み合わせを思いつく"], compat:["rosequartz","opal"] },
+  ITPH:{ id:"turquoise", name:"ターコイズ", color:"#2bb3a3", catch:"風のように生きる、自由人", desc:"決まった型に収まらない、風のようなあなた。新しい場所や経験にワクワクし、人生そのものを旅のように楽しめるタイプです。直感が鋭く、「なんとなく」の判断が意外と当たります。一見気まぐれでも、それは自分の心に正直に生きている証拠。その自由さに憧れる人は少なくありません。", points:["<b>直感が鋭い</b>。第一印象が大体当たる","<b>適応力が高い</b>。どんな環境でもやっていける","<b>心に正直</b>。無理をして合わせない"], compat:["topaz","moonstone"] },
+  IFJD:{ id:"emerald", name:"エメラルド", color:"#2fae6e", catch:"穏やかに守る、癒しの緑", desc:"争いを好まず、周りの平和を静かに守るあなた。一緒にいると安心すると言われることが多く、人の話を最後まで聞ける聞き上手です。自分のペースを大切にしながら、決めたことは着実に続けられる継続力も持ち味。派手さはなくても、長く付き合うほど価値が分かる、深い魅力の持ち主です。", points:["<b>聞き上手</b>。安心して話せる人だと思われがち","<b>継続力がある</b>。コツコツを続けられる","<b>穏やか</b>。滅多なことでは怒らない"], compat:["opal","garnet"] },
+  IFJH:{ id:"moonstone", name:"ムーンストーン", color:"#93a7d4", catch:"月の光のような、夢追い人", desc:"感受性が豊かで、物語や音楽、空の色のような「心が動くもの」に強く惹かれるあなた。内に秘めた想いは深く、好きな人のこととなると驚くほどの情熱を見せます。現実的な計算より、心が動くかどうかが行動の基準。その純粋さが、周りの人の心をそっと照らしています。", points:["<b>感受性が豊か</b>。小さな幸せに気づける","<b>想像力がある</b>。物語を作るのが好き","<b>一途</b>。大切な人への想いが深い"], compat:["topaz","turquoise"] },
+  IFPD:{ id:"peridot", name:"ペリドット", color:"#8fbf3f", catch:"小さな太陽、明るい癒し系", desc:"控えめなのに、そばにいると元気になれる不思議な明るさを持つあなた。人と争うより笑っている方が好きで、その素直さが周りを和ませます。大きな野心はないけれど、日常の小さな楽しみを見つける天才。あなたの「まあいっか、大丈夫」は、意外と多くの人を救っています。", points:["<b>素直</b>。喜びをそのまま表現できる","<b>小さな幸せ上手</b>。日常を楽しむ力が高い","<b>人懐っこい</b>。年上から可愛がられがち"], compat:["diamond","ruby"] },
+  IFPH:{ id:"aquamarine", name:"アクアマリン", color:"#4fb3c9", catch:"深い海のような、ロマンチスト", desc:"静かな見た目の奥に、深く豊かな感情の海を抱えるあなた。人の気持ちの機微に敏感で、言葉にされない想いまで汲み取ってしまいます。自分の感情とはゆっくり向き合うタイプで、一度心を許した相手にはとことん深く付き合います。その透明感のある優しさは、海のように包み込む魅力です。", points:["<b>共感力が高い</b>。相手の本音に寄り添える","<b>深く付き合う</b>。狭く深い人間関係が得意","<b>透明感のある優しさ</b>。一緒にいると落ち着く"], compat:["ruby","peridot"] }
+};
+const TYPE_ORDER = ["diamond","ruby","topaz","garnet","pearl","rosequartz","citrine","opal","sapphire","amethyst","lapis","turquoise","emerald","moonstone","peridot","aquamarine"];
+const byId = {};
+Object.values(TYPES).forEach(t => byId[t.id] = t);
+const EMOJI = { diamond:"💎", ruby:"🔴", topaz:"🟡", garnet:"🍷", pearl:"⚪", rosequartz:"🌸", citrine:"🟠", opal:"🔮", sapphire:"🔵", amethyst:"🟣", lapis:"🌌", turquoise:"🩵", emerald:"🟢", moonstone:"🌙", peridot:"💚", aquamarine:"🌊" };
+
+let gender = "unknown";
+let idx = 0;
+let answers = []; // 選択した重みの配列
+let breakShown = false; // 休憩画面を出したかどうか（出し直しループ防止）
+let resultType = null;
+let scores = [0,0,0,0];
+
+const $ = id => document.getElementById(id);
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
+  $(id).classList.add("on");
+  window.scrollTo(0,0);
+}
+/* 統計送信（GA4＋シート受け口）。失敗しても診断は止めない */
+function sendStat(event, extra){
+  const payload = Object.assign({ diagnosis: DIAGNOSIS_ID, event: event, type: resultType ? resultType.id : "", gender: gender }, extra || {});
+  try { gtag("event", event, { diagnosis: DIAGNOSIS_ID, result_type: payload.type, gender: gender }); } catch(e) {}
+  if (STATS_URL && STATS_URL.indexOf("__") !== 0) {
+    try { fetch(STATS_URL, { method:"POST", mode:"no-cors", headers:{ "Content-Type":"text/plain" }, body: JSON.stringify(payload), keepalive:true }); } catch(e) {}
+  }
+}
+/* 途中保存 */
+function saveProgress(){
+  try { localStorage.setItem(DIAGNOSIS_ID + "-progress", JSON.stringify({ idx: idx, answers: answers, gender: gender })); } catch(e) {}
+}
+function loadProgress(){
+  try { const p = JSON.parse(localStorage.getItem(DIAGNOSIS_ID + "-progress") || "null"); return (p && p.answers && p.answers.length < QUESTIONS.length) ? p : null; } catch(e) { return null; }
+}
+function clearProgress(){ try { localStorage.removeItem(DIAGNOSIS_ID + "-progress"); } catch(e) {} }
+/* 図鑑 */
+function getGot(){ try { return JSON.parse(localStorage.getItem(DIAGNOSIS_ID + "-got") || "[]"); } catch(e) { return []; } }
+function renderGrid(el){
+  const got = getGot();
+  el.innerHTML = TYPE_ORDER.map(id => {
+    const t = byId[id];
+    const has = got.includes(id);
+    return '<div class="' + (has ? "got" : "") + '"><img src="assets/' + id + '.jpg" alt="' + t.name + '"><small>' + t.name + '</small></div>';
+  }).join("");
+  $("got-count").textContent = got.length;
+  const c2 = $("got-count2"); if (c2) c2.textContent = got.length;
+}
+function renderAllGrids(){ renderGrid($("grid-top")); renderGrid($("grid-result")); }
+
+function startQuiz(resume){
+  if (resume) {
+    const p = loadProgress();
+    if (p) { idx = p.idx; answers = p.answers.slice(); gender = p.gender || "unknown"; showQuestion(); return; }
+  }
+  idx = 0; answers = []; gender = "unknown"; breakShown = false;
+  show("scr-gender");
+}
+function showQuestion(){
+  if (idx >= QUESTIONS.length) { showResult(); return; }
+  if (idx === 10 && answers.length === 10 && !breakShown) { breakShown = true; show("scr-break"); return; }
+  const q = QUESTIONS[idx];
+  $("q-num").textContent = idx + 1;
+  $("q-pct").textContent = Math.round(idx / QUESTIONS.length * 100);
+  $("q-bar").style.width = (idx / QUESTIONS.length * 100) + "%";
+  $("q-text").textContent = q.q;
+  const box = $("q-opts");
+  box.innerHTML = "";
+  q.o.forEach(opt => {
+    const b = document.createElement("button");
+    b.className = "opt"; b.textContent = opt[0];
+    b.onclick = () => { answers[idx] = opt[1]; idx++; saveProgress(); showQuestion(); };
+    box.appendChild(b);
+  });
+  $("btn-back").style.visibility = idx === 0 ? "hidden" : "visible";
+  show("scr-q");
+}
+function judge(){
+  scores = [0,0,0,0];
+  const strong = [0,0,0,0];
+  QUESTIONS.forEach((q, i) => { scores[q.axis] += answers[i]; if (Math.abs(answers[i]) === 2) strong[q.axis] += answers[i]; });
+  const letters = ["EI","TF","JP","DH"];
+  let code = "";
+  for (let a = 0; a < 4; a++) {
+    let s = scores[a];
+    if (s === 0) s = strong[a];
+    code += s >= 0 ? letters[a][0] : letters[a][1];
+  }
+  return TYPES[code];
+}
+function showResult(){
+  resultType = judge();
+  clearProgress();
+  const got = getGot();
+  if (!got.includes(resultType.id)) { got.push(resultType.id); try { localStorage.setItem(DIAGNOSIS_ID + "-got", JSON.stringify(got)); } catch(e) {} }
+  $("r-img").src = "assets/" + resultType.id + ".jpg";
+  $("r-img").alt = resultType.name;
+  $("r-name").textContent = resultType.name;
+  $("r-catch").textContent = resultType.catch;
+  $("r-catch").style.color = resultType.color;
+  $("r-desc").textContent = resultType.desc;
+  $("r-points").innerHTML = resultType.points.map(p => "<li>" + p + "</li>").join("");
+  $("r-axes").innerHTML = AXES.map((ax, a) => {
+    const pct = 50 + scores[a] * 5;
+    const chosen = scores[a] >= 0 ? ax.left : ax.right;
+    return '<div class="axis-row"><div class="cap"><span>' + ax.left + '</span><b>' + ax.name + '：' + chosen + '寄り</b><span>' + ax.right + '</span></div><div class="axisbar"><i style="left:' + Math.max(4, Math.min(96, pct)) + '%"></i></div></div>';
+  }).join("");
+  $("r-compat").innerHTML = "相性がいい宝石：<b>" + resultType.compat.map(id => byId[id].name).join("・") + "</b>";
+  renderAllGrids();
+  show("scr-result");
+  sendStat("result_view");
+}
+function shareText(){
+  return "私の本当の性格は「" + resultType.name + "」でした💎 " + resultType.catch + "\nあなたは何の宝石？\n";
+}
+$("btn-start").onclick = () => { sendStat("diagnosis_start"); startQuiz(false); };
+$("btn-resume").onclick = () => startQuiz(true);
+document.querySelectorAll("[data-gender]").forEach(b => {
+  b.onclick = () => { gender = b.getAttribute("data-gender"); idx = 0; answers = []; breakShown = false; saveProgress(); showQuestion(); };
+});
+$("btn-back").onclick = () => { if (idx > 0) { idx--; showQuestion(); } };
+$("btn-break-next").onclick = () => showQuestion();
+$("btn-retry").onclick = () => { resultType = null; show("scr-top"); refreshResume(); };
+async function getCardFile(){
+  if ($("card-preview").style.display === "none" || !$("card-img").src.startsWith("blob:")) {
+    $("btn-card").click();
+    for (let i = 0; i < 40; i++) { await new Promise(r => setTimeout(r, 100)); if ($("card-img").src.startsWith("blob:")) break; }
+  }
+  if (!$("card-img").src.startsWith("blob:")) return null;
+  const b = await (await fetch($("card-img").src)).blob();
+  return new File([b], "gem-personality-" + resultType.id + ".png", { type: "image/png" });
+}
+$("btn-share").onclick = async () => {
+  sendStat("share_click");
+  const url = "https://tosh1000950.github.io/shindan/gem-personality/share/" + resultType.id + ".html";
+  const text = shareText();
+  try {
+    const file = await getCardFile();
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      if (/iPhone|iPad|iPod/.test(navigator.userAgent)) { await navigator.share({ files: [file], text: text + "\n" + url }); } else { await navigator.share({ files: [file], text: text, url: url }); }
+      return;
+    }
+  } catch (e) { if (e && e.name === "AbortError") return; }
+  if (navigator.share) {
+    try { await navigator.share({ title: "本当の性格 宝石診断", text: text + "\n" + url }); return; }
+    catch (e) { if (e && e.name === "AbortError") return; }
+  }
+  const intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(url);
+  const w = window.open(intent, "_blank");
+  if (!w) location.href = intent;
+};
+$("btn-card").onclick = () => {
+  sendStat("card_save");
+  const t = resultType;
+  const img = new Image();
+  img.onload = () => {
+    const c = document.createElement("canvas"); c.width = 1080; c.height = 1350;
+    const x = c.getContext("2d");
+    x.fillStyle = "#f6f3fb"; x.fillRect(0,0,1080,1350);
+    x.fillStyle = "#ffffff"; x.beginPath(); x.roundRect(60,60,960,1230,48); x.fill();
+    x.textAlign = "center"; x.fillStyle = "#8a81a3"; x.font = "600 34px sans-serif";
+    x.fillText("本当の性格 宝石診断", 540, 170);
+    x.save(); x.beginPath(); x.arc(540,430,190,0,Math.PI*2); x.clip();
+    x.drawImage(img, 350, 240, 380, 380); x.restore();
+    x.lineWidth = 10; x.strokeStyle = t.color; x.beginPath(); x.arc(540,430,190,0,Math.PI*2); x.stroke();
+    x.fillStyle = "#3d3654"; x.font = "700 84px sans-serif";
+    x.fillText(t.name, 540, 730);
+    x.fillStyle = t.color; x.font = "700 40px sans-serif";
+    x.fillText(t.catch, 540, 800);
+    x.fillStyle = "#3d3654"; x.font = "36px sans-serif";
+    const lines = ["わたしの本当の性格は", "この宝石みたいな輝きでした"];
+    lines.forEach((ln,i) => x.fillText(ln, 540, 910 + i*56));
+    x.fillStyle = "#8a81a3"; x.font = "30px sans-serif";
+    x.fillText("tosh1000950.github.io/shindan/gem-personality/", 540, 1180);
+    c.toBlob(b => {
+      if (!b) return;
+      const u = URL.createObjectURL(b);
+      $("card-img").src = u;
+      const dl = $("card-dl"); dl.href = u; dl.download = "gem-personality-" + t.id + ".png";
+      $("card-preview").style.display = "block";
+      $("card-preview").scrollIntoView({ behavior: "smooth" });
+    }, "image/png");
+  };
+  img.src = "assets/" + t.id + ".jpg";
+};
+function refreshResume(){ $("btn-resume").style.display = loadProgress() ? "block" : "none"; }
+renderAllGrids();
+refreshResume();
+</script>
+</body>
+</html>
