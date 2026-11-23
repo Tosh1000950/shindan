@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>おっさん診断｜あなたは何タイプのおっさん？</title>
+<meta name="description" content="12の質問に答えるだけで、あなたが全16タイプのおっさんの誰に当てはまるか診断！思わず「あるある」と頷く性格診断。">
+<meta property="og:title" content="おっさん診断｜あなたは何タイプのおっさん？">
+<meta property="og:description" content="12の質問でわかる、全16タイプのおっさん診断。あなたは何タイプのおっさん？">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tosh1000950.github.io/shindan/ossan/">
+<meta property="og:image" content="https://tosh1000950.github.io/shindan/ossan/assets/ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZY9E6YLPBM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'G-ZY9E6YLPBM');
+</script>
+<style>
+:root{
+  --bg:#fbf5ea;
+  --card:#fffdf8;
+  --ink:#2f241d;
+  --sub:#7a6656;
+  --accent:#c94a29;
+  --accent-dark:#973117;
+  --gold:#d4891c;
+  --line:#eadcc8;
+  --track:#efe2ce;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+body{
+  font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","BIZ UDPGothic","Noto Sans JP",sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  -webkit-text-size-adjust:100%;
+}
+.wrap{ max-width:520px; margin:0 auto; padding:16px 16px 42px; }
+.screen{ display:none; }
+.screen.on{ display:block; animation:fade .25s ease; }
+@keyframes fade{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:none; } }
+
+/* ヒーロー（居酒屋看板＋16人コラージュ） */
+.hero{ text-align:center; padding:12px 4px 8px; }
+.collage-board{
+  background:var(--card);
+  border:2px solid var(--line);
+  border-radius:20px;
+  padding:10px;
+  box-shadow:0 6px 20px rgba(79,48,25,.08);
+}
+.noren-bar{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:var(--accent);
+  color:#fffdf8;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.12em;
+  padding:7px 12px;
+  border-radius:12px;
+  margin-bottom:9px;
+}
+.collage-grid{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:5px;
+}
+.collage-cell{
+  aspect-ratio:1/1;
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--track);
+}
+.collage-cell img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1.06);
+}
+.hero h1{
+  font-size:30px;
+  margin:18px 0 4px;
+  letter-spacing:.04em;
+  color:var(--ink);
+}
+.hero .subtitle{
+  color:var(--accent);
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+.hero .lead{
+  color:var(--sub);
+  font-size:13.5px;
+  line-height:1.75;
+}
+
+/* ボタン */
+.btn{
+  display:block;
+  width:100%;
+  border:none;
+  cursor:pointer;
+  background:var(--accent);
+  color:#fffdf8;
+  font-size:17px;
+  font-weight:700;
+  padding:15px;
+  border-radius:99px;
+  margin-top:20px;
+  box-shadow:0 4px 0 var(--accent-dark);
+  font-family:inherit;
+  text-align:center;
+}
+.btn:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--accent-dark); }
+.btn.sub{
+  background:var(--card);
+  color:var(--accent);
+  border:2px solid var(--accent);
+  box-shadow:none;
+  font-size:14px;
+  padding:11px;
+  margin-top:12px;
+}
+.btn.secondary{
+  background:#5c4434;
+  box-shadow:0 4px 0 #3d2c20;
+}
+.btn.secondary:active{ box-shadow:0 2px 0 #3d2c20; }
+.meta{ text-align:center; color:var(--sub); font-size:12px; margin-top:12px; }
+
+/* 進捗・質問 */
+.progress{ margin:10px 0 18px; }
+.progress .num{ font-size:12px; color:var(--sub); text-align:right; margin-bottom:5px; font-weight:700; }
+.bar{ height:9px; background:var(--track); border-radius:99px; overflow:hidden; }
+.bar i{ display:block; height:100%; background:linear-gradient(90deg,var(--gold),var(--accent)); border-radius:99px; transition:width .3s; }
+.q{
+  font-size:19px;
+  font-weight:700;
+  line-height:1.6;
+  min-height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 4px;
+}
+.opts,.gender-opts{ display:flex; flex-direction:column; gap:11px; margin-top:14px; }
+.opt{
+  background:var(--card);
+  border:2px solid var(--line);
+  border-radius:16px;
+  padding:15px 16px;
+  font-size:15px;
+  text-align:left;
+  cursor:pointer;
+  font-family:inherit;
+  color:var(--ink);
+  line-height:1.55;
+  transition:border-color .15s, background-color .15s;
+}
+.opt:hover{ border-color:#d8b38c; }
+.opt:active{ border-color:var(--accent); background:#fff2e6; }
+.note{ text-align:center; color:var(--sub); font-size:12.5px; line-height:1.75; margin:14px 0; }
+
+/* 休憩 */
+.break-card{
+  background:var(--card);
+  border:2px solid var(--line);
+  border-radius:24px;
+  padding:30px 20px 26px;
+  margin-top:20px;
+  text-align:center;
+  box-shadow:0 6px 20px rgba(79,48,25,.08);
+}
+.break-emoji{ font-size:56px; text-align:center; margin:6px 0 12px; }
+
+/* 結果カード */
+.result-card{
+  background:var(--card);
+  border:2px solid var(--line);
+  border-radius:24px;
+  padding:26px 18px 24px;
+  text-align:center;
+  box-shadow:0 8px 24px rgba(79,48,25,.10);
+}
+.result-card .label{
+  display:inline-block;
+  font-size:12px;
+  font-weight:700;
+  color:var(--sub);
+  letter-spacing:.14em;
+  background:#f5ecdc;
+  padding:5px 14px;
+  border-radius:99px;
+}
+.avatar{
+  width:154px;
+  height:154px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:14px auto 10px;
+  border:5px solid var(--accent);
+  background:var(--track);
+  box-shadow:0 4px 14px rgba(47,36,29,.15);
+}
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1.05);
+}
+.result-card h2{
+  font-size:23px;
+  line-height:1.4;
+  margin:6px 0 10px;
+  word-break:auto-phrase;
+}
+.short-box{
+  background:#fbf4e6;
+  border-left:4px solid var(--accent);
+  border-radius:12px;
+  padding:12px 14px;
+  margin:10px 0 16px;
+  text-align:left;
+  font-size:14.5px;
+  font-weight:700;
+  line-height:1.65;
+  color:var(--ink);
+}
+.desc{
+  font-size:14px;
+  line-height:1.9;
+  text-align:left;
+  color:var(--ink);
+}
+.strength-box{
+  margin-top:16px;
+  background:#f8f1e4;
+  border-radius:14px;
+  padding:12px 14px;
+  text-align:left;
+  font-size:13.5px;
+  line-height:1.75;
+}
+.strength-box b{
+  display:inline-block;
+  color:var(--accent);
+  margin-bottom:3px;
+}
+
+/* 4要素スコアバー */
+.axes{
+  margin:18px 0 6px;
+  text-align:left;
+  border-top:1px dashed var(--line);
+  padding-top:16px;
+}
+.axes-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--sub);
+  margin-bottom:10px;
+  text-align:center;
+}
+.axis-row{ margin-bottom:12px; }
+.axis-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:8px;
+  font-size:12px;
+  margin-bottom:4px;
+}
+.axis-head b{ color:var(--ink); }
+.axis-head span{ color:var(--accent); font-weight:700; font-size:11.5px; }
+.axisbar{
+  height:10px;
+  background:var(--track);
+  border-radius:99px;
+  position:relative;
+}
+.axisbar::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:2px;
+  margin-left:-1px;
+  background:#d5c1a5;
+}
+.axisbar i{
+  position:absolute;
+  top:50%;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:var(--accent);
+  transform:translate(-50%,-50%);
+  border:3px solid #fffdf8;
+  box-shadow:0 1px 4px rgba(0,0,0,.25);
+}
+.axis-poles{
+  display:flex;
+  justify-content:space-between;
+  font-size:10.5px;
+  color:var(--sub);
+  margin-top:3px;
+}
+
+/* 相性 */
+.compat{
+  margin-top:16px;
+  border-top:1px dashed var(--line);
+  padding-top:14px;
+  text-align:left;
+  font-size:13px;
+  line-height:1.75;
+  color:var(--sub);
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.compat b{ color:var(--ink); }
+
+.row2{ display:flex; gap:10px; }
+.row2 .btn{ margin-top:16px; flex:1; font-size:15px; padding:14px 10px; }
+
+/* 図鑑 */
+.alltypes{ margin-top:30px; }
+.alltypes h2{ font-size:16px; text-align:center; }
+.alltypes p{ font-size:12px; color:var(--sub); text-align:center; margin:6px 0 12px; }
+.grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+.grid-item{
+  background:var(--card);
+  border:1.5px solid var(--line);
+  border-radius:14px;
+  padding:8px 3px 7px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  opacity:.64;
+  filter:saturate(.55);
+  transition:opacity .2s, filter .2s;
+}
+.grid-item.got{
+  opacity:1;
+  filter:none;
+  border-color:var(--accent);
+  box-shadow:0 2px 8px rgba(201,74,41,.14);
+}
+.grid-thumb{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  overflow:hidden;
+  background:var(--track);
+}
+.grid-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1.06);
+}
+.grid-item small{
+  display:block;
+  font-size:9.5px;
+  letter-spacing:-.02em;
+  color:var(--sub);
+  margin-top:5px;
+  line-height:1.3;
+  overflow-wrap:anywhere;
+}
+.grid-item.got small{
+  color:var(--ink);
+  font-weight:700;
+}
+
+footer{
+  text-align:center;
+  color:var(--sub);
+  font-size:11px;
+  margin-top:34px;
+  line-height:1.85;
+}
+footer a{ color:var(--sub); }
+
+@media (max-width:400px){
+  .collage-grid{ grid-template-columns:repeat(4,1fr); }
+  .result-card h2{ font-size:20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- トップ -->
+  <section id="scr-top" class="screen on">
+    <div class="hero">
+      <div class="collage-board">
+        <div class="noren-bar">🍺 本日のラインナップ・全16タイプ 🍺</div>
+        <div class="collage-grid" id="hero-collage"></div>
+      </div>
+      <h1>おっさん診断</h1>
+      <p class="subtitle">あなたは何タイプのおっさん？</p>
+      <p class="lead">年齢も性別も関係なし。12の質問に答えると、<br>あなたの言動に一番近い「おっさん類型」が分かります。</p>
+    </div>
+    <button class="btn" id="btn-start">診断をはじめる</button>
+    <button class="btn sub" id="btn-resume" style="display:none">つづきから再開する</button>
+    <p class="meta" id="meta-info"></p>
+    <div class="alltypes">
+      <h2>おっさん図鑑（<span id="got-count">0</span>/<span id="total-count">16</span>）</h2>
+      <p>診断結果になったおっさんがここに集まります</p>
+      <div class="grid" id="grid-top"></div>
+    </div>
+  </section>
+
+  <!-- 性別（任意・統計用） -->
+  <section id="scr-gender" class="screen">
+    <p class="q" style="margin-top:26px">はじめに、差し支えなければ<br>教えてください</p>
+    <p class="note">統計のためにだけ使います。結果には一切影響しません。<br>答えたくない場合はスキップできます。</p>
+    <div class="gender-opts">
+      <button class="opt" data-gender="female">女性</button>
+      <button class="opt" data-gender="male">男性</button>
+      <button class="opt" data-gender="other">その他</button>
+      <button class="opt" data-gender="skip">答えたくない（スキップ）</button>
+    </div>
+  </section>
+
+  <!-- 質問 -->
+  <section id="scr-q" class="screen">
+    <div class="progress">
+      <div class="num"><span id="q-num">1</span> / <span id="q-total">12</span>（<span id="q-pct">0</span>%）</div>
+      <div class="bar"><i id="q-bar" style="width:0%"></i></div>
+    </div>
+    <p class="q" id="q-text"></p>
+    <div class="opts" id="q-opts"></div>
+    <button class="btn sub" id="btn-back" style="margin-top:18px">← もどる</button>
+  </section>
+
+  <!-- 休憩（6問目の後に1度だけ） -->
+  <section id="scr-break" class="screen">
+    <div class="break-card">
+      <div class="break-emoji">🍺</div>
+      <p class="q">ちょうど半分まできたよ！</p>
+      <p class="note">ここまでの回答は自動で保存されています。<br>お茶でも一口飲んで、一息ついてからでも大丈夫。</p>
+      <button class="btn" id="btn-break-next">つづける</button>
+    </div>
+  </section>
+
+  <!-- 結果 -->
+  <section id="scr-result" class="screen">
+    <div class="result-card">
+      <p class="label">あなたのタイプは…</p>
+      <div class="avatar" id="r-avatar"><img id="r-img" src="" alt=""></div>
+      <h2 id="r-name"></h2>
+      <p class="short-box" id="r-short"></p>
+      <p class="desc" id="r-desc"></p>
+      <div class="strength-box" id="r-strength"></div>
+      <div class="axes" id="r-axes"></div>
+      <div class="compat" id="r-compat"></div>
+    </div>
+    <div class="row2">
+      <button class="btn" id="btn-share">結果をシェア</button>
+      <button class="btn secondary" id="btn-card">画像を保存</button>
+    </div>
+    <div id="card-preview" style="display:none;margin-top:16px;text-align:center;">
+      <img id="card-img" alt="結果カード" style="width:100%;max-width:340px;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.15);">
+      <p class="note">画像を長押し（PCでは右クリック）でも保存できます</p>
+      <a id="card-dl" class="btn" href="#" download style="text-decoration:none;">⬇ この画像をダウンロード</a>
+    </div>
+    <button class="btn sub" id="btn-retry">もう一度診断する</button>
+    <div class="alltypes">
+      <h2>おっさん図鑑（<span id="got-count2">0</span>/<span id="total-count2">16</span>）</h2>
+      <p>診断結果になったおっさんがここに集まります</p>
+      <div class="grid" id="grid-result"></div>
+    </div>
+  </section>
+
+  <footer>
+    エンタメ診断です。結果は気軽に楽しんでください。<br>
+    匿名の統計（結果の種類など）を今後の改善に利用しています。<br>
+    <a href="../../">Tosh1 トップへ</a>
+  </footer>
+</div>
+
+<script>
+"use strict";
+const DIAGNOSIS_ID = "ossan";
+const STATS_URL = "https://script.google.com/macros/s/AKfycbzywRRO-oaAFc4HR1jTKqv-6asGxOiKlzzYMn0hQ8-5eLjy89kFb0w4KzxlhnwjWeoqGg/exec";
+const SHARE_BASE = "https://tosh1000950.github.io/shindan/ossan/share/";
+
+/* 4要素: プラス側 = left極, マイナス側 = right極 */
+const AXES = [
+  { key:"A", left:"喋る・目立つ", right:"静か・引く", name:"表出" },
+  { key:"B", left:"甘い・優しい", right:"厳しい・ドライ", name:"温度" },
+  { key:"C", left:"ぐいぐい踏み込む", right:"一線を引く", name:"距離感" },
+  { key:"D", left:"自分の流儀が強い", right:"柔軟・こだわりなし", name:"こだわり" }
+];
+
+/* 12問（各要素3問・交互順、選択肢重みは +3 / +1 / -1 / -3 の順） */
+const QUESTIONS = [
+  { axis:0, q:"雑談や会議の場で、あなたは？", o:[["場を中心で回す",3],["自分からよく話題を振る",1],["聞かれたら話す・聞き役寄り",-1],["静かに気配を消して聞いている",-3]] },
+  { axis:1, q:"後輩や年下がミスをしたとき、あなたは？", o:[["「気にしなくていいよ」とすぐフォロー",3],["フォローしつつ改善点を優しく伝える",1],["感情を挟まず事実だけ冷静に指摘する",-1],["「自分で責任を持って直して」と突き放す",-3]] },
+  { axis:2, q:"初対面やまだ浅い関係の人に対して、あなたは？", o:[["すぐ懐に飛び込んで旧知のように話す",3],["自分から声をかけて距離を縮める",1],["様子を見ながら一定の距離を保つ",-1],["親しくなっても明確な一線を引きたい",-3]] },
+  { axis:3, q:"自分のやり方やルールについて、あなたは？", o:[["絶対のこだわりがあり、自分の流儀を通したい",3],["好みはあるが、必要なら妥協もする",1],["場や相手に合わせるほうがラク",-1],["特に決まったこだわりはない",-3]] },
+  { axis:0, q:"何かを説明したり話したりするとき、あなたは？", o:[["身振り手振りや脱線も多く熱く語る",3],["分かりやすくしっかり言葉を重ねる",1],["要点だけ手短に済ませる",-1],["必要最低限の一言二言で済ませる",-3]] },
+  { axis:1, q:"誰かが頼みごとや無理を言ってきたとき、あなたは？", o:[["つい甘くなって快く引き受けてしまう",3],["事情を聞いてできる範囲で受ける",1],["筋が通っているか厳しめに判断する",-1],["甘えは許さずドライに線引きする",-3]] },
+  { axis:2, q:"他人のプライベートや様子が気になるとき、あなたは？", o:[["放っておけず「どうした？」と首を突っ込む",3],["さりげなく近くに行って様子をうかがう",1],["相手から話してこない限り踏み込まない",-1],["他人の領域には一切立ち入らない",-3]] },
+  { axis:3, q:"趣味・好きなもの・日常のルーティンへの没入度は？", o:[["一度ハマるととことん突き詰め、専用アイテムや定番を揃える",3],["人よりこだわりが強い「マイ定番」がいくつかある",1],["その時々で話題のものや便利なものを楽しむ",-1],["深い沼や固定ルーティンはあまりない",-3]] },
+  { axis:0, q:"会話中、自分の意見を言うタイミングは？", o:[["思いついた瞬間に口にする",3],["会話の隙を見て自分から出す",1],["求められたときだけ出す",-1],["基本黙って見守る",-3]] },
+  { axis:1, q:"身近な人の抜けたところ・欠点に気づいたとき、あなたは？", o:[["「そういうところも味」と丸ごと微笑ましく見る",3],["多少目をつぶって穏便に流す",1],["次はないようハッキリ指摘しておく",-1],["甘い顔はせず厳しく評価を下す",-3]] },
+  { axis:2, q:"大人数の集まりや飲み会でのあなたの居場所は？", o:[["初対面ともすぐ打ち解けて席を移動し回る",3],["近くの人の輪に入って気楽に喋る",1],["気心の知れた身内の近くだけに留まる",-1],["端の席で自分のペースを崩さず過ごす",-3]] },
+  { axis:3, q:"一度決めたことや気に入ったものについて、あなたは？", o:[["よほどのことがない限り頑として変えない",3],["基本は貫くが、例外も認める",1],["良い案があれば柔軟に乗り換える",-1],["その場の流れや気分でコロコロ変わる",-3]] }
+];
+
+const BREAK_AFTER = 6;
+
+/* 16タイプ: キーは A B C D の符号 (+ or -) */
+const TYPES = {
+  "+-++":{
+    id:"sermon",
+    name:"説教くどくどおじさん",
+    color:"#6b5699",
+    short:"あなたの口癖は「昔はなぁ」。正しさへの愛が、つい人の人生に口を出させてしまう。",
+    long:"気づくと会話の主導権を握り、熱を込めて「本来こうあるべき」を語ってしまうタイプです。厳しく聞こえるのは、相手を放っておけず本気で良くなってほしいと願うお節介心があるから。自分の成功法則やマイルールに誇りを持っているため、つい長話になりがちですが、困ったときに誰より真剣に向き合ってくれる人情派でもあります。「要するに一言で言うとね」が全然一言で終わらないのもご愛嬌。",
+    strength:"筋の通った判断軸と、後輩や仲間のためなら嫌われ役も引き受けられる責任感。面倒見の良さにかけては周囲随一です。",
+    good:"sweet", goodNote:"厳しさを丸ごと包んで場を和ませてくれる",
+    bad:"listless", badNote:"どれだけ熱弁しても暖簾に腕押しで拍子抜け"
+  },
+  "+++-":{
+    id:"buyuden",
+    name:"武勇伝語りたがりおじさん",
+    color:"#b87614",
+    short:"あなたの人生はすべて自慢話のネタ。聞いてないのに始まる武勇伝に、周りは苦笑い。",
+    long:"話題の引き出しがとにかく豊富で、どんな雑談も自分の「あのとき実はさ」エピソードに着地させる天性の語り部です。少し話を盛ってしまうのはサービス精神の表れで、場を盛り上げたい・すごいねと笑ってほしい無邪気さから来ています。細かいことにはこだわらず懐も深いため、話が長くなってもなぜか憎めない愛されキャラ。良い相槌役が隣にいると、輝きがさらに増します。",
+    strength:"初対面の場でも一気に空気を温めるトーク力と、過去の苦労さえ笑い話に変えてしまえるポジティブな突破力。",
+    good:"plain", goodNote:"嫌な顔ひとつせず最後までニコニコ聞いてくれる最高の聞き役",
+    bad:"competent", badNote:"話のオチの前に「で、結論は？」とバッサリ切られがち"
+  },
+  "+--+":{
+    id:"strict",
+    name:"自分に優しく人に厳しいおじさん",
+    color:"#344966",
+    short:"周囲には『ちゃんとしろ』と厳しいのに、自分のミスにはなぜか寛容な人間味。",
+    long:"仕事や段取りの荒にすぐ気づき、はっきり口に出して指摘できる鋭さの持ち主です。自分のこだわりや理想の基準が高いぶん、周囲の抜け漏れがどうしても目についてしまいます。一方でベタベタ馴れ合うのは苦手で、線の引き方はクール。自分のうっかりだけは「まあ今日は特別」と綺麗に棚上げするちゃっかりさがあり、その完璧すぎない人間味が親しみやすさにもなっています。",
+    strength:"妥協のないクオリティ意識と、場の緩みをピシッと引き締められる発信力。ここぞという場面の推進力が抜群です。",
+    good:"craftsman", goodNote:"言わずとも高い水準で仕上げてくれるのでストレスゼロ",
+    bad:"sekuhara", badNote:"ノリの軽さとルーズさに思わず眉をひそめがち"
+  },
+  "-++-":{
+    id:"snack",
+    name:"なにかとおやつくれるおじさん",
+    color:"#d4742a",
+    short:"ポケットにはいつもお菓子。あなたの優しさは、甘いものに姿を変えてやってくる。",
+    long:"自分から長々と喋るのは得意ではないけれど、周りの人のちょっとした疲れや空腹に誰より早く気づくタイプです。言葉で励ます代わりに「これ余ったから」「ほら、休憩しな」と差し入れをそっと置いて去っていく不器用な優しさが魅力。こだわりを押しつけず誰にでも合わせられる柔軟さがあるので、気づけば職場や仲間内の「オアシス」として慕われています。",
+    strength:"言葉以上に伝わるさりげない気遣いと、ギスギスした空気を一瞬で和らげる穏やかな存在感。",
+    good:"feast", goodNote:"「与える精神」が共鳴して無限に差し入れ合戦になる相棒",
+    bad:"competent", badNote:"善意の差し入れに「今糖質控えてるんで」と秒で返されしょんぼり"
+  },
+  "++++":{
+    id:"feast",
+    name:"下心なく食事ご馳走してくれるおじさん",
+    color:"#c84b28",
+    short:"『遠慮すんな、食え食え』が口癖。後輩には絶対払わせないのが揺るがない美学。",
+    long:"豪快な笑い声で場を包み込み、お腹が空いていそうな人を見かけると放っておけない、昭和の良心をそのまま形にしたような兄貴肌です。「後輩に財布を出させない」「店選びには絶対のこだわりがある」など自分なりの粋なルールを持っており、人が美味しそうに食べる顔を見ることが何よりの幸せ。お節介なほど世話を焼いてしまいますが、見返りを求めない純度の高い優しさにファンが絶えません。",
+    strength:"圧倒的な包容力と、誰とでも距離を縮めて味方にしてしまう太陽のようなエネルギー。幹事力も一級品です。",
+    good:"snack", goodNote:"食の好みが合い、お互いの気遣いが気持ちよく循環する",
+    bad:"craftsman", badNote:"良かれと思って誘い続けても静かに定時帰りされがち"
+  },
+  "+-+-":{
+    id:"sekuhara",
+    name:"下心満々変態セクハラおじさん",
+    color:"#2a8f7b",
+    short:"キレイどころの前では素直すぎて表情に出る。憎めない、わかりやすいロマンチスト。",
+    long:"褒め上手でフットワークが軽く、気に入った相手にはすぐ話しかけて距離を縮めるお調子者タイプです。本音を隠すのが下手すぎて「今テンション上がってるな」と周囲に一瞬でバレますが、裏表がないぶんどこか憎めない愛嬌があります。ノリで生きているように見えて、実は場の損得や現実的なラインは冷静に見ているのも特徴。冗談を笑い飛ばしてくれる相手の前で一番イキイキします。",
+    strength:"誰に対しても物怖じせず懐に飛び込めるコミュニケーション力と、場の緊張を一瞬でほぐす明るい軽やかさ。",
+    good:"buyuden", goodNote:"お互いの軽口とノリに全力で乗っかって一生盛り上がれる",
+    bad:"sermon", badNote:"軽い冗談のつもりが「そういう姿勢がだな」と説教に発展しがち"
+  },
+  "----":{
+    id:"listless",
+    name:"覇気なしやる気なしおじさん",
+    color:"#6f7882",
+    short:"やる気スイッチはどこへやら。でもその脱力感が、なぜか人を安心させる。",
+    long:"無駄な競争や熱い議論からはそっと距離を置き、省エネ運転で自分の平穏を守る達人です。口数も少なく、感情を大きく揺らすことも滅多にないため一見クールですが、実は「まあ、なんとかなるでしょ」と一番肩の力が抜けているだけ。周囲がピリピリしているときほど、あなたの変わらない脱力した佇まいが「そこまで深刻にならなくていいか」と人の心をふっと軽くします。",
+    strength:"どんな騒動にも巻き込まれない圧倒的なマイペースさと、必要以上に他人に干渉しない心地よいフラットさ。",
+    good:"advisor", goodNote:"無言の時間がまったく気まずくならず、同じ空間で落ち着ける",
+    bad:"sermon", badNote:"「もっと覇気を出せ！」と一番エネルギーを吸い取られる天敵"
+  },
+  "+---":{
+    id:"competent",
+    name:"有能ばりばりシゴデキおじさん",
+    color:"#28508c",
+    short:"判断が速く、言葉も簡潔でキレがある。理詰めで場を動かす仕事人。",
+    long:"会議の論点整理からトラブルの初動対応まで、迷いなく最適解を叩き出す頼れる実務派です。過去のやり方に固執せず「今の最適」にすぐ乗り換えられる柔軟さと、私情を挟まない線引きの上手さが武器。少しドライに見える瞬間もありますが、それは最短で全員をゴールに導きたい合理性の裏返しです。ピンチのときに名前が真っ先に挙がる、チームの要です。",
+    strength:"感情に流されない高速の意思決定力と、無駄を削ぎ落として成果に直結させるスマートな実行力。",
+    good:"craftsman", goodNote:"短い指示だけで完璧に噛み合う最強の実務コンビ",
+    bad:"buyuden", badNote:"前置きが長すぎて話の腰を折りたくなるのを堪えがち"
+  },
+  "-+-+":{
+    id:"advisor",
+    name:"黙って見守って聞いた時に的確なアドバイスくれるおじさん",
+    color:"#466d5e",
+    short:"普段は静か。でも聞けば的確な一言が返ってくる、頼れる影の立役者。",
+    long:"普段は自分の意見を前面に出さず、少し離れた場所から全体を見守っている静かな理解者です。人の領域に土足で踏み込まない礼儀正しさがある一方で、自分の中には確かな経験則とこだわりを持っています。だからこそ、誰かが悩んで助けを求めたときだけ差し出す短い一言が、驚くほど核心を突くのです。「困ったらあの人に聞こう」と密かに全員から信頼されているタイプです。",
+    strength:"状況を俯瞰で見抜く観察眼と、相手が自ら答えに辿り着けるように導く静かな包容力。",
+    good:"lowest", goodNote:"愚痴を優しく聞きつつ現実的な知恵を授けられる",
+    bad:"sekuhara", badNote:"距離感のバグった絡み方にどう反応していいか固まりがち"
+  },
+  "++--":{
+    id:"lowest",
+    name:"家では地位が一番低いちょい可哀想おじさん",
+    color:"#4f6b8a",
+    short:"外では堂々、中では肩身が狭い。あなたの優しさは、家族に譲ることでできている。",
+    long:"外では気さくに場を盛り上げるのに、本気で譲れない場面や身近な人に対しては驚くほど控えめで、「自分が折れれば丸く収まる」とすぐ引き下がってしまう心優しき調整役です。自分のこだわりを押し通すより、周りの機嫌や笑顔を優先するのが染みついた習慣。少し損な役回りに見えつつ、あなたが背負っている小さな譲歩のおかげで今日も周囲の平和が保たれています。",
+    strength:"自己主張と謙虚さのバランス感覚に優れ、どんな場でも角を立てずに空気を和ませられる潤滑油のような優しさ。",
+    good:"sweet", goodNote:"普段頑張りすぎている分、無条件に甘やかして肯定してくれる",
+    bad:"golf", badNote:"興味のない趣味トークを断れず延々と頷き続けて疲れがち"
+  },
+  "++-+":{
+    id:"golf",
+    name:"ゴルフとか釣りの話しかしないおじさん",
+    color:"#4a8543",
+    short:"話題はゴルフか釣りか、そのどちらか。あなたの世界は、グリーンと水辺でできている。",
+    long:"好きなことについて語り出すと目が少年のように輝き、気づけば雑談がすべて自分の「沼」の話に着地している微笑ましい趣味人です。人の悪口やドロドロした噂話には一切興味がなく、プライベートに踏み込まない爽やかな距離感も好印象。専用アイテムや道具へのこだわりは並々ならぬものがありますが、笑顔で布教してくる姿があまりに無邪気で、周りもつい耳を傾けてしまいます。",
+    strength:"自分の機嫌を自分で取れる圧倒的な趣味力と、ネガティブな話題に流されないカラッとした朗らかさ。",
+    good:"plain", goodNote:"穏やかに話を面白がってくれて、気づけば最高の趣味仲間に",
+    bad:"lowest", badNote:"相手が遠慮して付き合っているのに気づかず延長戦へ突入しがち"
+  },
+  "-+++":{
+    id:"sweet",
+    name:"めちゃ甘おっさん",
+    color:"#cf8238",
+    short:"『人は甘やかしてなんぼ』がマイルール。優しさのアクセルしか持っていない。",
+    long:"自分から派手に喋り回ることはないものの、身近な人の前では「よしよし、よく頑張ったね」と全肯定モードが止まらない慈愛の人です。厳しさというブレーキを外し、「自分が甘やかしてあげなきゃ誰が味方になる」という揺るぎないマイルールを貫いています。誰かが落ち込んでいればすぐそばに寄り添う温かさがあり、甘えたい人にとっては究極の安全地帯です。",
+    strength:"相手のどんな失敗も丸ごと受け止められる深い肯定力と、そばにいるだけで自己肯定感を回復させる癒しのパワー。",
+    good:"lowest", goodNote:"遠慮がちな相手の頑張りを一番に褒めて救ってあげられる",
+    bad:"strict", badNote:"甘やかし方針と厳格方針が真逆で毎回ダメ出しされがち"
+  },
+  "--++":{
+    id:"suspicious",
+    name:"挙動不審おっさん",
+    color:"#6c7838",
+    short:"キョロキョロ、そわそわ。無口で不器用だけど、実は人の輪の近くに居たがる。",
+    long:"自分なりの細かなこだわりや手順が頭の中にびっしり詰まっているため、予定外の会話や注目を浴びるとつい挙動がぎこちなくなってしまう愛すべき不器用さんです。一見とっつきにくそうに見えて、実は「みんなの話に入りたい」「様子が気になる」と人の輪のそばをうろうろしている健気さが魅力。打ち解けるまで時間はかかりますが、一度仲良くなると一途に大切にしてくれます。",
+    strength:"細かい違和感や変化にすぐ気づく繊細な観察力と、自分のペースやこだわりを丁寧に守り抜く誠実さ。",
+    good:"feast", goodNote:"ぎこちなさを気にせずグイッと輪に引き入れてくれる頼もしさ",
+    bad:"mystery", badNote:"お互い何を考えているか読み合おうとして無言の探り合いになりがち"
+  },
+  "-+--":{
+    id:"plain",
+    name:"実はいい人だけどあまり目立たないおっさん",
+    color:"#785c47",
+    short:"存在感は薄いが、中身は確か。気づいた人だけが知っている、隠れたいい人。",
+    long:"集合写真ではいつも端っこ、会話でも聞き役に回ることが多く、自分から「俺がやりました！」とアピールすることはまずありません。それでも誰かがこっそり残した雑務を片付けていたり、困っている人にそっと傘を差し出したりと、日常の小さな親切の積み重ねは誰にも負けません。派手さはないけれど、長く同じ時間を過ごすほど「あの人って本当にいい人だよね」と評価が上がり続ける魅力の持ち主です。",
+    strength:"どんな個性派とも自然に共存できる高い協調性と、見返りを求めず誠実に周囲を支えられる穏やかな人間力。",
+    good:"buyuden", goodNote:"話したい人と聞きたい人の役割がぴったり噛み合って居心地抜群",
+    bad:"listless", badNote:"お互いに主張が静かすぎて会話が3分で穏やかに終了しがち"
+  },
+  "---+":{
+    id:"craftsman",
+    name:"無口で無表情だけど仕事は完璧な職人おじさん",
+    color:"#2f435a",
+    short:"口数は少ないが、腕は確か。あなたの仕事が、あなた自身の代弁者。",
+    long:"余計な愛想笑いやお世辞は使わず、目の前のやるべきことを完璧に仕上げることに全神経を注ぐ寡黙なプロフェッショナルです。独自のやり方や道具へのこだわりが強く、他人のペースに乱されるのを嫌うため、最初は少し近寄りがたいオーラを放ちます。しかし任された作業の仕上がりを見れば誰もが納得。背中で信頼を勝ち取る、一番カッコいい意味での「昔気質」タイプです。",
+    strength:"雑音に左右されない圧倒的な集中力と、言葉がなくても実績で周囲を黙らせられる確かな専門性。",
+    good:"competent", goodNote:"無駄な雑談なしで阿吽の呼吸でタスクが進む理想の相棒",
+    bad:"feast", badNote:"熱い距離感と「もっと食え」の押しに心のシャッターを閉めがち"
+  },
+  "--+-":{
+    id:"mystery",
+    name:"過去がマジで謎すぎおじさん",
+    color:"#3c4a6b",
+    short:"経歴も過去も、すべてが謎。なのに気づくと、誰の隣にもスッと馴染んでいる。",
+    long:"自分のプライベートや過去の経歴はほとんど語らず、感情もあまり表に出さないのに、どういうわけか初対面の飲み会にも常連のように溶け込んでいるミステリアスな存在です。変なこだわりがなく場への適応力が異常に高いため、気づいたら隣の席で自然に相槌を打っていることも。すべてを明かさない余白が味となり、「実はすごい人なのでは」と周りに深読みされがちです。",
+    strength:"どんな環境や人間関係にも瞬時に馴染めるステルス適応力と、言葉少なに存在感を残す独特の余裕。",
+    good:"golf", goodNote:"自分の話をする必要がなく、楽しく聞き流しながら場を共有できる",
+    bad:"suspicious", badNote:"距離の詰め方が独特同士で、微妙な空気を探り合ってしまいやすい"
+  }
+};
+
+const TYPE_ORDER = [
+  "sermon","buyuden","strict","snack",
+  "feast","sekuhara","listless","competent",
+  "advisor","lowest","golf","sweet",
+  "suspicious","plain","craftsman","mystery"
+];
+const byId = {};
+Object.values(TYPES).forEach(t => { byId[t.id] = t; });
+
+let gender = "unknown";
+let idx = 0;
+let answers = [];
+let breakShown = false;
+let resultType = null;
+let scores = [0,0,0,0];
+let cardBlobUrl = null;
+let cardFileCache = null;
+
+const $ = id => document.getElementById(id);
+
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
+  $(id).classList.add("on");
+  window.scrollTo(0,0);
+}
+
+/* 統計送信（GA4＋シート受け口）。失敗しても診断は止めない */
+function sendStat(event, extra){
+  const payload = Object.assign({
+    diagnosis: DIAGNOSIS_ID,
+    event: event,
+    type: resultType ? resultType.id : "",
+    gender: gender
+  }, extra || {});
+  try {
+    gtag("event", event, { diagnosis: DIAGNOSIS_ID, result_type: payload.type, gender: gender });
+  } catch(e) {}
+  if (STATS_URL && STATS_URL.indexOf("__") !== 0) {
+    try {
+      fetch(STATS_URL, {
+        method:"POST",
+        mode:"no-cors",
+        headers:{ "Content-Type":"text/plain" },
+        body: JSON.stringify(payload),
+        keepalive:true
+      });
+    } catch(e) {}
+  }
+}
+
+/* 途中保存 */
+function saveProgress(){
+  try {
+    localStorage.setItem(DIAGNOSIS_ID + "-progress", JSON.stringify({
+      idx: idx,
+      answers: answers,
+      gender: gender,
+      breakShown: breakShown
+    }));
+  } catch(e) {}
+}
+
+function loadProgress(){
+  try {
+    const p = JSON.parse(localStorage.getItem(DIAGNOSIS_ID + "-progress") || "null");
+    if (!p || !Array.isArray(p.answers)) return null;
+    if (typeof p.idx !== "number" || p.idx < 0 || p.idx >= QUESTIONS.length) return null;
+    if (p.answers.length < p.idx) return null;
+    return p;
+  } catch(e) {
+    return null;
+  }
+}
+
+function clearProgress(){
+  try { localStorage.removeItem(DIAGNOSIS_ID + "-progress"); } catch(e) {}
+}
+
+/* 図鑑 */
+function getGot(){
+  try {
+    const arr = JSON.parse(localStorage.getItem(DIAGNOSIS_ID + "-got") || "[]");
+    return Array.isArray(arr) ? arr : [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function renderGrid(el){
+  const got = getGot();
+  el.innerHTML = TYPE_ORDER.map(id => {
+    const t = byId[id];
+    const has = got.includes(id);
+    return '<div class="grid-item' + (has ? " got" : "") + '"><div class="grid-thumb"><img src="assets/' + id + '.jpg" alt="' + t.name + '"></div><small>' + t.name + '</small></div>';
+  }).join("");
+  $("got-count").textContent = got.length;
+  const c2 = $("got-count2");
+  if (c2) c2.textContent = got.length;
+}
+
+function renderAllGrids(){
+  renderGrid($("grid-top"));
+  renderGrid($("grid-result"));
+}
+
+function renderHeroCollage(){
+  $("hero-collage").innerHTML = TYPE_ORDER.map(id => {
+    const t = byId[id];
+    return '<div class="collage-cell"><img src="assets/' + id + '.jpg" alt="' + t.name + '"></div>';
+  }).join("");
+}
+
+function initMeta(){
+  const estMinutes = Math.max(1, Math.round(QUESTIONS.length * 7 / 60));
+  $("meta-info").textContent = "全" + QUESTIONS.length + "問・約" + estMinutes + "分 ／ 全" + TYPE_ORDER.length + "タイプ ／ 結果は画像で保存できます";
+  $("q-total").textContent = QUESTIONS.length;
+  $("total-count").textContent = TYPE_ORDER.length;
+  $("total-count2").textContent = TYPE_ORDER.length;
+}
+
+function startQuiz(resume){
+  if (resume) {
+    const p = loadProgress();
+    if (p) {
+      idx = p.idx;
+      answers = p.answers.slice();
+      gender = p.gender || "unknown";
+      breakShown = Boolean(p.breakShown) || idx > BREAK_AFTER;
+      showQuestion();
+      return;
+    }
+  }
+  idx = 0;
+  answers = [];
+  gender = "unknown";
+  breakShown = false;
+  show("scr-gender");
+}
+
+function showQuestion(){
+  if (idx >= QUESTIONS.length) {
+    showResult();
+    return;
+  }
+  if (idx === BREAK_AFTER && !breakShown) {
+    breakShown = true;
+    show("scr-break");
+    return;
+  }
+  const q = QUESTIONS[idx];
+  $("q-num").textContent = idx + 1;
+  const pct = Math.round(idx / QUESTIONS.length * 100);
+  $("q-pct").textContent = pct;
+  $("q-bar").style.width = pct + "%";
+  $("q-text").textContent = q.q;
+  const box = $("q-opts");
+  box.innerHTML = "";
+  q.o.forEach(opt => {
+    const b = document.createElement("button");
+    b.className = "opt";
+    b.textContent = opt[0];
+    b.onclick = () => {
+      answers[idx] = opt[1];
+      idx++;
+      saveProgress();
+      showQuestion();
+    };
+    box.appendChild(b);
+  });
+  $("btn-back").style.visibility = idx === 0 ? "hidden" : "visible";
+  show("scr-q");
+}
+
+function judge(){
+  scores = [0,0,0,0];
+  QUESTIONS.forEach((q, i) => { scores[q.axis] += (answers[i] || 0); });
+  const code = scores.map(s => s >= 0 ? "+" : "-").join("");
+  return TYPES[code];
+}
+
+function strengthWord(val){
+  const a = Math.abs(val);
+  if (a >= 7) return "かなり強め";
+  if (a >= 5) return "しっかり";
+  if (a >= 3) return "やや";
+  return "ほんのり";
+}
+
+function resetCardPreview(){
+  if (cardBlobUrl) {
+    try { URL.revokeObjectURL(cardBlobUrl); } catch(e) {}
+    cardBlobUrl = null;
+  }
+  cardFileCache = null;
+  $("card-preview").style.display = "none";
+  $("card-img").removeAttribute("src");
+}
+
+function showResult(){
+  resultType = judge();
+  clearProgress();
+  resetCardPreview();
+
+  const got = getGot();
+  if (!got.includes(resultType.id)) {
+    got.push(resultType.id);
+    try { localStorage.setItem(DIAGNOSIS_ID + "-got", JSON.stringify(got)); } catch(e) {}
+  }
+
+  $("r-img").src = "assets/" + resultType.id + ".jpg";
+  $("r-img").alt = resultType.name;
+  $("r-avatar").style.borderColor = resultType.color;
+  $("r-name").textContent = resultType.name;
+  $("r-short").textContent = resultType.short;
+  $("r-short").style.borderLeftColor = resultType.color;
+  $("r-desc").textContent = resultType.long;
+  $("r-strength").innerHTML = "<b>▶ 強み</b><br>" + resultType.strength;
+
+  $("r-axes").innerHTML = '<div class="axes-title">4要素バランス（各要素 -9 〜 +9）</div>' + AXES.map((ax, a) => {
+    const s = scores[a];
+    const pct = Math.max(4, Math.min(96, 50 + s * 5));
+    const chosen = s >= 0 ? ax.left : ax.right;
+    return '<div class="axis-row">'
+      + '<div class="axis-head"><b>' + ax.name + '</b><span>' + chosen + '（' + strengthWord(s) + '）</span></div>'
+      + '<div class="axisbar"><i style="left:' + pct + '%;background:' + resultType.color + '"></i></div>'
+      + '<div class="axis-poles"><span>' + ax.right + '</span><span>' + ax.left + '</span></div>'
+      + '</div>';
+  }).join("");
+
+  const goodType = byId[resultType.good];
+  const badType = byId[resultType.bad];
+  $("r-compat").innerHTML =
+    '<div>🤝 相性がいいおっさん：<b>' + goodType.name + '</b>（' + resultType.goodNote + '）</div>' +
+    '<div>⚡ 振り回されがち：<b>' + badType.name + '</b>（' + resultType.badNote + '）</div>';
+
+  renderAllGrids();
+  show("scr-result");
+  sendStat("result_view");
+  prepareCardImage(resultType, scores.slice());
+}
+
+function shareText(){
+  return "わたしは「" + resultType.name + "」でした🍺 " + resultType.short + "\nあなたは何タイプのおっさん？\n#おっさん診断";
+}
+
+function roundRectPath(ctx, x, y, w, h, r){
+  if (ctx.roundRect) {
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, r);
+    return;
+  }
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function wrapText(ctx, text, maxWidth){
+  const lines = [];
+  let line = "";
+  const noStart = "、。）」』！？";
+  const isKata = ch => /[\u30A0-\u30FF]/.test(ch);
+  const chars = Array.from(text);
+  for (let i = 0; i < chars.length; i++) {
+    const ch = chars[i];
+    const test = line + ch;
+    if (ctx.measureText(test).width > maxWidth && line.length > 0) {
+      if (noStart.includes(ch) && line.length > 1) {
+        lines.push(line + ch);
+        line = "";
+      } else if (isKata(ch) && isKata(line[line.length - 1])) {
+        const m = line.match(/[\u30A0-\u30FF]+$/);
+        if (m && m[0].length < line.length && m[0].length <= 8) {
+          const cut = line.length - m[0].length;
+          lines.push(line.slice(0, cut));
+          line = m[0] + ch;
+        } else {
+          lines.push(line);
+          line = ch;
+        }
+      } else {
+        lines.push(line);
+        line = ch;
+      }
+    } else {
+      line = test;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function prepareCardImage(t, scoreSnapshot){
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      try {
+        const c = document.createElement("canvas");
+        c.width = 1080;
+        c.height = 1350;
+        const x = c.getContext("2d");
+        const fontFamily = '"Hiragino Maru Gothic ProN","Hiragino Sans","BIZ UDPGothic","Noto Sans JP",sans-serif';
+
+        // 背景
+        x.fillStyle = "#fbf5ea";
+        x.fillRect(0, 0, 1080, 1350);
+
+        // 内側カード
+        x.fillStyle = "#fffdf8";
+        roundRectPath(x, 54, 54, 972, 1242, 44);
+        x.fill();
+        x.lineWidth = 4;
+        x.strokeStyle = "#eadcc8";
+        x.stroke();
+
+        // 上部リボンピル
+        x.fillStyle = t.color;
+        roundRectPath(x, 380, 114, 320, 52, 26);
+        x.fill();
+        x.textAlign = "center";
+        x.textBaseline = "middle";
+        x.fillStyle = "#fffdf8";
+        x.font = "700 28px " + fontFamily;
+        x.fillText("おっさん診断", 540, 140);
+
+        // 円形プロフィール画像（元画像の端1-2pxをトリミング）
+        const cx = 540, cy = 372, r = 176;
+        x.save();
+        x.beginPath();
+        x.arc(cx, cy, r, 0, Math.PI * 2);
+        x.clip();
+        const pad = 4;
+        x.drawImage(img, pad, pad, img.width - pad * 2, img.height - pad * 2, cx - r, cy - r, r * 2, r * 2);
+        x.restore();
+        x.lineWidth = 12;
+        x.strokeStyle = t.color;
+        x.beginPath();
+        x.arc(cx, cy, r, 0, Math.PI * 2);
+        x.stroke();
+
+        // タイプ名（長さに応じてサイズ調整＋折り返し）
+        const nameSize = t.name.length > 18 ? 48 : (t.name.length > 12 ? 56 : 66);
+        x.font = "700 " + nameSize + "px " + fontFamily;
+        x.fillStyle = "#2f241d";
+        const nameLines = wrapText(x, t.name, 840);
+        const nameLineH = Math.round(nameSize * 1.32);
+        let nameY = nameLines.length === 1 ? 642 : 620;
+        nameLines.forEach((ln, i) => {
+          x.fillText(ln, 540, nameY + i * nameLineH);
+        });
+
+        // 区切り線
+        const divY = nameY + (nameLines.length - 1) * nameLineH + 62;
+        x.strokeStyle = t.color;
+        x.lineWidth = 4;
+        x.beginPath();
+        x.moveTo(460, divY);
+        x.lineTo(620, divY);
+        x.stroke();
+
+        // 短文（固定コピー）
+        x.font = "600 34px " + fontFamily;
+        x.fillStyle = "#4b3b30";
+        const shortLines = wrapText(x, t.short, 830);
+        const shortY = divY + 58;
+        shortLines.forEach((ln, i) => {
+          x.fillText(ln, 540, shortY + i * 54);
+        });
+
+        // 4要素サマリーバー
+        const barTop = 1006;
+        x.textAlign = "left";
+        AXES.forEach((ax, a) => {
+          const y = barTop + a * 46;
+          const s = scoreSnapshot[a];
+          const chosen = s >= 0 ? ax.left : ax.right;
+          x.fillStyle = "#7a6656";
+          x.font = "700 22px " + fontFamily;
+          x.fillText(ax.name, 140, y);
+
+          // トラック
+          const bx = 250, bw = 420, bh = 12;
+          x.fillStyle = "#efe2ce";
+          roundRectPath(x, bx, y - 6, bw, bh, 6);
+          x.fill();
+          x.fillStyle = "#d5c1a5";
+          x.fillRect(bx + bw / 2 - 1, y - 6, 2, bh);
+
+          // ドット
+          const pct = Math.max(4, Math.min(96, 50 + s * 5)) / 100;
+          x.fillStyle = t.color;
+          x.beginPath();
+          x.arc(bx + bw * pct, y, 10, 0, Math.PI * 2);
+          x.fill();
+
+          x.fillStyle = "#2f241d";
+          x.font = "700 21px " + fontFamily;
+          x.fillText(chosen, 692, y);
+        });
+
+        // URLフッター
+        x.textAlign = "center";
+        x.fillStyle = "#7a6656";
+        x.font = "600 26px " + fontFamily;
+        x.fillText("tosh1000950.github.io/shindan/ossan/", 540, 1236);
+
+        c.toBlob(b => {
+          if (!b || !resultType || resultType.id !== t.id) { resolve(null); return; }
+          if (cardBlobUrl) {
+            try { URL.revokeObjectURL(cardBlobUrl); } catch(e) {}
+          }
+          cardBlobUrl = URL.createObjectURL(b);
+          cardFileCache = new File([b], "ossan-" + t.id + ".png", { type: "image/png" });
+          $("card-img").src = cardBlobUrl;
+          const dl = $("card-dl");
+          dl.href = cardBlobUrl;
+          dl.download = "ossan-" + t.id + ".png";
+          resolve(cardFileCache);
+        }, "image/png");
+      } catch(e) {
+        resolve(null);
+      }
+    };
+    img.onerror = () => resolve(null);
+    img.src = "assets/" + t.id + ".jpg";
+  });
+}
+
+async function getCardFile(){
+  if (cardFileCache) return cardFileCache;
+  if (!resultType) return null;
+  const timeout = new Promise(resolve => setTimeout(() => resolve(null), 2000));
+  return await Promise.race([prepareCardImage(resultType, scores.slice()), timeout]);
+}
+
+$("btn-start").onclick = () => {
+  sendStat("diagnosis_start");
+  startQuiz(false);
+};
+$("btn-resume").onclick = () => startQuiz(true);
+document.querySelectorAll("[data-gender]").forEach(b => {
+  b.onclick = () => {
+    gender = b.getAttribute("data-gender");
+    idx = 0;
+    answers = [];
+    breakShown = false;
+    saveProgress();
+    showQuestion();
+  };
+});
+$("btn-back").onclick = () => {
+  if (idx > 0) {
+    idx--;
+    saveProgress();
+    showQuestion();
+  }
+};
+$("btn-break-next").onclick = () => {
+  breakShown = true;
+  saveProgress();
+  showQuestion();
+};
+$("btn-retry").onclick = () => {
+  resultType = null;
+  resetCardPreview();
+  show("scr-top");
+  refreshResume();
+};
+
+$("btn-share").onclick = async () => {
+  if (!resultType) return;
+  sendStat("share_click");
+  const url = SHARE_BASE + resultType.id + ".html";
+  const text = shareText();
+  const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  try {
+    const file = await getCardFile();
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      if (isIOS) {
+        await navigator.share({ files: [file], text: text + "\n" + url });
+      } else {
+        await navigator.share({ files: [file], text: text, url: url });
+      }
+      return;
+    }
+  } catch(e) {
+    if (e && e.name === "AbortError") return;
+  }
+  if (navigator.share) {
+    try {
+      if (isIOS) {
+        await navigator.share({ title: "おっさん診断", text: text + "\n" + url });
+      } else {
+        await navigator.share({ title: "おっさん診断", text: text, url: url });
+      }
+      return;
+    } catch(e) {
+      if (e && e.name === "AbortError") return;
+    }
+  }
+  const intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(url);
+  const w = window.open(intent, "_blank");
+  if (!w) location.href = intent;
+};
+
+$("btn-card").onclick = async () => {
+  if (!resultType) return;
+  sendStat("card_save");
+  if (!cardBlobUrl) {
+    await prepareCardImage(resultType, scores.slice());
+  }
+  if (cardBlobUrl) {
+    $("card-preview").style.display = "block";
+    $("card-preview").scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+function refreshResume(){
+  $("btn-resume").style.display = loadProgress() ? "block" : "none";
+}
+
+initMeta();
+renderHeroCollage();
+renderAllGrids();
+refreshResume();
+</script>
+</body>
+</html>
