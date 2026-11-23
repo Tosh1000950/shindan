@@ -21,195 +21,408 @@ gtag('config', 'G-ZY9E6YLPBM');
 </script>
 <style>
 :root{
-  --bg:#fbf5ea;
-  --card:#fffdf8;
-  --ink:#2f241d;
-  --sub:#7a6656;
-  --accent:#c94a29;
-  --accent-dark:#973117;
-  --gold:#d4891c;
-  --line:#eadcc8;
-  --track:#efe2ce;
+  --bg:#fbf0d9;
+  --card:#fffdf7;
+  --ink:#1e140e;
+  --sub:#6c5749;
+  --accent:#d6361c;
+  --accent-dark:#972210;
+  --gold:#ffbe2e;
+  --gold-dark:#c98808;
+  --line:#e5d2b5;
+  --track:#efe1c8;
+  --type-color:#d6361c;
 }
 *{ margin:0; padding:0; box-sizing:border-box; }
 body{
-  font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","BIZ UDPGothic","Noto Sans JP",sans-serif;
-  background:var(--bg);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","BIZ UDPGothic","Yu Gothic","Noto Sans JP",sans-serif;
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(rgba(214,54,28,.08) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(201,136,8,.08) 1.5px, transparent 1.5px);
+  background-size:24px 24px;
+  background-position:0 0, 12px 12px;
   color:var(--ink);
   -webkit-text-size-adjust:100%;
 }
-.wrap{ max-width:520px; margin:0 auto; padding:16px 16px 42px; }
+.wrap{ max-width:500px; margin:0 auto; padding:10px 12px 44px; }
 .screen{ display:none; }
 .screen.on{ display:block; animation:fade .25s ease; }
 @keyframes fade{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:none; } }
+@keyframes popReveal{
+  0%{ opacity:0; transform:scale(.92) translateY(10px); }
+  65%{ opacity:1; transform:scale(1.015) translateY(-2px); }
+  100%{ opacity:1; transform:none; }
+}
+@keyframes btnShine{
+  0%, 72%{ transform:translateX(-140%) skewX(-22deg); }
+  100%{ transform:translateX(260%) skewX(-22deg); }
+}
 
-/* ヒーロー（居酒屋看板＋16人コラージュ） */
-.hero{ text-align:center; padding:12px 4px 8px; }
-.collage-board{
-  background:var(--card);
-  border:2px solid var(--line);
-  border-radius:20px;
-  padding:10px;
-  box-shadow:0 6px 20px rgba(79,48,25,.08);
+/* ヒーロー（居酒屋ポスター＋16人顔ウォール） */
+.hero{ text-align:center; }
+.hero-header{
+  position:relative;
+  padding:4px 4px 10px;
 }
 .noren-bar{
-  display:flex;
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
-  background:var(--accent);
-  color:#fffdf8;
+  gap:6px;
+  background:var(--ink);
+  color:var(--gold);
   font-size:12px;
-  font-weight:700;
-  letter-spacing:.12em;
-  padding:7px 12px;
-  border-radius:12px;
-  margin-bottom:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+  padding:5px 14px;
+  border-radius:99px;
+  border:2px solid var(--ink);
+  box-shadow:0 3px 0 var(--accent);
+}
+.hero-title-wrap{
+  position:relative;
+  display:inline-block;
+  margin-top:8px;
+}
+.hero h1{
+  font-size:clamp(38px, 11.2vw, 48px);
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:.04em;
+  color:var(--accent);
+  text-shadow:
+    1.5px 1.5px 0 #fffdf7,
+    -1.5px -1.5px 0 #fffdf7,
+    1.5px -1.5px 0 #fffdf7,
+    -1.5px 1.5px 0 #fffdf7,
+    3px 4px 0 var(--ink);
+}
+.hero-sticker{
+  position:absolute;
+  top:-13px;
+  right:-24px;
+  background:var(--gold);
+  color:var(--ink);
+  font-size:11px;
+  font-weight:900;
+  padding:2px 8px;
+  border-radius:8px;
+  border:2px solid var(--ink);
+  transform:rotate(8deg);
+  box-shadow:2px 2px 0 var(--ink);
+  white-space:nowrap;
+}
+.hero .subtitle{
+  display:inline-block;
+  margin-top:6px;
+  background:var(--accent);
+  color:#fffdf7;
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:.04em;
+  padding:4px 16px;
+  border-radius:8px;
+  border:2.5px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+/* 主役：16人のデカい顔コラージュ */
+.collage-board{
+  margin-top:10px;
+  background:var(--ink);
+  border:3px solid var(--ink);
+  border-radius:18px;
+  padding:6px;
+  box-shadow:6px 6px 0 var(--accent);
 }
 .collage-grid{
   display:grid;
-  grid-template-columns:repeat(8,1fr);
-  gap:5px;
+  grid-template-columns:repeat(4,1fr);
+  gap:4px;
 }
 .collage-cell{
   aspect-ratio:1/1;
   border-radius:8px;
   overflow:hidden;
-  background:var(--track);
+  background:#2d2018;
+  border:2px solid #3a2a1f;
+  padding:0;
+  cursor:pointer;
+  position:relative;
+  transition:transform .14s ease, border-color .14s ease;
+}
+.collage-cell:hover,
+.collage-cell:focus-visible{
+  transform:scale(1.04);
+  z-index:2;
+  border-color:var(--gold);
+  outline:none;
+}
+.collage-cell.active{
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px var(--gold);
+  transform:scale(1.04);
+  z-index:2;
 }
 .collage-cell img{
   width:100%;
   height:100%;
   object-fit:cover;
   display:block;
-  transform:scale(1.06);
+  transform:scale(1.07);
 }
-.hero h1{
-  font-size:30px;
-  margin:18px 0 4px;
-  letter-spacing:.04em;
-  color:var(--ink);
+.collage-peek{
+  margin-top:6px;
+  background:#2b1e16;
+  color:#fff4dc;
+  border-radius:10px;
+  padding:7px 10px;
+  font-size:12px;
+  line-height:1.45;
+  text-align:center;
+  min-height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  flex-wrap:wrap;
 }
-.hero .subtitle{
-  color:var(--accent);
-  font-size:16px;
+.collage-peek b{
+  color:var(--gold);
+  font-weight:900;
+}
+.collage-peek .peek-hint{
+  color:#e8d3b3;
   font-weight:700;
-  margin-bottom:10px;
 }
 .hero .lead{
-  color:var(--sub);
+  color:var(--ink);
   font-size:13.5px;
-  line-height:1.75;
+  font-weight:700;
+  line-height:1.65;
+  margin-top:12px;
+  background:rgba(255,253,247,.78);
+  border:2px dashed #c8ad8d;
+  border-radius:12px;
+  padding:8px 12px;
 }
 
 /* ボタン */
 .btn{
   display:block;
   width:100%;
-  border:none;
+  border:3px solid var(--ink);
   cursor:pointer;
-  background:var(--accent);
-  color:#fffdf8;
-  font-size:17px;
-  font-weight:700;
-  padding:15px;
-  border-radius:99px;
-  margin-top:20px;
-  box-shadow:0 4px 0 var(--accent-dark);
+  background:linear-gradient(180deg, #e54326 0%, var(--accent) 100%);
+  color:#fffdf7;
+  font-size:18px;
+  font-weight:900;
+  padding:15px 16px;
+  border-radius:16px;
+  margin-top:16px;
+  box-shadow:0 6px 0 var(--ink);
   font-family:inherit;
   text-align:center;
+  letter-spacing:.03em;
+  position:relative;
+  overflow:hidden;
+  transition:transform .08s ease, box-shadow .08s ease;
 }
-.btn:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--accent-dark); }
+.btn-hero{
+  font-size:20px;
+  padding:17px 18px;
+  margin-top:14px;
+}
+.btn-hero::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:42%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent);
+  animation:btnShine 3.6s ease-in-out infinite;
+  pointer-events:none;
+}
+.btn:active{ transform:translateY(4px); box-shadow:0 2px 0 var(--ink); }
 .btn.sub{
   background:var(--card);
-  color:var(--accent);
-  border:2px solid var(--accent);
-  box-shadow:none;
-  font-size:14px;
-  padding:11px;
+  color:var(--ink);
+  border:2.5px solid var(--ink);
+  box-shadow:0 4px 0 var(--ink);
+  font-size:14.5px;
+  font-weight:800;
+  padding:12px 14px;
   margin-top:12px;
 }
-.btn.secondary{
-  background:#5c4434;
-  box-shadow:0 4px 0 #3d2c20;
+.btn.sub:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--ink); }
+.btn.resume-btn{
+  background:var(--gold);
+  color:var(--ink);
+  border:2.5px solid var(--ink);
+  box-shadow:0 4px 0 var(--ink);
+  font-size:15.5px;
+  font-weight:900;
 }
-.btn.secondary:active{ box-shadow:0 2px 0 #3d2c20; }
-.meta{ text-align:center; color:var(--sub); font-size:12px; margin-top:12px; }
+.btn.secondary{
+  background:linear-gradient(180deg, #ffd154 0%, var(--gold) 100%);
+  color:var(--ink);
+  box-shadow:0 6px 0 var(--ink);
+}
+.btn.secondary:active{ transform:translateY(4px); box-shadow:0 2px 0 var(--ink); }
+.meta{
+  text-align:center;
+  color:var(--sub);
+  font-size:12px;
+  font-weight:700;
+  margin-top:14px;
+}
 
-/* 進捗・質問 */
-.progress{ margin:10px 0 18px; }
-.progress .num{ font-size:12px; color:var(--sub); text-align:right; margin-bottom:5px; font-weight:700; }
-.bar{ height:9px; background:var(--track); border-radius:99px; overflow:hidden; }
-.bar i{ display:block; height:100%; background:linear-gradient(90deg,var(--gold),var(--accent)); border-radius:99px; transition:width .3s; }
+/* 進捗・質問・性別 */
+.quiz-panel{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:20px;
+  padding:18px 14px 20px;
+  margin-top:8px;
+  box-shadow:6px 6px 0 var(--ink);
+}
+.progress{ margin:2px 0 18px; }
+.progress .num{
+  font-size:12.5px;
+  color:var(--ink);
+  text-align:right;
+  margin-bottom:6px;
+  font-weight:900;
+}
+.bar{
+  height:14px;
+  background:var(--track);
+  border:2px solid var(--ink);
+  border-radius:99px;
+  overflow:hidden;
+}
+.bar i{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--gold),var(--accent));
+  border-radius:99px;
+  transition:width .3s;
+}
 .q{
   font-size:19px;
-  font-weight:700;
-  line-height:1.6;
-  min-height:68px;
+  font-weight:900;
+  line-height:1.55;
+  min-height:66px;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   padding:0 4px;
 }
-.opts,.gender-opts{ display:flex; flex-direction:column; gap:11px; margin-top:14px; }
+.opts,.gender-opts{ display:flex; flex-direction:column; gap:10px; margin-top:14px; }
 .opt{
-  background:var(--card);
-  border:2px solid var(--line);
-  border-radius:16px;
-  padding:15px 16px;
+  background:#fffaf0;
+  border:2.5px solid var(--ink);
+  border-radius:14px;
+  padding:14px 15px;
   font-size:15px;
+  font-weight:700;
   text-align:left;
   cursor:pointer;
   font-family:inherit;
   color:var(--ink);
-  line-height:1.55;
-  transition:border-color .15s, background-color .15s;
+  line-height:1.5;
+  box-shadow:0 3px 0 var(--ink);
+  transition:transform .08s ease, background-color .12s ease, box-shadow .08s ease;
 }
-.opt:hover{ border-color:#d8b38c; }
-.opt:active{ border-color:var(--accent); background:#fff2e6; }
-.note{ text-align:center; color:var(--sub); font-size:12.5px; line-height:1.75; margin:14px 0; }
+.opt:hover{ background:#fff1d4; }
+.opt:active{ transform:translateY(2px); box-shadow:0 1px 0 var(--ink); background:#ffe4b5; }
+.note{ text-align:center; color:var(--sub); font-size:12.5px; font-weight:700; line-height:1.7; margin:12px 0; }
 
 /* 休憩 */
 .break-card{
   background:var(--card);
-  border:2px solid var(--line);
-  border-radius:24px;
-  padding:30px 20px 26px;
-  margin-top:20px;
+  border:3px solid var(--ink);
+  border-radius:22px;
+  padding:28px 18px 24px;
+  margin-top:16px;
   text-align:center;
-  box-shadow:0 6px 20px rgba(79,48,25,.08);
+  box-shadow:6px 6px 0 var(--ink);
 }
-.break-emoji{ font-size:56px; text-align:center; margin:6px 0 12px; }
-
-/* 結果カード */
-.result-card{
-  background:var(--card);
-  border:2px solid var(--line);
-  border-radius:24px;
-  padding:26px 18px 24px;
-  text-align:center;
-  box-shadow:0 8px 24px rgba(79,48,25,.10);
-}
-.result-card .label{
+.break-badge{
   display:inline-block;
-  font-size:12px;
-  font-weight:700;
-  color:var(--sub);
-  letter-spacing:.14em;
-  background:#f5ecdc;
-  padding:5px 14px;
+  background:var(--gold);
+  color:var(--ink);
+  border:2px solid var(--ink);
   border-radius:99px;
+  font-size:12px;
+  font-weight:900;
+  padding:4px 14px;
+  margin-bottom:8px;
+}
+.break-emoji{ font-size:62px; text-align:center; margin:4px 0 8px; }
+
+/* 結果ヒーローカード（キャラクター紹介カード） */
+.result-hero{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:6px 6px 0 var(--ink);
+}
+#scr-result.on .result-hero{
+  animation:popReveal .42s cubic-bezier(.22,1,.36,1) both;
+}
+.result-banner{
+  background:var(--type-color);
+  color:#fffdf7;
+  padding:10px 14px;
+  border-bottom:3px solid var(--ink);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  text-shadow:0 1.5px 0 rgba(0,0,0,.35);
+}
+.result-banner .badge-pill{
+  background:var(--gold);
+  color:var(--ink);
+  text-shadow:none;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  padding:2px 9px;
+  border-radius:99px;
+  border:2px solid var(--ink);
+}
+.result-banner .label{
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.result-hero-body{
+  padding:12px 12px 18px;
+  text-align:center;
+  position:relative;
+}
+.result-photo-stage{
+  position:relative;
+  max-width:460px;
+  margin:0 auto;
 }
 .avatar{
-  width:154px;
-  height:154px;
-  border-radius:50%;
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:16px;
   overflow:hidden;
-  margin:14px auto 10px;
-  border:5px solid var(--accent);
+  margin:0 auto;
+  border:4px solid var(--type-color);
+  outline:3px solid var(--ink);
   background:var(--track);
-  box-shadow:0 4px 14px rgba(47,36,29,.15);
+  box-shadow:0 6px 0 rgba(30,20,14,.14);
 }
 .avatar img{
   width:100%;
@@ -218,73 +431,177 @@ body{
   display:block;
   transform:scale(1.05);
 }
-.result-card h2{
-  font-size:23px;
-  line-height:1.4;
-  margin:6px 0 10px;
-  word-break:auto-phrase;
+.result-name-wrap{
+  position:relative;
+  margin:22px 2px 10px;
+  padding:2px 6px;
 }
+.result-stamp{
+  position:absolute;
+  bottom:-14px;
+  right:6px;
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  border:3px solid var(--accent);
+  background:rgba(255,253,247,.96);
+  color:var(--accent);
+  font-size:12px;
+  font-weight:900;
+  line-height:1.1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transform:rotate(11deg);
+  box-shadow:0 3px 0 rgba(30,20,14,.22);
+  pointer-events:none;
+  z-index:2;
+}
+.result-stamp small{
+  font-size:8.5px;
+  letter-spacing:.04em;
+}
+.result-hero h2{
+  font-size:clamp(26px, 7.6vw, 35px);
+  font-weight:900;
+  line-height:1.28;
+  color:var(--ink);
+  word-break:auto-phrase;
+  overflow-wrap:anywhere;
+  display:inline;
+  background:linear-gradient(transparent 64%, rgba(255,190,46,.52) 64%);
+  padding:0 4px 2px;
+}
+.result-hero h2.name-xl{ font-size:clamp(28px, 8.6vw, 38px); }
+.result-hero h2.name-lg{ font-size:clamp(24px, 7vw, 32px); }
+.result-hero h2.name-md{ font-size:clamp(20.5px, 5.8vw, 27px); line-height:1.34; }
+
 .short-box{
-  background:#fbf4e6;
-  border-left:4px solid var(--accent);
-  border-radius:12px;
-  padding:12px 14px;
-  margin:10px 0 16px;
+  position:relative;
+  background:#fff6dc;
+  border:2.5px solid var(--ink);
+  border-left:7px solid var(--type-color);
+  border-radius:14px;
+  padding:13px 14px;
+  margin:14px 0 0;
   text-align:left;
-  font-size:14.5px;
-  font-weight:700;
+  font-size:15.5px;
+  font-weight:800;
   line-height:1.65;
   color:var(--ink);
+  box-shadow:3px 3px 0 rgba(30,20,14,.14);
+}
+.short-box::before{
+  content:"";
+  position:absolute;
+  top:-10px;
+  left:28px;
+  width:14px;
+  height:14px;
+  background:#fff6dc;
+  border-top:2.5px solid var(--ink);
+  border-left:2.5px solid var(--ink);
+  transform:rotate(45deg);
+}
+
+/* 結果詳細カード（長文・強み・4要素・相性） */
+.result-detail{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:20px;
+  padding:18px 14px 18px;
+  margin-top:16px;
+  box-shadow:5px 5px 0 var(--ink);
+}
+.detail-head{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:var(--ink);
+  color:var(--gold);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+  padding:4px 12px;
+  border-radius:8px;
+  margin-bottom:10px;
 }
 .desc{
-  font-size:14px;
-  line-height:1.9;
+  font-size:14.5px;
+  line-height:1.85;
   text-align:left;
   color:var(--ink);
 }
 .strength-box{
   margin-top:16px;
-  background:#f8f1e4;
+  background:#fff6d8;
+  border:2.5px solid var(--ink);
   border-radius:14px;
   padding:12px 14px;
   text-align:left;
-  font-size:13.5px;
+  font-size:14px;
   line-height:1.75;
 }
 .strength-box b{
   display:inline-block;
-  color:var(--accent);
-  margin-bottom:3px;
+  background:var(--gold);
+  color:var(--ink);
+  border:2px solid var(--ink);
+  border-radius:6px;
+  font-size:12px;
+  font-weight:900;
+  padding:1px 8px;
+  margin-bottom:6px;
 }
 
 /* 4要素スコアバー */
 .axes{
   margin:18px 0 6px;
   text-align:left;
-  border-top:1px dashed var(--line);
+  border-top:2px dashed var(--line);
   padding-top:16px;
 }
 .axes-title{
   font-size:13px;
-  font-weight:700;
-  color:var(--sub);
+  font-weight:900;
+  color:var(--ink);
   margin-bottom:10px;
   text-align:center;
 }
-.axis-row{ margin-bottom:12px; }
+.axis-row{
+  margin-bottom:10px;
+  background:#fbf2df;
+  border:2px solid #e2cca8;
+  border-radius:12px;
+  padding:9px 11px;
+}
 .axis-head{
   display:flex;
   justify-content:space-between;
-  align-items:baseline;
+  align-items:center;
   gap:8px;
-  font-size:12px;
-  margin-bottom:4px;
+  font-size:12.5px;
+  margin-bottom:6px;
 }
-.axis-head b{ color:var(--ink); }
-.axis-head span{ color:var(--accent); font-weight:700; font-size:11.5px; }
+.axis-head b{
+  background:var(--ink);
+  color:#fffdf7;
+  font-size:11px;
+  font-weight:900;
+  padding:2px 8px;
+  border-radius:6px;
+}
+.axis-head span{
+  color:var(--accent);
+  font-weight:900;
+  font-size:12px;
+  text-align:right;
+}
 .axisbar{
-  height:10px;
-  background:var(--track);
+  height:12px;
+  background:#fffdf7;
+  border:2px solid var(--ink);
   border-radius:99px;
   position:relative;
 }
@@ -296,109 +613,242 @@ body{
   bottom:0;
   width:2px;
   margin-left:-1px;
-  background:#d5c1a5;
+  background:#b8a080;
 }
 .axisbar i{
   position:absolute;
   top:50%;
-  width:16px;
-  height:16px;
+  width:20px;
+  height:20px;
   border-radius:50%;
-  background:var(--accent);
+  background:var(--type-color);
   transform:translate(-50%,-50%);
-  border:3px solid #fffdf8;
-  box-shadow:0 1px 4px rgba(0,0,0,.25);
+  border:3px solid var(--ink);
+  box-shadow:0 2px 0 rgba(30,20,14,.25);
 }
 .axis-poles{
   display:flex;
   justify-content:space-between;
   font-size:10.5px;
+  font-weight:700;
   color:var(--sub);
-  margin-top:3px;
+  margin-top:5px;
 }
 
-/* 相性 */
+/* 相性カード */
 .compat{
   margin-top:16px;
-  border-top:1px dashed var(--line);
-  padding-top:14px;
+  border-top:2px dashed var(--line);
+  padding-top:16px;
   text-align:left;
-  font-size:13px;
-  line-height:1.75;
-  color:var(--sub);
   display:flex;
   flex-direction:column;
-  gap:6px;
+  gap:10px;
 }
-.compat b{ color:var(--ink); }
-
-.row2{ display:flex; gap:10px; }
-.row2 .btn{ margin-top:16px; flex:1; font-size:15px; padding:14px 10px; }
-
-/* 図鑑 */
-.alltypes{ margin-top:30px; }
-.alltypes h2{ font-size:16px; text-align:center; }
-.alltypes p{ font-size:12px; color:var(--sub); text-align:center; margin:6px 0 12px; }
-.grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
-.grid-item{
-  background:var(--card);
-  border:1.5px solid var(--line);
-  border-radius:14px;
-  padding:8px 3px 7px;
-  text-align:center;
+.compat-card{
   display:flex;
-  flex-direction:column;
   align-items:center;
-  opacity:.64;
-  filter:saturate(.55);
-  transition:opacity .2s, filter .2s;
+  gap:11px;
+  background:#fff9ec;
+  border:2.5px solid var(--ink);
+  border-radius:14px;
+  padding:10px;
 }
-.grid-item.got{
-  opacity:1;
-  filter:none;
-  border-color:var(--accent);
-  box-shadow:0 2px 8px rgba(201,74,41,.14);
-}
-.grid-thumb{
-  width:52px;
-  height:52px;
-  border-radius:50%;
+.compat-card.good{ background:#f2fbef; }
+.compat-card.bad{ background:#fff2ef; }
+.compat-thumb{
+  width:56px;
+  height:56px;
+  flex-shrink:0;
+  border-radius:10px;
   overflow:hidden;
+  border:2px solid var(--ink);
   background:var(--track);
 }
-.grid-thumb img{
+.compat-thumb img{
   width:100%;
   height:100%;
   object-fit:cover;
   display:block;
   transform:scale(1.06);
 }
+.compat-info{
+  min-width:0;
+  flex:1;
+}
+.compat-tag{
+  display:inline-block;
+  font-size:10.5px;
+  font-weight:900;
+  padding:1px 7px;
+  border-radius:6px;
+  border:1.5px solid var(--ink);
+  margin-bottom:3px;
+}
+.compat-card.good .compat-tag{ background:#b9f0a5; color:var(--ink); }
+.compat-card.bad .compat-tag{ background:#ffb8a8; color:var(--ink); }
+.compat-name{
+  display:block;
+  font-size:13.5px;
+  font-weight:900;
+  color:var(--ink);
+  line-height:1.35;
+}
+.compat-note{
+  display:block;
+  font-size:12px;
+  color:var(--sub);
+  font-weight:700;
+  line-height:1.45;
+  margin-top:2px;
+}
+
+/* シェア＆保存アクションブロック */
+.share-cta-box{
+  margin-top:18px;
+  text-align:center;
+}
+.share-call{
+  display:inline-block;
+  background:var(--ink);
+  color:var(--gold);
+  font-size:12.5px;
+  font-weight:900;
+  padding:4px 14px;
+  border-radius:99px;
+  letter-spacing:.05em;
+}
+.row2{ display:flex; gap:10px; margin-top:10px; }
+.row2 .btn{
+  margin-top:0;
+  flex:1;
+  font-size:16px;
+  padding:16px 8px;
+}
+.card-preview-box{
+  display:none;
+  margin-top:16px;
+  text-align:center;
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:5px 5px 0 var(--ink);
+}
+.card-preview-box img{
+  width:100%;
+  max-width:360px;
+  border-radius:14px;
+  border:2.5px solid var(--ink);
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+}
+
+/* おっさん図鑑 */
+.alltypes{
+  margin-top:28px;
+  background:rgba(255,253,247,.75);
+  border:2.5px solid var(--ink);
+  border-radius:20px;
+  padding:16px 10px 14px;
+  box-shadow:4px 4px 0 rgba(30,20,14,.14);
+}
+.alltypes h2{
+  font-size:17px;
+  font-weight:900;
+  text-align:center;
+}
+.alltypes p{
+  font-size:12px;
+  font-weight:700;
+  color:var(--sub);
+  text-align:center;
+  margin:4px 0 12px;
+}
+.grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
+.grid-item{
+  background:var(--card);
+  border:2px solid #cbb698;
+  border-radius:12px;
+  padding:3px 3px 6px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+  opacity:.66;
+  filter:grayscale(80%);
+  transition:opacity .2s, filter .2s, transform .2s;
+}
+.grid-item.got{
+  opacity:1;
+  filter:none;
+  border:2.5px solid var(--ink);
+  background:#fffdf7;
+  box-shadow:3px 3px 0 var(--accent);
+}
+.grid-item.got::after{
+  content:"GET";
+  position:absolute;
+  top:-5px;
+  right:-4px;
+  background:var(--gold);
+  color:var(--ink);
+  font-size:8.5px;
+  font-weight:900;
+  padding:1px 5px;
+  border-radius:6px;
+  border:1.5px solid var(--ink);
+  z-index:2;
+}
+.grid-thumb{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--track);
+  border:1.5px solid rgba(30,20,14,.25);
+}
+.grid-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1.07);
+}
 .grid-item small{
   display:block;
-  font-size:9.5px;
-  letter-spacing:-.02em;
+  font-size:9px;
+  letter-spacing:-.035em;
   color:var(--sub);
   margin-top:5px;
-  line-height:1.3;
+  line-height:1.28;
   overflow-wrap:anywhere;
 }
 .grid-item.got small{
   color:var(--ink);
-  font-weight:700;
+  font-weight:900;
 }
 
 footer{
   text-align:center;
   color:var(--sub);
   font-size:11px;
-  margin-top:34px;
+  font-weight:700;
+  margin-top:28px;
   line-height:1.85;
 }
-footer a{ color:var(--sub); }
+footer a{ color:var(--ink); }
 
-@media (max-width:400px){
-  .collage-grid{ grid-template-columns:repeat(4,1fr); }
-  .result-card h2{ font-size:20px; }
+@media (max-width:360px){
+  .hero-sticker{ right:-10px; font-size:10px; }
+  .row2{ flex-direction:column; }
+  .grid{ gap:5px; }
+  .result-stamp{ width:48px; height:48px; font-size:10.5px; bottom:-12px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .screen.on, #scr-result.on .result-hero, .btn-hero::after{
+    animation:none !important;
+  }
 }
 </style>
 </head>
@@ -408,50 +858,65 @@ footer a{ color:var(--sub); }
   <!-- トップ -->
   <section id="scr-top" class="screen on">
     <div class="hero">
-      <div class="collage-board">
-        <div class="noren-bar">🍺 本日のラインナップ・全16タイプ 🍺</div>
-        <div class="collage-grid" id="hero-collage"></div>
+      <div class="hero-header">
+        <div class="noren-bar">🍺 本日の居酒屋ラインナップ・全16タイプ 🍺</div>
+        <div>
+          <div class="hero-title-wrap">
+            <h1>おっさん診断</h1>
+            <span class="hero-sticker">全16タイプ!</span>
+          </div>
+        </div>
+        <p class="subtitle">あなたは何タイプのおっさん？</p>
       </div>
-      <h1>おっさん診断</h1>
-      <p class="subtitle">あなたは何タイプのおっさん？</p>
-      <p class="lead">年齢も性別も関係なし。12の質問に答えると、<br>あなたの言動に一番近い「おっさん類型」が分かります。</p>
+      <div class="collage-board">
+        <div class="collage-grid" id="hero-collage"></div>
+        <div class="collage-peek" id="collage-peek">
+          <span class="peek-hint">👆 顔をタップで気になるおっさんを覗き見！</span>
+        </div>
+      </div>
+      <p class="lead">年齢も性別も関係なし！12の質問に答えるだけで、<br>あなたの言動に一番近い「おっさん類型」がバレます。</p>
     </div>
-    <button class="btn" id="btn-start">診断をはじめる</button>
-    <button class="btn sub" id="btn-resume" style="display:none">つづきから再開する</button>
+    <button class="btn btn-hero" id="btn-start">🍺 診断をはじめる！</button>
+    <button class="btn resume-btn" id="btn-resume" style="display:none">つづきから再開する</button>
     <p class="meta" id="meta-info"></p>
     <div class="alltypes">
       <h2>おっさん図鑑（<span id="got-count">0</span>/<span id="total-count">16</span>）</h2>
-      <p>診断結果になったおっさんがここに集まります</p>
+      <p>診断結果になったおっさんがカラーで解放されます</p>
       <div class="grid" id="grid-top"></div>
     </div>
   </section>
 
   <!-- 性別（任意・統計用） -->
   <section id="scr-gender" class="screen">
-    <p class="q" style="margin-top:26px">はじめに、差し支えなければ<br>教えてください</p>
-    <p class="note">統計のためにだけ使います。結果には一切影響しません。<br>答えたくない場合はスキップできます。</p>
-    <div class="gender-opts">
-      <button class="opt" data-gender="female">女性</button>
-      <button class="opt" data-gender="male">男性</button>
-      <button class="opt" data-gender="other">その他</button>
-      <button class="opt" data-gender="skip">答えたくない（スキップ）</button>
+    <div class="quiz-panel">
+      <p class="q">はじめに、差し支えなければ<br>教えてください</p>
+      <p class="note">統計のためにだけ使います。結果には一切影響しません。<br>答えたくない場合はスキップできます。</p>
+      <div class="gender-opts">
+        <button class="opt" data-gender="female">女性</button>
+        <button class="opt" data-gender="male">男性</button>
+        <button class="opt" data-gender="other">その他</button>
+        <button class="opt" data-gender="skip">答えたくない（スキップ）</button>
+      </div>
     </div>
   </section>
 
   <!-- 質問 -->
   <section id="scr-q" class="screen">
-    <div class="progress">
-      <div class="num"><span id="q-num">1</span> / <span id="q-total">12</span>（<span id="q-pct">0</span>%）</div>
-      <div class="bar"><i id="q-bar" style="width:0%"></i></div>
+    <div class="quiz-panel">
+      <div class="progress">
+        <div class="num"><span id="q-num">1</span> / <span id="q-total">12</span>（<span id="q-pct">0</span>%）</div>
+        <div class="bar"><i id="q-bar" style="width:0%"></i></div>
+      </div>
+      <p class="q" id="q-text"></p>
+      <div class="opts" id="q-opts"></div>
+      <button class="btn sub" id="btn-back" style="margin-top:16px">← もどる</button>
     </div>
-    <p class="q" id="q-text"></p>
-    <div class="opts" id="q-opts"></div>
-    <button class="btn sub" id="btn-back" style="margin-top:18px">← もどる</button>
   </section>
 
   <!-- 休憩（6問目の後に1度だけ） -->
   <section id="scr-break" class="screen">
     <div class="break-card">
+      <div class="break-badge">ちょっと中休み</div>
       <div class="break-emoji">🍺</div>
       <p class="q">ちょうど半分まできたよ！</p>
       <p class="note">ここまでの回答は自動で保存されています。<br>お茶でも一口飲んで、一息ついてからでも大丈夫。</p>
@@ -461,29 +926,47 @@ footer a{ color:var(--sub); }
 
   <!-- 結果 -->
   <section id="scr-result" class="screen">
-    <div class="result-card">
-      <p class="label">あなたのタイプは…</p>
-      <div class="avatar" id="r-avatar"><img id="r-img" src="" alt=""></div>
-      <h2 id="r-name"></h2>
-      <p class="short-box" id="r-short"></p>
+    <div class="result-hero">
+      <div class="result-banner">
+        <span class="badge-pill">診断結果</span>
+        <span class="label">あなたのタイプは…</span>
+      </div>
+      <div class="result-hero-body">
+        <div class="result-photo-stage">
+          <div class="avatar" id="r-avatar"><img id="r-img" src="" alt=""></div>
+          <div class="result-stamp"><small>おっさん</small>認定</div>
+        </div>
+        <div class="result-name-wrap">
+          <h2 id="r-name"></h2>
+        </div>
+        <p class="short-box" id="r-short"></p>
+      </div>
+    </div>
+
+    <div class="result-detail">
+      <div class="detail-head">▶ このおっさんの生態</div>
       <p class="desc" id="r-desc"></p>
       <div class="strength-box" id="r-strength"></div>
       <div class="axes" id="r-axes"></div>
       <div class="compat" id="r-compat"></div>
     </div>
-    <div class="row2">
-      <button class="btn" id="btn-share">結果をシェア</button>
-      <button class="btn secondary" id="btn-card">画像を保存</button>
+
+    <div class="share-cta-box">
+      <span class="share-call">＼ 結果をみんなに見せよう！ ／</span>
+      <div class="row2">
+        <button class="btn" id="btn-share">📤 結果をシェア</button>
+        <button class="btn secondary" id="btn-card">🖼 画像を保存</button>
+      </div>
     </div>
-    <div id="card-preview" style="display:none;margin-top:16px;text-align:center;">
-      <img id="card-img" alt="結果カード" style="width:100%;max-width:340px;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.15);">
+    <div id="card-preview" class="card-preview-box">
+      <img id="card-img" alt="結果カード">
       <p class="note">画像を長押し（PCでは右クリック）でも保存できます</p>
       <a id="card-dl" class="btn" href="#" download style="text-decoration:none;">⬇ この画像をダウンロード</a>
     </div>
-    <button class="btn sub" id="btn-retry">もう一度診断する</button>
+    <button class="btn sub" id="btn-retry">🔄 もう一度診断する</button>
     <div class="alltypes">
       <h2>おっさん図鑑（<span id="got-count2">0</span>/<span id="total-count2">16</span>）</h2>
-      <p>診断結果になったおっさんがここに集まります</p>
+      <p>診断結果になったおっさんがカラーで解放されます</p>
       <div class="grid" id="grid-result"></div>
     </div>
   </section>
@@ -797,10 +1280,20 @@ function renderAllGrids(){
 }
 
 function renderHeroCollage(){
-  $("hero-collage").innerHTML = TYPE_ORDER.map(id => {
+  const box = $("hero-collage");
+  box.innerHTML = TYPE_ORDER.map(id => {
     const t = byId[id];
-    return '<div class="collage-cell"><img src="assets/' + id + '.jpg" alt="' + t.name + '"></div>';
+    return '<button type="button" class="collage-cell" data-peek="' + id + '" aria-label="' + t.name + '"><img src="assets/' + id + '.jpg" alt="' + t.name + '"></button>';
   }).join("");
+  box.onclick = e => {
+    const cell = e.target.closest(".collage-cell");
+    if (!cell) return;
+    const t = byId[cell.getAttribute("data-peek")];
+    if (!t) return;
+    box.querySelectorAll(".collage-cell.active").forEach(c => c.classList.remove("active"));
+    cell.classList.add("active");
+    $("collage-peek").innerHTML = '<b>' + t.name + '</b><span>「' + t.short + '」</span>';
+  };
 }
 
 function initMeta(){
@@ -900,10 +1393,13 @@ function showResult(){
     try { localStorage.setItem(DIAGNOSIS_ID + "-got", JSON.stringify(got)); } catch(e) {}
   }
 
+  $("scr-result").style.setProperty("--type-color", resultType.color);
   $("r-img").src = "assets/" + resultType.id + ".jpg";
   $("r-img").alt = resultType.name;
   $("r-avatar").style.borderColor = resultType.color;
-  $("r-name").textContent = resultType.name;
+  const rName = $("r-name");
+  rName.textContent = resultType.name;
+  rName.className = resultType.name.length > 18 ? "name-md" : (resultType.name.length > 12 ? "name-lg" : "name-xl");
   $("r-short").textContent = resultType.short;
   $("r-short").style.borderLeftColor = resultType.color;
   $("r-desc").textContent = resultType.long;
@@ -923,8 +1419,14 @@ function showResult(){
   const goodType = byId[resultType.good];
   const badType = byId[resultType.bad];
   $("r-compat").innerHTML =
-    '<div>🤝 相性がいいおっさん：<b>' + goodType.name + '</b>（' + resultType.goodNote + '）</div>' +
-    '<div>⚡ 振り回されがち：<b>' + badType.name + '</b>（' + resultType.badNote + '）</div>';
+    '<div class="compat-card good">'
+      + '<div class="compat-thumb"><img src="assets/' + goodType.id + '.jpg" alt="' + goodType.name + '"></div>'
+      + '<div class="compat-info"><span class="compat-tag">🤝 相性がいいおっさん</span><b class="compat-name">' + goodType.name + '</b><span class="compat-note">' + resultType.goodNote + '</span></div>'
+    + '</div>'
+    + '<div class="compat-card bad">'
+      + '<div class="compat-thumb"><img src="assets/' + badType.id + '.jpg" alt="' + badType.name + '"></div>'
+      + '<div class="compat-info"><span class="compat-tag">⚡ 振り回されがち</span><b class="compat-name">' + badType.name + '</b><span class="compat-note">' + resultType.badNote + '</span></div>'
+    + '</div>';
 
   renderAllGrids();
   show("scr-result");
