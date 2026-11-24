@@ -59,7 +59,7 @@ body{
   100%{ transform:translateX(260%) skewX(-22deg); }
 }
 
-/* ヒーロー（居酒屋ポスター＋16人顔ウォール） */
+/* ヒーロー（居酒屋ポスター＋4人チラ見せ顔ウォール） */
 .hero{ text-align:center; }
 .hero-header{
   position:relative;
@@ -127,74 +127,50 @@ body{
   box-shadow:3px 3px 0 var(--ink);
 }
 
-/* 主役：16人のデカい顔コラージュ */
+/* 主役：4人チラ見せ顔ウォール */
 .collage-board{
-  margin-top:10px;
+  margin:10px auto 0;
+  max-width:410px;
   background:var(--ink);
   border:3px solid var(--ink);
   border-radius:18px;
-  padding:6px;
+  padding:7px;
   box-shadow:6px 6px 0 var(--accent);
 }
 .collage-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:4px;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px;
 }
 .collage-cell{
   aspect-ratio:1/1;
-  border-radius:8px;
+  border-radius:10px;
   overflow:hidden;
   background:#2d2018;
   border:2px solid #3a2a1f;
-  padding:0;
-  cursor:pointer;
   position:relative;
-  transition:transform .14s ease, border-color .14s ease;
-}
-.collage-cell:hover,
-.collage-cell:focus-visible{
-  transform:scale(1.04);
-  z-index:2;
-  border-color:var(--gold);
-  outline:none;
-}
-.collage-cell.active{
-  border-color:var(--gold);
-  box-shadow:0 0 0 2px var(--gold);
-  transform:scale(1.04);
-  z-index:2;
 }
 .collage-cell img{
   width:100%;
   height:100%;
   object-fit:cover;
   display:block;
-  transform:scale(1.07);
+  transform:scale(1.06);
 }
-.collage-peek{
-  margin-top:6px;
+.collage-teaser{
+  margin-top:7px;
   background:#2b1e16;
   color:#fff4dc;
   border-radius:10px;
-  padding:7px 10px;
-  font-size:12px;
+  padding:8px 10px;
+  font-size:12.5px;
+  font-weight:700;
   line-height:1.45;
   text-align:center;
-  min-height:34px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  flex-wrap:wrap;
 }
-.collage-peek b{
+.collage-teaser b{
   color:var(--gold);
   font-weight:900;
-}
-.collage-peek .peek-hint{
-  color:#e8d3b3;
-  font-weight:700;
 }
 .hero .lead{
   color:var(--ink);
@@ -293,6 +269,24 @@ body{
 }
 .top-notice b{
   color:var(--accent-dark);
+  font-weight:900;
+}
+.top-invite{
+  margin-top:10px;
+  background:#fffdf7;
+  border:2.5px solid var(--ink);
+  border-left:6px solid var(--gold-dark);
+  border-radius:12px;
+  padding:10px 12px;
+  font-size:12.5px;
+  font-weight:700;
+  line-height:1.65;
+  color:var(--ink);
+  text-align:left;
+  box-shadow:3px 3px 0 rgba(30,20,14,.14);
+}
+.top-invite b{
+  color:var(--accent);
   font-weight:900;
 }
 
@@ -715,6 +709,18 @@ body{
   border-radius:99px;
   letter-spacing:.05em;
 }
+.share-encourage{
+  margin:10px 0 12px;
+  background:rgba(255,253,247,.9);
+  border:2px dashed #c8ad8d;
+  border-radius:12px;
+  padding:9px 10px;
+  font-size:12px;
+  font-weight:800;
+  line-height:1.6;
+  color:var(--ink);
+  text-align:center;
+}
 .row2{ display:flex; gap:10px; margin-top:10px; }
 .row2 .btn{
   margin-top:0;
@@ -763,7 +769,7 @@ body{
 }
 .grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
 .grid-item{
-  background:var(--card);
+  background:#f7eedc;
   border:2px solid #cbb698;
   border-radius:12px;
   padding:3px 3px 6px;
@@ -772,13 +778,9 @@ body{
   flex-direction:column;
   align-items:center;
   position:relative;
-  opacity:.66;
-  filter:grayscale(80%);
-  transition:opacity .2s, filter .2s, transform .2s;
+  transition:border-color .2s, transform .2s;
 }
 .grid-item.got{
-  opacity:1;
-  filter:none;
   border:2.5px solid var(--ink);
   background:#fffdf7;
   box-shadow:3px 3px 0 var(--accent);
@@ -815,6 +817,7 @@ body{
 .grid-item small{
   display:block;
   font-size:9px;
+  font-weight:800;
   letter-spacing:-.035em;
   color:var(--sub);
   margin-top:5px;
@@ -867,9 +870,7 @@ footer a{ color:var(--ink); }
       </div>
       <div class="collage-board">
         <div class="collage-grid" id="hero-collage"></div>
-        <div class="collage-peek" id="collage-peek">
-          <span class="peek-hint">👆 顔をタップで気になるおっさんを覗き見！</span>
-        </div>
+        <div class="collage-teaser">👀 全16タイプのうち<b>4人だけチラ見せ！</b><br>残り12人は診断してからのお楽しみ🍺</div>
       </div>
       <p class="lead">年齢も性別も関係なし！12の質問に答えるだけで、<br>あなたの言動に一番近い「おっさん類型」がバレます。</p>
     </div>
@@ -880,6 +881,10 @@ footer a{ color:var(--ink); }
       <b>🌶 診断まえのちょい注意（辛口あり！）</b><br>
       結果コメントには優しいフォローだけでなく、<b>容赦ない辛口</b>も普通に混ざっています。<br>
       あくまでネタ全開のエンタメ診断なので、結果にショックを受けてその場で倒れたりしないようご注意ください🍺
+    </div>
+    <div class="top-invite">
+      <b>🍻 知り合いの「おっさんタイプ」も調べてみては？</b><br>
+      自分の正体がバレたら、友達やフォロワーにも教えてあげよう！身近なあいつは一体どの「おっさん」なのか…Xで結果を晒し合って、みんなのタイプもチェックしてみて🍺
     </div>
     <div class="alltypes">
       <h2>おっさん図鑑（<span id="got-count">0</span>/<span id="total-count">16</span>）</h2>
@@ -954,6 +959,7 @@ footer a{ color:var(--ink); }
 
     <div class="share-cta-box">
       <span class="share-call">＼ 結果をみんなに見せよう！ ／</span>
+      <p class="share-encourage">「こんなの出たｗ」とXに投げて知り合いにも教えよう！<br>友達やフォロワーがどのおっさんかも調べてみては？🍺</p>
       <div class="row2">
         <button class="btn" id="btn-share">📤 結果をシェア</button>
         <button class="btn secondary" id="btn-card">🖼 画像を保存</button>
@@ -1247,12 +1253,18 @@ function getGot(){
   }
 }
 
+const FEATURED_TOP_IDS = ["buyuden", "advisor", "strict", "golf"];
+
 function renderGrid(el){
   const got = getGot();
-  el.innerHTML = TYPE_ORDER.map(id => {
+  el.innerHTML = TYPE_ORDER.map((id, i) => {
     const t = byId[id];
     const has = got.includes(id);
-    return '<div class="grid-item' + (has ? " got" : "") + '"><div class="grid-thumb"><img src="assets/' + id + '.jpg" alt="' + t.name + '"></div><small>' + t.name + '</small></div>';
+    if (has) {
+      return '<div class="grid-item got"><div class="grid-thumb"><img src="assets/' + id + '.jpg" alt="' + t.name + '"></div><small>' + t.name + '</small></div>';
+    }
+    const no = String(i + 1).padStart(2, "0");
+    return '<div class="grid-item"><div class="grid-thumb"><img src="assets/silhouettes/' + no + '.png" alt="おっさん図鑑 No.' + no + '（未取得）"></div><small>No.' + no + ' ？？？</small></div>';
   }).join("");
   $("got-count").textContent = got.length;
   const c2 = $("got-count2");
@@ -1266,19 +1278,10 @@ function renderAllGrids(){
 
 function renderHeroCollage(){
   const box = $("hero-collage");
-  box.innerHTML = TYPE_ORDER.map(id => {
+  box.innerHTML = FEATURED_TOP_IDS.map(id => {
     const t = byId[id];
-    return '<button type="button" class="collage-cell" data-peek="' + id + '" aria-label="' + t.name + '"><img src="assets/' + id + '.jpg" alt="' + t.name + '"></button>';
+    return '<div class="collage-cell"><img src="assets/' + id + '.jpg" alt="' + t.name + '"></div>';
   }).join("");
-  box.onclick = e => {
-    const cell = e.target.closest(".collage-cell");
-    if (!cell) return;
-    const t = byId[cell.getAttribute("data-peek")];
-    if (!t) return;
-    box.querySelectorAll(".collage-cell.active").forEach(c => c.classList.remove("active"));
-    cell.classList.add("active");
-    $("collage-peek").innerHTML = '<b>' + t.name + '</b><span>「' + t.short + '」</span>';
-  };
 }
 
 function initMeta(){
