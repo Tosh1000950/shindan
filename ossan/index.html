@@ -721,13 +721,62 @@ body{
   color:var(--ink);
   text-align:center;
 }
-.row2{ display:flex; gap:10px; margin-top:10px; }
-.row2 .btn{
-  margin-top:0;
-  flex:1;
-  font-size:16px;
-  padding:16px 8px;
+.share-actions{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:10px;
 }
+.share-actions .btn{
+  margin-top:0;
+  font-size:15.5px;
+  padding:15px 12px;
+}
+.btn.x-post{
+  background:linear-gradient(180deg, #32241b 0%, var(--ink) 100%);
+  color:#fffdf7;
+  box-shadow:0 6px 0 var(--accent);
+}
+.btn.x-post:active{
+  transform:translateY(4px);
+  box-shadow:0 2px 0 var(--accent);
+}
+.x-hint{
+  background:#fffaf0;
+  border:2px solid var(--ink);
+  border-left:5px solid var(--accent);
+  border-radius:12px;
+  padding:8px 11px;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.55;
+  color:var(--ink);
+  text-align:left;
+}
+.x-hint.is-copied{
+  background:#eefbe8;
+  border-left-color:#2c8a3e;
+}
+.x-hint.is-fallback{
+  background:#fff4db;
+  border-left-color:var(--gold-dark);
+}
+.x-hint code{
+  background:rgba(30,20,14,.08);
+  padding:1px 5px;
+  border-radius:4px;
+  font-size:11px;
+  font-family:monospace;
+}
+#btn-share{ display:none; }
+.share-hint{ display:none; }
+.share-hint.is-visible{ display:block; }
+.share-cta-box.env-mobile #btn-share{ display:block; order:1; }
+.share-cta-box.env-mobile #share-hint{ order:2; }
+.share-cta-box.env-mobile #btn-x-post{ order:3; }
+.share-cta-box.env-mobile #btn-card{ order:4; }
+.share-cta-box.env-mobile #btn-x-image,
+.share-cta-box.env-mobile #x-hint{ display:none; }
 .card-preview-box{
   display:none;
   margin-top:16px;
@@ -841,7 +890,6 @@ footer a{ color:var(--ink); }
 
 @media (max-width:360px){
   .hero-sticker{ right:-10px; font-size:10px; }
-  .row2{ flex-direction:column; }
   .grid{ gap:5px; }
   .result-stamp{ width:48px; height:48px; font-size:10.5px; bottom:-12px; }
 }
@@ -957,12 +1005,16 @@ footer a{ color:var(--ink); }
       <div class="compat" id="r-compat"></div>
     </div>
 
-    <div class="share-cta-box">
+    <div class="share-cta-box" id="share-cta-box">
       <span class="share-call">＼ 結果をみんなに見せよう！ ／</span>
       <p class="share-encourage">「こんなの出たｗ」とXに投げて知り合いにも教えよう！<br>友達やフォロワーがどのおっさんかも調べてみては？🍺</p>
-      <div class="row2">
-        <button class="btn" id="btn-share">📤 結果をシェア</button>
-        <button class="btn secondary" id="btn-card">🖼 画像を保存</button>
+      <div class="share-actions">
+        <button type="button" class="btn x-post" id="btn-x-post">𝕏 Xで結果を投稿する</button>
+        <button type="button" class="btn" id="btn-x-image">📋 カード画像をコピーしてXへ</button>
+        <p class="x-hint" id="x-hint" aria-live="polite"></p>
+        <button type="button" class="btn" id="btn-share">📤 結果をシェア</button>
+        <p class="x-hint is-fallback share-hint" id="share-hint" aria-live="polite"></p>
+        <button type="button" class="btn secondary" id="btn-card">🖼 画像を保存</button>
       </div>
     </div>
     <div id="card-preview" class="card-preview-box">
@@ -1368,12 +1420,15 @@ function resetCardPreview(){
   cardFileCache = null;
   $("card-preview").style.display = "none";
   $("card-img").removeAttribute("src");
+  resetXHint();
+  resetShareHint();
 }
 
 function showResult(){
   resultType = judge();
   clearProgress();
   resetCardPreview();
+  initShareLayout();
 
   const got = getGot();
   if (!got.includes(resultType.id)) {
@@ -1652,41 +1707,163 @@ $("btn-retry").onclick = () => {
   refreshResume();
 };
 
-$("btn-share").onclick = async () => {
-  if (!resultType) return;
-  sendStat("share_click");
-  const url = SHARE_BASE + resultType.id + ".html";
-  const text = shareText();
-  const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-  try {
-    const file = await getCardFile();
-    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
-      if (isIOS) {
-        await navigator.share({ files: [file], text: text + "\n" + url });
-      } else {
-        await navigator.share({ files: [file], text: text, url: url });
-      }
-      return;
-    }
-  } catch(e) {
-    if (e && e.name === "AbortError") return;
-  }
-  if (navigator.share) {
-    try {
-      if (isIOS) {
-        await navigator.share({ title: "おっさん診断", text: text + "\n" + url });
-      } else {
-        await navigator.share({ title: "おっさん診断", text: text, url: url });
-      }
-      return;
-    } catch(e) {
-      if (e && e.name === "AbortError") return;
-    }
-  }
-  const intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(url);
+const DEFAULT_X_HINT_HTML = "💡 <b>結果カード画像つきで投稿したいとき：</b>上のボタンで画像をコピーし、開いたXの画面で <b>Ctrl+V</b>（Macは⌘+V）で貼り付けてね🍺";
+const SHARE_IMAGE_HINT_HTML = "⚠ <b>画像を添付できなかったため、テキストのみでXを開きました。</b>下の「🖼 画像を保存」から画像を保存して、Xの画面で手動で添付してね🍺";
+
+function resetXHint(){
+  const hint = $("x-hint");
+  if (!hint) return;
+  hint.className = "x-hint";
+  hint.innerHTML = DEFAULT_X_HINT_HTML;
+}
+
+function resetShareHint(){
+  const hint = $("share-hint");
+  if (!hint) return;
+  hint.className = "x-hint is-fallback share-hint";
+  hint.innerHTML = "";
+}
+
+function showShareImageHint(){
+  const hint = $("share-hint");
+  if (!hint) return;
+  hint.innerHTML = SHARE_IMAGE_HINT_HTML;
+  hint.className = "x-hint is-fallback share-hint is-visible";
+}
+
+function isMobileShareEnv(){
+  const ua = navigator.userAgent || "";
+  const isMobileUA = /iPhone|iPad|iPod|Android/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  return isMobileUA && typeof navigator.share === "function";
+}
+
+function initShareLayout(){
+  const box = $("share-cta-box");
+  if (!box) return;
+  box.classList.toggle("env-mobile", isMobileShareEnv());
+}
+
+function getTypeShareUrl(){
+  return SHARE_BASE + resultType.id + ".html";
+}
+
+function getCombinedShareText(){
+  return shareText() + "\n" + getTypeShareUrl();
+}
+
+function buildXIntentUrl(){
+  return "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText()) + "&url=" + encodeURIComponent(getTypeShareUrl());
+}
+
+function buildShareIntentUrl(combinedText){
+  return "https://twitter.com/intent/tweet?text=" + encodeURIComponent(combinedText);
+}
+
+function openIntentUrl(intent){
   const w = window.open(intent, "_blank");
   if (!w) location.href = intent;
+  return intent;
+}
+
+function openXIntent(){
+  return openIntentUrl(buildXIntentUrl());
+}
+
+function downloadCardFile(file){
+  const dlUrl = cardBlobUrl || (file ? URL.createObjectURL(file) : null);
+  if (!dlUrl || !resultType) return false;
+  const a = document.createElement("a");
+  a.href = dlUrl;
+  a.download = "ossan-" + resultType.id + ".png";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  if (!cardBlobUrl) {
+    setTimeout(() => { try { URL.revokeObjectURL(dlUrl); } catch(e) {} }, 1000);
+  }
+  return true;
+}
+
+$("btn-x-post").onclick = () => {
+  if (!resultType) return;
+  sendStat("share_click");
+  openXIntent();
 };
+
+let xImageBusy = false;
+$("btn-x-image").onclick = async () => {
+  if (!resultType || xImageBusy) return;
+  xImageBusy = true;
+  sendStat("share_click");
+  const hint = $("x-hint");
+  try {
+    const file = await getCardFile();
+    let copied = false;
+    if (file && navigator.clipboard && typeof navigator.clipboard.write === "function" && typeof ClipboardItem !== "undefined") {
+      try {
+        const pngBlob = new Blob([file], { type: "image/png" });
+        await navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]);
+        copied = true;
+      } catch(e) {
+        copied = false;
+      }
+    }
+    if (copied) {
+      hint.className = "x-hint is-copied";
+      hint.innerHTML = "✅ <b>カード画像をコピーしました！</b>開いたXの投稿画面で <b>Ctrl+V</b>（Macは⌘+V）を押して貼り付けてね🍺";
+    } else {
+      const downloaded = downloadCardFile(file);
+      hint.className = "x-hint is-fallback";
+      if (downloaded) {
+        hint.innerHTML = "💾 <b>クリップボードにコピーできなかったため画像を保存したよ！</b>開いたXの投稿画面で、保存した画像（<code>ossan-" + resultType.id + ".png</code>）を添付してね🍺";
+      } else {
+        hint.innerHTML = "⚠ カード画像の準備が間に合いませんでした。下の「🖼 画像を保存」から保存してXに添付してね🍺";
+      }
+    }
+    openXIntent();
+  } finally {
+    xImageBusy = false;
+  }
+};
+
+let shareBusy = false;
+async function shareResult(){
+  if (!resultType || shareBusy) return;
+  shareBusy = true;
+  sendStat("share_click");
+  resetShareHint();
+  const combined = getCombinedShareText();
+  try {
+    let file = null;
+    try {
+      file = await getCardFile();
+    } catch (e) {
+      file = null;
+    }
+    let canShareFile = false;
+    if (file && typeof navigator.share === "function" && typeof navigator.canShare === "function") {
+      try {
+        canShareFile = Boolean(navigator.canShare({ files: [file] }));
+      } catch (e) {
+        canShareFile = false;
+      }
+    }
+    if (canShareFile) {
+      try {
+        await navigator.share({ files: [file], text: combined });
+        return;
+      } catch (e) {
+        if (e && e.name === "AbortError") return;
+      }
+    }
+    showShareImageHint();
+    openIntentUrl(buildShareIntentUrl(combined));
+  } finally {
+    shareBusy = false;
+  }
+}
+
+$("btn-share").onclick = shareResult;
 
 $("btn-card").onclick = async () => {
   if (!resultType) return;
@@ -1708,6 +1885,9 @@ initMeta();
 renderHeroCollage();
 renderAllGrids();
 refreshResume();
+initShareLayout();
+resetXHint();
+resetShareHint();
 </script>
 </body>
 </html>
