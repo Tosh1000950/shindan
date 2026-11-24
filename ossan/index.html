@@ -1530,119 +1530,547 @@ function wrapText(ctx, text, maxWidth){
   return lines;
 }
 
+const CARD_PHOTO_FOCUS = {
+  sermon: 0.08,
+  strict: 0.06,
+  golf: 0.05,
+  craftsman: 0.06,
+  snack: 0.28,
+  feast: 0.28,
+  lowest: 0.40,
+  suspicious: 0.30
+};
+
+const CARD_PHRASE_RE = /(?:[\u30A0-\u30FFー]+|おじさん|おっさん|黙って|見守って|聞いた時に|的確な|くれる|無口で|無表情だけど|仕事は|完璧な|職人|実は|いい人だけど|あまり目立たない|家では|地位が|一番低い|ちょい可哀想|ゴルフとか|釣りの|話しか|しない|下心なく|食事|ご馳走して|下心満々|変態|自分に|優しく|人に|厳しい|なにかと|おやつ|有能|ばりばり|覇気なし|やる気なし|武勇伝|語りたがり|説教|くどくど|過去が|謎すぎ|めちゃ甘|挙動不審|[\u4E00-\u9FFF]+[\u3041-\u309F]*|[\u3041-\u309F]+|.)/g;
+
+function tokenizeCardName(name){
+  const tokens = name.match(CARD_PHRASE_RE) || [];
+  return tokens.join("") === name ? tokens : Array.from(name);
+}
+
+function wrapCardTokensBalanced(ctx, tokens, maxWidth, maxLines){
+  const full = tokens.join("");
+  if (ctx.measureText(full).width <= maxWidth) return [full];
+  const n = tokens.length;
+  if (maxLines < 2 || n < 2) return null;
+
+  let best2 = null;
+  for (let i = 1; i < n; i++) {
+    const l1 = tokens.slice(0, i).join("");
+    const l2 = tokens.slice(i).join("");
+    const w1 = ctx.measureText(l1).width;
+    const w2 = ctx.measureText(l2).width;
+    if (w1 <= maxWidth && w2 <= maxWidth) {
+      const penalty = ((l2 === "おじさん" || l2 === "おっさん") && l1.length >= 6) ? 400 : 0;
+      const score = Math.abs(w1 - w2) + penalty;
+      if (!best2 || score < best2.score) best2 = { score, lines: [l1, l2] };
+    }
+  }
+  if (best2 && (best2.score < 350 || maxLines < 3)) return best2.lines;
+
+  if (maxLines >= 3 && n >= 3) {
+    let best3 = null;
+    for (let i = 1; i < n - 1; i++) {
+      const l1 = tokens.slice(0, i).join("");
+      const w1 = ctx.measureText(l1).width;
+      if (w1 > maxWidth) break;
+      for (let j = i + 1; j < n; j++) {
+        const l2 = tokens.slice(i, j).join("");
+        const l3 = tokens.slice(j).join("");
+        const w2 = ctx.measureText(l2).width;
+        const w3 = ctx.measureText(l3).width;
+        if (w2 <= maxWidth && w3 <= maxWidth) {
+          const penalty = (l3 === "おじさん" || l3 === "おっさん") ? 400 : 0;
+          const score = Math.max(w1, w2, w3) - Math.min(w1, w2, w3) + penalty;
+          if (!best3 || score < best3.score) best3 = { score, lines: [l1, l2, l3] };
+        }
+      }
+    }
+    if (best3) return best3.lines;
+  }
+  return best2 ? best2.lines : null;
+}
+
+function fitCardTypeName(ctx, name, fontFamily, maxWidth){
+  const tokens = tokenizeCardName(name);
+  const preferTwo = name.length >= 14;
+  const startCap = preferTwo ? 2 : 1;
+  const maxSize = name.length <= 10 ? 60 : (name.length <= 13 ? 54 : 50);
+
+  for (let cap = startCap; cap <= 3; cap++) {
+    for (let size = maxSize; size >= 36; size -= 2) {
+      ctx.font = "900 " + size + "px " + fontFamily;
+      const lines = wrapCardTokensBalanced(ctx, tokens, maxWidth, cap);
+      if (lines) return { size, lines };
+    }
+  }
+  const fallbackSize = 36;
+  ctx.font = "900 " + fallbackSize + "px " + fontFamily;
+  return { size: fallbackSize, lines: wrapText(ctx, name, maxWidth) };
+}
+
+function wrapShortBalanced(ctx, text, maxWidth){
+  if (ctx.measureText(text).width <= maxWidth) return [text];
+  const chars = Array.from(text);
+  const n = chars.length;
+  // 1. 「。」の後ろで分割して2行とも収まり、極端に偏らなければ最優先で採用
+  const minSplit = Math.max(4, Math.floor(n * 0.28));
+  for (let i = minSplit; i < n - 4; i++) {
+    if (chars[i - 1] === "。") {
+      const l1 = chars.slice(0, i).join("");
+      const l2 = chars.slice(i).join("");
+      if (ctx.measureText(l1).width <= maxWidth && ctx.measureText(l2).width <= maxWidth) {
+        return [l1, l2];
+      }
+    }
+  }
+  // 2. 句読点「、」「…」や括弧前後を優先しつつ2行の幅が最も均衡する位置を探す
+  let best = null;
+  const noEnd = "「『（";
+  const noStart = "、。）」』！？";
+  for (let i = 4; i < n - 3; i++) {
+    const prev = chars[i - 1], next = chars[i];
+    if (noEnd.includes(prev) || noStart.includes(next)) continue;
+    const l1 = chars.slice(0, i).join("");
+    const l2 = chars.slice(i).join("");
+    const w1 = ctx.measureText(l1).width;
+    const w2 = ctx.measureText(l2).width;
+    if (w1 <= maxWidth && w2 <= maxWidth) {
+      let bonus = 0;
+      if ("、…".includes(prev)) bonus = -180;
+      else if ("はがをにでとのもへ".includes(prev)) bonus = -50;
+      const score = Math.abs(w1 - w2) + bonus;
+      if (!best || score < best.score) best = { score, lines: [l1, l2] };
+    }
+  }
+  if (best) return best.lines;
+  return wrapText(ctx, text, maxWidth);
+}
+
+function drawCardBeerMug(ctx, cx, cy, size){
+  const s = size;
+  const x0 = cx - s / 2;
+  const y0 = cy - s / 2;
+  const lw = Math.max(2.5, s * 0.07);
+  ctx.save();
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
+
+  // ジョッキ取っ手
+  ctx.strokeStyle = "#1e140e";
+  ctx.lineWidth = lw;
+  roundRectPath(ctx, x0 + s * 0.63, y0 + s * 0.38, s * 0.25, s * 0.36, s * 0.09);
+  ctx.stroke();
+
+  // ジョッキ本体
+  roundRectPath(ctx, x0 + s * 0.16, y0 + s * 0.30, s * 0.54, s * 0.58, s * 0.09);
+  ctx.fillStyle = "#ffbe2e";
+  ctx.fill();
+  ctx.stroke();
+
+  // ビールの縦筋
+  ctx.strokeStyle = "rgba(201,136,8,0.75)";
+  ctx.lineWidth = Math.max(2, lw * 0.55);
+  [0.30, 0.43, 0.56].forEach(rx => {
+    ctx.beginPath();
+    ctx.moveTo(x0 + s * rx, y0 + s * 0.45);
+    ctx.lineTo(x0 + s * rx, y0 + s * 0.77);
+    ctx.stroke();
+  });
+
+  // 泡
+  ctx.fillStyle = "#fffdf7";
+  ctx.strokeStyle = "#1e140e";
+  ctx.lineWidth = lw;
+  [
+    [0.26, 0.27, 0.14, 0.11],
+    [0.43, 0.23, 0.15, 0.13],
+    [0.60, 0.27, 0.14, 0.10]
+  ].forEach(([ex, ey, rx, ry]) => {
+    ctx.beginPath();
+    ctx.ellipse(x0 + s * ex, y0 + s * ey, s * rx, s * ry, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  });
+  roundRectPath(ctx, x0 + s * 0.14, y0 + s * 0.25, s * 0.58, s * 0.12, s * 0.05);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(x0 + s * 0.17, y0 + s * 0.36);
+  ctx.lineTo(x0 + s * 0.69, y0 + s * 0.36);
+  ctx.lineWidth = Math.max(2, lw * 0.6);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawCardHankoStamp(ctx, cx, cy, size, fontFamily){
+  const r = size / 2;
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(11 * Math.PI / 180);
+
+  // ドロップシャドウ
+  ctx.beginPath();
+  ctx.arc(2, 4, r - 3, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(30,20,14,0.20)";
+  ctx.fill();
+
+  // 朱印本体
+  ctx.beginPath();
+  ctx.arc(0, 0, r - 3, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(255,253,247,0.95)";
+  ctx.fill();
+  ctx.lineWidth = 4.5;
+  ctx.strokeStyle = "#d6361c";
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(0, 0, r - 9.5, 0, Math.PI * 2);
+  ctx.lineWidth = 1.6;
+  ctx.strokeStyle = "rgba(214,54,28,0.82)";
+  ctx.stroke();
+
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#d6361c";
+  ctx.font = "900 " + Math.round(size * 0.17) + "px " + fontFamily;
+  ctx.fillText("おっさん", 0, -size * 0.14);
+  ctx.font = "900 " + Math.round(size * 0.245) + "px " + fontFamily;
+  ctx.fillText("認定", 0, size * 0.135);
+  ctx.restore();
+}
+
 function prepareCardImage(t, scoreSnapshot){
   return new Promise(resolve => {
     const img = new Image();
     img.onload = () => {
       try {
+        const W = 1080, H = 1350;
         const c = document.createElement("canvas");
-        c.width = 1080;
-        c.height = 1350;
+        c.width = W;
+        c.height = H;
         const x = c.getContext("2d");
-        const fontFamily = '"Hiragino Maru Gothic ProN","Hiragino Sans","BIZ UDPGothic","Noto Sans JP",sans-serif';
+        const fontFamily = '"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","BIZ UDPGothic","Yu Gothic",sans-serif';
 
-        // 背景
-        x.fillStyle = "#fbf5ea";
-        x.fillRect(0, 0, 1080, 1350);
+        // 1. 和紙クリーム＋極小赤＆金ドット背景
+        x.fillStyle = "#fbf0d9";
+        x.fillRect(0, 0, W, H);
+        const dotStep = 26;
+        for (let dy = 0; dy <= H + dotStep; dy += dotStep) {
+          for (let dx = 0; dx <= W + dotStep; dx += dotStep) {
+            x.fillStyle = "rgba(214,54,28,0.085)";
+            x.beginPath();
+            x.arc(dx, dy, 2.1, 0, Math.PI * 2);
+            x.fill();
+            x.fillStyle = "rgba(201,136,8,0.095)";
+            x.beginPath();
+            x.arc(dx + dotStep / 2, dy + dotStep / 2, 2.1, 0, Math.PI * 2);
+            x.fill();
+          }
+        }
 
-        // 内側カード
-        x.fillStyle = "#fffdf8";
-        roundRectPath(x, 54, 54, 972, 1242, 44);
+        // 2. メインカード枠＋濃墨ハードシャドウ
+        const cardX = 24, cardY = 24, cardW = 1018, cardH = 1288, cardR = 32;
+        const cardCX = cardX + cardW / 2;
+        x.fillStyle = "#1e140e";
+        roundRectPath(x, cardX + 14, cardY + 14, cardW, cardH, cardR);
         x.fill();
-        x.lineWidth = 4;
-        x.strokeStyle = "#eadcc8";
-        x.stroke();
 
-        // 上部リボンピル
+        x.save();
+        roundRectPath(x, cardX, cardY, cardW, cardH, cardR);
+        x.clip();
+        x.fillStyle = "#fffdf7";
+        x.fillRect(cardX, cardY, cardW, cardH);
+
+        // 3. 上部のれんヘッダー帯
+        const hdrH = 84;
+        const hdrY = cardY;
+        x.fillStyle = "#d6361c";
+        x.fillRect(cardX, hdrY, cardW, hdrH);
+
+        const stripeY = hdrY + hdrH;
+        x.fillStyle = "#1e140e";
+        x.fillRect(cardX, stripeY, cardW, 5);
         x.fillStyle = t.color;
-        roundRectPath(x, 380, 114, 320, 52, 26);
+        x.fillRect(cardX, stripeY + 5, cardW, 9);
+        x.fillStyle = "#1e140e";
+        x.fillRect(cardX, stripeY + 14, cardW, 4);
+
+        const hdrCY = hdrY + hdrH / 2;
+        // 左ピル: 診断結果
+        const pillX = cardX + 28, pillW = 138, pillH = 44;
+        x.fillStyle = "#ffbe2e";
+        roundRectPath(x, pillX, hdrCY - pillH / 2, pillW, pillH, pillH / 2);
         x.fill();
+        x.lineWidth = 3.5;
+        x.strokeStyle = "#1e140e";
+        x.stroke();
         x.textAlign = "center";
         x.textBaseline = "middle";
-        x.fillStyle = "#fffdf8";
-        x.font = "700 28px " + fontFamily;
-        x.fillText("おっさん診断", 540, 140);
+        x.fillStyle = "#1e140e";
+        x.font = "900 22px " + fontFamily;
+        x.fillText("診断結果", pillX + pillW / 2, hdrCY + 1);
 
-        // 円形プロフィール画像（元画像の端1-2pxをトリミング）
-        const cx = 540, cy = 372, r = 176;
-        x.save();
-        x.beginPath();
-        x.arc(cx, cy, r, 0, Math.PI * 2);
-        x.clip();
-        const pad = 4;
-        x.drawImage(img, pad, pad, img.width - pad * 2, img.height - pad * 2, cx - r, cy - r, r * 2, r * 2);
-        x.restore();
-        x.lineWidth = 12;
-        x.strokeStyle = t.color;
-        x.beginPath();
-        x.arc(cx, cy, r, 0, Math.PI * 2);
-        x.stroke();
+        // 右ピル: 全16タイプ
+        const tagW = 160, tagH = 38, tagX = cardX + cardW - 28 - tagW;
+        x.fillStyle = "#1e140e";
+        roundRectPath(x, tagX, hdrCY - tagH / 2, tagW, tagH, tagH / 2);
+        x.fill();
+        x.fillStyle = "#ffbe2e";
+        x.font = "900 19px " + fontFamily;
+        x.fillText("全16タイプ", tagX + tagW / 2, hdrCY + 1);
 
-        // タイプ名（長さに応じてサイズ調整＋折り返し）
-        const nameSize = t.name.length > 18 ? 48 : (t.name.length > 12 ? 56 : 66);
-        x.font = "700 " + nameSize + "px " + fontFamily;
-        x.fillStyle = "#2f241d";
-        const nameLines = wrapText(x, t.name, 840);
-        const nameLineH = Math.round(nameSize * 1.32);
-        let nameY = nameLines.length === 1 ? 642 : 620;
-        nameLines.forEach((ln, i) => {
-          x.fillText(ln, 540, nameY + i * nameLineH);
-        });
-
-        // 区切り線
-        const divY = nameY + (nameLines.length - 1) * nameLineH + 62;
-        x.strokeStyle = t.color;
-        x.lineWidth = 4;
-        x.beginPath();
-        x.moveTo(460, divY);
-        x.lineTo(620, divY);
-        x.stroke();
-
-        // 短文（固定コピー）
-        x.font = "600 34px " + fontFamily;
-        x.fillStyle = "#4b3b30";
-        const shortLines = wrapText(x, t.short, 830);
-        const shortY = divY + 58;
-        shortLines.forEach((ln, i) => {
-          x.fillText(ln, 540, shortY + i * 54);
-        });
-
-        // 4要素サマリーバー
-        const barTop = 1006;
+        // 中央ブランド: 生ビールジョッキ + おっさん診断
+        x.font = "900 38px " + fontFamily;
+        const brandTxt = "おっさん診断";
+        const brandW = x.measureText(brandTxt).width;
+        const mugSz = 44, mugGap = 12;
+        const groupLeft = cardCX - (mugSz + mugGap + brandW) / 2;
+        drawCardBeerMug(x, groupLeft + mugSz / 2, hdrCY, mugSz);
         x.textAlign = "left";
+        x.fillStyle = "rgba(30,20,14,0.75)";
+        x.fillText(brandTxt, groupLeft + mugSz + mugGap + 2.5, hdrCY + 3.5);
+        x.fillStyle = "#fffdf7";
+        x.fillText(brandTxt, groupLeft + mugSz + mugGap, hdrCY + 1);
+
+        // 4. 主役：大型フル幅写真パネル（カードの約41%、上半分を大胆に占有）
+        const photoX = cardX;
+        const photoY = stripeY + 18;
+        const photoW = cardW;
+        const photoH = 588;
+        const trim = (img.width > 32 && img.height > 32) ? 8 : 0;
+        const sw = img.width - trim * 2;
+        const sh = img.height - trim * 2;
+        const targetRatio = photoW / photoH;
+        const srcRatio = sw / sh;
+        let sx = trim, sy = trim, cropW = sw, cropH = sh;
+        if (srcRatio > targetRatio) {
+          cropW = Math.round(sh * targetRatio);
+          sx = trim + Math.round((sw - cropW) / 2);
+        } else {
+          cropH = Math.round(sw / targetRatio);
+          const focusY = (t.id in CARD_PHOTO_FOCUS) ? CARD_PHOTO_FOCUS[t.id] : 0.22;
+          sy = trim + Math.max(0, Math.round((sh - cropH) * focusY));
+        }
+        x.drawImage(img, sx, sy, cropW, cropH, photoX, photoY, photoW, photoH);
+
+        // タイプカラーの額縁エッジ＋下端濃墨仕切り線
+        x.strokeStyle = t.color;
+        x.lineWidth = 10;
+        x.strokeRect(photoX + 5, photoY + 5, photoW - 10, photoH - 10);
+
+        const photoBot = photoY + photoH;
+        x.fillStyle = "#1e140e";
+        x.fillRect(cardX, photoBot, cardW, 6);
+
+        // 5. 最下部 URL フッターバナー（OGP同調のクリーム＋タイプカラーアクセント）
+        const urlW = 946, urlH = 48;
+        const urlX = cardCX - urlW / 2, urlY = cardY + cardH - 18 - urlH;
+        x.fillStyle = "rgba(30,20,14,0.16)";
+        roundRectPath(x, urlX + 4, urlY + 4, urlW, urlH, 14);
+        x.fill();
+        x.save();
+        roundRectPath(x, urlX, urlY, urlW, urlH, 14);
+        x.clip();
+        x.fillStyle = "#fff6dc";
+        x.fillRect(urlX, urlY, urlW, urlH);
+        x.fillStyle = t.color;
+        x.fillRect(urlX, urlY, 12, urlH);
+        x.restore();
+        x.lineWidth = 3;
+        x.strokeStyle = "#1e140e";
+        roundRectPath(x, urlX, urlY, urlW, urlH, 14);
+        x.stroke();
+        x.textAlign = "center";
+        x.textBaseline = "middle";
+        x.fillStyle = "#1e140e";
+        x.font = "800 22px " + fontFamily;
+        x.fillText("tosh1000950.github.io/shindan/ossan/", cardCX + 6, urlY + urlH / 2 + 1);
+
+        // 6. 下部コンテンツ（リード・タイプ名・短文吹き出し・4軸バー）を重なりゼロで動的レイアウト
+        const zoneTop = photoBot + 14;
+        const zoneBot = urlY - 10;
+        const availH = zoneBot - zoneTop;
+
+        const nameFit = fitCardTypeName(x, t.name, fontFamily, 900);
+        const nameLineH = Math.round(nameFit.size * (nameFit.lines.length >= 2 ? 1.24 : 1.15));
+        const nameBlockH = nameFit.lines.length * nameLineH;
+
+        const shortFontSize = 25;
+        const shortLineH = 38;
+        x.font = "700 " + shortFontSize + "px " + fontFamily;
+        const shortLines = wrapShortBalanced(x, t.short, 872);
+        const shortPadY = shortLines.length >= 3 ? 13 : 16;
+        const shortBoxH = shortPadY * 2 + shortLines.length * shortLineH;
+
+        const leadH = 24;
+        const axisStep = shortLines.length >= 3 ? 41 : 44;
+        const axesH = AXES.length * axisStep;
+        const rawGap = availH - (leadH + nameBlockH + shortBoxH + axesH);
+        const gapLead = Math.max(6, Math.min(12, Math.round(rawGap * 0.14)));
+        const gapNameShort = Math.max(12, Math.min(24, Math.round(rawGap * 0.28)));
+        const gapShortAxes = Math.max(12, Math.min(26, Math.round(rawGap * 0.30)));
+        const usedH = leadH + gapLead + nameBlockH + gapNameShort + shortBoxH + gapShortAxes + axesH;
+        const startY = zoneTop + Math.max(2, Math.floor((availH - usedH) / 2));
+
+        // 6-1. リード（— わたしは —）
+        const leadCY = startY + leadH / 2;
+        x.textAlign = "center";
+        x.textBaseline = "middle";
+        x.font = "900 20px " + fontFamily;
+        const leadTxt = "わたしは";
+        const leadW = x.measureText(leadTxt).width;
+        x.fillStyle = "#6c5749";
+        x.fillText(leadTxt, cardCX, leadCY);
+        x.strokeStyle = "#d6361c";
+        x.lineWidth = 3.5;
+        x.beginPath();
+        x.moveTo(cardCX - leadW / 2 - 36, leadCY);
+        x.lineTo(cardCX - leadW / 2 - 12, leadCY);
+        x.moveTo(cardCX + leadW / 2 + 12, leadCY);
+        x.lineTo(cardCX + leadW / 2 + 36, leadCY);
+        x.stroke();
+
+        // 6-2. タイプ名（大文字＋ビールゴールド蛍光マーカー下地）
+        const nameTop = startY + leadH + gapLead;
+        x.font = "900 " + nameFit.size + "px " + fontFamily;
+        x.textAlign = "center";
+        x.textBaseline = "middle";
+        nameFit.lines.forEach((ln, i) => {
+          const ly = nameTop + i * nameLineH + nameLineH / 2;
+          const lw = x.measureText(ln).width;
+          const hlH = Math.round(nameFit.size * 0.44);
+          x.fillStyle = "rgba(255,190,46,0.58)";
+          roundRectPath(x, cardCX - lw / 2 - 10, ly + Math.round(nameFit.size * 0.06), lw + 20, hlH, 7);
+          x.fill();
+          x.fillStyle = "#1e140e";
+          x.fillText(ln, cardCX, ly);
+        });
+
+        // 6-3. 短文ボックス（吹き出し三角＋タイプカラー左帯）
+        const shortBoxY = nameTop + nameBlockH + gapNameShort;
+        const shortBoxX = cardX + 36;
+        const shortBoxW = cardW - 72;
+        x.fillStyle = "rgba(30,20,14,0.14)";
+        roundRectPath(x, shortBoxX + 4, shortBoxY + 4, shortBoxW, shortBoxH, 16);
+        x.fill();
+
+        x.save();
+        roundRectPath(x, shortBoxX, shortBoxY, shortBoxW, shortBoxH, 16);
+        x.clip();
+        x.fillStyle = "#fff6dc";
+        x.fillRect(shortBoxX, shortBoxY, shortBoxW, shortBoxH);
+        x.fillStyle = t.color;
+        x.fillRect(shortBoxX, shortBoxY, 11, shortBoxH);
+        x.restore();
+
+        x.lineWidth = 3;
+        x.strokeStyle = "#1e140e";
+        roundRectPath(x, shortBoxX, shortBoxY, shortBoxW, shortBoxH, 16);
+        x.stroke();
+
+        // 吹き出し三角
+        x.save();
+        x.translate(cardCX, shortBoxY);
+        x.rotate(Math.PI / 4);
+        x.fillStyle = "#fff6dc";
+        x.fillRect(-8, -8, 16, 16);
+        x.beginPath();
+        x.moveTo(-8, 8);
+        x.lineTo(-8, -8);
+        x.lineTo(8, -8);
+        x.lineWidth = 3;
+        x.strokeStyle = "#1e140e";
+        x.stroke();
+        x.restore();
+
+        x.textAlign = "center";
+        x.textBaseline = "middle";
+        x.font = "700 " + shortFontSize + "px " + fontFamily;
+        x.fillStyle = "#1e140e";
+        shortLines.forEach((ln, i) => {
+          const sy = shortBoxY + shortPadY + i * shortLineH + shortLineH / 2;
+          x.fillText(ln, cardCX + 4, sy);
+        });
+
+        // 6-4. 4要素バランスバー（軸バッジ＋ゲージ＋選択極・強さ）
+        const axesTop = shortBoxY + shortBoxH + gapShortAxes;
+        const badgeX = cardX + 38, badgeW = 104, badgeH = 31;
+        const barX = badgeX + badgeW + 18, barW = 420, barH = 15;
+        const valX = barX + barW + 20;
+        const valMaxW = (cardX + cardW - 34) - valX;
+
         AXES.forEach((ax, a) => {
-          const y = barTop + a * 46;
+          const ry = axesTop + a * axisStep + axisStep / 2;
           const s = scoreSnapshot[a];
           const chosen = s >= 0 ? ax.left : ax.right;
-          x.fillStyle = "#7a6656";
-          x.font = "700 22px " + fontFamily;
-          x.fillText(ax.name, 140, y);
+          const strength = "（" + strengthWord(s) + "）";
 
-          // トラック
-          const bx = 250, bw = 420, bh = 12;
-          x.fillStyle = "#efe2ce";
-          roundRectPath(x, bx, y - 6, bw, bh, 6);
+          // 軸名ピルバッジ
+          x.fillStyle = "#1e140e";
+          roundRectPath(x, badgeX, ry - badgeH / 2, badgeW, badgeH, 8);
           x.fill();
-          x.fillStyle = "#d5c1a5";
-          x.fillRect(bx + bw / 2 - 1, y - 6, 2, bh);
+          x.textAlign = "center";
+          x.textBaseline = "middle";
+          x.fillStyle = "#fffdf7";
+          x.font = "900 18px " + fontFamily;
+          x.fillText(ax.name, badgeX + badgeW / 2, ry + 1);
 
-          // ドット
+          // トラックバー
+          x.fillStyle = "#efe1c8";
+          roundRectPath(x, barX, ry - barH / 2, barW, barH, barH / 2);
+          x.fill();
+          x.lineWidth = 2.5;
+          x.strokeStyle = "#1e140e";
+          x.stroke();
+
+          // 中央目盛り線
+          x.fillStyle = "#b8a080";
+          x.fillRect(barX + barW / 2 - 1.5, ry - barH / 2 + 2, 3, barH - 4);
+
+          // スコアつまみ
           const pct = Math.max(4, Math.min(96, 50 + s * 5)) / 100;
-          x.fillStyle = t.color;
+          const knobX = barX + barW * pct;
           x.beginPath();
-          x.arc(bx + bw * pct, y, 10, 0, Math.PI * 2);
+          x.arc(knobX, ry, 12.5, 0, Math.PI * 2);
+          x.fillStyle = t.color;
           x.fill();
+          x.lineWidth = 3.5;
+          x.strokeStyle = "#1e140e";
+          x.stroke();
 
-          x.fillStyle = "#2f241d";
-          x.font = "700 21px " + fontFamily;
-          x.fillText(chosen, 692, y);
+          // 右側ラベル＆値
+          x.textAlign = "left";
+          x.textBaseline = "middle";
+          x.font = "900 20px " + fontFamily;
+          const chosenW = x.measureText(chosen).width;
+          x.font = "900 18px " + fontFamily;
+          const strW = x.measureText(strength).width;
+          const totalVW = chosenW + strW;
+          if (totalVW + 4 <= valMaxW) {
+            x.font = "900 20px " + fontFamily;
+            x.fillStyle = "#1e140e";
+            x.fillText(chosen, valX, ry + 1);
+            x.font = "900 18px " + fontFamily;
+            x.fillStyle = "#d6361c";
+            x.fillText(strength, valX + chosenW + 4, ry + 1);
+          } else {
+            x.font = "900 18px " + fontFamily;
+            x.fillStyle = "#1e140e";
+            x.fillText(chosen + strength, valX, ry + 1, valMaxW);
+          }
         });
 
-        // URLフッター
-        x.textAlign = "center";
-        x.fillStyle = "#7a6656";
-        x.font = "600 26px " + fontFamily;
-        x.fillText("tosh1000950.github.io/shindan/ossan/", 540, 1236);
+        // 7. おっさん認定朱印スタンプ（写真右下隅・境界線をまたがない安全配置）
+        drawCardHankoStamp(x, cardX + cardW - 68, photoBot - 22, 98, fontFamily);
+
+        x.restore(); // card clip 解除
+
+        // カード外枠（濃墨 7px）を最後に上描きして角を完全に締める
+        x.lineWidth = 7;
+        x.strokeStyle = "#1e140e";
+        roundRectPath(x, cardX, cardY, cardW, cardH, cardR);
+        x.stroke();
 
         c.toBlob(b => {
           if (!b || !resultType || resultType.id !== t.id) { resolve(null); return; }
