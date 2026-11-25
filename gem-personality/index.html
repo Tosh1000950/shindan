@@ -84,6 +84,13 @@ img.banner{ width:100%; border-radius:20px; display:block; }
 .share-actions.env-mobile #btn-card{ order:4; }
 .share-actions.env-mobile #btn-x-image,
 .share-actions.env-mobile #x-hint{ display:none; }
+.author-box{ background:var(--card); border:2px solid #eee7fa; border-radius:20px; padding:20px 18px; margin-top:20px; box-shadow:0 6px 20px rgba(122,95,208,.09); text-align:left; }
+.author-head{ display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+.author-head h2{ font-size:16px; font-weight:700; color:var(--ink); }
+.author-handle{ display:inline-block; font-size:12px; font-weight:700; color:var(--accent); background:#f6f3fb; border:1.5px solid #e2d8f5; padding:3px 10px; border-radius:999px; line-height:1.4; }
+.author-desc{ font-size:13.5px; line-height:1.8; color:var(--ink); }
+.author-actions{ display:flex; flex-direction:column; gap:10px; margin-top:14px; }
+.author-actions .btn{ margin-top:0; font-size:14.5px; padding:12px 16px; text-decoration:none; text-align:center; }
 .alltypes{ margin-top:30px; }
 .alltypes h2{ font-size:16px; text-align:center; }
 .alltypes p{ font-size:12px; color:var(--sub); text-align:center; margin:6px 0 12px; }
@@ -174,6 +181,17 @@ footer a{ color:var(--sub); }
 <a id="card-dl" class="btn" href="#" download style="text-decoration:none;">⬇ この画像をダウンロード</a>
 </div>
 <button class="btn sub" id="btn-retry">もう一度診断する</button>
+    <section class="author-box" aria-labelledby="author-title">
+      <div class="author-head">
+        <h2 id="author-title">この診断を作った人</h2>
+        <span class="author-handle">@Tosh1000950</span>
+      </div>
+      <p class="author-desc">診断をいろいろ作って、少しずつ増やしています。他の診断も遊んでみてね。新作をいち早く知りたい人は、フォローしてもらえると嬉しいです。</p>
+      <div class="author-actions">
+        <a class="btn x-post" href="https://twitter.com/intent/follow?screen_name=Tosh1000950" target="_blank" rel="noopener noreferrer">Xでフォローする</a>
+        <a class="btn sub" href="https://tosh1000950.github.io/shindan/">他の診断も見る</a>
+      </div>
+    </section>
     <div class="alltypes">
       <h2>宝石図鑑（<span id="got-count2">0</span>/16）</h2>
       <p>結果になった宝石がここに集まります</p>
@@ -356,7 +374,7 @@ function showResult(){
   prepareCardImage(resultType);
 }
 function shareText(){
-  return "私の本当の性格は「" + resultType.name + "」でした💎 " + resultType.catch + "\nあなたは何の宝石？\n";
+  return "私の本当の性格は「" + resultType.name + "」でした💎 " + resultType.catch + "\nあなたは何の宝石？\n他の診断も作ってます！新作をいち早く知りたい人は @Tosh1000950 をフォローしてね";
 }
 $("btn-start").onclick = () => { sendStat("diagnosis_start"); startQuiz(false); };
 $("btn-resume").onclick = () => startQuiz(true);
