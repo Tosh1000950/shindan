@@ -53,6 +53,23 @@ h1{ font-size:30px; margin:14px 0 6px;}
 .got{ outline:2px solid var(--accent);}
 footer{ text-align:center; color:var(--sub); font-size:11px; margin-top:30px; line-height:1.8;}
 footer a{ color:var(--sub);}
+.share-actions{ display:flex; flex-direction:column; gap:10px; margin-top:20px;}
+.share-actions .btn{ margin-top:0; font-size:15.5px; padding:15px 12px;}
+.btn-x{ background:#3a3340; color:#fff; box-shadow:0 6px 16px rgba(58,51,64,.2);}
+.btn-x-img{ background:#fff; color:var(--accent); border:2px solid var(--accent); font-size:15px;}
+.x-hint{ background:#fff; border:1.5px solid #f0dbe4; border-left:4px solid var(--accent); border-radius:12px; padding:9px 12px; font-size:12px; line-height:1.6; color:var(--ink); text-align:left; margin:0;}
+.x-hint.is-copied{ background:#eefaf2; border-color:#c6ebd3; border-left-color:#2c8a4e;}
+.x-hint.is-fallback{ background:#fff8eb; border-color:#f3deb3; border-left-color:#e09a2b;}
+.x-hint code{ background:rgba(58,51,64,.08); padding:1px 5px; border-radius:4px; font-size:11px; font-family:monospace;}
+#btn-share{ display:none;}
+.share-hint{ display:none;}
+.share-hint.is-visible{ display:block;}
+.share-actions.env-mobile #btn-share{ display:block; order:1;}
+.share-actions.env-mobile #share-hint{ order:2;}
+.share-actions.env-mobile #btn-x-post{ order:3;}
+.share-actions.env-mobile #btn-card{ order:4;}
+.share-actions.env-mobile #btn-x-image,
+.share-actions.env-mobile #x-hint{ display:none;}
 </style>
 </head>
 <body>
@@ -94,8 +111,14 @@ footer a{ color:var(--sub);}
 <div class="points" id="r-points"></div>
 <p class="compat" id="r-compat"></p>
 </div>
-<button class="btn btn-main" id="btn-card">📸 結果カードを画像で保存</button>
-<button class="btn btn-sub" id="btn-share">𝕏 で結果をシェア</button>
+<div class="share-actions" id="share-actions">
+<button type="button" class="btn btn-x" id="btn-x-post">𝕏 Xで結果を投稿する</button>
+<button type="button" class="btn btn-x-img" id="btn-x-image">📋 カード画像をコピーしてXへ</button>
+<p class="x-hint" id="x-hint" aria-live="polite"></p>
+<button type="button" class="btn btn-main" id="btn-share">📤 結果をシェア</button>
+<p class="x-hint is-fallback share-hint" id="share-hint" aria-live="polite"></p>
+<button type="button" class="btn btn-main" id="btn-card">📸 結果カードを画像で保存</button>
+</div>
 <div id="card-preview" style="display:none;margin-top:16px;text-align:center;">
 <img id="card-img" alt="結果カード" style="width:100%;max-width:340px;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.15);">
 <p style="color:var(--sub);font-size:12px;margin:10px 0;">画像を長押し（PCでは右クリック）でも保存できます</p>
@@ -206,7 +229,7 @@ const n = gotSet().size;
 const txt = n? `図鑑コレクション： ${n} / 8 タイプ`: "まだ図鑑は空っぽ。診断して集めよう！";
 $("collection-start").textContent = txt; $("collection-result").textContent = txt;
 }
-function start(){ answers = []; cur = 0; show("s-quiz"); renderQ();}
+function start(){ resultType = null; resetCardPreview(); answers = []; cur = 0; show("s-quiz"); renderQ();}
 function renderQ(){
 const q = QUESTIONS[cur];
 $("q-count").textContent = `Q${cur+1} / ${QUESTIONS.length}`;
@@ -236,6 +259,8 @@ return TYPE_LIST.find(t=>t.key===key);
 }
 function finish(){
 resultType = judge();
+resetCardPreview();
+initShareLayout();
 const got = gotSet(); got.add(resultType.id);
 try{ localStorage.setItem("animal-love-got", JSON.stringify([...got]));}catch(e){}
 $("r-avatar").style.background = resultType.color;
@@ -247,73 +272,236 @@ $("r-points").innerHTML = "<b>あなたの恋愛の強み</b><br>" + resultType.
 $("r-compat").innerHTML = "相性がいいのは <b>" + resultType.compat.join("</b> と <b>") + "</b>";
 renderGrid($("grid-result")); renderCollection();
 show("s-result");
+prepareCardImage(resultType);
 }
 function shareText(){
 return `わたしは「${resultType.name}」でした！ ${resultType.catch}\nあなたは何タイプ？ #恋愛どうぶつ診断`;
 }
-function makeCard(){
-const c = document.createElement("canvas"); c.width=1080; c.height=1350;
-const x = c.getContext("2d");
+const SHARE_BASE = "https://tosh1000950.github.io/shindan/animal-love/share/";
+const CARD_FILE_PREFIX = "renai-doubutsu-";
+const DEFAULT_X_HINT_HTML = "💡 <b>結果カード画像つきで投稿したいとき：</b>上のボタンで画像をコピーし、開いたXの画面で <b>Ctrl+V</b>（Macは⌘+V）で貼り付けてね🐾";
+const SHARE_IMAGE_HINT_HTML = "⚠ <b>画像を添付できなかったため、テキストのみでXを開きました。</b>下の「📸 結果カードを画像で保存」ボタンから画像を保存して、Xの画面で手動で添付してね🐾";
+let cardBlobUrl = null;
+let cardFileCache = null;
+let cardPromise = null;
+let cardTargetId = null;
+
+function resetXHint(){
+const hint = $("x-hint");
+if(!hint) return;
+hint.className = "x-hint";
+hint.innerHTML = DEFAULT_X_HINT_HTML;
+}
+function resetShareHint(){
+const hint = $("share-hint");
+if(!hint) return;
+hint.className = "x-hint is-fallback share-hint";
+hint.innerHTML = "";
+}
+function showShareImageHint(){
+const hint = $("share-hint");
+if(!hint) return;
+hint.innerHTML = SHARE_IMAGE_HINT_HTML;
+hint.className = "x-hint is-fallback share-hint is-visible";
+}
+function resetCardPreview(){
+if(cardBlobUrl){
+try{ URL.revokeObjectURL(cardBlobUrl); }catch(e){}
+cardBlobUrl = null;
+}
+cardFileCache = null;
+cardPromise = null;
+cardTargetId = null;
+$("card-preview").style.display = "none";
+$("card-img").removeAttribute("src");
+const dl = $("card-dl");
+if(dl){ dl.setAttribute("href", "#"); dl.setAttribute("download", ""); }
+resetXHint();
+resetShareHint();
+}
+function isMobileShareEnv(){
+const ua = navigator.userAgent || "";
+const isMobileUA = /iPhone|iPad|iPod|Android/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+return isMobileUA && typeof navigator.share === "function";
+}
+function initShareLayout(){
+const box = $("share-actions");
+if(!box) return;
+box.classList.toggle("env-mobile", isMobileShareEnv());
+}
+function getTypeShareUrl(){
+return SHARE_BASE + resultType.id + ".html";
+}
+function getCombinedShareText(){
+return shareText() + "\n" + getTypeShareUrl();
+}
+function buildShareIntentUrl(combinedText){
+return "https://twitter.com/intent/tweet?text=" + encodeURIComponent(combinedText);
+}
+function openIntentUrl(intent){
+const w = window.open(intent, "_blank");
+if(!w){ location.href = intent; }
+return intent;
+}
+function openXIntent(){
+return openIntentUrl(buildShareIntentUrl(getCombinedShareText()));
+}
+function downloadCardFile(file){
+const dlUrl = cardBlobUrl || (file ? URL.createObjectURL(file) : null);
+if(!dlUrl || !resultType) return false;
+const a = document.createElement("a");
+a.href = dlUrl;
+a.download = CARD_FILE_PREFIX + resultType.id + ".png";
+document.body.appendChild(a);
+a.click();
+a.remove();
+if(!cardBlobUrl){
+setTimeout(()=>{ try{ URL.revokeObjectURL(dlUrl); }catch(e){} }, 1000);
+}
+return true;
+}
+function prepareCardImage(t){
+if(!t) return Promise.resolve(null);
+if(cardFileCache && cardTargetId === t.id) return Promise.resolve(cardFileCache);
+if(cardPromise && cardTargetId === t.id) return cardPromise;
+cardTargetId = t.id;
+cardPromise = new Promise(resolve=>{
 const img = new Image();
 img.onload = ()=>{
-x.fillStyle = resultType.color; x.fillRect(0,0,1080,1350);
+try{
+const c = document.createElement("canvas"); c.width=1080; c.height=1350;
+const x = c.getContext("2d");
+x.fillStyle = t.color; x.fillRect(0,0,1080,1350);
 x.fillStyle = "#ffffff"; x.beginPath(); x.roundRect(60,60,960,1230,48); x.fill();
 x.textAlign = "center"; x.fillStyle = "#7a7284";
 x.font = "600 40px sans-serif"; x.fillText("恋愛どうぶつ診断", 540, 190);
 x.save(); x.beginPath(); x.arc(540,360,165,0,Math.PI*2); x.clip();
 x.drawImage(img, 375, 195, 330, 330); x.restore();
 x.fillStyle = "#3a3340"; x.font = "800 58px sans-serif";
-if(x.measureText(resultType.name).width > 880){ x.font = "800 42px sans-serif"; }
-x.fillText(resultType.name, 540, 590);
+if(x.measureText(t.name).width > 880){ x.font = "800 42px sans-serif"; }
+x.fillText(t.name, 540, 590);
 x.fillStyle = "#ff7aa8"; x.font = "700 44px sans-serif";
-x.fillText(resultType.catch, 540, 690);
+x.fillText(t.catch, 540, 690);
 x.fillStyle = "#7a7284"; x.font = "400 34px sans-serif";
-x.fillText("相性◎ " + resultType.compat.join(" ・ "), 540, 800);
+x.fillText("相性◎ " + t.compat.join(" ・ "), 540, 800);
 x.fillStyle = "#b9aec2"; x.font = "600 36px sans-serif";
 x.fillText("tosh1000950.github.io", 540, 1180);
 c.toBlob(b=>{
-if(!b){ return; }
-const u = URL.createObjectURL(b);
-$("card-img").src = u;
-const dl = $("card-dl"); dl.href = u; dl.download = "renai-doubutsu-" + resultType.id + ".png";
-$("card-preview").style.display = "block";
-$("card-preview").scrollIntoView({behavior:"smooth"});
+if(!b || !resultType || resultType.id !== t.id){ cardPromise = null; resolve(null); return; }
+if(cardBlobUrl){
+try{ URL.revokeObjectURL(cardBlobUrl); }catch(e){}
+}
+cardBlobUrl = URL.createObjectURL(b);
+cardFileCache = new File([b], CARD_FILE_PREFIX + t.id + ".png", { type:"image/png" });
+$("card-img").src = cardBlobUrl;
+const dl = $("card-dl"); dl.href = cardBlobUrl; dl.download = CARD_FILE_PREFIX + t.id + ".png";
+resolve(cardFileCache);
 }, "image/png");
+}catch(e){
+cardPromise = null;
+resolve(null);
+}
 };
-img.src = "assets/" + resultType.id + ".jpg";
+img.onerror = ()=>{ cardPromise = null; resolve(null); };
+img.src = "assets/" + t.id + ".jpg";
+});
+return cardPromise;
 }
 $("btn-start").onclick = start;
 $("btn-back").onclick = ()=>{ if(cur>0){ cur--; renderQ();}};
 $("btn-retry").onclick = start;
-$("btn-card").onclick = makeCard;
+$("btn-card").onclick = async ()=>{
+if(!resultType) return;
+if(!cardBlobUrl){
+await prepareCardImage(resultType);
+}
+if(cardBlobUrl){
+$("card-preview").style.display = "block";
+$("card-preview").scrollIntoView({behavior:"smooth"});
+}
+};
 async function getCardFile(){
-if($("card-preview").style.display === "none" || !$("card-img").src.startsWith("blob:")){
-makeCard();
-for(let i=0;i<40;i++){ await new Promise(r=>setTimeout(r,100)); if($("card-img").src.startsWith("blob:")) break; }
+if(cardFileCache) return cardFileCache;
+if(!resultType) return null;
+const timeout = new Promise(resolve=>setTimeout(()=>resolve(null), 2000));
+return await Promise.race([prepareCardImage(resultType), timeout]);
 }
-if(!$("card-img").src.startsWith("blob:")) return null;
-const b = await (await fetch($("card-img").src)).blob();
-return new File([b], "renai-doubutsu-" + resultType.id + ".png", { type:"image/png" });
-}
-$("btn-share").onclick = async ()=>{
-const url = "https://tosh1000950.github.io/shindan/animal-love/share/" + resultType.id + ".html";
-const text = shareText();
+$("btn-x-post").onclick = ()=>{
+if(!resultType) return;
+openXIntent();
+};
+let xImageBusy = false;
+$("btn-x-image").onclick = async ()=>{
+if(!resultType || xImageBusy) return;
+xImageBusy = true;
+const hint = $("x-hint");
 try{
 const file = await getCardFile();
-if(file && navigator.canShare && navigator.canShare({ files:[file] })){
-if(/iPhone|iPad|iPod/.test(navigator.userAgent)){ await navigator.share({ files:[file], text:text + "\n" + url }); } else { await navigator.share({ files:[file], text:text, url:url }); }
-return;
+let copied = false;
+if(file && navigator.clipboard && typeof navigator.clipboard.write === "function" && typeof ClipboardItem !== "undefined"){
+try{
+const pngBlob = new Blob([file], { type:"image/png" });
+await navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]);
+copied = true;
+}catch(e){
+copied = false;
 }
-}catch(e){ if(e && e.name === "AbortError"){ return; } }
-if(navigator.share){
-try{ await navigator.share({ title:"恋愛どうぶつ診断", text:text + "\n" + url }); return; }
-catch(e){ if(e && e.name === "AbortError"){ return; } }
 }
-const intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(url);
-const w = window.open(intent, "_blank");
-if(!w){ location.href = intent; }
+if(copied){
+hint.className = "x-hint is-copied";
+hint.innerHTML = "✅ <b>カード画像をコピーしました！</b>開いたXの投稿画面で <b>Ctrl+V</b>（Macは⌘+V）を押して貼り付けてね🐾";
+}else{
+const downloaded = downloadCardFile(file);
+hint.className = "x-hint is-fallback";
+if(downloaded){
+hint.innerHTML = "💾 <b>クリップボードにコピーできなかったため画像を保存したよ！</b>開いたXの投稿画面で、保存した画像（<code>" + CARD_FILE_PREFIX + resultType.id + ".png</code>）を添付して投稿してね🐾";
+}else{
+hint.innerHTML = "⚠ カード画像の準備が間に合いませんでした。下の「📸 結果カードを画像で保存」ボタンから保存してXに添付してね🐾";
+}
+}
+openXIntent();
+}finally{
+xImageBusy = false;
+}
 };
+let shareBusy = false;
+async function shareResult(){
+if(!resultType || shareBusy) return;
+shareBusy = true;
+resetShareHint();
+const combined = getCombinedShareText();
+try{
+let file = null;
+try{
+file = await getCardFile();
+}catch(e){
+file = null;
+}
+let canShareFile = false;
+if(file && typeof navigator.share === "function" && typeof navigator.canShare === "function"){
+try{
+canShareFile = Boolean(navigator.canShare({ files:[file] }));
+}catch(e){
+canShareFile = false;
+}
+}
+if(canShareFile){
+try{
+await navigator.share({ files:[file], text:combined });
+return;
+}catch(e){
+if(e && e.name === "AbortError"){ return; }
+}
+}
+showShareImageHint();
+openIntentUrl(buildShareIntentUrl(combined));
+}finally{
+shareBusy = false;
+}
+}
+$("btn-share").onclick = shareResult;
 renderGrid($("grid-start")); renderCollection();
+initShareLayout(); resetXHint(); resetShareHint();
 </script>
 </body>
 </html>
