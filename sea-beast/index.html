@@ -1,0 +1,2541 @@
+<!-- GENERATED FROM data.json - DO NOT EDIT MANUALLY -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>職場・学校 海獣診断｜あなたに似た海の生きものはどれ？</title>
+<meta name="description" content="12の質問に答えるだけで、職場や学校でのあなたのキャラクターを12種の海獣に例えて診断！リアルな生態トリビアと相性もわかる性格診断です。">
+<meta property="og:title" content="職場・学校 海獣診断｜あなたに似た海の生きものはどれ？">
+<meta property="og:description" content="12の質問でわかる、職場や学校でのあなたの海獣タイプは？出現率約1.6%の「幻枠レア」も潜んでいるかも…！">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tosh1000950.github.io/shindan/sea-beast/">
+<meta property="og:image" content="https://tosh1000950.github.io/shindan/sea-beast/assets/ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZY9E6YLPBM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'G-ZY9E6YLPBM');
+</script>
+<style>
+:root{
+  --bg:#ecf8fc;
+  --card:#ffffff;
+  --ink:#1e2c42;
+  --sub:#5e7088;
+  --accent:#1e88b8;
+  --accent-dark:#126085;
+  --pink:#e86286;
+  --gold:#f8c838;
+  --gold-dark:#b8820c;
+  --gold-frame:#d49e18;
+  --line:#cfe4ef;
+  --track:#dff1f8;
+  --type-color:#1e88b8;
+  --type-pastel:#d1edfe;
+}
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body{
+  font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","BIZ UDPGothic","Noto Sans JP",sans-serif;
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(rgba(30,136,184,.08) 2px, transparent 2px),
+    radial-gradient(rgba(232,98,134,.07) 2px, transparent 2px);
+  background-size:28px 28px;
+  background-position:0 0, 14px 14px;
+  color:var(--ink);
+  -webkit-text-size-adjust:100%;
+}
+.wrap{ max-width:500px; margin:0 auto; padding:12px 12px 48px; }
+.screen{ display:none; }
+.screen.on{ display:block; animation:fade .25s ease; }
+@keyframes fade{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:none; } }
+@keyframes popReveal{
+  0%{ opacity:0; transform:scale(.93) translateY(10px); }
+  65%{ opacity:1; transform:scale(1.015) translateY(-2px); }
+  100%{ opacity:1; transform:none; }
+}
+
+/* ヒーロー */
+.hero{ text-align:center; }
+.hero-header{ padding:4px 4px 10px; }
+.noren-bar{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  background:var(--ink);
+  color:var(--gold);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.06em;
+  padding:5px 14px;
+  border-radius:99px;
+  border:2px solid var(--ink);
+  box-shadow:0 3px 0 var(--accent);
+}
+.hero-title-wrap{
+  position:relative;
+  display:inline-block;
+  margin-top:16px;
+}
+.hero h1{
+  font-size:clamp(31px, 9.2vw, 40px);
+  font-weight:900;
+  line-height:1.15;
+  letter-spacing:.02em;
+  color:var(--accent);
+  text-shadow:
+    1.5px 1.5px 0 #ffffff,
+    -1.5px -1.5px 0 #ffffff,
+    1.5px -1.5px 0 #ffffff,
+    -1.5px 1.5px 0 #ffffff,
+    3px 4px 0 var(--ink);
+}
+.hero-sticker{
+  position:absolute;
+  top:-10px;
+  right:-28px;
+  background:var(--gold);
+  color:var(--ink);
+  font-size:11px;
+  font-weight:900;
+  padding:2px 8px;
+  border-radius:8px;
+  border:2px solid var(--ink);
+  transform:rotate(8deg);
+  box-shadow:2px 2px 0 var(--ink);
+  white-space:nowrap;
+}
+.hero .subtitle{
+  display:inline-block;
+  margin-top:8px;
+  background:var(--pink);
+  color:#ffffff;
+  font-size:14.5px;
+  font-weight:900;
+  letter-spacing:.03em;
+  padding:5px 16px;
+  border-radius:10px;
+  border:2.5px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+/* 11種コラージュボード（kaiju除外） */
+.collage-board{
+  margin:12px auto 0;
+  max-width:440px;
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:20px;
+  padding:10px;
+  box-shadow:5px 5px 0 var(--accent);
+}
+.collage-rows{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+.collage-row{
+  display:flex;
+  justify-content:center;
+  gap:7px;
+}
+.collage-cell{
+  width:calc((100% - 21px) / 4);
+  aspect-ratio:1/1;
+  border-radius:12px;
+  overflow:hidden;
+  border:2px solid var(--ink);
+  background:var(--track);
+}
+.collage-cell img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.collage-teaser{
+  margin-top:9px;
+  background:#eef7fc;
+  border:2px solid var(--ink);
+  border-radius:12px;
+  padding:8px 10px;
+  font-size:12px;
+  font-weight:800;
+  line-height:1.5;
+  color:var(--ink);
+  text-align:center;
+}
+.collage-teaser b{
+  color:var(--accent-dark);
+  font-weight:900;
+}
+.hero .lead{
+  color:var(--ink);
+  font-size:13.5px;
+  font-weight:700;
+  line-height:1.65;
+  margin-top:12px;
+  background:rgba(255,255,255,.85);
+  border:2px dashed #9fc5d9;
+  border-radius:14px;
+  padding:9px 12px;
+}
+
+/* ボタン */
+.btn{
+  display:block;
+  width:100%;
+  border:3px solid var(--ink);
+  cursor:pointer;
+  background:linear-gradient(180deg, #279cd0 0%, var(--accent) 100%);
+  color:#ffffff;
+  font-size:18px;
+  font-weight:900;
+  padding:15px 16px;
+  border-radius:16px;
+  margin-top:14px;
+  box-shadow:0 5px 0 var(--ink);
+  font-family:inherit;
+  text-align:center;
+  letter-spacing:.03em;
+  transition:transform .08s ease, box-shadow .08s ease;
+}
+.btn-hero{
+  font-size:19.5px;
+  padding:17px 18px;
+}
+.btn:active{ transform:translateY(3px); box-shadow:0 2px 0 var(--ink); }
+.btn.sub{
+  background:var(--card);
+  color:var(--ink);
+  border:2.5px solid var(--ink);
+  box-shadow:0 4px 0 var(--ink);
+  font-size:14.5px;
+  font-weight:800;
+  padding:12px 14px;
+  margin-top:12px;
+}
+.btn.sub:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--ink); }
+.btn.resume-btn{
+  background:var(--gold);
+  color:var(--ink);
+  border:2.5px solid var(--ink);
+  box-shadow:0 4px 0 var(--ink);
+  font-size:15.5px;
+  font-weight:900;
+}
+.btn.secondary{
+  background:linear-gradient(180deg, #ffd95e 0%, var(--gold) 100%);
+  color:var(--ink);
+}
+.meta{
+  text-align:center;
+  color:var(--sub);
+  font-size:12px;
+  font-weight:700;
+  margin-top:12px;
+}
+.top-invite{
+  margin-top:12px;
+  background:#ffffff;
+  border:2.5px solid var(--ink);
+  border-left:6px solid var(--pink);
+  border-radius:14px;
+  padding:10px 12px;
+  font-size:12.5px;
+  font-weight:700;
+  line-height:1.65;
+  color:var(--ink);
+  text-align:left;
+  box-shadow:3px 3px 0 rgba(30,44,66,.12);
+}
+.top-invite b{ color:var(--pink); font-weight:900; }
+
+/* 質問・性別・休憩 */
+.quiz-panel{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:20px;
+  padding:18px 14px 20px;
+  margin-top:8px;
+  box-shadow:5px 5px 0 var(--ink);
+}
+.progress{ margin:2px 0 18px; }
+.progress .num{
+  font-size:12.5px;
+  color:var(--ink);
+  text-align:right;
+  margin-bottom:6px;
+  font-weight:900;
+}
+.bar{
+  height:14px;
+  background:var(--track);
+  border:2px solid var(--ink);
+  border-radius:99px;
+  overflow:hidden;
+}
+.bar i{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg, var(--gold), var(--accent));
+  border-radius:99px;
+  transition:width .3s;
+}
+.q{
+  font-size:19px;
+  font-weight:900;
+  line-height:1.55;
+  min-height:66px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 4px;
+}
+.opts,.gender-opts{ display:flex; flex-direction:column; gap:10px; margin-top:14px; }
+.opt{
+  background:#f8fcff;
+  border:2.5px solid var(--ink);
+  border-radius:14px;
+  padding:14px 15px;
+  font-size:15px;
+  font-weight:700;
+  text-align:left;
+  cursor:pointer;
+  font-family:inherit;
+  color:var(--ink);
+  line-height:1.5;
+  box-shadow:0 3px 0 var(--ink);
+  transition:transform .08s ease, background-color .12s ease, box-shadow .08s ease;
+}
+.opt:hover{ background:#e8f6fd; }
+.opt:active{ transform:translateY(2px); box-shadow:0 1px 0 var(--ink); background:#d5eefb; }
+.note{ text-align:center; color:var(--sub); font-size:12.5px; font-weight:700; line-height:1.7; margin:12px 0; }
+
+.break-card{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:22px;
+  padding:28px 18px 24px;
+  margin-top:16px;
+  text-align:center;
+  box-shadow:5px 5px 0 var(--ink);
+}
+.break-badge{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--ink);
+  border:2px solid var(--ink);
+  border-radius:99px;
+  font-size:12px;
+  font-weight:900;
+  padding:4px 14px;
+  margin-bottom:8px;
+}
+.break-emoji{ font-size:56px; margin:4px 0 8px; }
+
+/* 結果ヒーローカード */
+.result-hero{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:6px 6px 0 var(--ink);
+}
+.result-hero.is-rare{
+  background:linear-gradient(180deg, #fffdf2 0%, #fff9e2 100%);
+  border:4px solid var(--gold-frame);
+  outline:3px solid var(--gold);
+  box-shadow:0 8px 24px rgba(212,158,24,.35), 6px 6px 0 var(--gold-dark);
+}
+#scr-result.on .result-hero{
+  animation:popReveal .42s cubic-bezier(.22,1,.36,1) both;
+}
+.result-banner{
+  background:var(--type-color);
+  color:#ffffff;
+  padding:10px 14px;
+  border-bottom:3px solid var(--ink);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  text-shadow:0 1px 0 rgba(0,0,0,.25);
+}
+.result-hero.is-rare .result-banner{
+  background:linear-gradient(135deg, #b87e08 0%, #e6b422 50%, #b87e08 100%);
+  border-bottom-color:var(--gold-dark);
+}
+.result-banner .badge-pill{
+  background:var(--gold);
+  color:var(--ink);
+  text-shadow:none;
+  font-size:11.5px;
+  font-weight:900;
+  padding:2px 10px;
+  border-radius:99px;
+  border:2px solid var(--ink);
+}
+.result-banner .label{
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+.result-hero-body{
+  padding:14px 14px 18px;
+  text-align:center;
+  position:relative;
+}
+.result-photo-stage{
+  position:relative;
+  max-width:340px;
+  margin:0 auto;
+}
+.avatar{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:20px;
+  overflow:hidden;
+  margin:0 auto;
+  border:4px solid var(--type-color);
+  outline:3px solid var(--ink);
+  background:var(--type-pastel);
+  box-shadow:0 5px 0 rgba(30,44,66,.15);
+}
+.result-hero.is-rare .avatar{
+  border:5px solid var(--gold);
+  outline:3px solid var(--gold-dark);
+  box-shadow:0 6px 18px rgba(212,158,24,.35);
+}
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.rare-stamp{
+  position:absolute;
+  bottom:-10px;
+  right:-8px;
+  background:linear-gradient(180deg, #fffdf0 0%, #fff3c4 100%);
+  border:3px solid var(--gold-dark);
+  outline:2px solid var(--gold);
+  border-radius:10px;
+  padding:5px 10px;
+  color:var(--gold-dark);
+  font-weight:900;
+  line-height:1.15;
+  text-align:center;
+  transform:rotate(-7deg);
+  box-shadow:2px 3px 0 rgba(120,82,8,.32);
+  z-index:3;
+}
+.rare-stamp span{
+  display:block;
+  font-size:11px;
+  letter-spacing:.06em;
+}
+.rare-stamp small{
+  display:block;
+  font-size:10px;
+  color:#7a4e04;
+  margin-top:1px;
+}
+.result-group-tag{
+  display:inline-block;
+  margin-top:16px;
+  padding:3px 12px;
+  border-radius:99px;
+  font-size:12px;
+  font-weight:900;
+  border:2px solid var(--ink);
+  background:var(--type-pastel);
+  color:var(--ink);
+}
+.result-hero.is-rare .result-group-tag{
+  background:var(--gold);
+  border-color:var(--gold-dark);
+}
+.result-name-wrap{
+  margin:10px 2px 10px;
+}
+.result-hero h2{
+  font-size:clamp(26px, 7.8vw, 35px);
+  font-weight:900;
+  line-height:1.3;
+  color:var(--ink);
+  display:inline;
+  background:linear-gradient(transparent 62%, var(--type-pastel) 62%);
+  padding:0 6px 2px;
+}
+.result-hero.is-rare h2{
+  background:linear-gradient(transparent 62%, rgba(248,200,56,.62) 62%);
+}
+.short-box{
+  position:relative;
+  background:#f4faff;
+  border:2.5px solid var(--ink);
+  border-left:7px solid var(--type-color);
+  border-radius:14px;
+  padding:13px 14px;
+  margin:14px 0 0;
+  text-align:left;
+  font-size:15px;
+  font-weight:800;
+  line-height:1.65;
+  color:var(--ink);
+  box-shadow:3px 3px 0 rgba(30,44,66,.12);
+}
+.result-hero.is-rare .short-box{
+  background:#fff8df;
+  border-color:var(--gold-dark);
+  border-left:7px solid var(--gold-frame);
+}
+.short-box::before{
+  content:"";
+  position:absolute;
+  top:-9px;
+  left:28px;
+  width:13px;
+  height:13px;
+  background:#f4faff;
+  border-top:2.5px solid var(--ink);
+  border-left:2.5px solid var(--ink);
+  transform:rotate(45deg);
+}
+.result-hero.is-rare .short-box::before{
+  background:#fff8df;
+  border-color:var(--gold-dark);
+}
+
+/* 結果詳細カード */
+.result-detail{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:20px;
+  padding:18px 14px;
+  margin-top:16px;
+  box-shadow:5px 5px 0 var(--ink);
+}
+.detail-head{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:var(--ink);
+  color:var(--gold);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.06em;
+  padding:4px 12px;
+  border-radius:8px;
+  margin-bottom:12px;
+}
+.desc{
+  font-size:14.5px;
+  line-height:1.88;
+  text-align:left;
+  color:var(--ink);
+  white-space:pre-line;
+}
+
+/* 相性カード */
+.compat{
+  margin-top:16px;
+  border-top:2px dashed var(--line);
+  padding-top:16px;
+  text-align:left;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.compat-card{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  background:#f8fcff;
+  border:2.5px solid var(--ink);
+  border-radius:14px;
+  padding:10px;
+}
+.compat-card.good{ background:#f1fbf5; }
+.compat-card.bad{ background:#fff4f5; }
+.compat-thumb{
+  width:58px;
+  height:58px;
+  flex-shrink:0;
+  border-radius:12px;
+  overflow:hidden;
+  border:2px solid var(--ink);
+  background:var(--track);
+}
+.compat-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.compat-info{ min-width:0; flex:1; }
+.compat-tag{
+  display:inline-block;
+  font-size:10.5px;
+  font-weight:900;
+  padding:1px 8px;
+  border-radius:6px;
+  border:1.5px solid var(--ink);
+  margin-bottom:4px;
+}
+.compat-card.good .compat-tag{ background:#b7f0cc; color:var(--ink); }
+.compat-card.bad .compat-tag{ background:#ffc2cb; color:var(--ink); }
+.compat-name{
+  display:block;
+  font-size:14px;
+  font-weight:900;
+  color:var(--ink);
+  line-height:1.35;
+}
+.compat-note{
+  display:block;
+  font-size:12px;
+  color:var(--sub);
+  font-weight:700;
+  line-height:1.48;
+  margin-top:2px;
+}
+
+/* シェア＆保存アクションブロック */
+.share-cta-box{
+  margin-top:18px;
+  text-align:center;
+}
+.share-call{
+  display:inline-block;
+  background:var(--ink);
+  color:var(--gold);
+  font-size:12.5px;
+  font-weight:900;
+  padding:4px 14px;
+  border-radius:99px;
+  letter-spacing:.05em;
+}
+.share-encourage{
+  margin:10px 0 12px;
+  background:rgba(255,255,255,.92);
+  border:2px dashed #9fc5d9;
+  border-radius:12px;
+  padding:9px 10px;
+  font-size:12px;
+  font-weight:800;
+  line-height:1.6;
+  color:var(--ink);
+  text-align:center;
+}
+.share-actions{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:10px;
+}
+.share-actions .btn{
+  margin-top:0;
+  font-size:15.5px;
+  padding:15px 12px;
+}
+.btn.x-post{
+  background:linear-gradient(180deg, #2d3e59 0%, var(--ink) 100%);
+  color:#ffffff;
+  box-shadow:0 5px 0 var(--accent);
+}
+.btn.x-post:active{
+  transform:translateY(3px);
+  box-shadow:0 2px 0 var(--accent);
+}
+.x-hint{
+  background:#ffffff;
+  border:2px solid var(--ink);
+  border-left:5px solid var(--accent);
+  border-radius:12px;
+  padding:8px 11px;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.55;
+  color:var(--ink);
+  text-align:left;
+}
+.x-hint.is-copied{ background:#eefbe8; border-left-color:#2c8a3e; }
+.x-hint.is-fallback{ background:#fff7df; border-left-color:var(--gold-dark); }
+.x-hint code{
+  background:rgba(30,44,66,.08);
+  padding:1px 5px;
+  border-radius:4px;
+  font-size:11px;
+  font-family:monospace;
+}
+#btn-share{ display:none; }
+.share-hint{ display:none; }
+.share-hint.is-visible{ display:block; }
+.share-cta-box.env-mobile #btn-share{ display:block; order:1; }
+.share-cta-box.env-mobile #share-hint{ order:2; }
+.share-cta-box.env-mobile #btn-x-post{ order:3; }
+.share-cta-box.env-mobile #btn-card{ order:4; }
+.share-cta-box.env-mobile #btn-x-image,
+.share-cta-box.env-mobile #x-hint{ display:none; }
+
+.card-preview-box{
+  display:none;
+  margin-top:16px;
+  text-align:center;
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:5px 5px 0 var(--ink);
+}
+.card-preview-box img{
+  width:100%;
+  max-width:360px;
+  border-radius:14px;
+  border:2.5px solid var(--ink);
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+}
+
+/* 作者ブロック */
+.author-box{
+  margin-top:20px;
+  background:var(--card);
+  border:2.5px solid var(--ink);
+  border-radius:18px;
+  padding:16px 14px;
+  box-shadow:4px 4px 0 var(--ink);
+  text-align:left;
+}
+.author-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.author-head h2{ font-size:16px; font-weight:900; color:var(--ink); }
+.author-handle{
+  display:inline-block;
+  font-size:11.5px;
+  font-weight:900;
+  color:var(--ink);
+  background:var(--gold);
+  border:2px solid var(--ink);
+  padding:2px 10px;
+  border-radius:99px;
+  line-height:1.4;
+}
+.author-desc{ font-size:13px; font-weight:700; line-height:1.75; color:var(--ink); }
+.author-actions{ display:flex; flex-direction:column; gap:10px; margin-top:14px; }
+.author-actions .btn{
+  margin-top:0;
+  font-size:14.5px;
+  padding:13px 14px;
+  text-decoration:none;
+  text-align:center;
+}
+
+/* 海獣図鑑 */
+.alltypes{
+  margin-top:26px;
+  background:rgba(255,255,255,.82);
+  border:2.5px solid var(--ink);
+  border-radius:20px;
+  padding:16px 10px 14px;
+  box-shadow:4px 4px 0 rgba(30,44,66,.12);
+}
+.alltypes h2{ font-size:17px; font-weight:900; text-align:center; }
+.alltypes p{
+  font-size:12px;
+  font-weight:700;
+  color:var(--sub);
+  text-align:center;
+  margin:4px 0 12px;
+}
+.grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
+.grid-item{
+  background:#f4f9fc;
+  border:2px solid #b8cfe0;
+  border-radius:12px;
+  padding:4px 4px 6px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+  transition:border-color .2s, transform .2s;
+}
+.grid-item.is-secret{
+  background:#f2f4f8;
+  border:2px dashed #9daabc;
+}
+.grid-item.got{
+  border:2.5px solid var(--ink);
+  background:#ffffff;
+  box-shadow:3px 3px 0 var(--accent);
+}
+.grid-item.is-rare-got{
+  border:2.5px solid var(--gold-dark);
+  background:#fffdf0;
+  box-shadow:3px 3px 0 var(--gold);
+}
+.grid-item.got::after{
+  content:"GET";
+  position:absolute;
+  top:-5px;
+  right:-4px;
+  background:var(--gold);
+  color:var(--ink);
+  font-size:8.5px;
+  font-weight:900;
+  padding:1px 5px;
+  border-radius:6px;
+  border:1.5px solid var(--ink);
+  z-index:2;
+}
+.grid-item.is-rare-got::after{
+  content:"RARE";
+  background:linear-gradient(135deg, #f8c838, #e0a00c);
+  border-color:var(--gold-dark);
+}
+.grid-thumb{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--track);
+  border:1.5px solid rgba(30,44,66,.22);
+}
+.grid-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.grid-item small{
+  display:block;
+  font-size:9.5px;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:var(--sub);
+  margin-top:5px;
+  line-height:1.25;
+  overflow-wrap:anywhere;
+}
+.grid-item.got small{
+  color:var(--ink);
+  font-weight:900;
+}
+
+footer{
+  text-align:center;
+  color:var(--sub);
+  font-size:11px;
+  font-weight:700;
+  margin-top:28px;
+  line-height:1.85;
+}
+footer a{ color:var(--ink); }
+
+@media (max-width:360px){
+  .hero-sticker{ right:-8px; font-size:10px; }
+  .grid{ gap:5px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .screen.on, #scr-result.on .result-hero{ animation:none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- トップ -->
+  <section id="scr-top" class="screen on">
+    <div class="hero">
+      <div class="hero-header">
+        <div class="noren-bar">🌊 職場・学校のキャラがわかる！全12タイプ 🌊</div>
+        <div>
+          <div class="hero-title-wrap">
+            <h1>職場・学校 海獣診断</h1>
+            <span class="hero-sticker">全12タイプ!</span>
+          </div>
+        </div>
+        <p class="subtitle">あなたに似た海の生きものはどれ？</p>
+      </div>
+      <div class="collage-board">
+        <div class="collage-rows" id="hero-collage"></div>
+        <div class="collage-teaser">✨ <b>11種の海獣たちが勢ぞろい！</b><br>実はもう1種「出現率約1.6%の幻枠」が潜んでいるかも…？</div>
+      </div>
+      <p class="lead">12の質問に答えるだけで、職場や学校でのあなたの立ち回りを<br>12種の海獣に例えて診断！リアルな生態トリビア＆相性もわかります。</p>
+    </div>
+    <button class="btn btn-hero" id="btn-start">🐬 診断をはじめる！</button>
+    <button class="btn resume-btn" id="btn-resume" style="display:none">つづきから再開する</button>
+    <p class="meta" id="meta-info"></p>
+    <div class="top-invite">
+      <b>🌊 友達や職場の仲間とも結果を比べよう！</b><br>
+      自分の海獣がわかったらXでシェアして、同僚やクラスメイトがどの海獣なのかもチェックしてみてね！好相性や天敵の相手も見つかるかも🐟
+    </div>
+    <div class="alltypes">
+      <h2>海獣図鑑（<span id="got-count">0</span>/<span id="total-count">12</span>）</h2>
+      <p>11種の仲間を公開中！残り1種は見つけた人だけのシークレット</p>
+      <div class="grid" id="grid-top"></div>
+    </div>
+  </section>
+
+  <!-- 性別（任意・統計用） -->
+  <section id="scr-gender" class="screen">
+    <div class="quiz-panel">
+      <p class="q">はじめに、差し支えなければ<br>教えてください</p>
+      <p class="note">統計のためにだけ使います。結果には一切影響しません。<br>答えたくない場合はスキップできます。</p>
+      <div class="gender-opts">
+        <button class="opt" data-gender="female">女性</button>
+        <button class="opt" data-gender="male">男性</button>
+        <button class="opt" data-gender="other">その他</button>
+        <button class="opt" data-gender="skip">答えたくない（スキップ）</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 質問 -->
+  <section id="scr-q" class="screen">
+    <div class="quiz-panel">
+      <div class="progress">
+        <div class="num"><span id="q-num">1</span> / <span id="q-total">12</span>（<span id="q-pct">0</span>%）</div>
+        <div class="bar"><i id="q-bar" style="width:0%"></i></div>
+      </div>
+      <p class="q" id="q-text"></p>
+      <div class="opts" id="q-opts"></div>
+      <button class="btn sub" id="btn-back" style="margin-top:16px">← もどる</button>
+    </div>
+  </section>
+
+  <!-- 休憩（6問目の後に1度だけ） -->
+  <section id="scr-break" class="screen">
+    <div class="break-card">
+      <div class="break-badge">ちょっと中休み</div>
+      <div class="break-emoji">🐚</div>
+      <p class="q">ちょうど半分まできたよ！</p>
+      <p class="note">ここまでの回答は自動で保存されています。<br>一息ついてから「つづける」を押してね。</p>
+      <button class="btn" id="btn-break-next">つづける</button>
+    </div>
+  </section>
+
+  <!-- 結果 -->
+  <section id="scr-result" class="screen">
+    <div class="result-hero" id="r-hero">
+      <div class="result-banner" id="r-banner">
+        <span class="badge-pill" id="r-pill">診断結果</span>
+        <span class="label" id="r-banner-label">あなたの海獣タイプは…</span>
+      </div>
+      <div class="result-hero-body">
+        <div class="result-photo-stage">
+          <div class="avatar" id="r-avatar"><img id="r-img" src="" alt=""></div>
+          <div class="rare-stamp" id="r-rare-stamp" style="display:none">
+            <span id="r-stamp-title">EXTINCT LEGEND</span>
+            <small id="r-stamp-years">1741-1768</small>
+          </div>
+        </div>
+        <span class="result-group-tag" id="r-group"></span>
+        <div class="result-name-wrap">
+          <h2 id="r-name"></h2>
+        </div>
+        <p class="short-box" id="r-short"></p>
+      </div>
+    </div>
+
+    <div class="result-detail">
+      <div class="detail-head">▶ 職場・学校での生態＆トリビア</div>
+      <p class="desc" id="r-desc"></p>
+      <div class="compat" id="r-compat"></div>
+    </div>
+
+    <div class="share-cta-box" id="share-cta-box">
+      <span class="share-call">＼ 結果をみんなに見せよう！ ／</span>
+      <p class="share-encourage">Xにシェアして職場や学校の仲間にも教えてみよう！<br>みんなの海獣タイプや天敵もわかるかも🐟</p>
+      <div class="share-actions">
+        <button type="button" class="btn x-post" id="btn-x-post">𝕏 Xで結果を投稿する</button>
+        <button type="button" class="btn" id="btn-x-image">📋 カード画像をコピーしてXへ</button>
+        <p class="x-hint" id="x-hint" aria-live="polite"></p>
+        <button type="button" class="btn" id="btn-share">📤 結果をシェア</button>
+        <p class="x-hint is-fallback share-hint" id="share-hint" aria-live="polite"></p>
+        <button type="button" class="btn secondary" id="btn-card">📸 結果カードを画像で保存</button>
+      </div>
+    </div>
+
+    <div id="card-preview" class="card-preview-box">
+      <img id="card-img" alt="結果カード">
+      <p class="note">画像を長押し（PCでは右クリック）でも保存できます</p>
+      <a id="card-dl" class="btn" href="#" download style="text-decoration:none;">⬇ この画像をダウンロード</a>
+    </div>
+
+    <button class="btn sub" id="btn-retry">🔄 もう一度診断する</button>
+
+    <section class="author-box" aria-labelledby="author-title">
+      <div class="author-head">
+        <h2 id="author-title">この診断を作った人</h2>
+        <span class="author-handle">@Tosh1000950</span>
+      </div>
+      <p class="author-desc">診断をいろいろ作って、少しずつ増やしています。他の診断も遊んでみてね。新作をいち早く知りたい人は、フォローしてもらえると嬉しいです。</p>
+      <div class="author-actions">
+        <a class="btn x-post" href="https://twitter.com/intent/follow?screen_name=Tosh1000950" target="_blank" rel="noopener noreferrer">Xでフォローする</a>
+        <a class="btn sub" href="https://tosh1000950.github.io/shindan/">他の診断も見る</a>
+      </div>
+    </section>
+
+    <div class="alltypes">
+      <h2>海獣図鑑（<span id="got-count2">0</span>/<span id="total-count2">12</span>）</h2>
+      <p>11種の仲間を公開中！残り1種は見つけた人だけのシークレット</p>
+      <div class="grid" id="grid-result"></div>
+    </div>
+  </section>
+
+  <footer>
+    エンタメ診断です。結果は気軽に楽しんでください。<br>
+    匿名の統計（結果の種類など）を今後の改善に利用しています。<br>
+    <a href="../../">Tosh1 トップへ</a>
+  </footer>
+</div>
+
+<script>
+"use strict";
+const DATA = {
+  "meta": {
+    "id": "sea-beast",
+    "title": "職場学校海獣診断",
+    "displayTitle": "職場・学校 海獣診断",
+    "subtitle": "あなたに似た海の生きものはどれ？",
+    "description": "12の質問に答えるだけで、職場や学校でのあなたのキャラクターを12種の海獣に例えて診断！リアルな生態トリビアと相性もわかる性格診断です。",
+    "ogDescription": "12の質問でわかる、職場や学校でのあなたの海獣タイプは？出現率約1.6%の「幻枠レア」も潜んでいるかも…！",
+    "baseUrl": "https://tosh1000950.github.io/shindan/sea-beast/",
+    "shareBaseUrl": "https://tosh1000950.github.io/shindan/sea-beast/share/",
+    "portalUrl": "https://tosh1000950.github.io/shindan/",
+    "ga4Id": "G-ZY9E6YLPBM",
+    "statsUrl": "https://script.google.com/macros/s/AKfycbzywRRO-oaAFc4HR1jTKqv-6asGxOiKlzzYMn0hQ8-5eLjy89kFb0w4KzxlhnwjWeoqGg/exec",
+    "hashtag": "#職場学校海獣診断",
+    "authorHandle": "@Tosh1000950",
+    "followUrl": "https://twitter.com/intent/follow?screen_name=Tosh1000950",
+    "shareFollowLine": "他の診断も作ってます！新作をいち早く知りたい人は @Tosh1000950 をフォローしてね",
+    "breakAfter": 6,
+    "rareGate": {
+      "typeId": "kaiju",
+      "minScore": 8,
+      "badgeText": "幻枠レア",
+      "stampTitle": "EXTINCT LEGEND",
+      "stampYears": "1741-1768",
+      "rateText": "出現率 約1.6%"
+    }
+  },
+  "groups": [
+    {
+      "id": "leader",
+      "name": "統率系",
+      "color": "#2f6fb3",
+      "badgeBg": "#e3f0ff"
+    },
+    {
+      "id": "loved",
+      "name": "愛され系",
+      "color": "#d65a7b",
+      "badgeBg": "#ffe8ef"
+    },
+    {
+      "id": "unique",
+      "name": "個性派系",
+      "color": "#7b5eb5",
+      "badgeBg": "#efe9ff"
+    },
+    {
+      "id": "mypace",
+      "name": "マイペース系",
+      "color": "#2b8f74",
+      "badgeBg": "#e2f7f0"
+    }
+  ],
+  "typeOrder": [
+    "orca",
+    "todo",
+    "zatto",
+    "iruka",
+    "beluga",
+    "rakko",
+    "seiuchi",
+    "ikkaku",
+    "kaiju",
+    "gomafu",
+    "jugon",
+    "nezumi"
+  ],
+  "collageOrder": [
+    "orca",
+    "todo",
+    "zatto",
+    "iruka",
+    "beluga",
+    "rakko",
+    "seiuchi",
+    "ikkaku",
+    "gomafu",
+    "jugon",
+    "nezumi"
+  ],
+  "types": {
+    "orca": {
+      "id": "orca",
+      "name": "シャチ",
+      "group": "統率系",
+      "groupId": "leader",
+      "isRare": false,
+      "color": "#2b6cb0",
+      "pastel": "#d1edfe",
+      "short": "最強の頭脳とチーム戦術で、群れごと勝ちにいく人。",
+      "long": "職場や学校では、自然と作戦を立てて盤面を支配するエース。南極の一部のシャチが仲間と隊列で波を起こし、流氷のアザラシを落とす連携技（ウェーブ・ウォッシング）を持ち、群れごとに方言や狩りの流儀まで受け継ぐように、あなたも場の力関係と勝ち筋を読むのが速い頭脳派です。経験豊富な年長者を尊ぶところも、祖母が群れを導くシャチそっくり。注意点は、ホホジロザメを裏返して一番おいしい肝臓だけを精密に抜き取るような「ドライな合理性」と「身内ルールの厳しさ」。あなたの正論や軽い冗談は相手にとって圧が強すぎるうえ、流儀の違う相手を容赦なく切り捨てがちなので、たまにはペースを落として歩み寄りを。",
+      "good": "ikkaku",
+      "bad": "zatto",
+      "badNote": "狩りの邪魔をされがち"
+    },
+    "todo": {
+      "id": "todo",
+      "name": "トド",
+      "group": "統率系",
+      "groupId": "leader",
+      "isRare": false,
+      "color": "#c76b18",
+      "pastel": "#ffdfb3",
+      "short": "声も体も存在感も最大級。持ち場を守り抜く熱い人。",
+      "long": "アシカ科最大・最大1トン級のトドのように、いるだけで場の空気が変わる人。あなたは「ここは任せろ」の責任感が強く、声の大きさと押しの強さで場を引っ張る体育会系。トドの子どもが遊びの中で泳ぎや取っ組み合いを学ぶように、あなたも「まずやってみる」で身につけるタイプ。注意点は、責任感が暴走すると繁殖期の雄のように「自分が持ち場を離れられない」と食事も休みも削って意地を張り続けること。さらに、自分では普通のトーンで話しているつもりでも、風波を突き抜けるほど低い咆哮（しかも頭を上下に振って気合十分）なせいで、周囲には「怒鳴られてる…？」と威圧的に聞こえがち。まずは声のボリュームを2割落とすところから。",
+      "good": "beluga",
+      "bad": "orca",
+      "badNote": "格上には勝てない"
+    },
+    "zatto": {
+      "id": "zatto",
+      "name": "ザトウクジラ",
+      "group": "統率系",
+      "groupId": "leader",
+      "isRare": false,
+      "color": "#4f54a8",
+      "pastel": "#dbdbfd",
+      "short": "歌うように場を和ませ、揉め事の現場にもつい突っ込んでしまう熱血表現者。",
+      "long": "ザトウクジラの雄は20〜30分の歌を何時間も歌い続け、その歌は海を越えて他の群れへ「流行」として広がっていきます。あなたも発信力があり、泡のカーテンで魚群を追い込むバブルネット採餌のように、周囲を巻き込んで協力の輪を作るムードメーカー型のリーダー。シャチが獲物を襲う場面に100件以上も割り込んだ記録があるように、あなたも「なんか揉めてる！」と放っておけず駆けつける人。ただし研究でも「実は助けようと決意したわけではなく、シャチの攻撃声に反応して首を突っ込んだ結果かも（意図せざる利他性）」と議論される通り、あなたも状況把握より先に動いてしまいがち。成体の尾ビレにシャチの歯型がよく残っているように、無自覚なお節介でとばっちりを食らう前に、まずは自分の体力残量を確認して。",
+      "good": "kaiju",
+      "bad": "orca",
+      "badNote": "尾ビレに歯型の相手"
+    },
+    "iruka": {
+      "id": "iruka",
+      "name": "イルカ",
+      "group": "愛され系",
+      "groupId": "loved",
+      "isRare": false,
+      "color": "#238b6e",
+      "pastel": "#dffdeb",
+      "short": "全員の「名前」を覚えて、人脈で場を回す人気者。",
+      "long": "バンドウイルカは個体ごとに違う「署名ホイッスル」という名前を持ち合い、20年以上会っていない相手の名前も覚えていると言われます。あなたもまさにそのタイプで、誰とでもすぐ打ち解け、人の顔と名前と近況を覚えて場を回す人気者。海綿を道具に使う文化を持つ群れのように、便利な工夫を広めるのも得意。注意点は、多層同盟を組む雄イルカのように人脈・派閥づくりに精を出しすぎて、社交の駆け引きに疲れること。さらにバンドウイルカは「強引だった相手」の名前を聞いて避けるほど評判が記憶されるため、調子に乗って強引に押し切ると、あなたの名前ごとグループ内で敬遠されるリスクも。たまには群れの駆け引きを離れて息抜きを。",
+      "good": "rakko",
+      "bad": "todo",
+      "badNote": "圧が強すぎる"
+    },
+    "beluga": {
+      "id": "beluga",
+      "name": "ベルーガ",
+      "group": "愛され系",
+      "groupId": "loved",
+      "isRare": false,
+      "color": "#d1547c",
+      "pastel": "#fed4e3",
+      "short": "表情とおしゃべりで、誰の心もほぐしてしまう人。",
+      "long": "「海のカナリア」と呼ばれるほど鳴き声のバリエーションが豊富で、頭の脂肪（メロン）の形を変えて表情まで作れる、クジラ類きっての表現者です。あなたも表情とおしゃべりが武器で、初対面の相手の緊張をほぐすのが抜群に上手い。首が回る数少ないクジラのように、場面に合わせた柔軟な切り替えも得意。注意点は、船体を通して聞こえる「海のカナリア」並みの声の通りやすさと、人の声を真似た飼育個体NOCのように誰にでも合わせすぎてしまう器用貧乏さ。「ここだけの話」のつもりがフロア中に丸聞こえだったり、表情と相槌を相手に合わせすぎて「結局、本心はどう思ってるの？」と読めなくさせたりしがちです。",
+      "good": "todo",
+      "bad": "nezumi",
+      "badNote": "静かすぎて読み切れない"
+    },
+    "rakko": {
+      "id": "rakko",
+      "name": "ラッコ",
+      "group": "愛され系",
+      "groupId": "loved",
+      "isRare": false,
+      "color": "#c97828",
+      "pastel": "#feeccf",
+      "short": "脇ポケットに大事な道具。段取りと工夫で乗り切る愛され上手。",
+      "long": "ラッコは脇の下に皮膚のポケットを持ち、貝を割る石や獲物をしまって運ぶ、哺乳類きっての道具使いです。あなたも「自分のやり方と道具立て」にこだわりがあり、段取りと工夫で仕事や勉強を効率化するのが得意。実は皮下脂肪がほぼなく、哺乳類で最も密な毛皮を毎日手入れし続けないと命に関わるほど繊細で、毎日体重の約25%を食べる超高燃費体質。あなたも身の回りの道具や環境ケアにはとことん手を抜かず、その分エネルギー消費が激しいタイプです。注意点は、可愛い見た目の裏で「こだわりの段取り」や「環境整備」にリソースを吸い取られ、周囲の手抜きにイライラして意外と強引に仕切りがちなこと。たまには「まあこれでいいか」の省エネも許してあげて。",
+      "good": "iruka",
+      "bad": "iruka",
+      "badNote": "賑やかさに段取りを乱される"
+    },
+    "seiuchi": {
+      "id": "seiuchi",
+      "name": "セイウチ",
+      "group": "個性派系",
+      "groupId": "unique",
+      "isRare": false,
+      "color": "#8d5a42",
+      "pastel": "#edddd4",
+      "short": "400本超のひげセンサーで見抜く、繊細なベテラン職人。",
+      "long": "立派な牙を見ると頑固な強面に見えますが、実はその牙は氷に体を引っ掛けて登るピッケル役で、本当の武器は口元の400〜700本のヒゲセンサー。暗い海底で貝の質感を見分け、ピストン状の舌で真空を作って中身だけを綺麗に吸い出すように、あなたも派手な力技ではなく「職場の違和感や本質だけを正確に吸い上げる」ベテラン職人です。実は仲間と体を寄せ合うのが好きで、気心の知れた身内には甘えたがりな一面も。注意点は、巨大な体の割に驚きや急な変化に弱く、セイウチの群れでパニックが連鎖するように、あなたが慌てると「あのベテランが焦ってる!?」と周囲まで総パニックになること。想定外が起きたら、まず一呼吸置いて自分のセンサーを信じて。",
+      "good": "nezumi",
+      "bad": "iruka",
+      "badNote": "駆け引きに振り回される"
+    },
+    "ikkaku": {
+      "id": "ikkaku",
+      "name": "イッカク",
+      "group": "個性派系",
+      "groupId": "unique",
+      "isRare": false,
+      "color": "#7f52a8",
+      "pastel": "#efdafd",
+      "short": "3メートルの一本に全てを懸ける、唯一無二の深掘り職人。",
+      "long": "イッカクの「角」は実は左の犬歯で、最大約3メートルまで伸び、約1,000万本の神経管が海水の状態を感じ取る感覚器官でもあります。あなたも一つの分野を深く極めるスペシャリストで、その「一本」に対する感覚の鋭さは誰にも真似できない。流氷の下の深海へ何度も潜り続けるように、周囲を遮断して深く考える作業で真価を発揮します。雄同士が牙を擦り合う「タスキング」も決闘ではなく穏やかな情報交換と言われ、あなたも無用な争いは好まないタイプ（ただし時には牙で魚を叩いて気絶させるように、専門分野でキレると一撃が鋭い）。注意点は、専門外の雑務を振られた時のポンコツ化と、折れると二度と生え替わらない牙のように「自分の得意領域を否定されたときの立ち直りの遅さ」。一本勝負だからこそ、折れない逃げ場も作っておいて。",
+      "good": "orca",
+      "bad": "beluga",
+      "badNote": "おしゃべりに集中を切られる"
+    },
+    "kaiju": {
+      "id": "kaiju",
+      "name": "ステラーカイギュウ",
+      "group": "個性派系",
+      "groupId": "unique",
+      "isRare": true,
+      "color": "#b8860b",
+      "pastel": "#eefdc5",
+      "short": "穏やかすぎて伝説になった、もう二度と会えないタイプ。",
+      "long": "おめでとうございます、これは滅多に出ない「幻枠」です（出現率 約1.6%）。最大8メートル級の巨体でコンブを食べ、1741年の発見からわずか27年で絶滅してしまった伝説の海獣ステラーカイギュウ。歯が1本もなく口内の板で海藻をすりつぶすだけ、しかも浮力が強すぎて深く潜ることも逃げることもできず、1頭で大人数を1か月養えてしまうほど都合のいい資源だった悲運の穏やか系です（観察したシュテラーの記録では、家族を大事にする一夫一婦だったと言われます）。あなたも職場や学校で「絶対に噛みついてこない」「隠れるのが下手ですぐ捕まる」「頼めば無限に引き受けてくれる」せいで、気づくと周囲全員の雑務を1人で養う“食べ尽くされ要員”になりがち。あなたの優しさは絶滅級の貴重品。嫌な依頼には「潜って逃げる」術を覚えてください。",
+      "good": "zatto",
+      "bad": "todo",
+      "badNote": "圧と速さに食べ尽くされる"
+    },
+    "gomafu": {
+      "id": "gomafu",
+      "name": "ゴマフアザラシ",
+      "group": "マイペース系",
+      "groupId": "mypace",
+      "isRare": false,
+      "color": "#4474a8",
+      "pastel": "#d7e9fe",
+      "short": "基本ソロ。流氷の上で自分のペースを守る癒やし枠。",
+      "long": "ゴマフアザラシは普段大群を作らず、流氷の上で静かに過ごすソロ主義者。あなたも職場の騒がしい飲み会や派閥より自分の距離感を大事にし、愛嬌ある見た目の割に、気配を感じるとスッと席を外して水中に消える（＝話しかけようとしたらもう帰宅している）フェードアウトの達人です。陸では人見知りなくらい慎重なのに、自分のホームである水中では好奇心を見せる一面もあると言われ、あなたも安心できる環境やチャット上では急に饒舌になる内弁慶タイプ。繁殖期だけはパートナーと子の「三つ組」で固まるため、心を許した極少数の相手には一途です。注意点は、人見知りが極端すぎて「話しかけづらい壁」を作りがちなこと。たまには陸（雑談の場）にも顔を出して生存確認させて。",
+      "good": "jugon",
+      "bad": "iruka",
+      "badNote": "賑やかな輪に引きずり出される"
+    },
+    "jugon": {
+      "id": "jugon",
+      "name": "ジュゴン",
+      "group": "マイペース系",
+      "groupId": "mypace",
+      "isRare": false,
+      "color": "#4f8f34",
+      "pastel": "#defac3",
+      "short": "自分の畑を耕すように、場をゆっくり育てる癒やしの人。",
+      "long": "ジュゴンは海草を根ごと引き抜いて「採餌トレイル」という蛇行の跡を残し、同じ草原を何度も使って好みの海草が増えるよう海底を「栽培」していると言われます。あなたもマイペースに見えて、実は自分の担当領域や作業環境だけは誰にも邪魔されないようコツコツ耕し続ける海底のガーデナー。1日30キロ以上食べる大らかさがあり、視力は弱くて周囲の細かい目線には無頓着な反面、耳（情報キャッチ）だけは意外と鋭いタイプです。注意点は、繁殖間隔が3〜7年と非常に遅いように回復も成果もスローペースなこと。そして温和に見えて実は歯茎の下に牙を隠し持っているため、自分の「畑」を無理やり急かされると静かにキレて反撃に出る一面も。周囲には早めに「遅いけど確実」と宣言しておくのが平和の秘訣。",
+      "good": "gomafu",
+      "bad": "orca",
+      "badNote": "速さと圧に畑を荒らされる"
+    },
+    "nezumi": {
+      "id": "nezumi",
+      "name": "ネズミイルカ",
+      "group": "マイペース系",
+      "groupId": "mypace",
+      "isRare": false,
+      "color": "#68529e",
+      "pastel": "#eae1fb",
+      "short": "目立たないのに、実は誰より働き者の隠れエース。",
+      "long": "ネズミイルカは船に近づかず、跳躍もしないシャイな小型クジラ。水面に出るのも「プッ」という噴気音（愛称は puffing pig）だけの控えめさ。でも研究では、昼夜ほぼ休みなく狩りを続け、1時間に最大550匹もの小魚を狙う「働き者」だと分かっています。天敵のシャチに聞こえない高い声（約130kHz）で静かに活動する、危機回避の達人でもあります。あなたも目立つのは苦手でも、静かな環境で驚異的な集中と効率を発揮する隠れエース。注意点は、ネズミイルカが「食べ続けないと生きられない」ほど余裕のない代謝をしているように、あなたもバッファが少なく、騒音や割り込みが続くと一気に消耗すること。静かな作業環境を守るのは、わがままではなく必須条件です。",
+      "good": "seiuchi",
+      "bad": "iruka",
+      "badNote": "野生でも襲われる側の天敵"
+    }
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "text": "会議や授業で意見を求められたら？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "率先して自分の案を出す",
+          "main": "orca",
+          "sub": "todo"
+        },
+        {
+          "code": "B",
+          "text": "空気を読んで、場が和む返しをする",
+          "main": "beluga",
+          "sub": "zatto"
+        },
+        {
+          "code": "C",
+          "text": "指名されたら、要点を絞って的確に答える",
+          "main": "ikkaku",
+          "sub": "rakko"
+        },
+        {
+          "code": "D",
+          "text": "できれば静かに聞いていたい",
+          "main": "gomafu",
+          "sub": "kaiju"
+        }
+      ]
+    },
+    {
+      "id": "Q2",
+      "text": "グループ課題で、つい引き受ける役割は？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "リーダー・進行役",
+          "main": "orca",
+          "sub": "zatto"
+        },
+        {
+          "code": "B",
+          "text": "みんなの連絡係・ムードメーカー",
+          "main": "iruka",
+          "sub": "beluga"
+        },
+        {
+          "code": "C",
+          "text": "資料や道具を揃える準備係",
+          "main": "rakko",
+          "sub": "seiuchi"
+        },
+        {
+          "code": "D",
+          "text": "自分の担当分を黙々と仕上げる係",
+          "main": "jugon",
+          "sub": "nezumi"
+        }
+      ]
+    },
+    {
+      "id": "Q3",
+      "text": "締め切り・テスト前、あなたの動き方は？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "短期集中。一気に全力で終わらせる",
+          "main": "todo",
+          "sub": "iruka"
+        },
+        {
+          "code": "B",
+          "text": "仲間と進捗を確認し合いながら進める",
+          "main": "zatto",
+          "sub": "beluga"
+        },
+        {
+          "code": "C",
+          "text": "前倒しで計画を立て、きっちり終わらせる",
+          "main": "seiuchi",
+          "sub": "rakko"
+        },
+        {
+          "code": "D",
+          "text": "焦らず、自分のリズムを守って進める",
+          "main": "jugon",
+          "sub": "gomafu"
+        }
+      ]
+    },
+    {
+      "id": "Q4",
+      "text": "困っている同僚・クラスメイトを見たら？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "すぐ駆けつけて一緒に解決に動く",
+          "main": "zatto",
+          "sub": "todo"
+        },
+        {
+          "code": "B",
+          "text": "明るく声をかけて気持ちをほぐす",
+          "main": "beluga",
+          "sub": "kaiju"
+        },
+        {
+          "code": "C",
+          "text": "便利な道具やメモをそっと貸して助ける",
+          "main": "rakko",
+          "sub": "ikkaku"
+        },
+        {
+          "code": "D",
+          "text": "無理に踏み込まず、静かに見守る",
+          "main": "nezumi",
+          "sub": "gomafu"
+        }
+      ]
+    },
+    {
+      "id": "Q5",
+      "text": "新しい道具やツールが導入されたら？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "自分なりの使い方を工夫して真っ先に使いこなす",
+          "main": "rakko",
+          "sub": "ikkaku"
+        },
+        {
+          "code": "B",
+          "text": "便利さや面白さをみんなに広める",
+          "main": "iruka",
+          "sub": "zatto"
+        },
+        {
+          "code": "C",
+          "text": "急に変えず、慣れた自分のやり方で続ける",
+          "main": "jugon",
+          "sub": "seiuchi"
+        },
+        {
+          "code": "D",
+          "text": "しばらく様子見してから自分のタイミングで触る",
+          "main": "gomafu",
+          "sub": "nezumi"
+        }
+      ]
+    },
+    {
+      "id": "Q6",
+      "text": "休み時間・昼休みの過ごし方は？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "大勢でワイワイ賑やかに過ごす",
+          "main": "todo",
+          "sub": "iruka"
+        },
+        {
+          "code": "B",
+          "text": "気の合う身近な人たちと穏やかに話す",
+          "main": "kaiju",
+          "sub": "rakko"
+        },
+        {
+          "code": "C",
+          "text": "1人で好きなことや趣味に没頭する",
+          "main": "ikkaku",
+          "sub": "gomafu"
+        },
+        {
+          "code": "D",
+          "text": "誰とも会話せず、静かにぼーっと充電する",
+          "main": "nezumi",
+          "sub": "jugon"
+        }
+      ]
+    },
+    {
+      "id": "Q7",
+      "text": "チームで意見が割れたら？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "論点と勝ち筋を整理して説得する",
+          "main": "orca",
+          "sub": "iruka"
+        },
+        {
+          "code": "B",
+          "text": "全員が納得する落とし所を探す",
+          "main": "zatto",
+          "sub": "beluga"
+        },
+        {
+          "code": "C",
+          "text": "自分のこだわりや専門分野だけは譲らない",
+          "main": "seiuchi",
+          "sub": "ikkaku"
+        },
+        {
+          "code": "D",
+          "text": "揉め事からそっと距離を置く",
+          "main": "nezumi",
+          "sub": "gomafu"
+        }
+      ]
+    },
+    {
+      "id": "Q8",
+      "text": "あなたの「得意技」はどれ？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "表情とおしゃべりで場の空気を和ませる",
+          "main": "beluga",
+          "sub": "todo"
+        },
+        {
+          "code": "B",
+          "text": "一つの分野を深く極める専門力",
+          "main": "ikkaku",
+          "sub": "orca"
+        },
+        {
+          "code": "C",
+          "text": "小さな違和感やミスに気づく観察眼",
+          "main": "seiuchi",
+          "sub": "nezumi"
+        },
+        {
+          "code": "D",
+          "text": "決めたことを何年でも続ける粘り強さ",
+          "main": "jugon",
+          "sub": "kaiju"
+        }
+      ]
+    },
+    {
+      "id": "Q9",
+      "text": "一番苦手な場面は？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "大勢の前で目立つこと",
+          "main": "gomafu",
+          "sub": "nezumi"
+        },
+        {
+          "code": "B",
+          "text": "誰とも喋らず1人で黙々と作業し続けること",
+          "main": "iruka",
+          "sub": "zatto"
+        },
+        {
+          "code": "C",
+          "text": "急な予定変更や想定外のトラブル",
+          "main": "seiuchi",
+          "sub": "kaiju"
+        },
+        {
+          "code": "D",
+          "text": "細かい作業や手続きを延々と続けること",
+          "main": "todo",
+          "sub": "orca"
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "text": "目指すポジションは？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "チームを勝利に導く最強のエース",
+          "main": "orca",
+          "sub": "todo"
+        },
+        {
+          "code": "B",
+          "text": "誰にも真似できない、唯一無二の一芸枠",
+          "main": "ikkaku",
+          "sub": "seiuchi"
+        },
+        {
+          "code": "C",
+          "text": "誰からも親しまれる、みんなの人気者",
+          "main": "iruka",
+          "sub": "beluga"
+        },
+        {
+          "code": "D",
+          "text": "争わず、穏やかに長く居続けられる存在",
+          "main": "kaiju",
+          "sub": "jugon"
+        }
+      ]
+    },
+    {
+      "id": "Q11",
+      "text": "普段の仕事・勉強のスタイルは？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "まず勢いで手を動かして体で覚える",
+          "main": "todo",
+          "sub": "iruka"
+        },
+        {
+          "code": "B",
+          "text": "道具や段取りを丁寧に整えてから臨む",
+          "main": "rakko",
+          "sub": "orca"
+        },
+        {
+          "code": "C",
+          "text": "周囲の音を忘れて、深く一点集中する",
+          "main": "nezumi",
+          "sub": "ikkaku"
+        },
+        {
+          "code": "D",
+          "text": "周りと競わず、穏やかに少しずつ積み上げる",
+          "main": "kaiju",
+          "sub": "jugon"
+        }
+      ]
+    },
+    {
+      "id": "Q12",
+      "text": "周りからよく言われるのは？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "頼りになる・引っ張ってくれる",
+          "main": "zatto",
+          "sub": "orca"
+        },
+        {
+          "code": "B",
+          "text": "話しやすい・場の空気が明るくなる",
+          "main": "beluga",
+          "sub": "rakko"
+        },
+        {
+          "code": "C",
+          "text": "マイペース・自分の世界がある",
+          "main": "gomafu",
+          "sub": "seiuchi"
+        },
+        {
+          "code": "D",
+          "text": "穏やか・一緒にいて安心する",
+          "main": "kaiju",
+          "sub": "jugon"
+        }
+      ]
+    }
+  ]
+};
+const DIAGNOSIS_ID = DATA.meta.id;
+const STATS_URL = DATA.meta.statsUrl;
+const SHARE_BASE = DATA.meta.shareBaseUrl;
+const CARD_FILE_PREFIX = DIAGNOSIS_ID + "-";
+const BREAK_AFTER = DATA.meta.breakAfter || 6;
+
+let gender = "unknown";
+let idx = 0;
+let answers = [];
+let choiceOrders = [];
+let breakShown = false;
+let resultType = null;
+let cardBlobUrl = null;
+let cardFileCache = null;
+let cardPromise = null;
+let cardTargetId = null;
+
+const $ = id => document.getElementById(id);
+
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
+  $(id).classList.add("on");
+  window.scrollTo(0, 0);
+}
+
+function sendStat(event, extra){
+  const payload = Object.assign({
+    diagnosis: DIAGNOSIS_ID,
+    event: event,
+    type: resultType ? resultType.id : "",
+    gender: gender
+  }, extra || {});
+  try {
+    gtag("event", event, { diagnosis: DIAGNOSIS_ID, result_type: payload.type, gender: gender });
+  } catch(e) {}
+  if (STATS_URL && STATS_URL.indexOf("__") !== 0) {
+    try {
+      fetch(STATS_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify(payload),
+        keepalive: true
+      });
+    } catch(e) {}
+  }
+}
+
+function createShuffledChoiceOrders(){
+  return DATA.questions.map(() => {
+    const arr = [0, 1, 2, 3];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    }
+    return arr;
+  });
+}
+
+function isValidChoiceOrders(orders){
+  if (!Array.isArray(orders) || orders.length !== DATA.questions.length) return false;
+  return orders.every(o => Array.isArray(o) && o.length === 4 && [0,1,2,3].every(v => o.includes(v)));
+}
+
+function saveProgress(){
+  try {
+    localStorage.setItem(DIAGNOSIS_ID + "-progress", JSON.stringify({
+      idx: idx,
+      answers: answers,
+      choiceOrders: choiceOrders,
+      gender: gender,
+      breakShown: breakShown
+    }));
+  } catch(e) {}
+}
+
+function loadProgress(){
+  try {
+    const p = JSON.parse(localStorage.getItem(DIAGNOSIS_ID + "-progress") || "null");
+    if (!p || !Array.isArray(p.answers)) return null;
+    if (typeof p.idx !== "number" || p.idx < 0 || p.idx >= DATA.questions.length) return null;
+    if (p.answers.length < p.idx) return null;
+    return p;
+  } catch(e) {
+    return null;
+  }
+}
+
+function clearProgress(){
+  try { localStorage.removeItem(DIAGNOSIS_ID + "-progress"); } catch(e) {}
+}
+
+function getGot(){
+  try {
+    const arr = JSON.parse(localStorage.getItem(DIAGNOSIS_ID + "-got") || "[]");
+    return Array.isArray(arr) ? arr : [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function renderGrid(el){
+  const got = getGot();
+  const rareId = DATA.meta.rareGate.typeId;
+  el.innerHTML = DATA.typeOrder.map((id, i) => {
+    const t = DATA.types[id];
+    const has = got.includes(id);
+    if (id === rareId && !has) {
+      const no = String(i + 1).padStart(2, "0");
+      return '<div class="grid-item is-secret"><div class="grid-thumb"><img src="assets/secret.png" alt="海獣図鑑 No.' + no + '（シークレット）"></div><small>？？？</small></div>';
+    }
+    const cls = "grid-item" + (has ? " got" : "") + (has && t.isRare ? " is-rare-got" : "");
+    return '<div class="' + cls + '"><div class="grid-thumb"><img src="assets/chars/' + id + '.png" alt="' + t.name + '"></div><small>' + t.name + '</small></div>';
+  }).join("");
+  $("got-count").textContent = got.length;
+  const c2 = $("got-count2");
+  if (c2) c2.textContent = got.length;
+}
+
+function renderAllGrids(){
+  renderGrid($("grid-top"));
+  renderGrid($("grid-result"));
+}
+
+function renderHeroCollage(){
+  const box = $("hero-collage");
+  const ids = DATA.collageOrder;
+  const rows = [ids.slice(0, 4), ids.slice(4, 7), ids.slice(7, 11)];
+  box.innerHTML = rows.map(row =>
+    '<div class="collage-row">' + row.map(id => {
+      const t = DATA.types[id];
+      return '<div class="collage-cell"><img src="assets/chars/' + id + '.png" alt="' + t.name + '"></div>';
+    }).join("") + '</div>'
+  ).join("");
+}
+
+function initMeta(){
+  const qCount = DATA.questions.length;
+  const tCount = DATA.typeOrder.length;
+  $("meta-info").textContent = "全" + qCount + "問・約1分 ／ 全" + tCount + "タイプ ／ 結果は画像で保存できます";
+  $("q-total").textContent = qCount;
+  $("total-count").textContent = tCount;
+  $("total-count2").textContent = tCount;
+}
+
+function startQuiz(resume){
+  if (resume) {
+    const p = loadProgress();
+    if (p) {
+      idx = p.idx;
+      answers = p.answers.slice();
+      choiceOrders = isValidChoiceOrders(p.choiceOrders) ? p.choiceOrders : createShuffledChoiceOrders();
+      gender = p.gender || "unknown";
+      breakShown = Boolean(p.breakShown) || idx > BREAK_AFTER;
+      showQuestion();
+      return;
+    }
+  }
+  idx = 0;
+  answers = [];
+  choiceOrders = createShuffledChoiceOrders();
+  gender = "unknown";
+  breakShown = false;
+  show("scr-gender");
+}
+
+function showQuestion(){
+  if (idx >= DATA.questions.length) {
+    showResult();
+    return;
+  }
+  if (idx === BREAK_AFTER && !breakShown) {
+    breakShown = true;
+    saveProgress();
+    show("scr-break");
+    return;
+  }
+  const q = DATA.questions[idx];
+  $("q-num").textContent = idx + 1;
+  const pct = Math.round(idx / DATA.questions.length * 100);
+  $("q-pct").textContent = pct;
+  $("q-bar").style.width = pct + "%";
+  $("q-text").textContent = q.text;
+  const box = $("q-opts");
+  box.innerHTML = "";
+  const order = (choiceOrders[idx] && choiceOrders[idx].length === 4) ? choiceOrders[idx] : [0,1,2,3];
+  order.forEach(origIdx => {
+    const ch = q.choices[origIdx];
+    const b = document.createElement("button");
+    b.className = "opt";
+    b.textContent = ch.text;
+    b.onclick = () => {
+      answers[idx] = origIdx;
+      idx++;
+      saveProgress();
+      showQuestion();
+    };
+    box.appendChild(b);
+  });
+  $("btn-back").style.visibility = idx === 0 ? "hidden" : "visible";
+  show("scr-q");
+}
+
+/* 決定論的スコアリング＋タイブレーク＋カイギュウ（kaiju）レアゲート */
+function judge(ansIndices){
+  const order = DATA.typeOrder;
+  const total = {};
+  const mainCnt = {};
+  const firstMain = {};
+  order.forEach(id => { total[id] = 0; mainCnt[id] = 0; firstMain[id] = 999; });
+  DATA.questions.forEach((q, qi) => {
+    const ch = q.choices[ansIndices[qi]];
+    if (!ch) return;
+    total[ch.main] += 2;
+    mainCnt[ch.main] += 1;
+    if (firstMain[ch.main] === 999) firstMain[ch.main] = qi;
+    total[ch.sub] += 1;
+  });
+  const ranked = order.slice().sort((a, b) => {
+    if (total[b] !== total[a]) return total[b] - total[a];
+    if (mainCnt[b] !== mainCnt[a]) return mainCnt[b] - mainCnt[a];
+    if (firstMain[a] !== firstMain[b]) return firstMain[a] - firstMain[b];
+    return order.indexOf(a) - order.indexOf(b);
+  });
+  let winnerId = ranked[0];
+  const gate = DATA.meta.rareGate;
+  if (winnerId === gate.typeId && total[gate.typeId] < gate.minScore) {
+    winnerId = ranked[1];
+  }
+  return DATA.types[winnerId];
+}
+
+function resetCardPreview(){
+  if (cardBlobUrl) {
+    try { URL.revokeObjectURL(cardBlobUrl); } catch(e) {}
+    cardBlobUrl = null;
+  }
+  cardFileCache = null;
+  cardPromise = null;
+  cardTargetId = null;
+  $("card-preview").style.display = "none";
+  $("card-img").removeAttribute("src");
+  const dl = $("card-dl");
+  if (dl) { dl.setAttribute("href", "#"); dl.setAttribute("download", ""); }
+  resetXHint();
+  resetShareHint();
+}
+
+function isGoodSecretFor(t){
+  if (!t) return false;
+  const got = getGot();
+  return t.good === DATA.meta.rareGate.typeId && !got.includes(t.good);
+}
+
+function showResult(){
+  resultType = judge(answers);
+  clearProgress();
+  resetCardPreview();
+  initShareLayout();
+
+  const got = getGot();
+  if (!got.includes(resultType.id)) {
+    got.push(resultType.id);
+    try { localStorage.setItem(DIAGNOSIS_ID + "-got", JSON.stringify(got)); } catch(e) {}
+  }
+
+  const isRare = Boolean(resultType.isRare);
+  const hero = $("r-hero");
+  hero.classList.toggle("is-rare", isRare);
+  $("scr-result").style.setProperty("--type-color", resultType.color);
+  $("scr-result").style.setProperty("--type-pastel", resultType.pastel);
+  $("r-pill").textContent = isRare ? DATA.meta.rareGate.badgeText : "診断結果";
+  $("r-banner-label").textContent = isRare ? "伝説の海獣を引き当てました！" : "あなたの海獣タイプは…";
+  $("r-rare-stamp").style.display = isRare ? "block" : "none";
+  $("r-stamp-title").textContent = DATA.meta.rareGate.stampTitle;
+  $("r-stamp-years").textContent = DATA.meta.rareGate.stampYears;
+
+  $("r-img").src = "assets/chars/" + resultType.id + ".png";
+  $("r-img").alt = resultType.name;
+  $("r-group").textContent = isRare
+    ? (resultType.group + " ・ " + DATA.meta.rareGate.badgeText + "（" + DATA.meta.rareGate.rateText + "）")
+    : resultType.group;
+  $("r-name").textContent = resultType.name;
+  $("r-short").textContent = resultType.short;
+  $("r-desc").textContent = resultType.long;
+
+  const goodType = DATA.types[resultType.good];
+  const badType = DATA.types[resultType.bad];
+  const goodIsSecret = isGoodSecretFor(resultType);
+  const goodThumb = goodIsSecret ? "assets/secret.png" : ("assets/chars/" + goodType.id + ".png");
+  const goodName = goodIsSecret ? "？？？《幻枠レア》" : (goodType.name + "（" + goodType.group + "）");
+  const goodNote = goodIsSecret
+    ? "まだ図鑑に現れていない伝説の海獣。見つけたら最強の相棒かも！"
+    : goodType.short;
+
+  $("r-compat").innerHTML =
+    '<div class="compat-card good">'
+      + '<div class="compat-thumb"><img src="' + goodThumb + '" alt="' + (goodIsSecret ? "シークレット海獣" : goodType.name) + '"></div>'
+      + '<div class="compat-info"><span class="compat-tag">🤝 相性がいい海獣</span><b class="compat-name">' + goodName + '</b><span class="compat-note">' + goodNote + '</span></div>'
+    + '</div>'
+    + '<div class="compat-card bad">'
+      + '<div class="compat-thumb"><img src="assets/chars/' + badType.id + '.png" alt="' + badType.name + '"></div>'
+      + '<div class="compat-info"><span class="compat-tag">⚡ 天敵・振り回されがち</span><b class="compat-name">' + badType.name + '（' + badType.group + '）</b><span class="compat-note">' + resultType.badNote + '</span></div>'
+    + '</div>';
+
+  renderAllGrids();
+  show("scr-result");
+  sendStat("result_view");
+  prepareCardImage(resultType);
+}
+
+function shareText(){
+  const r = resultType;
+  const rareTag = r.isRare ? ("✨【" + DATA.meta.rareGate.badgeText + "（" + DATA.meta.rareGate.rateText + "）】✨ ") : "";
+  return rareTag
+    + "私の職場・学校での海獣タイプは「" + r.name + "（" + r.group + "）」でした！ "
+    + r.short + "\n"
+    + "あなたはどの海獣？ " + DATA.meta.hashtag + "\n"
+    + DATA.meta.shareFollowLine;
+}
+
+/* Canvas 結果カード生成 (1080x1350) */
+function roundRectPath(ctx, x, y, w, h, r){
+  if (ctx.roundRect) {
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, r);
+    return;
+  }
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function segmentJapaneseWords(text){
+  if (typeof Intl !== "undefined" && typeof Intl.Segmenter === "function") {
+    try {
+      const seg = new Intl.Segmenter("ja", { granularity: "word" });
+      return Array.from(seg.segment(text), s => s.segment);
+    } catch(e) {}
+  }
+  return Array.from(text);
+}
+
+function wrapBalancedJa(ctx, text, maxWidth){
+  if (ctx.measureText(text).width <= maxWidth) return [text];
+  const chars = Array.from(text);
+  const n = chars.length;
+  for (let i = Math.max(4, Math.floor(n * 0.28)); i < n - 3; i++) {
+    if (chars[i - 1] === "。") {
+      const l1 = chars.slice(0, i).join("");
+      const l2 = chars.slice(i).join("");
+      if (ctx.measureText(l1).width <= maxWidth && ctx.measureText(l2).width <= maxWidth) return [l1, l2];
+    }
+  }
+  const tokens = segmentJapaneseWords(text);
+  if (tokens.length >= 2) {
+    let best = null;
+    for (let i = 1; i < tokens.length; i++) {
+      const l1 = tokens.slice(0, i).join("");
+      const l2 = tokens.slice(i).join("");
+      const w1 = ctx.measureText(l1).width;
+      const w2 = ctx.measureText(l2).width;
+      if (w1 <= maxWidth && w2 <= maxWidth) {
+        const lastCh = l1[l1.length - 1];
+        const firstCh = l2[0];
+        if ("、。）」』！？".includes(firstCh)) continue;
+        const bonus = "、…".includes(lastCh) ? -160 : 0;
+        const score = Math.abs(w1 - w2) + bonus;
+        if (!best || score < best.score) best = { score, lines: [l1, l2] };
+      }
+    }
+    if (best) return best.lines;
+  }
+  const lines = [];
+  let line = "";
+  const noStart = "、。）」』！？";
+  for (let i = 0; i < chars.length; i++) {
+    const ch = chars[i];
+    if (ctx.measureText(line + ch).width > maxWidth && line.length > 0) {
+      if (noStart.includes(ch) && line.length > 1) {
+        lines.push(line + ch);
+        line = "";
+      } else {
+        lines.push(line);
+        line = ch;
+      }
+    } else {
+      line += ch;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function drawCardRareStamp(ctx, cx, cy, w, h, fontFamily){
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(-7 * Math.PI / 180);
+
+  ctx.fillStyle = "rgba(120,82,8,0.28)";
+  roundRectPath(ctx, -w / 2 + 4, -h / 2 + 6, w, h, 14);
+  ctx.fill();
+
+  ctx.fillStyle = "#fff8dc";
+  roundRectPath(ctx, -w / 2, -h / 2, w, h, 14);
+  ctx.fill();
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "#b8820c";
+  ctx.stroke();
+
+  roundRectPath(ctx, -w / 2 + 8, -h / 2 + 8, w - 16, h - 16, 9);
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "#d49e18";
+  ctx.stroke();
+
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#b8820c";
+  ctx.font = "900 22px " + fontFamily;
+  ctx.fillText(DATA.meta.rareGate.stampTitle, 0, -14);
+  ctx.fillStyle = "#7a4e04";
+  ctx.font = "900 20px " + fontFamily;
+  ctx.fillText(DATA.meta.rareGate.stampYears, 0, 16);
+  ctx.restore();
+}
+
+function prepareCardImage(t){
+  if (!t) return Promise.resolve(null);
+  if (cardFileCache && cardTargetId === t.id) return Promise.resolve(cardFileCache);
+  if (cardPromise && cardTargetId === t.id) return cardPromise;
+  const goodIsSecret = isGoodSecretFor(t);
+  cardTargetId = t.id;
+  cardPromise = new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      try {
+        const W = 1080, H = 1350;
+        const c = document.createElement("canvas");
+        c.width = W;
+        c.height = H;
+        const x = c.getContext("2d");
+        const isRare = Boolean(t.isRare);
+        const fontFamily = '"Hiragino Maru Gothic ProN","Hiragino Sans","BIZ UDPGothic","Noto Sans JP",sans-serif';
+
+        // 1. 背景ドット
+        x.fillStyle = isRare ? "#fef8e4" : "#ecf8fc";
+        x.fillRect(0, 0, W, H);
+        const step = 28;
+        for (let dy = 0; dy <= H + step; dy += step) {
+          for (let dx = 0; dx <= W + step; dx += step) {
+            x.fillStyle = isRare ? "rgba(212,158,24,0.12)" : "rgba(30,136,184,0.08)";
+            x.beginPath(); x.arc(dx, dy, 2.5, 0, Math.PI * 2); x.fill();
+            x.fillStyle = isRare ? "rgba(248,200,56,0.14)" : "rgba(232,98,134,0.08)";
+            x.beginPath(); x.arc(dx + step / 2, dy + step / 2, 2.2, 0, Math.PI * 2); x.fill();
+          }
+        }
+
+        // 2. メインカード枠＋シャドウ
+        const cardX = 24, cardY = 24, cardW = 1018, cardH = 1288, cardR = 34;
+        const cardCX = cardX + cardW / 2;
+        x.fillStyle = isRare ? "#b8820c" : "#1e2c42";
+        roundRectPath(x, cardX + 14, cardY + 14, cardW, cardH, cardR);
+        x.fill();
+
+        x.save();
+        roundRectPath(x, cardX, cardY, cardW, cardH, cardR);
+        x.clip();
+        x.fillStyle = isRare ? "#fffdf2" : "#ffffff";
+        x.fillRect(cardX, cardY, cardW, cardH);
+
+        // 3. ヘッダー帯
+        const hdrH = 84;
+        x.fillStyle = isRare ? "#b8820c" : "#1e88b8";
+        x.fillRect(cardX, cardY, cardW, hdrH);
+        const stripeY = cardY + hdrH;
+        x.fillStyle = isRare ? "#7a4e04" : "#1e2c42";
+        x.fillRect(cardX, stripeY, cardW, 5);
+        x.fillStyle = isRare ? "#f8c838" : t.color;
+        x.fillRect(cardX, stripeY + 5, cardW, 9);
+        x.fillStyle = isRare ? "#7a4e04" : "#1e2c42";
+        x.fillRect(cardX, stripeY + 14, cardW, 4);
+
+        const hdrCY = cardY + hdrH / 2;
+        // 左ピル
+        const pillX = cardX + 28, pillW = 144, pillH = 44;
+        x.fillStyle = "#f8c838";
+        roundRectPath(x, pillX, hdrCY - pillH / 2, pillW, pillH, pillH / 2);
+        x.fill();
+        x.lineWidth = 3.5; x.strokeStyle = "#1e2c42"; x.stroke();
+        x.textAlign = "center"; x.textBaseline = "middle";
+        x.fillStyle = "#1e2c42"; x.font = "900 22px " + fontFamily;
+        x.fillText(isRare ? DATA.meta.rareGate.badgeText : "診断結果", pillX + pillW / 2, hdrCY + 1);
+
+        // 右ピル
+        const tagW = 176, tagH = 40, tagX = cardX + cardW - 28 - tagW;
+        x.fillStyle = "#1e2c42";
+        roundRectPath(x, tagX, hdrCY - tagH / 2, tagW, tagH, tagH / 2);
+        x.fill();
+        x.fillStyle = "#f8c838"; x.font = "900 19px " + fontFamily;
+        x.fillText(isRare ? DATA.meta.rareGate.rateText : "全12タイプ", tagX + tagW / 2, hdrCY + 1);
+
+        // 中央タイトル
+        x.font = "900 34px " + fontFamily;
+        x.fillStyle = "rgba(30,44,66,0.45)";
+        x.fillText(DATA.meta.displayTitle, cardCX + 2, hdrCY + 3);
+        x.fillStyle = "#ffffff";
+        x.fillText(DATA.meta.displayTitle, cardCX, hdrCY + 1);
+
+        // 4. 主役イラストパネル（上半分、見切れなし大判正方形額縁）
+        const panelY = stripeY + 18;
+        const panelH = 602;
+        x.fillStyle = t.pastel;
+        x.fillRect(cardX, panelY, cardW, panelH);
+
+        const imgSz = 548;
+        const imgX = cardCX - imgSz / 2;
+        const imgY = panelY + (panelH - imgSz) / 2;
+        x.fillStyle = isRare ? "#b8820c" : "rgba(30,44,66,0.22)";
+        roundRectPath(x, imgX + 8, imgY + 8, imgSz, imgSz, 34);
+        x.fill();
+        x.save();
+        roundRectPath(x, imgX, imgY, imgSz, imgSz, 34);
+        x.clip();
+        x.drawImage(img, imgX, imgY, imgSz, imgSz);
+        x.restore();
+        x.lineWidth = isRare ? 9 : 6;
+        x.strokeStyle = isRare ? "#d49e18" : "#1e2c42";
+        roundRectPath(x, imgX, imgY, imgSz, imgSz, 34);
+        x.stroke();
+        if (isRare) {
+          x.lineWidth = 4;
+          x.strokeStyle = "#f8c838";
+          roundRectPath(x, imgX + 6, imgY + 6, imgSz - 12, imgSz - 12, 28);
+          x.stroke();
+          drawCardRareStamp(x, imgX + imgSz - 115, imgY + imgSz - 42, 276, 86, fontFamily);
+        }
+
+        const panelBot = panelY + panelH;
+        x.fillStyle = isRare ? "#b8820c" : "#1e2c42";
+        x.fillRect(cardX, panelBot, cardW, 5);
+
+        // 5. 最下部 URL バナー
+        const urlW = 946, urlH = 48;
+        const urlX = cardCX - urlW / 2, urlY = cardY + cardH - 20 - urlH;
+        x.fillStyle = "rgba(30,44,66,0.14)";
+        roundRectPath(x, urlX + 4, urlY + 4, urlW, urlH, 14);
+        x.fill();
+        x.save();
+        roundRectPath(x, urlX, urlY, urlW, urlH, 14);
+        x.clip();
+        x.fillStyle = isRare ? "#fff5d1" : "#f4faff";
+        x.fillRect(urlX, urlY, urlW, urlH);
+        x.fillStyle = isRare ? "#d49e18" : t.color;
+        x.fillRect(urlX, urlY, 12, urlH);
+        x.restore();
+        x.lineWidth = 3;
+        x.strokeStyle = isRare ? "#b8820c" : "#1e2c42";
+        roundRectPath(x, urlX, urlY, urlW, urlH, 14);
+        x.stroke();
+        x.textAlign = "center"; x.textBaseline = "middle";
+        x.fillStyle = "#1e2c42"; x.font = "800 22px " + fontFamily;
+        x.fillText("tosh1000950.github.io/shindan/sea-beast/", cardCX + 6, urlY + urlH / 2 + 1);
+
+        // 6. 下部コンテンツ（系統ピル・タイプ名・短文ボックス・相性カード）を垂直中央揃えで配置
+        const zoneTop = panelBot + 16;
+        const zoneBot = urlY - 14;
+        const availH = zoneBot - zoneTop;
+
+        const grpTxt = isRare ? (t.group + " ・ " + DATA.meta.rareGate.badgeText) : t.group;
+        const gh = 40;
+        const nameSize = t.name.length >= 8 ? 66 : 76;
+        const nameH = nameSize;
+
+        x.font = "700 27px " + fontFamily;
+        const shortLines = wrapBalancedJa(x, t.short, 872);
+        const sLineH = 40;
+        const sPadY = shortLines.length >= 2 ? 18 : 22;
+        const sBoxH = sPadY * 2 + shortLines.length * sLineH;
+        const compatH = 92;
+
+        const gap1 = 22;
+        const gap2 = 24;
+        const gap3 = 22;
+        const usedH = gh + gap1 + nameH + gap2 + sBoxH + gap3 + compatH;
+        const gy = zoneTop + Math.max(8, Math.floor((availH - usedH) / 2));
+
+        // 系統ピル
+        x.font = "900 22px " + fontFamily;
+        const gw = x.measureText(grpTxt).width + 42;
+        x.fillStyle = isRare ? "#f8c838" : t.color;
+        roundRectPath(x, cardCX - gw / 2, gy, gw, gh, gh / 2);
+        x.fill();
+        x.lineWidth = 2.5; x.strokeStyle = "#1e2c42"; x.stroke();
+        x.fillStyle = isRare ? "#1e2c42" : "#ffffff";
+        x.fillText(grpTxt, cardCX, gy + gh / 2 + 1);
+
+        // タイプ名
+        const nameY = gy + gh + gap1 + nameH / 2;
+        x.font = "900 " + nameSize + "px " + fontFamily;
+        const nw = x.measureText(t.name).width;
+        x.fillStyle = isRare ? "rgba(248,200,56,0.62)" : t.pastel;
+        roundRectPath(x, cardCX - nw / 2 - 16, nameY + 4, nw + 32, Math.round(nameSize * 0.46), 10);
+        x.fill();
+        x.fillStyle = "#1e2c42";
+        x.fillText(t.name, cardCX, nameY);
+
+        // 短文ボックス
+        const sBoxX = cardX + 36, sBoxW = cardW - 72;
+        const sBoxY = gy + gh + gap1 + nameH + gap2;
+        x.fillStyle = "rgba(30,44,66,0.12)";
+        roundRectPath(x, sBoxX + 4, sBoxY + 4, sBoxW, sBoxH, 16);
+        x.fill();
+        x.save();
+        roundRectPath(x, sBoxX, sBoxY, sBoxW, sBoxH, 16);
+        x.clip();
+        x.fillStyle = isRare ? "#fff8df" : "#f4faff";
+        x.fillRect(sBoxX, sBoxY, sBoxW, sBoxH);
+        x.fillStyle = isRare ? "#d49e18" : t.color;
+        x.fillRect(sBoxX, sBoxY, 12, sBoxH);
+        x.restore();
+        x.lineWidth = 3; x.strokeStyle = isRare ? "#b8820c" : "#1e2c42";
+        roundRectPath(x, sBoxX, sBoxY, sBoxW, sBoxH, 16);
+        x.stroke();
+        x.font = "700 27px " + fontFamily;
+        x.fillStyle = "#1e2c42";
+        shortLines.forEach((ln, i) => {
+          x.fillText(ln, cardCX + 4, sBoxY + sPadY + i * sLineH + sLineH / 2);
+        });
+
+        // 相性ミニバー
+        const compatY = sBoxY + sBoxH + gap3;
+        const halfW = (sBoxW - 14) / 2;
+        const goodT = DATA.types[t.good];
+        const badT = DATA.types[t.bad];
+        const goodLabel = goodIsSecret ? "？？？" : goodT.name;
+        const goodSub = goodIsSecret ? "（幻枠シークレット）" : ("（" + goodT.group + "）");
+        const boxes = [
+          { x: sBoxX, bg: "#eefbf3", tag: "🤝 相性◎", name: goodLabel, sub: goodSub },
+          { x: sBoxX + halfW + 14, bg: "#fff2f4", tag: "⚡ 天敵", name: badT.name, sub: "（" + t.badNote + "）" }
+        ];
+        boxes.forEach(bx => {
+          x.fillStyle = bx.bg;
+          roundRectPath(x, bx.x, compatY, halfW, compatH, 14);
+          x.fill();
+          x.lineWidth = 2.5; x.strokeStyle = "#1e2c42"; x.stroke();
+          x.font = "900 21px " + fontFamily;
+          x.fillStyle = "#5e7088";
+          x.fillText(bx.tag + "  " + bx.name, bx.x + halfW / 2, compatY + 30, halfW - 20);
+          x.font = "700 18px " + fontFamily;
+          x.fillStyle = "#1e2c42";
+          x.fillText(bx.sub, bx.x + halfW / 2, compatY + 62, halfW - 20);
+        });
+
+        x.restore();
+
+        // 外枠線
+        x.lineWidth = isRare ? 9 : 7;
+        x.strokeStyle = isRare ? "#b8820c" : "#1e2c42";
+        roundRectPath(x, cardX, cardY, cardW, cardH, cardR);
+        x.stroke();
+        if (isRare) {
+          x.lineWidth = 4;
+          x.strokeStyle = "#f8c838";
+          roundRectPath(x, cardX + 8, cardY + 8, cardW - 16, cardH - 16, cardR - 6);
+          x.stroke();
+        }
+
+        c.toBlob(b => {
+          if (!b || !resultType || resultType.id !== t.id) { cardPromise = null; resolve(null); return; }
+          if (cardBlobUrl) {
+            try { URL.revokeObjectURL(cardBlobUrl); } catch(e) {}
+          }
+          cardBlobUrl = URL.createObjectURL(b);
+          cardFileCache = new File([b], CARD_FILE_PREFIX + t.id + ".png", { type: "image/png" });
+          $("card-img").src = cardBlobUrl;
+          const dl = $("card-dl");
+          dl.href = cardBlobUrl;
+          dl.download = CARD_FILE_PREFIX + t.id + ".png";
+          resolve(cardFileCache);
+        }, "image/png");
+      } catch(e) {
+        cardPromise = null;
+        resolve(null);
+      }
+    };
+    img.onerror = () => { cardPromise = null; resolve(null); };
+    img.src = "assets/chars/" + t.id + ".png";
+  });
+  return cardPromise;
+}
+
+async function getCardFile(){
+  if (cardFileCache) return cardFileCache;
+  if (!resultType) return null;
+  const timeout = new Promise(resolve => setTimeout(() => resolve(null), 2000));
+  return await Promise.race([prepareCardImage(resultType), timeout]);
+}
+
+/* シェア導線（SHARE_FIX_SPEC / FOLLOW_FUNNEL_SPEC 完全準拠） */
+const DEFAULT_X_HINT_HTML = "💡 <b>結果カード画像つきで投稿したいとき：</b>上のボタンで画像をコピーし、開いたXの画面で <b>Ctrl+V</b>（Macは⌘+V）で貼り付けてね🌊";
+const SHARE_IMAGE_HINT_HTML = "⚠ <b>画像を添付できなかったため、テキストのみでXを開きました。</b>下の「📸 結果カードを画像で保存」ボタンから画像を保存して、Xの画面で手動で添付してね🌊";
+
+function resetXHint(){
+  const hint = $("x-hint");
+  if (!hint) return;
+  hint.className = "x-hint";
+  hint.innerHTML = DEFAULT_X_HINT_HTML;
+}
+
+function resetShareHint(){
+  const hint = $("share-hint");
+  if (!hint) return;
+  hint.className = "x-hint is-fallback share-hint";
+  hint.innerHTML = "";
+}
+
+function showShareImageHint(){
+  const hint = $("share-hint");
+  if (!hint) return;
+  hint.innerHTML = SHARE_IMAGE_HINT_HTML;
+  hint.className = "x-hint is-fallback share-hint is-visible";
+}
+
+function isMobileShareEnv(){
+  const ua = navigator.userAgent || "";
+  const isMobileUA = /iPhone|iPad|iPod|Android/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  return isMobileUA && typeof navigator.share === "function";
+}
+
+function initShareLayout(){
+  const box = $("share-cta-box");
+  if (!box) return;
+  box.classList.toggle("env-mobile", isMobileShareEnv());
+}
+
+function getTypeShareUrl(){
+  return SHARE_BASE + resultType.id + ".html";
+}
+
+function getCombinedShareText(){
+  return shareText() + "\n" + getTypeShareUrl();
+}
+
+function buildShareIntentUrl(combinedText){
+  return "https://twitter.com/intent/tweet?text=" + encodeURIComponent(combinedText);
+}
+
+function openIntentUrl(intent){
+  const w = window.open(intent, "_blank");
+  if (!w) location.href = intent;
+  return intent;
+}
+
+function openXIntent(){
+  return openIntentUrl(buildShareIntentUrl(getCombinedShareText()));
+}
+
+function downloadCardFile(file){
+  const dlUrl = cardBlobUrl || (file ? URL.createObjectURL(file) : null);
+  if (!dlUrl || !resultType) return false;
+  const a = document.createElement("a");
+  a.href = dlUrl;
+  a.download = CARD_FILE_PREFIX + resultType.id + ".png";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  if (!cardBlobUrl) {
+    setTimeout(() => { try { URL.revokeObjectURL(dlUrl); } catch(e) {} }, 1000);
+  }
+  return true;
+}
+
+$("btn-start").onclick = () => {
+  sendStat("diagnosis_start");
+  startQuiz(false);
+};
+$("btn-resume").onclick = () => startQuiz(true);
+document.querySelectorAll("[data-gender]").forEach(b => {
+  b.onclick = () => {
+    gender = b.getAttribute("data-gender");
+    idx = 0;
+    answers = [];
+    choiceOrders = createShuffledChoiceOrders();
+    breakShown = false;
+    saveProgress();
+    showQuestion();
+  };
+});
+$("btn-back").onclick = () => {
+  if (idx > 0) {
+    idx--;
+    saveProgress();
+    showQuestion();
+  }
+};
+$("btn-break-next").onclick = () => {
+  breakShown = true;
+  saveProgress();
+  showQuestion();
+};
+$("btn-retry").onclick = () => {
+  resultType = null;
+  resetCardPreview();
+  show("scr-top");
+  refreshResume();
+};
+
+$("btn-x-post").onclick = () => {
+  if (!resultType) return;
+  sendStat("share_click");
+  openXIntent();
+};
+
+let xImageBusy = false;
+$("btn-x-image").onclick = async () => {
+  if (!resultType || xImageBusy) return;
+  xImageBusy = true;
+  sendStat("share_click");
+  const hint = $("x-hint");
+  try {
+    const file = await getCardFile();
+    let copied = false;
+    if (file && navigator.clipboard && typeof navigator.clipboard.write === "function" && typeof ClipboardItem !== "undefined") {
+      try {
+        const pngBlob = new Blob([file], { type: "image/png" });
+        await navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]);
+        copied = true;
+      } catch(e) {
+        copied = false;
+      }
+    }
+    if (copied) {
+      hint.className = "x-hint is-copied";
+      hint.innerHTML = "✅ <b>カード画像をコピーしました！</b>開いたXの投稿画面で <b>Ctrl+V</b>（Macは⌘+V）を押して貼り付けてね🌊";
+    } else {
+      const downloaded = downloadCardFile(file);
+      hint.className = "x-hint is-fallback";
+      if (downloaded) {
+        hint.innerHTML = "💾 <b>クリップボードにコピーできなかったため画像を保存したよ！</b>開いたXの投稿画面で、保存した画像（<code>" + CARD_FILE_PREFIX + resultType.id + ".png</code>）を添付してね🌊";
+      } else {
+        hint.innerHTML = "⚠ カード画像の準備が間に合いませんでした。下の「📸 結果カードを画像で保存」から保存してXに添付してね🌊";
+      }
+    }
+    openXIntent();
+  } finally {
+    xImageBusy = false;
+  }
+};
+
+let shareBusy = false;
+async function shareResult(){
+  if (!resultType || shareBusy) return;
+  shareBusy = true;
+  sendStat("share_click");
+  resetShareHint();
+  const combined = getCombinedShareText();
+  try {
+    let file = null;
+    try {
+      file = await getCardFile();
+    } catch(e) {
+      file = null;
+    }
+    let canShareFile = false;
+    if (file && typeof navigator.share === "function" && typeof navigator.canShare === "function") {
+      try {
+        canShareFile = Boolean(navigator.canShare({ files: [file] }));
+      } catch(e) {
+        canShareFile = false;
+      }
+    }
+    if (canShareFile) {
+      try {
+        await navigator.share({ files: [file], text: combined });
+        return;
+      } catch(e) {
+        if (e && e.name === "AbortError") return;
+      }
+    }
+    showShareImageHint();
+    openIntentUrl(buildShareIntentUrl(combined));
+  } finally {
+    shareBusy = false;
+  }
+}
+
+$("btn-share").onclick = shareResult;
+
+$("btn-card").onclick = async () => {
+  if (!resultType) return;
+  sendStat("card_save");
+  if (!cardBlobUrl) {
+    await prepareCardImage(resultType);
+  }
+  if (cardBlobUrl) {
+    $("card-preview").style.display = "block";
+    $("card-preview").scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+function refreshResume(){
+  $("btn-resume").style.display = loadProgress() ? "block" : "none";
+}
+
+initMeta();
+renderHeroCollage();
+renderAllGrids();
+refreshResume();
+initShareLayout();
+resetXHint();
+resetShareHint();
+</script>
+</body>
+</html>
