@@ -1,0 +1,4231 @@
+<!-- GENERATED FROM data.json - DO NOT EDIT MANUALLY -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>配信者タイプ診断 Vol.1｜あなたの配信スタイル＆深夜の素顔は？</title>
+<meta name="description" content="18の配信シチュエーションに答えるだけで、あなたの配信スタイルを8系統・全24タイプに分類！サブタイプ（もう一つの顔）や好相性パートナー、宣伝シェア文も作れる診断です。">
+<meta property="og:title" content="配信者タイプ診断 Vol.1｜あなたの配信スタイル＆深夜の素顔は？">
+<meta property="og:description" content="18の配信シーンでわかる、あなたの配信者タイプは？全24タイプ＋深夜限定シークレット3枠！結果カードは立ち絵貼り付け用の透過枠も保存できます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tosh1000950.github.io/shindan/streamer/">
+<meta property="og:image" content="https://tosh1000950.github.io/shindan/streamer/assets/ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZY9E6YLPBM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'G-ZY9E6YLPBM');
+</script>
+<style>
+:root{
+  --bg:#f2f5ff;
+  --card:#ffffff;
+  --ink:#1a1d2e;
+  --sub:#5a627d;
+  --accent:#5b4bff;
+  --accent-dark:#3e30cf;
+  --pink:#ff4769;
+  --cyan:#0ea5e9;
+  --gold:#f8c838;
+  --line:#d2daf0;
+  --track:#e5ebfb;
+  --type-color:#5b4bff;
+  --type-pastel:#e8e6ff;
+  --neon-bg:#110a22;
+  --neon-card:#1a0f32;
+  --neon-pink:#ff3e9d;
+  --neon-cyan:#2ce6ff;
+}
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body{
+  font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","BIZ UDPGothic","Noto Sans JP",sans-serif;
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(rgba(91,75,255,.08) 2px, transparent 2px),
+    radial-gradient(rgba(255,71,105,.07) 2px, transparent 2px);
+  background-size:28px 28px;
+  background-position:0 0, 14px 14px;
+  color:var(--ink);
+  -webkit-text-size-adjust:100%;
+}
+.wrap{ max-width:520px; margin:0 auto; padding:12px 12px 48px; }
+.screen{ display:none; }
+.screen.on{ display:block; animation:fade .22s ease; }
+@keyframes fade{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:none; } }
+@keyframes popReveal{
+  0%{ opacity:0; transform:scale(.94) translateY(10px); }
+  65%{ opacity:1; transform:scale(1.015) translateY(-2px); }
+  100%{ opacity:1; transform:none; }
+}
+
+/* ヒーロー */
+.hero{ text-align:center; }
+.hero-header{ padding:4px 4px 10px; }
+.noren-bar{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  background:var(--ink);
+  color:var(--gold);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.05em;
+  padding:5px 14px;
+  border-radius:99px;
+  border:2px solid var(--ink);
+  box-shadow:0 3px 0 var(--accent);
+}
+.hero-title-wrap{
+  position:relative;
+  display:inline-block;
+  margin-top:14px;
+}
+.hero h1{
+  font-size:clamp(30px, 8.8vw, 39px);
+  font-weight:900;
+  line-height:1.15;
+  letter-spacing:.02em;
+  color:var(--accent);
+  text-shadow:
+    1.5px 1.5px 0 #ffffff,
+    -1.5px -1.5px 0 #ffffff,
+    1.5px -1.5px 0 #ffffff,
+    -1.5px 1.5px 0 #ffffff,
+    3px 4px 0 var(--ink);
+}
+.hero-sticker{
+  position:absolute;
+  top:-10px;
+  right:-24px;
+  background:var(--gold);
+  color:var(--ink);
+  font-size:11px;
+  font-weight:900;
+  padding:2px 8px;
+  border-radius:8px;
+  border:2px solid var(--ink);
+  transform:rotate(7deg);
+  box-shadow:2px 2px 0 var(--ink);
+  white-space:nowrap;
+}
+.hero .subtitle{
+  display:inline-block;
+  margin-top:8px;
+  background:var(--pink);
+  color:#ffffff;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.02em;
+  padding:5px 15px;
+  border-radius:10px;
+  border:2.5px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+/* コラージュボード */
+.collage-board{
+  margin:12px auto 0;
+  max-width:460px;
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:20px;
+  padding:9px;
+  box-shadow:5px 5px 0 var(--accent);
+}
+.collage-rows{ display:flex; flex-direction:column; gap:6px; }
+.collage-row{ display:flex; justify-content:center; gap:6px; }
+.collage-cell{
+  width:calc((100% - 30px) / 6);
+  aspect-ratio:1/1;
+  border-radius:10px;
+  overflow:hidden;
+  border:2px solid var(--ink);
+  background:var(--track);
+}
+.collage-cell img{ width:100%; height:100%; object-fit:cover; display:block; }
+.collage-teaser{
+  margin-top:8px;
+  background:#eef2ff;
+  border:2px solid var(--ink);
+  border-radius:12px;
+  padding:7px 10px;
+  font-size:11.5px;
+  font-weight:800;
+  line-height:1.5;
+  color:var(--ink);
+  text-align:center;
+}
+.collage-teaser b{ color:var(--accent-dark); font-weight:900; }
+.hero .lead{
+  color:var(--ink);
+  font-size:13px;
+  font-weight:700;
+  line-height:1.6;
+  margin-top:10px;
+  background:rgba(255,255,255,.9);
+  border:2px dashed #aebbe6;
+  border-radius:14px;
+  padding:9px 11px;
+}
+
+/* ボタン */
+.btn{
+  display:block;
+  width:100%;
+  border:3px solid var(--ink);
+  cursor:pointer;
+  background:linear-gradient(180deg, #6d5eff 0%, var(--accent) 100%);
+  color:#ffffff;
+  font-size:17.5px;
+  font-weight:900;
+  padding:14px 16px;
+  border-radius:16px;
+  margin-top:12px;
+  box-shadow:0 5px 0 var(--ink);
+  font-family:inherit;
+  text-align:center;
+  letter-spacing:.02em;
+  transition:transform .08s ease, box-shadow .08s ease;
+}
+.btn-hero{ font-size:19px; padding:16px 18px; }
+.btn:active{ transform:translateY(3px); box-shadow:0 2px 0 var(--ink); }
+.btn.sub{
+  background:var(--card);
+  color:var(--ink);
+  border:2.5px solid var(--ink);
+  box-shadow:0 4px 0 var(--ink);
+  font-size:14px;
+  font-weight:800;
+  padding:11px 14px;
+  margin-top:10px;
+}
+.btn.sub:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--ink); }
+.btn.resume-btn{
+  background:var(--gold);
+  color:var(--ink);
+  border:2.5px solid var(--ink);
+  box-shadow:0 4px 0 var(--ink);
+  font-size:15px;
+  font-weight:900;
+}
+.btn.secondary{
+  background:linear-gradient(180deg, #ffd95e 0%, var(--gold) 100%);
+  color:var(--ink);
+}
+.btn.quote-btn{
+  background:linear-gradient(180deg, #ff5f82 0%, var(--pink) 100%);
+  color:#ffffff;
+  box-shadow:0 5px 0 var(--ink);
+}
+.meta{
+  text-align:center;
+  color:var(--sub);
+  font-size:11.5px;
+  font-weight:700;
+  margin-top:10px;
+}
+.top-invite{
+  margin-top:12px;
+  background:#ffffff;
+  border:2.5px solid var(--ink);
+  border-left:6px solid var(--pink);
+  border-radius:14px;
+  padding:9px 12px;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.6;
+  color:var(--ink);
+  text-align:left;
+  box-shadow:3px 3px 0 rgba(26,29,46,.12);
+}
+.top-invite b{ color:var(--pink); font-weight:900; }
+
+/* 質問・性別・チャプター画面 */
+.quiz-panel{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:20px;
+  padding:14px 13px 16px;
+  margin-top:6px;
+  box-shadow:5px 5px 0 var(--ink);
+}
+.q-top-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:6px;
+  flex-wrap:wrap;
+}
+.chapter-pill{
+  display:inline-block;
+  background:var(--ink);
+  color:var(--gold);
+  font-size:11px;
+  font-weight:900;
+  padding:3px 10px;
+  border-radius:99px;
+}
+.progress{ margin:0 0 12px; }
+.progress .num{
+  font-size:12px;
+  color:var(--ink);
+  font-weight:900;
+}
+.bar{
+  height:12px;
+  background:var(--track);
+  border:2px solid var(--ink);
+  border-radius:99px;
+  overflow:hidden;
+}
+.bar i{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg, var(--gold), var(--accent));
+  border-radius:99px;
+  transition:width .25s;
+}
+.q{
+  font-size:17.5px;
+  font-weight:900;
+  line-height:1.48;
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 4px;
+}
+.opts,.gender-opts{ display:flex; flex-direction:column; gap:8px; margin-top:11px; }
+.opt{
+  background:#f7f9ff;
+  border:2.5px solid var(--ink);
+  border-radius:13px;
+  padding:11px 13px;
+  font-size:14px;
+  font-weight:700;
+  text-align:left;
+  cursor:pointer;
+  font-family:inherit;
+  color:var(--ink);
+  line-height:1.42;
+  box-shadow:0 3px 0 var(--ink);
+  transition:transform .08s ease, background-color .12s ease, box-shadow .08s ease;
+}
+.opt:hover{ background:#ebeffe; }
+.opt:active{ transform:translateY(2px); box-shadow:0 1px 0 var(--ink); background:#dfe6fd; }
+.note{ text-align:center; color:var(--sub); font-size:12px; font-weight:700; line-height:1.65; margin:10px 0; }
+
+.break-card{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:22px;
+  padding:26px 16px 22px;
+  margin-top:14px;
+  text-align:center;
+  box-shadow:5px 5px 0 var(--ink);
+}
+.break-badge{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--ink);
+  border:2px solid var(--ink);
+  border-radius:99px;
+  font-size:12px;
+  font-weight:900;
+  padding:4px 14px;
+  margin-bottom:8px;
+}
+.break-emoji{ font-size:48px; margin:4px 0 8px; }
+.break-msg{
+  font-size:15.5px;
+  font-weight:800;
+  line-height:1.7;
+  color:var(--ink);
+  background:#f4f7ff;
+  border:2px solid var(--line);
+  border-radius:14px;
+  padding:12px 14px;
+  margin:10px 0 4px;
+}
+
+/* 結果ヒーローカード */
+.result-hero{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:6px 6px 0 var(--ink);
+}
+.result-hero.is-sensitive{
+  background:linear-gradient(180deg, #160c2c 0%, #200f3d 100%);
+  border:3.5px solid var(--neon-pink);
+  outline:2.5px solid var(--neon-cyan);
+  box-shadow:0 0 24px rgba(255,62,157,.38), 6px 6px 0 #090416;
+  color:#f8f0ff;
+}
+#scr-result.on .result-hero{
+  animation:popReveal .4s cubic-bezier(.22,1,.36,1) both;
+}
+.result-banner{
+  background:var(--type-color);
+  color:#ffffff;
+  padding:10px 14px;
+  border-bottom:3px solid var(--ink);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  text-shadow:0 1px 0 rgba(0,0,0,.25);
+}
+.result-hero.is-sensitive .result-banner{
+  background:linear-gradient(135deg, #62105e 0%, #c82598 50%, #3d1273 100%);
+  border-bottom-color:var(--neon-pink);
+}
+.result-banner .badge-pill{
+  background:var(--gold);
+  color:var(--ink);
+  text-shadow:none;
+  font-size:11.5px;
+  font-weight:900;
+  padding:2px 10px;
+  border-radius:99px;
+  border:2px solid var(--ink);
+}
+.result-hero.is-sensitive .result-banner .badge-pill{
+  background:var(--neon-cyan);
+  color:#110a22;
+  border-color:#110a22;
+}
+.result-banner .label{ font-size:14px; font-weight:900; letter-spacing:.03em; }
+.result-hero-body{ padding:14px 14px 18px; text-align:center; position:relative; }
+.result-photo-stage{ position:relative; max-width:300px; margin:0 auto; }
+.avatar{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:20px;
+  overflow:hidden;
+  margin:0 auto;
+  border:4px solid var(--type-color);
+  outline:3px solid var(--ink);
+  background:var(--type-pastel);
+  box-shadow:0 5px 0 rgba(26,29,46,.15);
+}
+.result-hero.is-sensitive .avatar{
+  border:4px solid var(--neon-cyan);
+  outline:3px solid var(--neon-pink);
+  box-shadow:0 0 18px rgba(44,230,255,.35);
+}
+.avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+.sensitive-stamp{
+  position:absolute;
+  bottom:-10px;
+  right:-12px;
+  background:#180b30;
+  border:2.5px solid var(--neon-pink);
+  outline:2px solid var(--neon-cyan);
+  border-radius:10px;
+  padding:5px 10px;
+  color:var(--neon-cyan);
+  font-size:11px;
+  font-weight:900;
+  line-height:1.2;
+  transform:rotate(-6deg);
+  box-shadow:0 4px 12px rgba(255,62,157,.42);
+  z-index:3;
+}
+.result-group-tag{
+  display:inline-block;
+  margin-top:16px;
+  padding:3px 12px;
+  border-radius:99px;
+  font-size:12px;
+  font-weight:900;
+  border:2px solid var(--ink);
+  background:var(--type-pastel);
+  color:var(--ink);
+}
+.result-hero.is-sensitive .result-group-tag{
+  background:var(--neon-pink);
+  border-color:var(--neon-cyan);
+  color:#ffffff;
+}
+.result-name-wrap{ margin:10px 2px; }
+.result-hero h2{
+  font-size:clamp(22px, 6.6vw, 31px);
+  font-weight:900;
+  line-height:1.35;
+  color:var(--ink);
+  display:inline;
+  background:linear-gradient(transparent 62%, var(--type-pastel) 62%);
+  padding:0 6px 2px;
+}
+.result-hero.is-sensitive h2{
+  color:#ffffff;
+  background:linear-gradient(transparent 62%, rgba(255,62,157,.55) 62%);
+}
+.short-box{
+  position:relative;
+  background:#f5f7ff;
+  border:2.5px solid var(--ink);
+  border-left:7px solid var(--type-color);
+  border-radius:14px;
+  padding:12px 13px;
+  margin:14px 0 0;
+  text-align:left;
+  font-size:14px;
+  font-weight:800;
+  line-height:1.65;
+  color:var(--ink);
+  white-space:pre-line;
+  box-shadow:3px 3px 0 rgba(26,29,46,.12);
+}
+.result-hero.is-sensitive .short-box{
+  background:#221342;
+  border-color:var(--neon-cyan);
+  border-left:7px solid var(--neon-pink);
+  color:#f8f0ff;
+}
+.short-box::before{
+  content:"";
+  position:absolute;
+  top:-9px;
+  left:28px;
+  width:13px;
+  height:13px;
+  background:#f5f7ff;
+  border-top:2.5px solid var(--ink);
+  border-left:2.5px solid var(--ink);
+  transform:rotate(45deg);
+}
+.result-hero.is-sensitive .short-box::before{
+  background:#221342;
+  border-color:var(--neon-cyan);
+}
+
+/* サブタイプ（もう一つの顔） */
+.subtype-card{
+  margin-top:14px;
+  background:var(--card);
+  border:2.5px solid var(--ink);
+  border-radius:18px;
+  padding:12px;
+  box-shadow:4px 4px 0 var(--ink);
+  display:flex;
+  align-items:center;
+  gap:11px;
+  text-align:left;
+}
+.subtype-thumb{
+  width:64px;
+  height:64px;
+  flex-shrink:0;
+  border-radius:13px;
+  overflow:hidden;
+  border:2px solid var(--ink);
+  background:var(--track);
+}
+.subtype-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.subtype-info{ min-width:0; flex:1; }
+.subtype-pill{
+  display:inline-block;
+  background:var(--ink);
+  color:var(--gold);
+  font-size:10.5px;
+  font-weight:900;
+  padding:2px 9px;
+  border-radius:99px;
+  margin-bottom:4px;
+}
+.subtype-name{
+  display:block;
+  font-size:14.5px;
+  font-weight:900;
+  color:var(--ink);
+  line-height:1.35;
+}
+.subtype-group{
+  display:inline-block;
+  font-size:11px;
+  font-weight:800;
+  color:var(--sub);
+  margin-top:2px;
+}
+.subtype-short{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  color:var(--sub);
+  line-height:1.45;
+  margin-top:3px;
+}
+
+/* 結果詳細カード */
+.result-detail{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:20px;
+  padding:16px 14px;
+  margin-top:14px;
+  box-shadow:5px 5px 0 var(--ink);
+  text-align:left;
+}
+.detail-head{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:var(--ink);
+  color:var(--gold);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.05em;
+  padding:4px 12px;
+  border-radius:8px;
+  margin-bottom:12px;
+}
+.detail-blocks{ display:flex; flex-direction:column; gap:10px; }
+.detail-block{
+  background:#f8faff;
+  border:2px solid var(--line);
+  border-radius:13px;
+  padding:10px 12px;
+}
+.detail-block h3{
+  font-size:13px;
+  font-weight:900;
+  color:var(--accent-dark);
+  margin-bottom:4px;
+}
+.detail-block p{
+  font-size:13.5px;
+  line-height:1.78;
+  color:var(--ink);
+  font-weight:600;
+}
+.detail-block.is-warning{
+  background:#22103b;
+  border:2.5px solid var(--neon-pink);
+  color:#f8f0ff;
+}
+.detail-block.is-warning h3{ color:var(--neon-cyan); }
+.detail-block.is-warning p{ color:#f8f0ff; }
+
+/* 相性カード */
+.compat{
+  margin-top:14px;
+  border-top:2px dashed var(--line);
+  padding-top:14px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.compat-card{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  background:#f1fbf5;
+  border:2.5px solid var(--ink);
+  border-radius:14px;
+  padding:10px;
+}
+.compat-thumb{
+  width:58px;
+  height:58px;
+  flex-shrink:0;
+  border-radius:12px;
+  overflow:hidden;
+  border:2px solid var(--ink);
+  background:var(--track);
+}
+.compat-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.compat-info{ min-width:0; flex:1; }
+.compat-tag{
+  display:inline-block;
+  font-size:10.5px;
+  font-weight:900;
+  padding:1px 8px;
+  border-radius:6px;
+  border:1.5px solid var(--ink);
+  background:#b7f0cc;
+  color:var(--ink);
+  margin-bottom:4px;
+}
+.compat-name{ display:block; font-size:14px; font-weight:900; color:var(--ink); line-height:1.35; }
+.compat-note{ display:block; font-size:12px; color:var(--sub); font-weight:700; line-height:1.48; margin-top:2px; }
+
+/* 宣伝埋め込みミニUI & シェアブロック */
+.share-cta-box{ margin-top:18px; text-align:center; }
+.share-call{
+  display:inline-block;
+  background:var(--ink);
+  color:var(--gold);
+  font-size:12.5px;
+  font-weight:900;
+  padding:4px 14px;
+  border-radius:99px;
+  letter-spacing:.04em;
+}
+.promo-builder{
+  margin-top:11px;
+  background:var(--card);
+  border:2.5px solid var(--ink);
+  border-radius:18px;
+  padding:13px 12px;
+  box-shadow:4px 4px 0 var(--ink);
+  text-align:left;
+}
+.promo-title{
+  font-size:13.5px;
+  font-weight:900;
+  color:var(--ink);
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.mode-tabs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+}
+.mode-tab{
+  background:#f4f6ff;
+  border:2px solid var(--ink);
+  border-radius:10px;
+  padding:7px 4px;
+  font-size:11.5px;
+  font-weight:900;
+  color:var(--ink);
+  cursor:pointer;
+  font-family:inherit;
+  text-align:center;
+}
+.mode-tab.active{
+  background:var(--accent);
+  color:#ffffff;
+  box-shadow:2px 2px 0 var(--ink);
+}
+.tpl-pills{
+  display:flex;
+  gap:6px;
+  margin-top:9px;
+  flex-wrap:wrap;
+}
+.tpl-pill{
+  background:#f4f6ff;
+  border:2px solid var(--ink);
+  border-radius:99px;
+  padding:4px 11px;
+  font-size:11px;
+  font-weight:900;
+  color:var(--ink);
+  cursor:pointer;
+  font-family:inherit;
+}
+.tpl-pill.active{
+  background:var(--gold);
+  color:var(--ink);
+}
+.promo-fields{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:10px;
+}
+.promo-field label{
+  display:block;
+  font-size:11.5px;
+  font-weight:900;
+  color:var(--sub);
+  margin-bottom:3px;
+}
+.promo-field input, .promo-field textarea{
+  width:100%;
+  border:2px solid var(--ink);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:13.5px;
+  font-weight:700;
+  font-family:inherit;
+  color:var(--ink);
+  background:#fafbff;
+}
+.promo-field textarea{ resize:vertical; min-height:56px; }
+.chip-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:8px;
+}
+.chip-btn{
+  background:#eef2ff;
+  border:1.5px solid var(--ink);
+  border-radius:99px;
+  padding:3px 9px;
+  font-size:11px;
+  font-weight:800;
+  color:var(--ink);
+  cursor:pointer;
+  font-family:inherit;
+}
+.chip-btn:hover{ background:#dfe6ff; }
+.weight-bar{
+  margin-top:9px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  font-size:11.5px;
+  font-weight:900;
+  padding:6px 10px;
+  border-radius:10px;
+  background:#f1f5ff;
+  border:1.5px solid var(--line);
+}
+.weight-bar.near{ background:#fff7db; border-color:#d49e18; color:#805304; }
+.weight-bar.full{ background:#ffe8ed; border-color:#e0315a; color:#a11234; }
+.share-preview-box{
+  margin-top:8px;
+  background:#f8f9fc;
+  border:1.5px dashed #aebbe6;
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:11.5px;
+  line-height:1.55;
+  color:var(--ink);
+  white-space:pre-wrap;
+  word-break:break-word;
+  font-family:inherit;
+}
+
+.share-actions{ display:flex; flex-direction:column; gap:10px; margin-top:11px; }
+.share-actions .btn{ margin-top:0; font-size:15px; padding:14px 12px; }
+.btn.x-post{
+  background:linear-gradient(180deg, #2d3e59 0%, var(--ink) 100%);
+  color:#ffffff;
+  box-shadow:0 5px 0 var(--accent);
+}
+.btn.x-post:active{ transform:translateY(3px); box-shadow:0 2px 0 var(--accent); }
+.x-hint{
+  background:#ffffff;
+  border:2px solid var(--ink);
+  border-left:5px solid var(--accent);
+  border-radius:12px;
+  padding:8px 11px;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.55;
+  color:var(--ink);
+  text-align:left;
+}
+.x-hint.is-copied{ background:#eefbe8; border-left-color:#2c8a3e; }
+.x-hint.is-fallback{ background:#fff7df; border-left-color:#b8820c; }
+.x-hint code{ background:rgba(26,29,46,.08); padding:1px 5px; border-radius:4px; font-size:11px; font-family:monospace; }
+#btn-share{ display:none; }
+.share-hint{ display:none; }
+.share-hint.is-visible{ display:block; }
+.share-cta-box.env-mobile #btn-share{ display:block; order:1; }
+.share-cta-box.env-mobile #share-hint{ order:2; }
+.share-cta-box.env-mobile #btn-x-post{ order:3; }
+.share-cta-box.env-mobile #btn-quote-rt{ order:4; }
+.share-cta-box.env-mobile #btn-card{ order:5; }
+.share-cta-box.env-mobile #btn-x-image,
+.share-cta-box.env-mobile #x-hint{ display:none; }
+
+.card-mode-row{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin-top:12px;
+}
+.card-mode-pill{
+  flex:1;
+  background:#f4f6ff;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  padding:8px 8px;
+  font-size:12px;
+  font-weight:900;
+  color:var(--ink);
+  cursor:pointer;
+  font-family:inherit;
+}
+.card-mode-pill.active{
+  background:var(--ink);
+  color:var(--gold);
+}
+.card-preview-box{
+  display:none;
+  margin-top:14px;
+  text-align:center;
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:5px 5px 0 var(--ink);
+}
+.card-preview-frame{
+  display:inline-block;
+  width:100%;
+  max-width:360px;
+  border-radius:14px;
+  overflow:hidden;
+  border:2.5px solid var(--ink);
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+}
+.card-preview-frame.is-cutout{
+  background-image:
+    linear-gradient(45deg, #e5e9f2 25%, transparent 25%),
+    linear-gradient(-45deg, #e5e9f2 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e5e9f2 75%),
+    linear-gradient(-45deg, transparent 75%, #e5e9f2 75%);
+  background-size:20px 20px;
+  background-position:0 0, 0 10px, 10px -10px, -10px 0;
+  background-color:#ffffff;
+}
+.card-preview-frame img{ width:100%; display:block; }
+
+/* 作者ブロック & アフィリエイト枠 */
+.author-box{
+  margin-top:18px;
+  background:var(--card);
+  border:2.5px solid var(--ink);
+  border-radius:18px;
+  padding:15px 14px;
+  box-shadow:4px 4px 0 var(--ink);
+  text-align:left;
+}
+.author-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:8px;
+}
+.author-head h2{ font-size:15.5px; font-weight:900; color:var(--ink); }
+.author-handle{
+  display:inline-block;
+  font-size:11.5px;
+  font-weight:900;
+  color:var(--ink);
+  background:var(--gold);
+  border:2px solid var(--ink);
+  padding:2px 10px;
+  border-radius:99px;
+  line-height:1.4;
+}
+.author-desc{ font-size:12.5px; font-weight:700; line-height:1.72; color:var(--ink); }
+.author-subline{
+  margin-top:8px;
+  padding-top:8px;
+  border-top:1.5px dashed var(--line);
+  font-size:12px;
+  font-weight:800;
+  line-height:1.65;
+  color:var(--sub);
+}
+.author-actions{ display:flex; flex-direction:column; gap:9px; margin-top:12px; }
+.author-actions .btn{ margin-top:0; font-size:14px; padding:12px 14px; text-decoration:none; text-align:center; }
+
+.affiliate-box{
+  display:none;
+  margin-top:14px;
+  background:#fffdf6;
+  border:2.5px solid var(--ink);
+  border-left:6px solid var(--gold);
+  border-radius:16px;
+  padding:13px 14px;
+  text-align:left;
+  box-shadow:3px 3px 0 rgba(26,29,46,.12);
+}
+.affiliate-box.is-enabled{ display:block; }
+.affiliate-label{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--ink);
+  font-size:10.5px;
+  font-weight:900;
+  padding:2px 8px;
+  border-radius:6px;
+  border:1.5px solid var(--ink);
+  margin-bottom:6px;
+}
+.affiliate-title{ font-size:14px; font-weight:900; color:var(--ink); margin-bottom:4px; }
+.affiliate-desc{ font-size:12px; font-weight:700; color:var(--sub); line-height:1.55; margin-bottom:10px; }
+.affiliate-box .btn{ margin-top:0; font-size:13.5px; padding:10px 12px; text-decoration:none; }
+
+/* 配信者図鑑 */
+.alltypes{
+  margin-top:22px;
+  background:rgba(255,255,255,.88);
+  border:2.5px solid var(--ink);
+  border-radius:20px;
+  padding:15px 10px 14px;
+  box-shadow:4px 4px 0 rgba(26,29,46,.12);
+}
+.alltypes h2{ font-size:16.5px; font-weight:900; text-align:center; }
+.alltypes > p{
+  font-size:11.5px;
+  font-weight:700;
+  color:var(--sub);
+  text-align:center;
+  margin:4px 0 12px;
+}
+.zukan-groups{ display:flex; flex-direction:column; gap:12px; }
+.zukan-group{
+  background:#fafbff;
+  border:2px solid var(--line);
+  border-radius:14px;
+  padding:9px 8px 10px;
+}
+.zukan-group.is-secret-group{
+  background:#180e2e;
+  border-color:#7432a8;
+  color:#f8f0ff;
+}
+.zukan-group-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:6px;
+  margin-bottom:8px;
+  padding:0 2px;
+}
+.zukan-group-pill{
+  display:inline-block;
+  font-size:11px;
+  font-weight:900;
+  padding:2px 10px;
+  border-radius:99px;
+  color:#ffffff;
+  border:1.5px solid var(--ink);
+}
+.zukan-group-axis{ font-size:10.5px; font-weight:800; color:var(--sub); }
+.zukan-group.is-secret-group .zukan-group-axis{ color:#cfb8f0; }
+.grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:7px; }
+.grid-item{
+  background:#f4f7ff;
+  border:2px solid #c6d0ea;
+  border-radius:12px;
+  padding:4px 4px 6px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+}
+.grid-item.is-secret{
+  background:#231440;
+  border:2px dashed #9d5ae6;
+}
+.grid-item.got{
+  border:2.5px solid var(--ink);
+  background:#ffffff;
+  box-shadow:3px 3px 0 var(--accent);
+}
+.grid-item.is-sensitive-got{
+  border:2.5px solid var(--neon-pink);
+  background:#22113e;
+  box-shadow:3px 3px 0 var(--neon-cyan);
+}
+.grid-item.got::after{
+  content:"GET";
+  position:absolute;
+  top:-5px;
+  right:-4px;
+  background:var(--gold);
+  color:var(--ink);
+  font-size:8.5px;
+  font-weight:900;
+  padding:1px 5px;
+  border-radius:6px;
+  border:1.5px solid var(--ink);
+  z-index:2;
+}
+.grid-item.is-sensitive-got::after{
+  content:"NIGHT";
+  background:var(--neon-cyan);
+  color:#110a22;
+}
+.grid-thumb{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--track);
+  border:1.5px solid rgba(26,29,46,.22);
+}
+.grid-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.grid-item small{
+  display:block;
+  font-size:9.5px;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:var(--sub);
+  margin-top:5px;
+  line-height:1.28;
+  overflow-wrap:anywhere;
+}
+.grid-item.is-secret small{ color:#d6b8ff; }
+.grid-item.got small{ color:var(--ink); font-weight:900; }
+.grid-item.is-sensitive-got small{ color:#f8f0ff; }
+
+footer{
+  text-align:center;
+  color:var(--sub);
+  font-size:11px;
+  font-weight:700;
+  margin-top:26px;
+  line-height:1.85;
+}
+footer a{ color:var(--ink); }
+
+@media (max-width:360px){
+  .hero-sticker{ right:-6px; font-size:10px; }
+  .grid{ gap:5px; }
+  .opt{ padding:10px 11px; font-size:13.5px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .screen.on, #scr-result.on .result-hero{ animation:none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- トップ -->
+  <section id="scr-top" class="screen on">
+    <div class="hero">
+      <div class="hero-header">
+        <div class="noren-bar">🎙️ ON AIR｜配信者＆リスナー向け性格診断</div>
+        <div>
+          <div class="hero-title-wrap">
+            <h1>配信者タイプ診断</h1>
+            <span class="hero-sticker">Vol.1 全24タイプ!</span>
+          </div>
+        </div>
+        <p class="subtitle">あなたの配信スタイル＆深夜の素顔は？</p>
+      </div>
+      <div class="collage-board">
+        <div class="collage-rows" id="hero-collage"></div>
+        <div class="collage-teaser">✨ <b>21タイプの配信スタイルが勢ぞろい！</b><br>実は第3章の深夜枠に「秘密の3タイプ」が隠れているかも…？</div>
+      </div>
+      <p class="lead">18の配信シチュエーションに答えるだけで、あなたの配信タイプと「もう一つの顔（サブタイプ）」を診断！<br>結果カードは立ち絵貼り付け用の透過枠でも保存できます。</p>
+    </div>
+    <button class="btn btn-hero" id="btn-start">🎙️ 診断をはじめる！</button>
+    <button class="btn resume-btn" id="btn-resume" style="display:none">つづきから再開する</button>
+    <p class="meta" id="meta-info"></p>
+    <div class="top-invite">
+      <b>💖 配信者本人も、推しの「当てっこ」も大歓迎！</b><br>
+      自分の普段の配信を思い浮かべても、推しを想像して代理回答してもOK！結果画面で自分の配信宣伝を埋め込んでXへそのまま投稿できます🎙️
+    </div>
+    <div class="alltypes">
+      <h2>配信者図鑑（<span id="got-count">0</span>/<span id="total-count">24</span>）</h2>
+      <p>全8系統・24タイプ。系統7の3枠は見つけた人だけの深夜シークレット！</p>
+      <div class="zukan-groups" id="grid-top"></div>
+    </div>
+  </section>
+
+  <!-- 性別（任意・統計用） -->
+  <section id="scr-gender" class="screen">
+    <div class="quiz-panel">
+      <p class="q">はじめに、差し支えなければ<br>教えてください</p>
+      <p class="note">統計のためにだけ使います。結果には一切影響しません。<br>答えたくない場合はスキップできます。</p>
+      <div class="gender-opts">
+        <button class="opt" data-gender="female">女性</button>
+        <button class="opt" data-gender="male">男性</button>
+        <button class="opt" data-gender="other">その他</button>
+        <button class="opt" data-gender="skip">答えたくない（スキップ）</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 質問 -->
+  <section id="scr-q" class="screen">
+    <div class="quiz-panel">
+      <div class="q-top-meta">
+        <span class="chapter-pill" id="q-chapter">第1章</span>
+        <div class="progress" style="margin:0"><div class="num"><span id="q-num">1</span> / <span id="q-total">18</span>（<span id="q-pct">0</span>%）</div></div>
+      </div>
+      <div class="progress"><div class="bar"><i id="q-bar" style="width:0%"></i></div></div>
+      <p class="q" id="q-text"></p>
+      <div class="opts" id="q-opts"></div>
+      <button class="btn sub" id="btn-back" style="margin-top:12px">← もどる</button>
+    </div>
+  </section>
+
+  <!-- チャプター間の一言（第1章後・第2章後 各1回だけ） -->
+  <section id="scr-chapter" class="screen">
+    <div class="break-card">
+      <div class="break-badge" id="ch-badge">第1章クリア</div>
+      <div class="break-emoji" id="ch-emoji">🎙️</div>
+      <p class="q" id="ch-title" style="min-height:auto"></p>
+      <p class="break-msg" id="ch-msg"></p>
+      <p class="note" id="ch-note"></p>
+      <button class="btn" id="btn-chapter-next">つぎの章へ進む</button>
+    </div>
+  </section>
+
+  <!-- 結果 -->
+  <section id="scr-result" class="screen">
+    <div class="result-hero" id="r-hero">
+      <div class="result-banner" id="r-banner">
+        <span class="badge-pill" id="r-pill">診断結果</span>
+        <span class="label" id="r-banner-label">あなたの配信者タイプは…</span>
+      </div>
+      <div class="result-hero-body">
+        <div class="result-photo-stage">
+          <div class="avatar" id="r-avatar"><img id="r-img" src="" alt=""></div>
+          <div class="sensitive-stamp" id="r-sensitive-stamp" style="display:none">⚠ 深夜限定・取り扱い注意枠</div>
+        </div>
+        <span class="result-group-tag" id="r-group"></span>
+        <div class="result-name-wrap">
+          <h2 id="r-name"></h2>
+        </div>
+        <p class="short-box" id="r-short"></p>
+      </div>
+    </div>
+
+    <!-- サブタイプ（もう一つの顔） -->
+    <div class="subtype-card" id="r-subtype"></div>
+
+    <!-- 詳細 -->
+    <div class="result-detail">
+      <div class="detail-head">▶ 配信スタイルの詳細分析</div>
+      <div class="detail-blocks" id="r-detail-blocks"></div>
+      <div class="compat" id="r-compat"></div>
+    </div>
+
+    <!-- 宣伝埋め込み＆シェア導線 -->
+    <div class="share-cta-box" id="share-cta-box">
+      <span class="share-call">＼ 結果をシェア＆自分の枠を宣伝しよう！ ／</span>
+
+      <div class="promo-builder" id="promo-builder">
+        <div class="promo-title">
+          <span>📝 投稿文カスタム（@Tosh1000950 とURLは自動保護）</span>
+        </div>
+        <div class="mode-tabs" role="tablist">
+          <button type="button" class="mode-tab active" data-share-mode="streamer">🎙️ 配信者として宣伝</button>
+          <button type="button" class="mode-tab" data-share-mode="oshi">💖 推しを紹介</button>
+          <button type="button" class="mode-tab" data-share-mode="simple">✨ 結果だけ投稿</button>
+        </div>
+        <div class="tpl-pills" id="tpl-pills">
+          <button type="button" class="tpl-pill active" data-streamer-tpl="plan2b">案2-B（告知・標準）</button>
+          <button type="button" class="tpl-pill" data-streamer-tpl="plan1">案1（自己紹介型）</button>
+        </div>
+        <div class="promo-fields" id="promo-fields"></div>
+        <div class="chip-row" id="promo-chips"></div>
+        <div class="weight-bar" id="weight-bar">
+          <span id="weight-remain">残り --</span>
+          <span id="weight-used">-- / 280w</span>
+        </div>
+        <pre class="share-preview-box" id="share-preview"></pre>
+      </div>
+
+      <div class="share-actions">
+        <button type="button" class="btn x-post" id="btn-x-post">𝕏 Xで結果を投稿する</button>
+        <button type="button" class="btn quote-btn" id="btn-quote-rt" style="display:none">🔁 作者ポストを引用して宣伝する</button>
+        <button type="button" class="btn" id="btn-x-image">📋 カード画像をコピーしてXへ</button>
+        <p class="x-hint" id="x-hint" aria-live="polite"></p>
+        <button type="button" class="btn" id="btn-share">📤 結果をシェア（画像つき）</button>
+        <p class="x-hint is-fallback share-hint" id="share-hint" aria-live="polite"></p>
+        <div class="card-mode-row" id="card-mode-row">
+          <button type="button" class="card-mode-pill active" data-card-mode="normal">🎨 公式イラスト版</button>
+          <button type="button" class="card-mode-pill" data-card-mode="cutout">🖼️ 立ち絵用（透過穴あき）</button>
+        </div>
+        <button type="button" class="btn secondary" id="btn-card">📸 結果カードを画像で保存</button>
+      </div>
+    </div>
+
+    <div id="card-preview" class="card-preview-box">
+      <div class="card-preview-frame" id="card-preview-frame">
+        <img id="card-img" alt="結果カード">
+      </div>
+      <p class="note" id="card-preview-note">画像を長押し（PCでは右クリック）でも保存できます</p>
+      <a id="card-dl" class="btn" href="#" download style="text-decoration:none;">⬇ この画像をダウンロード</a>
+    </div>
+
+    <button class="btn sub" id="btn-retry">🔄 もう一度診断する</button>
+
+    <!-- 作者ブロック（FOLLOW_FUNNEL_SPEC＋SPEC_FINAL追加2行） -->
+    <section class="author-box" aria-labelledby="author-title">
+      <div class="author-head">
+        <h2 id="author-title">この診断を作った人</h2>
+        <span class="author-handle">@Tosh1000950</span>
+      </div>
+      <p class="author-desc">診断をいろいろ作って、少しずつ増やしています。他の診断も遊んでみてね。新作をいち早く知りたい人は、フォローしてもらえると嬉しいです。</p>
+      <p class="author-subline">
+        反響があれば、ゲーム実況系も入った Vol.2（32タイプ版）を作ります！公開通知は @Tosh1000950 へ<br>
+        診断コンテンツ制作・コラボのご相談はDMへ
+      </p>
+      <div class="author-actions">
+        <a class="btn x-post" href="https://twitter.com/intent/follow?screen_name=Tosh1000950" target="_blank" rel="noopener noreferrer">Xでフォローする</a>
+        <a class="btn sub" href="https://tosh1000950.github.io/shindan/">他の診断も見る</a>
+      </div>
+    </section>
+
+    <!-- アフィリエイト受け皿（初期非表示・data.jsonで出し入れ可能） -->
+    <aside class="affiliate-box" id="affiliate-box" aria-label="おすすめ情報">
+      <span class="affiliate-label" id="aff-label"></span>
+      <div class="affiliate-title" id="aff-title"></div>
+      <p class="affiliate-desc" id="aff-desc"></p>
+      <a class="btn secondary" id="aff-link" href="#" target="_blank" rel="noopener noreferrer sponsored">詳細を見る</a>
+    </aside>
+
+    <div class="alltypes">
+      <h2>配信者図鑑（<span id="got-count2">0</span>/<span id="total-count2">24</span>）</h2>
+      <p>全8系統・24タイプ。系統7の3枠は見つけた人だけの深夜シークレット！</p>
+      <div class="zukan-groups" id="grid-result"></div>
+    </div>
+  </section>
+
+  <footer>
+    エンタメ診断です。結果は気軽に楽しんでください。<br>
+    匿名の統計（結果の種類・利用イベント等）を今後の改善に利用しています。<br>
+    <a href="../../">Tosh1 トップへ</a>
+  </footer>
+</div>
+
+<script>
+"use strict";
+const DATA = {
+  "meta": {
+    "id": "streamer",
+    "version": "1",
+    "title": "配信者タイプ診断 Vol.1",
+    "displayTitle": "配信者タイプ診断",
+    "subtitle": "あなたの配信スタイル＆深夜の素顔は？",
+    "description": "18の配信シチュエーションに答えるだけで、あなたの配信スタイルを8系統・全24タイプに分類！サブタイプ（もう一つの顔）や好相性パートナー、宣伝シェア文も作れる診断です。",
+    "ogDescription": "18の配信シーンでわかる、あなたの配信者タイプは？全24タイプ＋深夜限定シークレット3枠！結果カードは立ち絵貼り付け用の透過枠も保存できます。",
+    "baseUrl": "https://tosh1000950.github.io/shindan/streamer/",
+    "shareBaseUrl": "https://tosh1000950.github.io/shindan/streamer/share/",
+    "portalUrl": "https://tosh1000950.github.io/shindan/",
+    "ga4Id": "G-ZY9E6YLPBM",
+    "statsUrl": "https://script.google.com/macros/s/AKfycbzywRRO-oaAFc4HR1jTKqv-6asGxOiKlzzYMn0hQ8-5eLjy89kFb0w4KzxlhnwjWeoqGg/exec",
+    "hashtag": "#配信者タイプ診断",
+    "authorHandle": "@Tosh1000950",
+    "followUrl": "https://twitter.com/intent/follow?screen_name=Tosh1000950",
+    "shareFollowLine": "他の診断も作ってます！新作をいち早く知りたい人は @Tosh1000950 をフォローしてね",
+    "launchPostUrl": "",
+    "progressKey": "streamer-progress-v1",
+    "gotKey": "streamer-got-v1",
+    "scoring": {
+      "typeWeight": 0.7,
+      "groupWeight": 0.3,
+      "gateThreshold": 5,
+      "sensitiveGroupId": "g7",
+      "sensitiveTypeDenom": 10.0,
+      "sensitiveGroupDenom": 11.0
+    },
+    "sensitiveUI": {
+      "badgeText": "深夜限定・取り扱い注意枠",
+      "stampText": "⚠ 深夜限定・取り扱い注意枠",
+      "secretGroupTitle": "深夜限定・シークレット枠",
+      "secretLabel": "？？？",
+      "secretTeaser": "まだ図鑑に現れていない深夜限定の隠しタイプ。第3章の質問で秘密の扉が開くかも…？"
+    },
+    "chapters": [
+      {
+        "id": "ch1",
+        "index": 1,
+        "title": "第1章：普段の配信スタイル",
+        "startQ": 0,
+        "endQ": 5,
+        "transitionBadge": "第1章クリア・ちょっと休憩",
+        "transitionEmoji": "🎙️",
+        "transitionTitle": "第1章おつかれさま！",
+        "transitionMessage": "普段のスタイルが見えてきたよ！次はピンチとリスナー対応。ハプニングの時、あなたの“本領”が出るかも…？",
+        "transitionNote": "ここまでの回答は自動保存されています。一息ついてから「第2章へ進む」を押してね。",
+        "transitionButton": "第2章へ進む"
+      },
+      {
+        "id": "ch2",
+        "index": 2,
+        "title": "第2章：ピンチとリスナー対応",
+        "startQ": 6,
+        "endQ": 11,
+        "transitionBadge": "第2章クリア",
+        "transitionEmoji": "🌙",
+        "transitionTitle": "あと6問でゴール！",
+        "transitionMessage": "あと6問でゴール！最後の章は照明を少し落として……。日付が変わったあとの“素顔と深夜のテンション”を覗くよ。",
+        "transitionNote": "ここまでの回答も自動保存されています。",
+        "transitionButton": "最終章（第3章）へ進む"
+      },
+      {
+        "id": "ch3",
+        "index": 3,
+        "title": "第3章：素顔と深夜のテンション",
+        "startQ": 12,
+        "endQ": 17
+      }
+    ],
+    "shareConfig": {
+      "defaultMode": "streamer",
+      "defaultStreamerTemplate": "plan2b",
+      "xMaxWeight": 280,
+      "xUrlWeight": 23,
+      "quickChips": [
+        "毎日21時〜定期枠！",
+        "初見さん大歓迎！",
+        "#新人ライバー",
+        "作業BGMにぜひ"
+      ]
+    },
+    "affiliate": {
+      "enabled": false,
+      "label": "PR・配信者＆リスナー向けおすすめ",
+      "title": "",
+      "description": "",
+      "buttonText": "詳細を見る",
+      "url": ""
+    }
+  },
+  "groups": [
+    {
+      "id": "g1",
+      "name": "ガチ・突破ランナー系",
+      "axisLabel": "熱量 × 目標",
+      "color": "#dc4a2e",
+      "badgeBg": "#ffe9e3",
+      "isSensitive": false
+    },
+    {
+      "id": "g2",
+      "name": "お祭り・エンタメMC系",
+      "axisLabel": "熱量 × 笑い",
+      "color": "#d48212",
+      "badgeBg": "#fff3d6",
+      "isSensitive": false
+    },
+    {
+      "id": "g3",
+      "name": "実家・ヒーラー系",
+      "axisLabel": "調和 × 居場所",
+      "color": "#288a5c",
+      "badgeBg": "#e1f7ec",
+      "isSensitive": false
+    },
+    {
+      "id": "g4",
+      "name": "初見歓迎・コミュニティ系",
+      "axisLabel": "調和 × つなぎ",
+      "color": "#1983b8",
+      "badgeBg": "#dff3fc",
+      "isSensitive": false
+    },
+    {
+      "id": "g5",
+      "name": "距離感バグ・沼キャラ系",
+      "axisLabel": "個性 × 関係性",
+      "color": "#d1477a",
+      "badgeBg": "#ffe4ef",
+      "isSensitive": false
+    },
+    {
+      "id": "g6",
+      "name": "世界観・表現クリエイター系",
+      "axisLabel": "個性 × 表現",
+      "color": "#6f4eb8",
+      "badgeBg": "#eee7ff",
+      "isSensitive": false
+    },
+    {
+      "id": "g7",
+      "name": "深夜のセンシティブトーク系",
+      "axisLabel": "深夜限定・ゲート",
+      "color": "#c82598",
+      "badgeBg": "#241138",
+      "isSensitive": true
+    },
+    {
+      "id": "g8",
+      "name": "マイペース・日常・知性派系",
+      "axisLabel": "独自 × 日常",
+      "color": "#3b6998",
+      "badgeBg": "#e4eef8",
+      "isSensitive": false
+    }
+  ],
+  "typeOrder": [
+    "ibedan",
+    "sanbou",
+    "taikyu",
+    "radiomc",
+    "kikaku",
+    "surreal",
+    "jikka",
+    "neochi",
+    "moguri",
+    "welcome",
+    "soudan",
+    "kyousou",
+    "numa",
+    "ponkotsu",
+    "tsundere",
+    "hyoui",
+    "isekai",
+    "shokunin",
+    "bousou",
+    "koakuma",
+    "snack",
+    "fukyou",
+    "lounge",
+    "famires"
+  ],
+  "collageOrder": [
+    "ibedan",
+    "sanbou",
+    "taikyu",
+    "radiomc",
+    "kikaku",
+    "surreal",
+    "jikka",
+    "neochi",
+    "moguri",
+    "welcome",
+    "soudan",
+    "kyousou",
+    "numa",
+    "ponkotsu",
+    "tsundere",
+    "hyoui",
+    "isekai",
+    "shokunin",
+    "fukyou",
+    "lounge",
+    "famires"
+  ],
+  "types": {
+    "ibedan": {
+      "id": "ibedan",
+      "code": "T01",
+      "hCode": "H01",
+      "name": "炎のイベラン団長",
+      "group": "ガチ・突破ランナー系",
+      "groupId": "g1",
+      "isSensitive": false,
+      "color": "#d9482b",
+      "pastel": "#ffe5de",
+      "short": "「みんなで頂上へ行こう！」が合言葉。\n熱量とまっすぐな言葉で枠をひとつのチームに変える王道リーダー。",
+      "features": "イベントや目標ランクを明確に掲げ、リスナーを「仲間」として巻き込んでいく熱血司令塔です。「ナイス！」「あと少し、頼む！」と声を張り、応援する側に「この人を勝たせたい」と本気で思わせる求心力を持ちます。ギフトやコメントへの感謝も全身全霊で、枠全体が熱い一体感に包まれます。",
+      "strengths": "逆境でも折れない突破力と、リスナーの熱意をひとつに束ねる圧倒的なリーダーシップ。ここ一番のイベント最終日で誰より輝きます。",
+      "weaknesses": "全力疾走しすぎるあまり、イベントが終わった瞬間に燃え尽きて数日音信不通になりがち。また、目標に届かないと必要以上に自分を責めてしまいがちなので、たまには目標なしの「ただの雑談枠」を挟むと長く伴走してもらえます。",
+      "good": "sanbou",
+      "goodNote": "熱い想いで枠を引っ張るあなたと、数字と時間配分で勝ち筋を描く参謀が組めば無敵の攻略陣形に！"
+    },
+    "sanbou": {
+      "id": "sanbou",
+      "code": "T02",
+      "hCode": "H03",
+      "name": "冷静沈着なメーター参謀",
+      "group": "ガチ・突破ランナー系",
+      "groupId": "g1",
+      "isSensitive": false,
+      "color": "#c4511a",
+      "pastel": "#ffeadc",
+      "short": "勝利はロジックと時間配分で掴み取る。\n穏やかな口調の奥に誰より熱い闘志を秘めた頭脳派ライバー。",
+      "features": "イベントの日毎ポイント、メーターのプラマイ計算、リスナーの活動時間帯やバッジ更新タイミングまで緻密に読んで配信を組み立てる戦略家です。「今ここでこう動けば勝てる」という見通しが明確なため、ガチ勢リスナーからの信頼が極めて厚く、落ち着いた進行で安心感を与えます。",
+      "strengths": "感情に流されない冷静な状況判断と、限られた時間・応援を最大の成果へ変える設計力。無理のない勝ち方を作れる実力派です。",
+      "weaknesses": "効率やスコアを意識しすぎるあまり、画面の向こうで計算している空気が出ると初見やライト層が「ガチすぎて入りづらいかも」と構えてしまうことも。計算は裏メモに留め、枠では「楽しんでたら勝てた」くらいの余裕を見せると無敵です。",
+      "good": "ibedan",
+      "goodNote": "緻密な作戦をそのまま熱量へ変換してくれる最高の相棒で、お互いに足りないピースがぴったり噛み合います。"
+    },
+    "taikyu": {
+      "id": "taikyu",
+      "code": "T03",
+      "hCode": "H02",
+      "name": "限界突破の耐久バーサーカー",
+      "group": "ガチ・突破ランナー系",
+      "groupId": "g1",
+      "isSensitive": false,
+      "color": "#b83244",
+      "pastel": "#ffe0e5",
+      "short": "バッジも企画も終わるまで寝ない！？\n深夜や早朝の謎テンションすら笑いに変える枠内の体力モンスター。",
+      "features": "「ファンバッジ〇〇人獲得まで終われません」「〇時間・〇コメント耐久」など、喉と体力を張った無茶な挑戦が代名詞です。深夜を回って頭が少しバグり始めてからもなぜか面白く、コメント欄が「早く寝ろｗ」「見守ってるぞ（眠い）」とお祭り騒ぎになる愛されタフガイです。",
+      "strengths": "過酷なピンチや疲労すらエンタメに昇華する圧倒的なタフさと、「今この場に立ち会わなきゃ」と思わせるライブ感の塊。",
+      "weaknesses": "本人がケロッとしていても、見ているリスナーの睡眠時間と胃の方が先に限界を迎えがち。「心配だから終わらせるために投げる」愛の救済に甘えすぎないよう、健康管理と計画的な撤退ラインも用意しておくと最強です。",
+      "good": "famires",
+      "goodNote": "何時間耐久していても朝まで一緒に起きて見守ってくれる、夜行性の頼もしすぎる相棒です。"
+    },
+    "radiomc": {
+      "id": "radiomc",
+      "code": "T04",
+      "hCode": "H05",
+      "name": "爆速捌きの枠内ラジオMC",
+      "group": "お祭り・エンタメMC系",
+      "groupId": "g2",
+      "isSensitive": false,
+      "color": "#cf7b10",
+      "pastel": "#fff0d1",
+      "short": "どんなコメントも秒で拾って笑いに変える。\n無音1秒すら許さない、作業BGM人気No.1の天性おしゃべり司会者。",
+      "features": "コメントを拾うスピードと返しのキレがずば抜けており、何気ない日常報告から大喜利ボケまで軽快に笑いに変えてしまいます。会話のテンポが良いため、作業中や移動中の耳のお供として聴いていても絶対に飽きません。初見のコメントと常連のボケを絶妙なバランスで捌く空間の支配者です。",
+      "strengths": "場を一瞬で明るく温めるトーク回転力と、放送事故すら繋ぎトークで笑いに変える圧倒的な現場対応力。",
+      "weaknesses": "自分が喋って場を回す癖がついているため、しんみりした空気や本気の褒め言葉に対して照れてネタへ逃げてしまいがち。たまにはテンポを落として、素直な「嬉しい」「ありがとう」をそのまま口にするとギャップで沼る人が急増します。",
+      "good": "surreal",
+      "goodNote": "爆速でパスを回すあなたと、真顔の一言でオチをかっさらうスナイパーは黄金の漫才コンビです。"
+    },
+    "kikaku": {
+      "id": "kikaku",
+      "code": "T05",
+      "hCode": "H06",
+      "name": "カオス量産の企画モンスター",
+      "group": "お祭り・エンタメMC系",
+      "groupId": "g2",
+      "isSensitive": false,
+      "color": "#df5c1e",
+      "pastel": "#ffe7db",
+      "short": "普通の雑談じゃ物足りない！\nルーレットに語尾縛り、毎日が文化祭のアイデア＆カオス製造機。",
+      "features": "「今日は罰ゲームルーレット」「ギフトでルール変更」「〇〇選手権」など、ユニークな企画と仕掛けを次々と持ち込むエンタメ特化型です。枠を開くと常に何かしらおかしなことが起きており、予定調和を壊す爆発力でリスナーを飽きさせません。「次はどんなカオスをやるんだろう」と枠を開く楽しみをくれます。",
+      "strengths": "日常の些細なアクシデントすら「よし企画にしよう！」と遊び場に変える発想力と、初見も巻き込むエンタメ構築力。",
+      "weaknesses": "企画の仕込みに力を注ぐ反面、何のギミックもない素の雑談枠を開くと急に手持ち無沙汰になりがち。また独自ルールが複雑だと初見さんが把握する前に離脱しやすいので、ひと目で笑える「シンプルな定番企画」を1つ持てると最強です。",
+      "good": "kyousou",
+      "goodNote": "あなたのぶっ飛んだ企画アイデアを、リスナーと一緒に楽しく形へ整えてくれる最高の開発パートナーです。"
+    },
+    "surreal": {
+      "id": "surreal",
+      "code": "T06",
+      "hCode": "H31",
+      "name": "低体温ワードで刺すシュール系スナイパー",
+      "group": "お祭り・エンタメMC系",
+      "groupId": "g2",
+      "isSensitive": false,
+      "color": "#56708a",
+      "pastel": "#e4edf5",
+      "short": "ハイテンションなんて必要ない。\nボソッと呟く一言と絶妙な間（ま）で腹筋を撃ち抜くダウナー賢者。",
+      "features": "配信全体を通して声のトーンが落ち着いており、大声で叫んだりハイテンションで煽ったりすることは滅多にありません。それなのに、コメントへのドライで的確すぎるツッコミや真顔で放つシュールな例え話の破壊力がすさまじく、静かな枠のままコメント欄に「草」「言い方ｗ」を連発させます。",
+      "strengths": "耳が疲れない穏やかな声質と、騒がしい枠が苦手な層まで一撃で笑わせる唯一無二のワードセンス。",
+      "weaknesses": "テンションの低さとドライな返しが魅力なぶん、ギフトへの喜びや感謝まで控えめに見えてしまい、初見に「あれ、怒ってる？喜んでない？」と誤解されがち。たまには声のトーンを1ミリ上げて「…ほんと助かる、ありがとう」と伝えると可愛げが爆裂します。",
+      "good": "radiomc",
+      "goodNote": "明るく話を振ってくれるMCの横であなたがボソッと刺すと、笑いの破壊力が3倍以上に跳ね上がります。"
+    },
+    "jikka": {
+      "id": "jikka",
+      "code": "T07",
+      "hCode": "H09",
+      "name": "おかえり連発の実家リビング番長",
+      "group": "実家・ヒーラー系",
+      "groupId": "g3",
+      "isSensitive": false,
+      "color": "#2c8f58",
+      "pastel": "#dff7e8",
+      "short": "「ただいま」が日本一似合う配信枠。\n特別な企画がなくてもみんなが集まってくる、温かい実家のリビング。",
+      "features": "派手な煽りや過剰なテンションがなくても、枠に入った瞬間に心がほどける圧倒的なホーム感の持ち主です。「今日も仕事お疲れ」「ちゃんとご飯食べた？」と気負わない挨拶を交わし、常連リスナー同士がコメント欄でほのぼの会話していても優しく見守る大らかさがあります。",
+      "strengths": "リスナーの「帰る場所」を自然に作り出せる包容力と、何年経っても離れられない長期ファンを育てる安心感。",
+      "weaknesses": "常連同士の仲が良くて実家感が完成しているぶん、初見さんが「できあがった家族団らんに混ざっていいのかな…」と遠慮してROMに回りやすいのが惜しいところ。「いま〇〇の話をしてるよ〜」と時々話題の解説を挟むだけで新しい家族が増えます。",
+      "good": "welcome",
+      "goodNote": "初見さんを0秒で招き入れる案内人と、温かい実家感で定着させるあなたの連携は最強の玄関口です。"
+    },
+    "neochi": {
+      "id": "neochi",
+      "code": "T08",
+      "hCode": "H11",
+      "name": "深夜の寝落ち請負人",
+      "group": "実家・ヒーラー系",
+      "groupId": "g3",
+      "isSensitive": false,
+      "color": "#3d7e8c",
+      "pastel": "#dff3f7",
+      "short": "気づいたら夢の中へ――。\n優しい声色と心地よい間（ま）で一日の終わりに安眠を届ける聖域。",
+      "features": "声のトーンが耳に優しく、話すスピードやBGMの音量バランスまで「聴く人の心地よさ」が染み付いている癒やし特化型です。突発的な大声や急なテンションの上下がないため、「このまま寝落ちしていいよ」の言葉に甘えて布団の中で眠りにつくファンが続出します。",
+      "strengths": "一日の疲れを溶かす天性の安眠ボイスと、言葉を詰め込みすぎなくても空間を穏やかに保てる心地よい呼吸感。",
+      "weaknesses": "穏やかさが魅力ゆえに、イベントのランキング煽りや賑やかな盛り上げ勝負では少し気後れしがち。また配信後半でコメントが静かになるのは「過疎」ではなく「リスナーが気持ちよく寝落ちした証」なので、最高の褒め言葉として誇ってOKです。",
+      "good": "moguri",
+      "goodNote": "無言や静かな間をプレッシャーに感じない価値観がそっくりで、コラボしても最高にチルい空気が流れます。"
+    },
+    "moguri": {
+      "id": "moguri",
+      "code": "T09",
+      "hCode": "H12",
+      "name": "潜り歓迎の作業見守り主",
+      "group": "実家・ヒーラー系",
+      "groupId": "g3",
+      "isSensitive": false,
+      "color": "#4d8b3e",
+      "pastel": "#e5f6de",
+      "short": "喋らなくても、作業BGMでもOK。\n気を使わず同じ空間に居られる、究極のノンストレスゆる枠。",
+      "features": "自分も作業や趣味・ゲームを進めながら枠を開き、「潜り（ROM）大歓迎」「好きに聴き流して〜」とリスナーに一切のプレッシャーを与えないスタイルです。数十秒の無言が続いても焦らず、ときどき思い出したように独り言やゆるい反応を挟むマイペースさが絶妙な居心地を生んでいます。",
+      "strengths": "お互い無理をせず長く続けられる自然体な空気感と、「コメントしなきゃ」という疲れを感じさせない器の広さ。",
+      "weaknesses": "ゆるさが心地よい反面、作業に集中しすぎて初見入室への挨拶が遅れると「作業の邪魔だったかな？」とそっと退出されてしまうことも。手元を見たままで構わないので「いらっしゃい、ゆっくりしてってね〜」の挨拶だけ定型で返せると定着率が激変します。",
+      "good": "neochi",
+      "goodNote": "騒がしさを求めず心地よい気配だけを共有できる、お互いにとって一番気疲れしない理想の隣人です。"
+    },
+    "welcome": {
+      "id": "welcome",
+      "code": "T10",
+      "hCode": "H13",
+      "name": "入室0秒の神速ウェルカム案内人",
+      "group": "初見歓迎・コミュニティ系",
+      "groupId": "g4",
+      "isSensitive": false,
+      "color": "#1983b8",
+      "pastel": "#ddf2fc",
+      "short": "入室ログが光った瞬間に距離ゼロ！\n誰とでも3分で打ち解けさせる、天性のホスピタリティ案内人。",
+      "features": "入室通知への反応速度と初見さんへの寄り添い力が神レベルです。相手の名前やアイコン・プロフィールを一瞬で読み取って「〇〇好きなんだね！」と話題を振り、常連さんとも自然に繋いで会話の輪へ招き入れます。配信初心者にも優しくルールを教えてあげられるため、枠の入り口が抜群に広いです。",
+      "strengths": "新規リスナーの離脱率を劇的に下げる観察眼と、誰一人置いてけぼりにしない鮮やかなコミュニティ橋渡し力。",
+      "weaknesses": "新しい人を歓迎することに全力を注ぐあまり、いつもの常連さんへの甘えやケアが後回しに見えたり、自分が「接客モード」に入りすぎて配信後にどっと疲れたりすることも。たまには常連に甘えて自分自身がのんびり楽しむ時間も作ってくださいね。",
+      "good": "jikka",
+      "goodNote": "あなたが優しく招き入れた初見さんを、実家番長がずっと居たくなる家族へと包み込んでくれます。"
+    },
+    "soudan": {
+      "id": "soudan",
+      "code": "T11",
+      "hCode": "H14",
+      "name": "深夜の駆け込み相談バー店主",
+      "group": "初見歓迎・コミュニティ系",
+      "groupId": "g4",
+      "isSensitive": false,
+      "color": "#276b9e",
+      "pastel": "#e0ecfa",
+      "short": "「ちょっと聴いてよ」が止まらない。\n仕事の愚痴も人生の迷いも優しく包み込む深夜のカウンセラー。",
+      "features": "普通の雑談から始めたはずが、気づけば仕事や人間関係の愚痴・人生の迷い相談が自然と集まってくる深夜バーの店主的存在です。人の話を遮らずに最後まで聴き、絶妙なタイミングの「それは大変だったね」「よく頑張ってるよ」という全肯定で、リスナーの折れかけた心をそっと立て直します。",
+      "strengths": "表面的な盛り上がりにとどまらない深い信頼と人望。「この人の枠で救われた」という恩義から一生のファンが生まれます。",
+      "weaknesses": "他人の重い感情を真面目に受け止めすぎるため、配信後に共感疲れを起こしやすいのが心配な点。また重い相談が長引くと明るく雑談したい他の人が入りづらくなるので、「よし、この話はここで乾杯して終了！」と空気を切り替える合図を持つと盤石です。",
+      "good": "lounge",
+      "goodNote": "感情を丸ごと受け止めるあなたと、思考を優しく整理してくれるラウンジ主が揃えば悩み解決の最強空間に。"
+    },
+    "kyousou": {
+      "id": "kyousou",
+      "code": "T12",
+      "hCode": "H16",
+      "name": "リスナー参加型の共創ディレクター",
+      "group": "初見歓迎・コミュニティ系",
+      "groupId": "g4",
+      "isSensitive": false,
+      "color": "#18919a",
+      "pastel": "#dcf6f7",
+      "short": "企画も名前もみんなで決めちゃう！\nリスナーを枠の“共犯者”に変える参加型コミュニティの仕掛け人。",
+      "features": "立ち絵の衣装案、次のイベント企画、枠の決め台詞やファンマークまで、「どれがいいと思う？」とリスナーに意見を募りながら一緒に枠を育てていくスタイルです。アンケートやコメント大喜利の使い方が上手く、リスナーに「この枠は自分たちで創っている」という熱い当事者意識を持たせます。",
+      "strengths": "リスナーを単なる視聴者から「頼れる仲間・共創パートナー」へ変えてしまう巻き込み力と、企画が枯れない循環の作り方。",
+      "weaknesses": "みんなの意見に優しく耳を傾けすぎるあまり、肝心な場面で「配信者自身の本当の軸ややりたいこと」がぼやけて見えることも。「アイデアはみんなで、最後の決断は自分が背負う！」という船長の一言があるとカリスマ性が跳ね上がります。",
+      "good": "kikaku",
+      "goodNote": "モンスターが投げる突拍子もないカオス案を、あなたがみんなの参加型企画に落とし込むと神枠が爆誕します。"
+    },
+    "numa": {
+      "id": "numa",
+      "code": "T13",
+      "hCode": "H17",
+      "name": "記憶力お化けの距離感バグ沼製造機",
+      "group": "距離感バグ・沼キャラ系",
+      "groupId": "g5",
+      "isSensitive": false,
+      "color": "#c93e7a",
+      "pastel": "#ffe2ef",
+      "short": "「こないだ話したアレ、どうなった？」\n一人ひとりを特別扱いしすぎて全員を沼に落とす罪な記憶力お化け。",
+      "features": "リスナーの名前・アイコンの微細な変化・仕事の予定・数週間前の何気ないコメントまで驚くほど正確に覚えています。さらに「おかえり〇〇、寂しかったよ」と息をするように距離を詰めるため、聴いている側が「自分だけ特別かも？」と錯覚してどんどん深みにハマってしまいます。",
+      "strengths": "一度掴んだファンを絶対に離さない圧倒的なパーソナル認知力と、一人ひとりに刺さる距離感の魔術。",
+      "weaknesses": "全員に平等に「特別感」を出してしまうため、複数の常連が同時に嫉妬してコメント欄に静かな緊張感が走る「無自覚の修羅場」を生みやすい点。悪気ゼロなのは伝わっていますが、「みんなが大事な仲間だよ」の線引きラインも上手に混ぜてあげて。",
+      "good": "tsundere",
+      "goodNote": "記憶力で甘く沼らせるあなたと、毒舌の裏に愛を隠すツンデレが揃えば、リスナーは二度と抜け出せません。"
+    },
+    "ponkotsu": {
+      "id": "ponkotsu",
+      "code": "T14",
+      "hCode": "H19",
+      "name": "介護必須の愛されポンコツ",
+      "group": "距離感バグ・沼キャラ系",
+      "groupId": "g5",
+      "isSensitive": false,
+      "color": "#de6168",
+      "pastel": "#ffe5e6",
+      "short": "マイクミュートで5分熱弁は日常茶飯事！？\n危なっかしくて目が離せない、リスナー総出で育てる保護欲モンスター。",
+      "features": "BGMの二重再生、ミュートのまま熱弁、漢字の読み間違いやイベントルール勘違いが日常茶飯事です。「この人を一人にしたら危ない」というリスナーの保護欲を強烈に刺激し、「ミュート！」「時間違ってるよｗ」とコメント欄が総出で介護する独特の一体感と愛嬌に溢れています。",
+      "strengths": "ミスや失敗すら温かい笑いと思い出に変わる天性の愛され体質と、リスナーが「自分が支えてあげなきゃ」と通いたくなる引力。",
+      "weaknesses": "普段のポンコツは最高の魅力ですが、ガチイベの締切時刻やバッジ返礼品の約束など「本当に大事な約束」でのミスが続くと、支えてくれているコアファンの胃薬消費量が危険水域に。大事な予定のリマインダーだけは指差し確認できると無敵です。",
+      "good": "shokunin",
+      "goodNote": "細部まで抜かりない職人があなたの抜け漏れをカバーし、あなたの愛嬌が職人の肩の力を抜いてくれます。"
+    },
+    "tsundere": {
+      "id": "tsundere",
+      "code": "T15",
+      "hCode": "H18",
+      "name": "愛ある毒舌の甘辛ツンデレ",
+      "group": "距離感バグ・沼キャラ系",
+      "groupId": "g5",
+      "isSensitive": false,
+      "color": "#b8438f",
+      "pastel": "#fce2f3",
+      "short": "「は？暇なの？…べつに居てもいいけど」\n強気なツッコミと不器用な優しさの寒暖差で撃ち抜くギャップ殺し。",
+      "features": "一見すると塩対応だったり少しSっ気のあるツッコミを入れたりするのに、いざリスナーが元気をなくしたりギフトを贈ったりすると急に照れたように優しくなるギャップの塊です。「ちゃんと寝なさいよ」「お前がいないと静かじゃん」という不器用な言葉に心を撃たれ、喜んでイジられに通うファンが後を絶ちません。",
+      "strengths": "ありふれた優しさでは作れない強烈なキャラクター性と、「本音を引き出したい」と思わせる甘い中毒性。",
+      "weaknesses": "文字だけのSNSや切り抜きの1コマだけを見た初見さんに「ちょっと怖い人なのかな？」と誤解されやすいのが惜しいところ。ツン3割・愛嬌7割の塩梅を意識したり、記念日には照れずにストレートな「大好き」を言葉にしたりすると人気が爆発します。",
+      "good": "numa",
+      "goodNote": "甘さで落とす沼製造機とツンデレの掛け合いは温度差がエグく、見ているだけでコメント欄が大歓喜します。"
+    },
+    "hyoui": {
+      "id": "hyoui",
+      "code": "T16",
+      "hCode": "H21",
+      "name": "声で空気を変える憑依パフォーマー",
+      "group": "世界観・表現クリエイター系",
+      "groupId": "g6",
+      "isSensitive": false,
+      "color": "#6d48b8",
+      "pastel": "#ece4ff",
+      "short": "歌った瞬間、セリフを読んだ瞬間――。\n普段の気さくな雑談を一瞬でステージに変える圧倒的声の表現者。",
+      "features": "普段の雑談は親しみやすく気さくなのに、ひとたび歌枠やセリフ枠・朗読モードに入るとスイッチが切り替わり、圧倒的な声の表現力でコメント欄を黙らせる実力派です。ギフトに合わせて即興ボイスを返したり、曲に合わせて声色を変えたりと、「耳で味わう非日常」を届ける力が抜けて高いです。",
+      "strengths": "初見が一聴き惚れしてそのままファンになりやすい一芸の破壊力と、雑談と本番の凄まじいギャップ。",
+      "weaknesses": "声や表現へのプライドが高いぶん、少し喉が本調子でない日や歌詞を噛んだだけで「今日はダメだ…」と厳しく落ち込みがち。また表現が本格的すぎてリスナーが「今コメしたら邪魔かな」と遠慮することもあるため、曲間の気さくな笑顔を忘れずに。",
+      "good": "koakuma",
+      "goodNote": "あなたの憑依表現と小悪魔の吐息・間（ま）がコラボしたら、リスナーの鼓膜が幸せで溶け落ちる神回になります。"
+    },
+    "isekai": {
+      "id": "isekai",
+      "code": "T17",
+      "hCode": "H22",
+      "name": "設定貫徹の異世界ロールプレイヤー",
+      "group": "世界観・表現クリエイター系",
+      "groupId": "g6",
+      "isSensitive": false,
+      "color": "#4b56b8",
+      "pastel": "#e4e7ff",
+      "short": "ここは異世界の酒場（あるいは魔界）。\n口調も立ち振る舞いも決して崩さず別世界へ誘う没入体験の主。",
+      "features": "キャラクターの設定・一人称・口調・世界観を徹底して守り抜き、リスナーのコメントも「冒険者」「客人」「臣民」など世界観に沿って捌いていくプロフェッショナルです。日常の何気ない雑談がそのまま物語の一部になり、現実を忘れて別世界へ遊びに来たような没入感を楽しませます。",
+      "strengths": "「中の人」を安易に出さない美しいプロ意識と、他のどこにもない濃いコンセプトによる圧倒的な差別化力。",
+      "weaknesses": "設定を崩さない真面目さゆえに、イベントのリアルな数字のお願いや体調不良をどうキャラ言葉に翻訳するかで悩みやすい点。設定の枠の中で上手に自虐やボケを混ぜられる「余裕のユーモア」を身につけると、最強のエンタメ世界が完成します。",
+      "good": "fukyou",
+      "goodNote": "世界観を創り込むあなたと、作品愛を熱く語るプレゼンターは、オタク魂と創作愛で深く共鳴し合えます。"
+    },
+    "shokunin": {
+      "id": "shokunin",
+      "code": "T18",
+      "hCode": "H23",
+      "name": "細部こだわりセルフプロデュース職人",
+      "group": "世界観・表現クリエイター系",
+      "groupId": "g6",
+      "isSensitive": false,
+      "color": "#8a49ab",
+      "pastel": "#f3e4fc",
+      "short": "サムネ、立ち絵、返礼品まで妥協ゼロ！\n隅々まで行き届いた美意識とクオリティで信頼を勝ち取る職人。",
+      "features": "配信の顔になるサムネイル、立ち絵の表情差分や画面レイアウト、バッジ特典（アイコンリング・壁紙・限定ボイスなど）の作り込みまで、細部に一切妥協しないクリエイター肌です。「リスナーに最高の体験を届けたい」という美意識が高く、枠を開いた瞬間の完成度で魅了します。",
+      "strengths": "目に見えるビジュアルとサービス品質の高さによるブランド力。SNSで宣伝したときの「惹きの強さ」は全タイプ屈指です。",
+      "weaknesses": "配信外の画像制作や企画準備にこだわりすぎて睡眠不足になったり、「まだ完璧じゃないから今日は開けない…」と完璧主義の罠にハマって配信頻度が落ちたりしがち。「60点の出来でもまず開いて話しちゃう」身軽さを持つとファンが急増します。",
+      "good": "ponkotsu",
+      "goodNote": "完璧主義で張り詰めがちなあなたをポンコツの緩さが笑顔にしてくれ、逆にポンコツのミスをあなたが華麗に救えます。"
+    },
+    "bousou": {
+      "id": "bousou",
+      "code": "T19",
+      "hCode": "H25",
+      "name": "深夜2時の『健全枠（大嘘）』暴走アクセル",
+      "group": "深夜のセンシティブトーク系",
+      "groupId": "g7",
+      "isSensitive": true,
+      "color": "#d92588",
+      "pastel": "#2b143b",
+      "short": "「うちは超健全枠だから！！」と叫びながらアクセルベタ踏み。\n言い訳するほど危ない「XXXXX」方向へ自爆加速する深夜のコメディ王。",
+      "features": "タイトルや普段の看板には「健全」「平和な雑談」と掲げているのに、深夜2時を回ったあたりからコメント欄の巧妙なミスリードを律儀に拾い、「いや違うし！！そういう『XXXXX』な意味じゃないから！！」と必死に言い訳しては、結果的に一番危ない方向へ話を転がしていく愛すべき自爆王です。本人が焦るほどリスナーから「今日の健全枠（大嘘）も絶好調だなｗ」と愛ある総ツッコミを浴びます。",
+      "strengths": "わざとらしさのない素のリアクション芸と、際どいボケすら爆笑コメディに変えてしまう圧倒的な瞬発力。",
+      "weaknesses": "反応が面白すぎるため、リスナーが「どうやって今夜もこの人を泳がせて暴走させるか」に本気を出し始めます。ツッコミのつもりで危ない単語を連呼しがちなので、華麗なスルー芸も覚えておくと長生きできます。",
+      "good": "snack",
+      "goodNote": "暴走して脱線しがちなあなたのアクセルを、大人の艶とユーモアで笑いながら綺麗に回収してくれる夜の相棒です。",
+      "warning": "「テンション上がりすぎ＆ノリでの言質」に注意！ ツッコミのつもりでも、そこだけ切り抜かれると「本人が一番ノリノリで『XXXXX』連呼してる枠」に見えがち。深夜のアクセルの横に、ちゃんとブレーキの場所も貼っておこう！"
+    },
+    "koakuma": {
+      "id": "koakuma",
+      "code": "T20",
+      "hCode": "H27",
+      "name": "BAN寸止めの『匂わせ』囁き小悪魔",
+      "group": "深夜のセンシティブトーク系",
+      "groupId": "g7",
+      "isSensitive": true,
+      "color": "#a934d6",
+      "pastel": "#24123b",
+      "short": "「えっ、今なに想像したの？ｗ」\n単語は100%健全なのに、間（ま）と吐息で「XXXXX」を連想させる罪な釣り師。",
+      "features": "口にしている単語自体は完全に健全な日常ワードばかりなのに、吐息混じりの囁き声、絶妙な沈黙の間、立ち絵の表情差分の切り替え、そして「今夜は寝かせないからね？」「そんなにずっと見てたいの？」といった意味深フレーズでコメント欄を「助けて」「鼓膜が溶ける」と騒然とさせます。リスナーが動揺した瞬間に「勝手に『XXXXX』な意味に受け取ったのはそっちでしょ〜？ｗ」と無邪気に笑ってトドメを刺す魔性の持ち主です。",
+      "strengths": "直接的な言葉を使わずに想像力だけで空気を支配する高度な声の演出術と、茶目っ気と色気の絶妙な同居。",
+      "weaknesses": "匂わせの完成度が高すぎて、冗談が通じにくい初見さんが「そういうサービス枠？」と距離感を勘違いして近寄ってくるリスクも。釣りっぱなしにせず、最後はカラッと笑って「はい冗談おわり！」と線を引くのが上手な小悪魔です。",
+      "good": "hyoui",
+      "goodNote": "表現に振り切った実力者同士で声劇やセリフ企画を組めば、コメント欄が耐えられない最高峰の耳福コラボに。",
+      "warning": "「切り抜き時の文脈消失リスク」に注意！ オチの笑い声がカットされて一番甘い囁き5秒間だけSNSに流れると、ガチの規約スレスレ枠に誤解されがち。オチまでセットにさせるか、切り抜きガイドラインを明記しよう！"
+    },
+    "snack": {
+      "id": "snack",
+      "code": "T21",
+      "hCode": "H26",
+      "name": "ネオン輝く深夜スナックの恋バナママ",
+      "group": "深夜のセンシティブトーク系",
+      "groupId": "g7",
+      "isSensitive": true,
+      "color": "#c42b6a",
+      "pastel": "#2c1330",
+      "short": "「あら、そんな夜もあるわよねぇ」\nオブラートと艶ある語彙で大人の恋バナや「XXXXX」話も品よく捌く夜の主。",
+      "features": "仕事や日常の愚痴ではなく、大人の恋バナ・駆け引き・修羅場・ほろ苦い黒歴史が集まってくる深夜スナックのママ（あるいはパパ）的存在です。露骨な言葉は一切使わず、「大人の事情」「ちょっと遠い関係」「深夜の『XXXXX』」など艶とユーモアのある言い換えワードを操る語彙力の達人で、リスナーの赤裸々な恋愛談も品よく笑い飛ばしながら「で、本当はどうしたかったの？」と核心を突いてきます。",
+      "strengths": "大人のリスナーが気恥ずかしさを忘れて本音をこぼせる洒脱な包容力と、下品にならず際どい話をエンタメ化できる話術。",
+      "weaknesses": "大人の色気と包容力があるぶん、相談に乗ってもらったリスナーが重めの好意を抱いたり、ムードが濃くなりすぎて初見さんが気後れしたりすることも。重い恋バナの後は明るい乾杯雑談で空気を軽く戻すと長持ちします。",
+      "good": "bousou",
+      "goodNote": "勢い余って大暴走するアクセルを「あらあら元気ね〜」と品よく手綱を握ってあげられる最高の組み合わせです。",
+      "warning": "「潜りリスナーの年齢層＆ガチ恋勢の深読み」に注意！ 深夜でも学生がROMで聴いている可能性を忘れずに。またリアルな恋愛観を語りすぎると好意を持つファンが勝手にダメージを受けがち。あくまで「深夜スナックのママ（パパ）のショー」という線引きを死守しよう！"
+    },
+    "fukyou": {
+      "id": "fukyou",
+      "code": "T22",
+      "hCode": "H24",
+      "name": "偏愛全開の布教プレゼンター",
+      "group": "マイペース・日常・知性派系",
+      "groupId": "g8",
+      "isSensitive": false,
+      "color": "#416cb0",
+      "pastel": "#e2ebfc",
+      "short": "「これ最高だから今すぐ履修して！！」\n止まらない早口と圧倒的な偏愛熱量でリスナーを沼へ道連れにする語り部。",
+      "features": "大好きなアニメ・ゲーム・音楽・グルメ・創作論など、特定の“推し”や専門ジャンルの話題になった瞬間に目が輝き、マシンガンのような早口と熱量で語り出します。最初は興味がなかったリスナーも、あまりに楽しそうな布教プレゼンに巻き込まれて気づけば同じ沼に落とされている、愛すべきオタク気質です。",
+      "strengths": "自分の「好き」を遠慮なく発信できる純粋な熱量と、同じ感性を持つ熱狂的なコアファンを引き寄せる磁力。",
+      "weaknesses": "熱が入りすぎるとコメント欄の置いてけぼり感に気づかず、15分間ひとりでディープな専門用語解説を続けて初見さんを困惑させがち。「ごめん今めっちゃ早口だったよねｗ みんなは何推し？」と一歩引いてパスを出すと最高の語り場になります。",
+      "good": "isekai",
+      "goodNote": "こだわりと愛を貫く姿勢がそっくり。設定談義や好きな作品語りを始めたら朝まで話が尽きません。"
+    },
+    "lounge": {
+      "id": "lounge",
+      "code": "T23",
+      "hCode": "H39",
+      "name": "なんでも解説の知性派ラウンジ主",
+      "group": "マイペース・日常・知性派系",
+      "groupId": "g8",
+      "isSensitive": false,
+      "color": "#2d6d82",
+      "pastel": "#dff1f7",
+      "short": "「それ、3つのポイントに分けるとさ」\n雑学から悩み整理まで分かりやすく紐解く、信頼度抜群の枠内ゼミ長。",
+      "features": "感情で共感するだけでなく、物事を整理して言語化し、聴いている人が「なるほど！」と腑に落ちるように語る知性派です。業界の豆知識や最新トレンドから、リスナーの人間関係・進路の悩みまで、穏やかで論理的な口調でスッと紐解いてくれます。落ち着いた大人層からの信頼が特に厚いタイプです。",
+      "strengths": "聴くだけで頭がスッキリする分かりやすい言語化能力と、どんな話題が来ても知的で面白いトークへ広げられる引き出しの多さ。",
+      "weaknesses": "論理的で的確なぶん、リスナーがただ「わかる〜大変だったね」と共感だけ欲しくて書いた愚痴にまで、無意識に「解決策や原因分析」を返してしまいがち。また賢い人に見られてイジりにくくなるので、たまには自分のドジ話を笑って見せると親しみやすさが倍増します。",
+      "good": "soudan",
+      "goodNote": "共感の達人であるバー店主と分析・解説のあなたがいれば、感情も頭の中もスッキリ整う最強の癒やし空間になります。"
+    },
+    "famires": {
+      "id": "famires",
+      "code": "T24",
+      "hCode": "H37",
+      "name": "朝まで灯りが消えない深夜ファミレス主",
+      "group": "マイペース・日常・知性派系",
+      "groupId": "g8",
+      "isSensitive": false,
+      "color": "#5566a3",
+      "pastel": "#e6e9f9",
+      "short": "眠れない夜も、徹夜作業の相棒もここにある。\n朝日が昇るまで一緒に起きて夜を越えてくれる、夜行性たちの灯台。",
+      "features": "寝落ちさせるほど静かでもなく、目が冴え切るほど騒がしくもなく、ドリンクバー片手にだらだらと夜を越える24時間ファミレスのような絶妙な温度感が魅力です。深夜の課題や残業・夜勤明け、どうしても眠れない夜のリスナーにとって「ここが開いているから今夜も乗り切れた」と感謝される大切な居場所です。",
+      "strengths": "夜更かし勢・深夜作業勢の生活に深く刺さる唯一無二の時間帯ポジションと、気取らない等身大の親近感。",
+      "weaknesses": "深夜〜早朝スタイルが定着しすぎると、昼間に活動する一般的な生活リズムのファンと完全にすれ違いが起き、本人の昼夜逆転も加速しがち。「週末の昼間にもたまにはランチ営業するね」と少し窓口を広げると新しい層も遊びに来やすくなります。",
+      "good": "taikyu",
+      "goodNote": "深夜のテンションで走り続ける耐久勢にとって、朝まで起きて付き合ってくれるあなたはかけがえのない戦友です。"
+    }
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "chapter": "ch1",
+      "text": "配信枠を開く直前の準備、いちばん時間を使うのは？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "今日の企画ネタやミニゲームの仕込みをする",
+          "main": "kikaku",
+          "mainPts": 3,
+          "sub": "kyousou",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "サムネや立ち絵差分・BGMバランスを細かく整える",
+          "main": "shokunin",
+          "mainPts": 3,
+          "sub": "lounge",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "前日のボーダーや今日の目標ポイントを確認する",
+          "main": "sanbou",
+          "mainPts": 3,
+          "sub": "famires",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "特に作り込まず「とりあえず点けよ〜」と開く",
+          "main": "moguri",
+          "mainPts": 3,
+          "sub": "jikka",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q2",
+      "chapter": "ch1",
+      "text": "開枠から10分。まだコメント欄が静かなときの動きは？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "好きなアニメやグルメの話で1人マシンガントーク",
+          "main": "fukyou",
+          "mainPts": 3,
+          "sub": "kikaku",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「今日も目標いくぞ！」と熱く抱負を語り始める",
+          "main": "ibedan",
+          "mainPts": 3,
+          "sub": "radiomc",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "独自キャラの口調のまま世界観たっぷりに独り言",
+          "main": "isekai",
+          "mainPts": 3,
+          "sub": "hyoui",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "「作業BGMにして潜っててね〜」とゆるく流す",
+          "main": "moguri",
+          "mainPts": 3,
+          "sub": "neochi",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q3",
+      "chapter": "ch1",
+      "text": "リスナーから小さなプチギフトやスターが飛んだら？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "「〇〇ちゃん覚えてるよ！」と名前と近況を添えて喜ぶ",
+          "main": "numa",
+          "mainPts": 3,
+          "sub": "welcome",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「ナイス！あざっす！」と爆速のツッコミでテンポ返し",
+          "main": "radiomc",
+          "mainPts": 3,
+          "sub": "ibedan",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "「…助かる。その1ポイントが今日の命」と真顔でボソッ",
+          "main": "surreal",
+          "mainPts": 3,
+          "sub": "tsundere",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "声色をガラッと変えて即興の一言セリフで返す",
+          "main": "hyoui",
+          "mainPts": 3,
+          "sub": "fukyou",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q4",
+      "chapter": "ch1",
+      "text": "初見リスナーが入室した瞬間、あなたの第一声は？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "「おかえり〜！じゃない初見さんだ！ゆっくりして」",
+          "main": "jikka",
+          "mainPts": 3,
+          "sub": "soudan",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「何しに来たの？…ま、暇なら居てもいいけど」",
+          "main": "tsundere",
+          "mainPts": 3,
+          "sub": "surreal",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "名前とアイコンを0秒で拾って「〇〇好きなんですね！」",
+          "main": "welcome",
+          "mainPts": 3,
+          "sub": "lounge",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "「迷い込んだ旅人よ、ようこそ我が領域へ」と迎える",
+          "main": "isekai",
+          "mainPts": 3,
+          "sub": "kikaku",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q5",
+      "chapter": "ch1",
+      "text": "自分の枠で、コメント欄が一番沸きやすい瞬間は？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "リスナー参加型のアンケートや大喜利で展開が決まる時",
+          "main": "kyousou",
+          "mainPts": 3,
+          "sub": "welcome",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "長時間耐久の後半、自分のテンションが謎領域に入った時",
+          "main": "taikyu",
+          "mainPts": 3,
+          "sub": "ibedan",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "マニアックな小ネタ解説に「なるほど！」が並んだ時",
+          "main": "lounge",
+          "mainPts": 3,
+          "sub": "sanbou",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "言い間違いや天然ミスに「おいｗ」と総ツッコミされた時",
+          "main": "ponkotsu",
+          "mainPts": 3,
+          "sub": "shokunin",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q6",
+      "chapter": "ch1",
+      "text": "「おつ配信」で枠を閉じる直前、定番の締め方は？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "「おやすみ、いい夢見てね」と優しい声で落とす",
+          "main": "neochi",
+          "mainPts": 3,
+          "sub": "moguri",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "歌やキメ台詞を一発バシッと決めて余韻のまま切る",
+          "main": "hyoui",
+          "mainPts": 3,
+          "sub": "fukyou",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "「明日も〇時に集合な！絶対勝つぞ！」と熱く締める",
+          "main": "ibedan",
+          "mainPts": 3,
+          "sub": "taikyu",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "「眠れない夜はいつでも寄ってね」と灯りを残す感じ",
+          "main": "famires",
+          "mainPts": 3,
+          "sub": "soudan",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q7",
+      "chapter": "ch2",
+      "text": "開始から5分、コメント欄で「マイクミュートだよ！」と指摘された！",
+      "choices": [
+        {
+          "code": "A",
+          "text": "「…今のは無音の朗読劇でした。感想をどうぞ」と真顔",
+          "main": "surreal",
+          "mainPts": 3,
+          "sub": "tsundere",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「うわマジか！？5分返してｗ」と素で焦って爆笑の渦",
+          "main": "ponkotsu",
+          "mainPts": 3,
+          "sub": "jikka",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "「待っててくれてありがとう、ごめんね！」と一人ずつ謝る",
+          "main": "welcome",
+          "mainPts": 3,
+          "sub": "numa",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "「よし今の5分間を当てる即席クイズいくぞ！」と企画化",
+          "main": "kikaku",
+          "mainPts": 3,
+          "sub": "radiomc",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q8",
+      "chapter": "ch2",
+      "text": "イベント最終日の残り1時間、ボーダーぎりぎり！どう動く？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "残り時間と必要ポイントを整理して冷静に勝ち筋を共有",
+          "main": "sanbou",
+          "mainPts": 3,
+          "sub": "lounge",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「勝っても負けても全力で遊ぼう！」とリスナー企画で繋ぐ",
+          "main": "kyousou",
+          "mainPts": 3,
+          "sub": "radiomc",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "「頼む、みんなの力を貸して！最後まで走り切るぞ！」",
+          "main": "ibedan",
+          "mainPts": 3,
+          "sub": "numa",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "喉も体力も限界なのに「終わるまで絶対寝ない！」と粘る",
+          "main": "taikyu",
+          "mainPts": 3,
+          "sub": "ponkotsu",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q9",
+      "chapter": "ch2",
+      "text": "リスナーから「仕事や人間関係で限界かも…」と重い愚痴が来たら？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "「あんたが暗いと調子狂うでしょ、ほら元気出しな」と照れ隠し",
+          "main": "tsundere",
+          "mainPts": 3,
+          "sub": "hyoui",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「大変だったね、今日はここで全部吐いてきな」と全肯定",
+          "main": "soudan",
+          "mainPts": 3,
+          "sub": "neochi",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "「よし今からこいつの元気が出る大喜利やるぞ！」と笑い飛ばす",
+          "main": "radiomc",
+          "mainPts": 3,
+          "sub": "kyousou",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "「要素を3つに分けて整理してみよっか」と冷静に紐解く",
+          "main": "lounge",
+          "mainPts": 3,
+          "sub": "sanbou",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "chapter": "ch2",
+      "text": "常連同士の内輪ネタが盛り上がり、初見さんが入りづらそう…",
+      "choices": [
+        {
+          "code": "A",
+          "text": "話題に絡めず、自分は好きな推しテーマをマイペースに熱弁",
+          "main": "fukyou",
+          "mainPts": 3,
+          "sub": "surreal",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "即座に初見さんへ内輪ネタの元ネタを解説して輪へ招く",
+          "main": "welcome",
+          "mainPts": 3,
+          "sub": "numa",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "「実家みたいに仲良しだね〜、新参も遠慮なく座って！」",
+          "main": "jikka",
+          "mainPts": 3,
+          "sub": "famires",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "「みんな参加できる新ルールのお題に変えよ！」と舵を切る",
+          "main": "kyousou",
+          "mainPts": 3,
+          "sub": "shokunin",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q11",
+      "chapter": "ch2",
+      "text": "複数の常連が「自分のこと一番覚えてるよね？」と静かに競い始めた！",
+      "choices": [
+        {
+          "code": "A",
+          "text": "「一番推し愛強いのは誰かクイズで決めよう！」と企画化",
+          "main": "kikaku",
+          "mainPts": 3,
+          "sub": "kyousou",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「〇〇はこないだアレ、△△は…」と全員の記憶を出して沼らせる",
+          "main": "numa",
+          "mainPts": 3,
+          "sub": "welcome",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "「ここはみんな同じリビングの家族だよ」と柔らかく包む",
+          "main": "jikka",
+          "mainPts": 3,
+          "sub": "soudan",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "「はいはい両方うるさいから静かにしなさい」と軽く突き放す",
+          "main": "tsundere",
+          "mainPts": 3,
+          "sub": "surreal",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q12",
+      "chapter": "ch2",
+      "text": "配信中、BGMが突然止まったり通信が一瞬バグったら？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "「あれっ！？どこ押した！？誰か助けて〜！」と素で慌てる",
+          "main": "ponkotsu",
+          "mainPts": 3,
+          "sub": "moguri",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「放送事故すら神回！」と爆速のつなぎトークで間を埋める",
+          "main": "radiomc",
+          "mainPts": 3,
+          "sub": "taikyu",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "原因を切り分けつつ視聴者にも分かりやすく状況を実況解説",
+          "main": "lounge",
+          "mainPts": 3,
+          "sub": "sanbou",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "「異世界の結界が揺らいでいるな…」と設定を貫き乗り切る",
+          "main": "isekai",
+          "mainPts": 3,
+          "sub": "kikaku",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q13",
+      "chapter": "ch3",
+      "text": "深夜1時を過ぎた頃、あなたの配信枠に漂う空気は？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "頭がバグった夜行性リスナーと延長戦の耐久レース中",
+          "main": "taikyu",
+          "mainPts": 3,
+          "sub": "ibedan",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "人が落ち着き、互いに好きな作業を黙々と進めている",
+          "main": "moguri",
+          "mainPts": 3,
+          "sub": "shokunin",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "徹夜課題や夜勤明けの常連とドリンク片手にだらだら語る",
+          "main": "famires",
+          "mainPts": 3,
+          "sub": "jikka",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "布団の中でイヤホンしながら寝落ち寸前の人が増えている",
+          "main": "neochi",
+          "mainPts": 3,
+          "sub": "isekai",
+          "subPts": 1
+        }
+      ]
+    },
+    {
+      "id": "Q14",
+      "chapter": "ch3",
+      "text": "深夜枠で、コメント欄から少し際どいボケや深読みネタが飛んで来たら？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "「いや違うし！！健全枠だから！！」と全力否定しつつ話を広げる",
+          "main": "bousou",
+          "mainPts": 3,
+          "gate": 2
+        },
+        {
+          "code": "B",
+          "text": "「ふふ、そんなこと想像してるの…？」と声色を落として翻弄",
+          "main": "koakuma",
+          "mainPts": 3,
+          "gate": 2
+        },
+        {
+          "code": "C",
+          "text": "さらっと華麗にスルーして、真顔のツッコミで健全話題へ戻す",
+          "main": "surreal",
+          "mainPts": 3,
+          "sub": "isekai",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "「あらあら、そういう夜もあるわよねぇ」と大人っぽく受け流す",
+          "main": "snack",
+          "mainPts": 2,
+          "gate": 1
+        }
+      ]
+    },
+    {
+      "id": "Q15",
+      "chapter": "ch3",
+      "text": "「今夜、ちょっと大人の恋バナ（ほろ苦い修羅場や秘密）していい？」と聞かれたら？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "「恋愛もいいけど、それより〇〇の沼の話聞いて！」と趣味へ逸らす",
+          "main": "fukyou",
+          "mainPts": 3,
+          "sub": "isekai",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「大歓迎！遠回しな大人ワードで全部語ろうよ」とノリノリ",
+          "main": "snack",
+          "mainPts": 3,
+          "gate": 2
+        },
+        {
+          "code": "C",
+          "text": "「人間関係の整理ならまず落ち着いて話そっか」と健全に寄り添う",
+          "main": "soudan",
+          "mainPts": 3,
+          "sub": "neochi",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "「内緒の話なら、耳元でこっそり聞いてあげよっか？」と微笑む",
+          "main": "koakuma",
+          "mainPts": 2,
+          "gate": 1
+        }
+      ]
+    },
+    {
+      "id": "Q16",
+      "chapter": "ch3",
+      "text": "深夜テンションで、リスナーが一番沸く「キラー演出（セリフ・掛け合い）」をするなら？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "朗読や歌の本気パフォーマンスで空気を一変させる",
+          "main": "hyoui",
+          "mainPts": 3,
+          "sub": "ponkotsu",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「だから違うってば！！」のツッコミが深夜だけ危険な方へ転がる",
+          "main": "bousou",
+          "mainPts": 2,
+          "gate": 1
+        },
+        {
+          "code": "C",
+          "text": "「今日もお疲れさま」と落ち着いた声で頭を撫でるように労う",
+          "main": "neochi",
+          "mainPts": 3,
+          "sub": "famires",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "言葉は健全なのに、吐息混じりの間と囁き声で鼓膜を揺らす",
+          "main": "koakuma",
+          "mainPts": 3,
+          "gate": 2
+        }
+      ]
+    },
+    {
+      "id": "Q17",
+      "chapter": "ch3",
+      "text": "深夜限定の『オフレコ・裏雑談枠』を開くとしたら、どんな枠になりそう？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "普段は見せないボツ案や制作の裏こだわりを語る制作者枠",
+          "main": "shokunin",
+          "mainPts": 3,
+          "sub": "fukyou",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "恋の駆け引きや黒歴史を艶のある言葉で笑い合うスナック枠",
+          "main": "snack",
+          "mainPts": 3,
+          "gate": 2
+        },
+        {
+          "code": "C",
+          "text": "リスナー一人ひとりの小ネタを覚えていて「ここだけの話」をする枠",
+          "main": "numa",
+          "mainPts": 3,
+          "sub": "tsundere",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "昼の看板を下ろして際どい大喜利や本音トークで腹筋を壊す枠",
+          "main": "bousou",
+          "mainPts": 3,
+          "gate": 2
+        }
+      ]
+    },
+    {
+      "id": "Q18",
+      "chapter": "ch3",
+      "text": "配信を終えてSNSに「おつかれポスト」や告知を上げるとき、一番こだわるのは？",
+      "choices": [
+        {
+          "code": "A",
+          "text": "来てくれた常連を拾いつつ、朝まで起きてる勢とリプでダラダラ絡む",
+          "main": "famires",
+          "mainPts": 3,
+          "sub": "moguri",
+          "subPts": 1
+        },
+        {
+          "code": "B",
+          "text": "「明日も無理しないでね」と温かいメッセージで心をケアする",
+          "main": "soudan",
+          "mainPts": 3,
+          "sub": "hyoui",
+          "subPts": 1
+        },
+        {
+          "code": "C",
+          "text": "「次の目標まであと〇〇！」と進捗や予定を分かりやすく数字告知",
+          "main": "sanbou",
+          "mainPts": 3,
+          "sub": "taikyu",
+          "subPts": 1
+        },
+        {
+          "code": "D",
+          "text": "バッジ特典画像や感謝カードを納得いくクオリティまで作り込む",
+          "main": "shokunin",
+          "mainPts": 3,
+          "sub": "ponkotsu",
+          "subPts": 1
+        }
+      ]
+    }
+  ]
+};
+const DIAGNOSIS_ID = DATA.meta.id;
+const STATS_URL = DATA.meta.statsUrl;
+const SHARE_BASE = DATA.meta.shareBaseUrl;
+const CARD_FILE_PREFIX = DIAGNOSIS_ID + "-";
+const PROGRESS_KEY = DATA.meta.progressKey || "streamer-progress-v1";
+const GOT_KEY = DATA.meta.gotKey || "streamer-got-v1";
+const SESSION_RESULT_KEY = "streamer-session-result-v1";
+const SESSION_DEDUP_KEY = "streamer-stat-dedup-v1";
+
+let gender = "unknown";
+let idx = 0;
+let answers = [];
+let choiceOrders = [];
+let shownChapters = {};
+let resultType = null;
+let subType = null;
+let lastGateScore = 0;
+let resultInstanceId = null;
+
+let cardMode = "normal";
+let cardBlobUrl = null;
+let cardFileCache = null;
+let cardPromise = null;
+let cardTargetKey = null;
+
+let shareMode = (DATA.meta.shareConfig && DATA.meta.shareConfig.defaultMode) || "streamer";
+let streamerTpl = (DATA.meta.shareConfig && DATA.meta.shareConfig.defaultStreamerTemplate) || "plan2b";
+let promoState = {
+  b2Schedule: "",
+  b2Body: "",
+  p1Schedule: "",
+  p1Name: "",
+  p1Promo: "",
+  oshiName: "",
+  oshiPoint: ""
+};
+let isComposing = false;
+
+const $ = id => document.getElementById(id);
+
+function escHtml(s){
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
+  $(id).classList.add("on");
+  window.scrollTo(0, 0);
+}
+
+/* 結果インスタンスID生成 & セッション内重複排除 */
+function createInstanceId(){
+  try {
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+      return crypto.randomUUID();
+    }
+  } catch(e) {}
+  return "r-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
+}
+
+function getSessionDedupMap(){
+  try {
+    const raw = JSON.parse(sessionStorage.getItem(SESSION_DEDUP_KEY) || "{}");
+    return (raw && typeof raw === "object") ? raw : {};
+  } catch(e) {
+    return {};
+  }
+}
+
+function markSessionEventSent(instanceId, event){
+  try {
+    const map = getSessionDedupMap();
+    const key = instanceId + ":" + event;
+    if (map[key]) return false;
+    map[key] = 1;
+    const keys = Object.keys(map);
+    if (keys.length > 200) {
+      delete map[keys[0]];
+    }
+    sessionStorage.setItem(SESSION_DEDUP_KEY, JSON.stringify(map));
+    return true;
+  } catch(e) {
+    return true;
+  }
+}
+
+function sendStat(event, extra, opts){
+  const dedup = Boolean(opts && opts.dedup);
+  if (dedup) {
+    if (!resultInstanceId) return false;
+    if (!markSessionEventSent(resultInstanceId, event)) return false;
+  }
+  const payload = Object.assign({
+    quiz: DIAGNOSIS_ID,
+    diagnosis: DIAGNOSIS_ID,
+    event: event,
+    type: resultType ? resultType.id : "",
+    subType: subType ? subType.id : "",
+    gender: gender,
+    instanceId: resultInstanceId || ""
+  }, extra || {});
+  try {
+    gtag("event", event, {
+      quiz: DIAGNOSIS_ID,
+      diagnosis: DIAGNOSIS_ID,
+      result_type: payload.type,
+      sub_type: payload.subType,
+      gender: gender,
+      instance_id: payload.instanceId
+    });
+  } catch(e) {}
+  if (STATS_URL && STATS_URL.indexOf("__") !== 0) {
+    try {
+      fetch(STATS_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify(payload),
+        keepalive: true
+      });
+    } catch(e) {}
+  }
+  return true;
+}
+
+function saveSessionResult(ansArr){
+  try {
+    sessionStorage.setItem(SESSION_RESULT_KEY, JSON.stringify({
+      instanceId: resultInstanceId,
+      answers: ansArr,
+      gender: gender
+    }));
+  } catch(e) {}
+}
+
+function loadSessionResult(){
+  try {
+    const r = JSON.parse(sessionStorage.getItem(SESSION_RESULT_KEY) || "null");
+    if (!r || !r.instanceId || !Array.isArray(r.answers) || r.answers.length !== DATA.questions.length) return null;
+    return r;
+  } catch(e) {
+    return null;
+  }
+}
+
+function clearSessionResult(){
+  try { sessionStorage.removeItem(SESSION_RESULT_KEY); } catch(e) {}
+}
+
+/* 途中保存 & シャッフル */
+function createShuffledChoiceOrders(){
+  return DATA.questions.map(() => {
+    const arr = [0, 1, 2, 3];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    }
+    return arr;
+  });
+}
+
+function isValidChoiceOrders(orders){
+  if (!Array.isArray(orders) || orders.length !== DATA.questions.length) return false;
+  return orders.every(o => Array.isArray(o) && o.length === 4 && [0,1,2,3].every(v => o.includes(v)));
+}
+
+function saveProgress(){
+  try {
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify({
+      idx: idx,
+      answers: answers,
+      choiceOrders: choiceOrders,
+      gender: gender,
+      shownChapters: shownChapters
+    }));
+  } catch(e) {}
+}
+
+function loadProgress(){
+  try {
+    const p = JSON.parse(localStorage.getItem(PROGRESS_KEY) || "null");
+    if (!p || !Array.isArray(p.answers)) return null;
+    if (typeof p.idx !== "number" || p.idx < 0 || p.idx >= DATA.questions.length) return null;
+    if (p.answers.length < p.idx) return null;
+    return p;
+  } catch(e) {
+    return null;
+  }
+}
+
+function clearProgress(){
+  try { localStorage.removeItem(PROGRESS_KEY); } catch(e) {}
+}
+
+function getGot(){
+  try {
+    const arr = JSON.parse(localStorage.getItem(GOT_KEY) || "[]");
+    return Array.isArray(arr) ? arr : [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function isSecretType(id){
+  const t = DATA.types[id];
+  if (!t || !t.isSensitive) return false;
+  return !getGot().includes(id);
+}
+
+/* 図鑑描画（DATA.groups に応じて動的レンダリング＝Vol.2拡張対応） */
+function renderGrid(el){
+  const got = getGot();
+  const groupTypes = {};
+  DATA.groups.forEach(g => { groupTypes[g.id] = []; });
+  DATA.typeOrder.forEach(id => {
+    const t = DATA.types[id];
+    if (t && groupTypes[t.groupId]) groupTypes[t.groupId].push(t);
+  });
+
+  el.innerHTML = DATA.groups.map((g, gi) => {
+    const list = groupTypes[g.id] || [];
+    const anySensUnlocked = g.isSensitive && list.some(t => got.includes(t.id));
+    const groupTitle = (g.isSensitive && !anySensUnlocked)
+      ? ("系統" + (gi + 1) + "：" + DATA.meta.sensitiveUI.secretGroupTitle)
+      : ("系統" + (gi + 1) + "：" + g.name);
+    const axisTxt = (g.isSensitive && !anySensUnlocked) ? "秘密のゲートで解放" : (g.axisLabel || "");
+    const groupCls = "zukan-group" + (g.isSensitive ? " is-secret-group" : "");
+
+    const cardsHtml = list.map(t => {
+      const has = got.includes(t.id);
+      if (t.isSensitive && !has) {
+        return '<div class="grid-item is-secret">'
+          + '<div class="grid-thumb"><img src="assets/secret.png" alt="配信者図鑑 シークレット"></div>'
+          + '<small>' + escHtml(DATA.meta.sensitiveUI.secretLabel) + '</small>'
+          + '</div>';
+      }
+      const cls = "grid-item" + (has ? " got" : "") + (has && t.isSensitive ? " is-sensitive-got" : "");
+      return '<div class="' + cls + '">'
+        + '<div class="grid-thumb"><img src="assets/chars/' + t.id + '.png" alt="' + escHtml(t.name) + '"></div>'
+        + '<small>' + escHtml(t.name) + '</small>'
+        + '</div>';
+    }).join("");
+
+    return '<div class="' + groupCls + '">'
+      + '<div class="zukan-group-head">'
+        + '<span class="zukan-group-pill" style="background:' + escHtml(g.color) + '">' + escHtml(groupTitle) + '</span>'
+        + '<span class="zukan-group-axis">' + escHtml(axisTxt) + '</span>'
+      + '</div>'
+      + '<div class="grid">' + cardsHtml + '</div>'
+      + '</div>';
+  }).join("");
+
+  $("got-count").textContent = got.length;
+  const c2 = $("got-count2");
+  if (c2) c2.textContent = got.length;
+}
+
+function renderAllGrids(){
+  renderGrid($("grid-top"));
+  renderGrid($("grid-result"));
+}
+
+function partitionCollageIds(ids){
+  const n = ids.length;
+  if (n === 21) return [ids.slice(0, 5), ids.slice(5, 11), ids.slice(11, 16), ids.slice(16, 21)];
+  const rowCnt = n <= 28 ? 4 : 5;
+  const base = Math.floor(n / rowCnt);
+  const rem = n % rowCnt;
+  const rows = [];
+  let pos = 0;
+  for (let r = 0; r < rowCnt; r++) {
+    const cnt = base + (r < rem ? 1 : 0);
+    rows.push(ids.slice(pos, pos + cnt));
+    pos += cnt;
+  }
+  return rows;
+}
+
+function renderHeroCollage(){
+  const box = $("hero-collage");
+  const rows = partitionCollageIds(DATA.collageOrder);
+  box.innerHTML = rows.map(row =>
+    '<div class="collage-row">' + row.map(id => {
+      const t = DATA.types[id];
+      return '<div class="collage-cell"><img src="assets/chars/' + id + '.png" alt="' + escHtml(t.name) + '"></div>';
+    }).join("") + '</div>'
+  ).join("");
+}
+
+function initMeta(){
+  const qCount = DATA.questions.length;
+  const tCount = DATA.typeOrder.length;
+  $("meta-info").textContent = "全" + qCount + "問（3章構成）・約2分 ／ 全" + tCount + "タイプ ／ 宣伝シェア文メーカー付き";
+  $("q-total").textContent = qCount;
+  $("total-count").textContent = tCount;
+  $("total-count2").textContent = tCount;
+}
+
+function initAffiliateSlot(){
+  const aff = DATA.meta.affiliate;
+  const box = $("affiliate-box");
+  if (!box) return;
+  if (!aff || !aff.enabled || !aff.url) {
+    box.classList.remove("is-enabled");
+    return;
+  }
+  $("aff-label").textContent = aff.label || "PR";
+  $("aff-title").textContent = aff.title || "";
+  $("aff-desc").textContent = aff.description || "";
+  const link = $("aff-link");
+  link.href = aff.url;
+  link.textContent = aff.buttonText || "詳細を見る";
+  box.classList.add("is-enabled");
+}
+
+function getChapterForQuestion(qIdx){
+  const chs = DATA.meta.chapters || [];
+  for (let i = 0; i < chs.length; i++) {
+    if (qIdx >= chs[i].startQ && qIdx <= chs[i].endQ) return chs[i];
+  }
+  return chs[0] || { index: 1, title: "第1章" };
+}
+
+function getChapterTransitionAfter(completedCount){
+  const chs = DATA.meta.chapters || [];
+  for (let i = 0; i < chs.length; i++) {
+    const ch = chs[i];
+    if (ch.transitionMessage && completedCount === ch.endQ + 1) {
+      return ch;
+    }
+  }
+  return null;
+}
+
+function startQuiz(resume){
+  clearSessionResult();
+  if (resume) {
+    const p = loadProgress();
+    if (p) {
+      idx = p.idx;
+      answers = p.answers.slice();
+      choiceOrders = isValidChoiceOrders(p.choiceOrders) ? p.choiceOrders : createShuffledChoiceOrders();
+      gender = p.gender || "unknown";
+      shownChapters = (p.shownChapters && typeof p.shownChapters === "object") ? Object.assign({}, p.shownChapters) : {};
+      (DATA.meta.chapters || []).forEach(ch => {
+        if (ch.transitionMessage && idx > ch.endQ + 1) shownChapters[ch.id] = true;
+      });
+      showQuestion();
+      return;
+    }
+  }
+  idx = 0;
+  answers = [];
+  choiceOrders = createShuffledChoiceOrders();
+  gender = "unknown";
+  shownChapters = {};
+  show("scr-gender");
+}
+
+function showQuestion(){
+  if (idx >= DATA.questions.length) {
+    completeQuiz();
+    return;
+  }
+  const trans = getChapterTransitionAfter(idx);
+  if (trans && !shownChapters[trans.id]) {
+    shownChapters[trans.id] = true;
+    saveProgress();
+    $("ch-badge").textContent = trans.transitionBadge || "チャプタークリア";
+    $("ch-emoji").textContent = trans.transitionEmoji || "🎙️";
+    $("ch-title").textContent = trans.transitionTitle || "";
+    $("ch-msg").textContent = trans.transitionMessage;
+    $("ch-note").textContent = trans.transitionNote || "";
+    $("btn-chapter-next").textContent = trans.transitionButton || "つぎの章へ進む";
+    show("scr-chapter");
+    return;
+  }
+
+  const q = DATA.questions[idx];
+  const chInfo = getChapterForQuestion(idx);
+  $("q-chapter").textContent = chInfo.title;
+  $("q-num").textContent = idx + 1;
+  const pct = Math.round(idx / DATA.questions.length * 100);
+  $("q-pct").textContent = pct;
+  $("q-bar").style.width = pct + "%";
+  $("q-text").textContent = q.text;
+  const box = $("q-opts");
+  box.innerHTML = "";
+  const order = (choiceOrders[idx] && choiceOrders[idx].length === 4) ? choiceOrders[idx] : [0,1,2,3];
+  order.forEach(origIdx => {
+    const ch = q.choices[origIdx];
+    const b = document.createElement("button");
+    b.className = "opt";
+    b.textContent = ch.text;
+    b.onclick = () => {
+      answers[idx] = origIdx;
+      idx++;
+      saveProgress();
+      showQuestion();
+    };
+    box.appendChild(b);
+  });
+  $("btn-back").style.visibility = idx === 0 ? "hidden" : "visible";
+  show("scr-q");
+}
+
+/* 2段ハイブリッド正規化＋ゲート＋決定論的タイブレーク＋サブタイプ判定 */
+function judge(ansIndices){
+  const cfg = DATA.meta.scoring;
+  const order = DATA.typeOrder;
+  const typeScore = {};
+  const killerCount = {};
+  const firstKillerQ = {};
+  const typeMax = {};
+  const groupScore = {};
+  const groupMax = {};
+
+  order.forEach(id => {
+    typeScore[id] = 0;
+    killerCount[id] = 0;
+    firstKillerQ[id] = 999;
+    typeMax[id] = 0;
+  });
+  DATA.groups.forEach(g => {
+    groupScore[g.id] = 0;
+    groupMax[g.id] = 0;
+  });
+
+  // 理論最大点を質問定義から動的に算出
+  DATA.questions.forEach(q => {
+    const qTMax = {};
+    const qGMax = {};
+    q.choices.forEach(ch => {
+      const mp = ch.mainPts || 3;
+      qTMax[ch.main] = Math.max(qTMax[ch.main] || 0, mp);
+      const mg = DATA.types[ch.main].groupId;
+      qGMax[mg] = Math.max(qGMax[mg] || 0, 2);
+      if (ch.sub) {
+        const sp = ch.subPts || 1;
+        qTMax[ch.sub] = Math.max(qTMax[ch.sub] || 0, sp);
+        const sg = DATA.types[ch.sub].groupId;
+        if (sg !== mg) qGMax[sg] = Math.max(qGMax[sg] || 0, 1);
+      }
+    });
+    Object.keys(qTMax).forEach(tid => { typeMax[tid] += qTMax[tid]; });
+    Object.keys(qGMax).forEach(gid => { groupMax[gid] += qGMax[gid]; });
+  });
+
+  let gateScore = 0;
+  DATA.questions.forEach((q, qi) => {
+    const ch = q.choices[ansIndices[qi]];
+    if (!ch) return;
+    const mp = ch.mainPts || 3;
+    typeScore[ch.main] += mp;
+    if (mp >= 3) {
+      killerCount[ch.main] += 1;
+      if (firstKillerQ[ch.main] === 999) firstKillerQ[ch.main] = qi;
+    }
+    const mg = DATA.types[ch.main].groupId;
+    groupScore[mg] += 2;
+    if (ch.sub) {
+      const sp = ch.subPts || 1;
+      typeScore[ch.sub] += sp;
+      const sg = DATA.types[ch.sub].groupId;
+      if (sg !== mg) groupScore[sg] += 1;
+    }
+    gateScore += (ch.gate || 0);
+  });
+
+  const gateUnlocked = gateScore >= cfg.gateThreshold;
+  const candidates = gateUnlocked
+    ? order.slice()
+    : order.filter(id => DATA.types[id].groupId !== cfg.sensitiveGroupId);
+
+  const scored = {};
+  const typeNorms = {};
+  candidates.forEach(id => {
+    const t = DATA.types[id];
+    const isSens = t.groupId === cfg.sensitiveGroupId;
+    const tDenom = isSens ? cfg.sensitiveTypeDenom : (typeMax[id] || 12);
+    const gDenom = isSens ? cfg.sensitiveGroupDenom : (groupMax[t.groupId] || 20);
+    const tn = typeScore[id] / tDenom;
+    const gn = groupScore[t.groupId] / gDenom;
+    typeNorms[id] = Math.round(tn * 1e9) / 1e9;
+    scored[id] = Math.round((cfg.typeWeight * tn + cfg.groupWeight * gn) * 1e9) / 1e9;
+  });
+
+  candidates.sort((a, b) => {
+    if (scored[b] !== scored[a]) return scored[b] - scored[a];
+    if (killerCount[b] !== killerCount[a]) return killerCount[b] - killerCount[a];
+    if (typeNorms[b] !== typeNorms[a]) return typeNorms[b] - typeNorms[a];
+    if (firstKillerQ[a] !== firstKillerQ[b]) return firstKillerQ[a] - firstKillerQ[b];
+    return order.indexOf(a) - order.indexOf(b);
+  });
+
+  return {
+    main: DATA.types[candidates[0]],
+    sub: DATA.types[candidates[1]],
+    gateScore: gateScore,
+    gateUnlocked: gateUnlocked,
+    ranked: candidates
+  };
+}
+
+function resetCardPreview(){
+  if (cardBlobUrl) {
+    try { URL.revokeObjectURL(cardBlobUrl); } catch(e) {}
+    cardBlobUrl = null;
+  }
+  cardFileCache = null;
+  cardPromise = null;
+  cardTargetKey = null;
+  $("card-preview").style.display = "none";
+  $("card-img").removeAttribute("src");
+  const dl = $("card-dl");
+  if (dl) { dl.setAttribute("href", "#"); dl.setAttribute("download", ""); }
+  resetXHint();
+  resetShareHint();
+}
+
+function completeQuiz(){
+  resultInstanceId = createInstanceId();
+  saveSessionResult(answers.slice());
+  showResult({ isNewComplete: true });
+}
+
+function showResult(opts){
+  const isNewComplete = Boolean(opts && opts.isNewComplete);
+  const res = judge(answers);
+  resultType = res.main;
+  subType = res.sub;
+  lastGateScore = res.gateScore;
+  clearProgress();
+  resetCardPreview();
+  initShareLayout();
+  updateCardModeUI();
+
+  if (isNewComplete) {
+    const got = getGot();
+    if (!got.includes(resultType.id)) {
+      got.push(resultType.id);
+      try { localStorage.setItem(GOT_KEY, JSON.stringify(got)); } catch(e) {}
+    }
+  }
+
+  const isSens = Boolean(resultType.isSensitive);
+  const hero = $("r-hero");
+  hero.classList.toggle("is-sensitive", isSens);
+  $("scr-result").style.setProperty("--type-color", resultType.color);
+  $("scr-result").style.setProperty("--type-pastel", resultType.pastel);
+  $("r-pill").textContent = isSens ? "深夜限定枠" : "診断結果";
+  $("r-banner-label").textContent = isSens ? "深夜の秘密の扉が開きました…！" : "あなたの配信者タイプは…";
+  $("r-sensitive-stamp").style.display = isSens ? "block" : "none";
+  $("r-sensitive-stamp").textContent = DATA.meta.sensitiveUI.stampText;
+
+  $("r-img").src = "assets/chars/" + resultType.id + ".png";
+  $("r-img").alt = resultType.name;
+  $("r-group").textContent = resultType.group;
+  $("r-name").textContent = resultType.name;
+  $("r-short").textContent = resultType.short;
+
+  // サブタイプ（もう一つの顔）
+  const subEl = $("r-subtype");
+  if (subType) {
+    subEl.innerHTML =
+      '<div class="subtype-thumb"><img src="assets/chars/' + subType.id + '.png" alt="' + escHtml(subType.name) + '"></div>'
+      + '<div class="subtype-info">'
+        + '<span class="subtype-pill">🎭 あなたのもう一つの顔（サブタイプ）</span>'
+        + '<b class="subtype-name">' + escHtml(subType.name) + '</b>'
+        + '<span class="subtype-group">' + escHtml(subType.group) + '</span>'
+        + '<span class="subtype-short">' + escHtml(subType.short.replace(/\n/g, " ")) + '</span>'
+      + '</div>';
+  }
+
+  // 詳細分析ブロック
+  const blocks = [
+    { title: "✨ 特徴", text: resultType.features, cls: "" },
+    { title: "💪 強み", text: resultType.strengths, cls: "" },
+    { title: "🌱 弱点・伸びしろ", text: resultType.weaknesses, cls: "" }
+  ];
+  if (resultType.warning) {
+    blocks.push({ title: "⚠️ 注意しろ！（愛のある警告）", text: resultType.warning, cls: " is-warning" });
+  }
+  $("r-detail-blocks").innerHTML = blocks.map(b =>
+    '<div class="detail-block' + b.cls + '"><h3>' + escHtml(b.title) + '</h3><p>' + escHtml(b.text) + '</p></div>'
+  ).join("");
+
+  // 相性カード（系統7シークレット連動）
+  const goodType = DATA.types[resultType.good];
+  const goodIsSecret = isSecretType(goodType.id);
+  const goodThumb = goodIsSecret ? "assets/secret.png" : ("assets/chars/" + goodType.id + ".png");
+  const goodName = goodIsSecret
+    ? (DATA.meta.sensitiveUI.secretLabel + "《深夜限定シークレット》")
+    : (goodType.name + "（" + goodType.group + "）");
+  const goodNote = goodIsSecret ? DATA.meta.sensitiveUI.secretTeaser : resultType.goodNote;
+
+  $("r-compat").innerHTML =
+    '<div class="compat-card">'
+      + '<div class="compat-thumb"><img src="' + goodThumb + '" alt="' + escHtml(goodIsSecret ? "シークレットタイプ" : goodType.name) + '"></div>'
+      + '<div class="compat-info"><span class="compat-tag">🤝 相性のいい配信者タイプ</span><b class="compat-name">' + escHtml(goodName) + '</b><span class="compat-note">' + escHtml(goodNote) + '</span></div>'
+    + '</div>';
+
+  renderPromoBuilder();
+  updateQuoteButtonVisibility();
+  renderAllGrids();
+  show("scr-result");
+  if (isNewComplete) {
+    sendStat("complete", { gate: lastGateScore }, { dedup: true });
+  }
+  prepareCardImage(resultType, subType, cardMode);
+}
+
+/* Xウェイト計算（280ウェイト厳守・@Tosh1000950 と URL 自動保護） */
+const URL_REGEX_G = /https?:\/\/[^\s]+/g;
+
+function calcPlainXWeight(str){
+  let w = 0;
+  const chars = Array.from(str);
+  for (let i = 0; i < chars.length; i++) {
+    const ch = chars[i];
+    const cp = ch.codePointAt(0);
+    if ((cp >= 0xFE00 && cp <= 0xFE0F) || cp === 0x200D) continue;
+    if (cp <= 0x007F || (cp >= 0x0080 && cp <= 0x10FF && !/[\u2000-\u2BFF]/.test(ch))) {
+      w += 1;
+    } else {
+      w += 2;
+    }
+  }
+  return w;
+}
+
+function calcXWeight(text){
+  const urlW = (DATA.meta.shareConfig && DATA.meta.shareConfig.xUrlWeight) || 23;
+  let urlCount = 0;
+  const stripped = String(text || "").replace(URL_REGEX_G, () => {
+    urlCount++;
+    return "";
+  });
+  return calcPlainXWeight(stripped) + urlCount * urlW;
+}
+
+function getTypeShareUrl(){
+  return SHARE_BASE + resultType.id + ".html";
+}
+
+function buildShareBody(mode, tplId, st, urlOverride){
+  const t = resultType;
+  const targetUrl = urlOverride || getTypeShareUrl();
+  if (!t) return "";
+
+  if (mode === "simple") {
+    const subTxt = subType ? ("\nもう一つの顔：" + subType.name) : "";
+    return "配信者タイプ診断の結果は【" + t.name + "】（" + t.group + "）でした🎙️"
+      + subTxt + "\n"
+      + DATA.meta.hashtag + "\n"
+      + DATA.meta.shareFollowLine + "\n"
+      + targetUrl;
+  }
+
+  if (mode === "oshi") {
+    const oName = (st.oshiName || "").trim();
+    const oPt = (st.oshiPoint || "").trim();
+    const line1 = oName
+      ? ("私の推し「" + oName + "」さんを診断したら【" + t.name + "】タイプでした！")
+      : ("私の推しを診断したら【" + t.name + "】タイプでした！");
+    const line2 = oPt ? ("\nおすすめポイント：" + oPt) : "";
+    return line1 + line2 + "\n" + DATA.meta.hashtag + " 作:" + DATA.meta.authorHandle + "\n" + targetUrl;
+  }
+
+  // mode === "streamer"
+  if (tplId === "plan1") {
+    const sch = (st.p1Schedule || "").trim();
+    const nm = (st.p1Name || "").trim();
+    const pr = (st.p1Promo || "").trim();
+    const lines = [];
+    if (sch && nm) lines.push(sch + "で配信している" + nm + "です！");
+    else if (nm) lines.push(nm + "です！");
+    else if (sch) lines.push(sch + "で配信しています！");
+    lines.push("診断結果は【" + t.name + "】でした✨");
+    if (pr) lines.push(pr + "なのでぜひ遊びに来てね！");
+    lines.push(DATA.meta.hashtag + " 作:" + DATA.meta.authorHandle);
+    lines.push(targetUrl);
+    return lines.join("\n");
+  }
+
+  // plan2b (default)
+  const promoParts = [];
+  if ((st.b2Schedule || "").trim()) promoParts.push(st.b2Schedule.trim());
+  if ((st.b2Body || "").trim()) promoParts.push(st.b2Body.trim());
+  const promoLine = promoParts.join(" ");
+  if (promoLine) {
+    return "配信者タイプ診断は【" + t.name + "】でした🎙️\n"
+      + "📢宣伝：" + promoLine + "\n"
+      + DATA.meta.hashtag + "｜新作は " + DATA.meta.authorHandle + " で公開中！\n"
+      + targetUrl;
+  }
+  return "配信者タイプ診断は【" + t.name + "】でした🎙️\n"
+    + DATA.meta.hashtag + "｜新作は " + DATA.meta.authorHandle + " で公開中！\n"
+    + targetUrl;
+}
+
+/* 固定部分を含む最大予算ウェイトを算出し、入力欄超過時に宣伝入力のみトリム */
+function getWorstCaseBudgetText(mode, tplId, st, urlOverride){
+  const t = resultType;
+  const targetUrl = urlOverride || getTypeShareUrl();
+  if (mode === "simple") {
+    return buildShareBody(mode, tplId, st, targetUrl);
+  }
+  if (mode === "oshi") {
+    return "私の推し「" + (st.oshiName || "") + "」さんを診断したら【" + t.name + "】タイプでした！\n"
+      + "おすすめポイント：" + (st.oshiPoint || "") + "\n"
+      + DATA.meta.hashtag + " 作:" + DATA.meta.authorHandle + "\n"
+      + targetUrl;
+  }
+  if (tplId === "plan1") {
+    return (st.p1Schedule || "") + "で配信している" + (st.p1Name || "") + "です！\n"
+      + "診断結果は【" + t.name + "】でした✨\n"
+      + (st.p1Promo || "") + "なのでぜひ遊びに来てね！\n"
+      + DATA.meta.hashtag + " 作:" + DATA.meta.authorHandle + "\n"
+      + targetUrl;
+  }
+  // plan2b
+  const promoParts = [];
+  if ((st.b2Schedule || "").trim()) promoParts.push(st.b2Schedule.trim());
+  if ((st.b2Body || "").trim()) promoParts.push(st.b2Body.trim());
+  const promoStr = promoParts.join(" ");
+  return "配信者タイプ診断は【" + t.name + "】でした🎙️\n"
+    + "📢宣伝：" + promoStr + "\n"
+    + DATA.meta.hashtag + "｜新作は " + DATA.meta.authorHandle + " で公開中！\n"
+    + targetUrl;
+}
+
+function clampPromoField(fieldKey, newValue){
+  const maxW = (DATA.meta.shareConfig && DATA.meta.shareConfig.xMaxWeight) || 280;
+  const candidate = Object.assign({}, promoState, { [fieldKey]: newValue });
+  const testStr = getWorstCaseBudgetText(shareMode, streamerTpl, candidate);
+  if (calcXWeight(testStr) <= maxW) return newValue;
+  const chars = Array.from(newValue);
+  let lo = 0, hi = chars.length;
+  while (lo < hi) {
+    const mid = Math.ceil((lo + hi) / 2);
+    const tryVal = chars.slice(0, mid).join("");
+    const tryState = Object.assign({}, promoState, { [fieldKey]: tryVal });
+    if (calcXWeight(getWorstCaseBudgetText(shareMode, streamerTpl, tryState)) <= maxW) {
+      lo = mid;
+    } else {
+      hi = mid - 1;
+    }
+  }
+  return chars.slice(0, lo).join("");
+}
+
+function updatePromoPreviewAndCounter(){
+  if (!resultType) return;
+  const maxW = (DATA.meta.shareConfig && DATA.meta.shareConfig.xMaxWeight) || 280;
+  const budgetText = getWorstCaseBudgetText(shareMode, streamerTpl, promoState);
+  const usedW = calcXWeight(budgetText);
+  const remW = Math.max(0, maxW - usedW);
+  const remJa = Math.floor(remW / 2);
+
+  $("weight-remain").textContent = shareMode === "simple"
+    ? "結果＋フォロー導線（文字数余裕あり）"
+    : ("あと " + remW + "w（全角 約" + remJa + "文字）入力できます");
+  $("weight-used").textContent = usedW + " / " + maxW + "w";
+  const bar = $("weight-bar");
+  bar.classList.remove("near", "full");
+  if (remW === 0 && shareMode !== "simple") bar.classList.add("full");
+  else if (remW <= 20 && shareMode !== "simple") bar.classList.add("near");
+
+  $("share-preview").textContent = buildShareBody(shareMode, streamerTpl, promoState);
+}
+
+function getPromoFieldsSpec(){
+  if (shareMode === "simple") return [];
+  if (shareMode === "oshi") {
+    return [
+      { key: "oshiName", label: "推しの名前", tag: "input", ph: "例：〇〇さん" },
+      { key: "oshiPoint", label: "おすすめポイント・配信時間", tag: "textarea", ph: "例：毎日22時〜の歌と雑談が最高に癒やされます！" }
+    ];
+  }
+  if (streamerTpl === "plan1") {
+    return [
+      { key: "p1Schedule", label: "配信時間 / 曜日", tag: "input", ph: "例：毎日21時から" },
+      { key: "p1Name", label: "活動名", tag: "input", ph: "例：ゆめかわ" },
+      { key: "p1Promo", label: "一言宣伝", tag: "input", ph: "例：初見歓迎のまったり雑談枠" }
+    ];
+  }
+  return [
+    { key: "b2Schedule", label: "配信名 / 配信時間（任意）", tag: "input", ph: "例：毎日21時〜" },
+    { key: "b2Body", label: "告知・一言PR", tag: "textarea", ph: "例：初見さん大歓迎！雑談＆歌枠やってます！" }
+  ];
+}
+
+function getActiveChipTargetField(){
+  if (shareMode === "oshi") return "oshiPoint";
+  if (shareMode === "streamer") return streamerTpl === "plan1" ? "p1Promo" : "b2Body";
+  return null;
+}
+
+function renderPromoBuilder(){
+  document.querySelectorAll(".mode-tab").forEach(b => {
+    b.classList.toggle("active", b.getAttribute("data-share-mode") === shareMode);
+  });
+  const pillsEl = $("tpl-pills");
+  pillsEl.style.display = shareMode === "streamer" ? "flex" : "none";
+  document.querySelectorAll(".tpl-pill").forEach(b => {
+    b.classList.toggle("active", b.getAttribute("data-streamer-tpl") === streamerTpl);
+  });
+
+  const fields = getPromoFieldsSpec();
+  const fieldsEl = $("promo-fields");
+  fieldsEl.innerHTML = "";
+  fields.forEach(f => {
+    const wrap = document.createElement("div");
+    wrap.className = "promo-field";
+    const lbl = document.createElement("label");
+    lbl.setAttribute("for", "pf-" + f.key);
+    lbl.textContent = f.label;
+    const el = document.createElement(f.tag);
+    el.id = "pf-" + f.key;
+    if (f.tag === "input") el.type = "text";
+    el.placeholder = f.ph;
+    el.value = promoState[f.key] || "";
+    el.addEventListener("compositionstart", () => { isComposing = true; });
+    el.addEventListener("compositionend", () => {
+      isComposing = false;
+      const clamped = clampPromoField(f.key, el.value);
+      if (clamped !== el.value) el.value = clamped;
+      promoState[f.key] = el.value;
+      updatePromoPreviewAndCounter();
+    });
+    el.addEventListener("input", () => {
+      if (isComposing) {
+        promoState[f.key] = el.value;
+        updatePromoPreviewAndCounter();
+        return;
+      }
+      const clamped = clampPromoField(f.key, el.value);
+      if (clamped !== el.value) el.value = clamped;
+      promoState[f.key] = el.value;
+      updatePromoPreviewAndCounter();
+    });
+    wrap.appendChild(lbl);
+    wrap.appendChild(el);
+    fieldsEl.appendChild(wrap);
+  });
+
+  const chipsEl = $("promo-chips");
+  const targetKey = getActiveChipTargetField();
+  chipsEl.innerHTML = "";
+  if (targetKey && DATA.meta.shareConfig && Array.isArray(DATA.meta.shareConfig.quickChips)) {
+    chipsEl.style.display = "flex";
+    DATA.meta.shareConfig.quickChips.forEach(chipTxt => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "chip-btn";
+      btn.textContent = "+ " + chipTxt;
+      btn.onclick = () => {
+        const cur = (promoState[targetKey] || "").trim();
+        const nextVal = cur ? (cur + " " + chipTxt) : chipTxt;
+        const clamped = clampPromoField(targetKey, nextVal);
+        promoState[targetKey] = clamped;
+        const inputEl = $("pf-" + targetKey);
+        if (inputEl) inputEl.value = clamped;
+        updatePromoPreviewAndCounter();
+      };
+      chipsEl.appendChild(btn);
+    });
+  } else {
+    chipsEl.style.display = "none";
+  }
+
+  updatePromoPreviewAndCounter();
+}
+
+function getCombinedShareText(){
+  // Always re-clamp active fields before sharing so @Tosh1000950 & URL are guaranteed intact
+  getPromoFieldsSpec().forEach(f => {
+    promoState[f.key] = clampPromoField(f.key, promoState[f.key] || "");
+  });
+  return buildShareBody(shareMode, streamerTpl, promoState);
+}
+
+function getQuoteShareText(){
+  const launchUrl = (DATA.meta.launchPostUrl || "").trim();
+  getPromoFieldsSpec().forEach(f => {
+    promoState[f.key] = clampPromoField(f.key, promoState[f.key] || "");
+  });
+  // Keep @Tosh1000950 & launchPostUrl intact inside 280w
+  const maxW = (DATA.meta.shareConfig && DATA.meta.shareConfig.xMaxWeight) || 280;
+  let body = buildShareBody(shareMode, streamerTpl, promoState, launchUrl);
+  if (calcXWeight(body) > maxW) {
+    // Fallback to clean result + launchUrl if needed
+    body = buildShareBody("simple", "plan2b", promoState, launchUrl);
+  }
+  return body;
+}
+
+function updateQuoteButtonVisibility(){
+  const btn = $("btn-quote-rt");
+  if (!btn) return;
+  const launchUrl = (DATA.meta.launchPostUrl || "").trim();
+  btn.style.display = launchUrl ? "block" : "none";
+}
+
+/* Canvas 結果カード生成 (1080x1350) — 通常版＆立ち絵穴あき（透過枠）＋系統7ネオンフレーム */
+function roundRectPath(ctx, x, y, w, h, r){
+  if (ctx.roundRect) {
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, r);
+    return;
+  }
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function segmentJapaneseWords(text){
+  if (typeof Intl !== "undefined" && typeof Intl.Segmenter === "function") {
+    try {
+      const seg = new Intl.Segmenter("ja", { granularity: "word" });
+      return Array.from(seg.segment(text), s => s.segment);
+    } catch(e) {}
+  }
+  return Array.from(text);
+}
+
+function wrapBalancedJa(ctx, text, maxWidth){
+  const paragraphs = String(text || "").split("\n");
+  const allLines = [];
+  paragraphs.forEach(p => {
+    const trimmed = p.trim();
+    if (!trimmed) return;
+    if (ctx.measureText(trimmed).width <= maxWidth) {
+      allLines.push(trimmed);
+      return;
+    }
+    const tokens = segmentJapaneseWords(trimmed);
+    const noStart = "、。）」』！？";
+    let cur = "";
+    tokens.forEach(tok => {
+      if (cur && ctx.measureText(cur + tok).width > maxWidth) {
+        if (tok.length === 1 && noStart.includes(tok) && cur.length > 1) {
+          allLines.push(cur + tok);
+          cur = "";
+        } else {
+          allLines.push(cur);
+          cur = tok;
+        }
+      } else {
+        cur += tok;
+      }
+    });
+    if (cur) allLines.push(cur);
+  });
+  return allLines;
+}
+
+function drawCardSensitiveStamp(ctx, cx, cy, w, h, fontFamily){
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(-6 * Math.PI / 180);
+  ctx.fillStyle = "rgba(255,62,157,0.34)";
+  roundRectPath(ctx, -w / 2 + 4, -h / 2 + 6, w, h, 14);
+  ctx.fill();
+  ctx.fillStyle = "#180b30";
+  roundRectPath(ctx, -w / 2, -h / 2, w, h, 14);
+  ctx.fill();
+  ctx.lineWidth = 4.5;
+  ctx.strokeStyle = "#ff3e9d";
+  ctx.stroke();
+  roundRectPath(ctx, -w / 2 + 7, -h / 2 + 7, w - 14, h - 14, 9);
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "#2ce6ff";
+  ctx.stroke();
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#2ce6ff";
+  ctx.font = "900 21px " + fontFamily;
+  ctx.fillText(DATA.meta.sensitiveUI.stampText, 0, 1);
+  ctx.restore();
+}
+
+function updateCardModeUI(){
+  document.querySelectorAll(".card-mode-pill").forEach(b => {
+    b.classList.toggle("active", b.getAttribute("data-card-mode") === cardMode);
+  });
+  const frame = $("card-preview-frame");
+  if (frame) frame.classList.toggle("is-cutout", cardMode === "cutout");
+  const note = $("card-preview-note");
+  if (note) {
+    note.textContent = cardMode === "cutout"
+      ? "中央の枠が透過されています！立ち絵の上に重ねて使えるよ（長押し・右クリックで保存）"
+      : "画像を長押し（PCでは右クリック）でも保存できます";
+  }
+}
+
+function prepareCardImage(t, subT, mode){
+  if (!t) return Promise.resolve(null);
+  const useMode = mode || "normal";
+  const key = t.id + ":" + (subT ? subT.id : "") + ":" + useMode;
+  if (cardFileCache && cardTargetKey === key) return Promise.resolve(cardFileCache);
+  if (cardPromise && cardTargetKey === key) return cardPromise;
+
+  const goodIsSecret = isSecretType(t.good);
+  cardTargetKey = key;
+
+  cardPromise = new Promise(resolve => {
+    const drawCanvas = (imgObj) => {
+      try {
+        const W = 1080, H = 1350;
+        const c = document.createElement("canvas");
+        c.width = W;
+        c.height = H;
+        const x = c.getContext("2d");
+        const isSens = Boolean(t.isSensitive);
+        const isCutout = (useMode === "cutout");
+        const fontFamily = '"Hiragino Maru Gothic ProN","Hiragino Sans","BIZ UDPGothic","Noto Sans JP",sans-serif';
+
+        // 1. 背景ドット
+        x.fillStyle = isSens ? "#110a22" : "#f2f5ff";
+        x.fillRect(0, 0, W, H);
+        const step = 28;
+        for (let dy = 0; dy <= H + step; dy += step) {
+          for (let dx = 0; dx <= W + step; dx += step) {
+            x.fillStyle = isSens ? "rgba(255,62,157,0.16)" : "rgba(91,75,255,0.08)";
+            x.beginPath(); x.arc(dx, dy, 2.5, 0, Math.PI * 2); x.fill();
+            x.fillStyle = isSens ? "rgba(44,230,255,0.14)" : "rgba(255,71,105,0.08)";
+            x.beginPath(); x.arc(dx + step / 2, dy + step / 2, 2.2, 0, Math.PI * 2); x.fill();
+          }
+        }
+
+        // 2. メインカード枠＋シャドウ
+        const cardX = 24, cardY = 24, cardW = 1018, cardH = 1288, cardR = 34;
+        const cardCX = cardX + cardW / 2;
+        x.fillStyle = isSens ? "#6a1478" : "#1a1d2e";
+        roundRectPath(x, cardX + 14, cardY + 14, cardW, cardH, cardR);
+        x.fill();
+
+        x.save();
+        roundRectPath(x, cardX, cardY, cardW, cardH, cardR);
+        x.clip();
+        x.fillStyle = isSens ? "#1a0f32" : "#ffffff";
+        x.fillRect(cardX, cardY, cardW, cardH);
+
+        // 3. ヘッダー帯
+        const hdrH = 84;
+        x.fillStyle = isSens ? "#4d1261" : "#5b4bff";
+        x.fillRect(cardX, cardY, cardW, hdrH);
+        const stripeY = cardY + hdrH;
+        x.fillStyle = isSens ? "#ff3e9d" : "#1a1d2e";
+        x.fillRect(cardX, stripeY, cardW, 5);
+        x.fillStyle = isSens ? "#2ce6ff" : t.color;
+        x.fillRect(cardX, stripeY + 5, cardW, 9);
+        x.fillStyle = isSens ? "#ff3e9d" : "#1a1d2e";
+        x.fillRect(cardX, stripeY + 14, cardW, 4);
+
+        const hdrCY = cardY + hdrH / 2;
+        const pillX = cardX + 28, pillW = 152, pillH = 44;
+        x.fillStyle = isSens ? "#2ce6ff" : "#f8c838";
+        roundRectPath(x, pillX, hdrCY - pillH / 2, pillW, pillH, pillH / 2);
+        x.fill();
+        x.lineWidth = 3.5; x.strokeStyle = "#1a1d2e"; x.stroke();
+        x.textAlign = "center"; x.textBaseline = "middle";
+        x.fillStyle = "#1a1d2e"; x.font = "900 21px " + fontFamily;
+        x.fillText(isSens ? "深夜限定枠" : "診断結果", pillX + pillW / 2, hdrCY + 1);
+
+        const tagW = 192, tagH = 40, tagX = cardX + cardW - 28 - tagW;
+        x.fillStyle = isSens ? "#ff3e9d" : "#1a1d2e";
+        roundRectPath(x, tagX, hdrCY - tagH / 2, tagW, tagH, tagH / 2);
+        x.fill();
+        x.fillStyle = isSens ? "#ffffff" : "#f8c838"; x.font = "900 18px " + fontFamily;
+        x.fillText(isCutout ? "立ち絵用・透過枠" : ("全" + DATA.typeOrder.length + "タイプ"), tagX + tagW / 2, hdrCY + 1);
+
+        x.font = "900 32px " + fontFamily;
+        x.fillStyle = "rgba(0,0,0,0.35)";
+        x.fillText(DATA.meta.title, cardCX + 2, hdrCY + 3);
+        x.fillStyle = "#ffffff";
+        x.fillText(DATA.meta.title, cardCX, hdrCY + 1);
+
+        // 4. イラスト枠（通常はキャラ画像、穴あき版は透過ホール）
+        const panelY = stripeY + 18;
+        const panelH = 562;
+        x.fillStyle = isSens ? "#221242" : t.pastel;
+        x.fillRect(cardX, panelY, cardW, panelH);
+
+        const imgSz = 504;
+        const imgX = cardCX - imgSz / 2;
+        const imgY = panelY + (panelH - imgSz) / 2;
+
+        if (!isCutout && imgObj) {
+          x.fillStyle = isSens ? "rgba(255,62,157,0.3)" : "rgba(26,29,46,0.2)";
+          roundRectPath(x, imgX + 8, imgY + 8, imgSz, imgSz, 34);
+          x.fill();
+          x.save();
+          roundRectPath(x, imgX, imgY, imgSz, imgSz, 34);
+          x.clip();
+          x.drawImage(imgObj, imgX, imgY, imgSz, imgSz);
+          x.restore();
+        }
+
+        // 枠線
+        x.lineWidth = isSens ? 8 : 6;
+        x.strokeStyle = isSens ? "#2ce6ff" : "#1a1d2e";
+        roundRectPath(x, imgX, imgY, imgSz, imgSz, 34);
+        x.stroke();
+        if (isSens) {
+          x.lineWidth = 4;
+          x.strokeStyle = "#ff3e9d";
+          roundRectPath(x, imgX + 6, imgY + 6, imgSz - 12, imgSz - 12, 28);
+          x.stroke();
+        }
+        if (isCutout) {
+          // 外側からの案内ラベル（穴の内側には描かない）
+          x.textAlign = "center";
+          x.font = "900 18px " + fontFamily;
+          x.fillStyle = isSens ? "#2ce6ff" : "#5a627d";
+          x.fillText("▼ ここに立ち絵を配置して使ってね（中央透過PNG） ▼", cardCX, imgY - 14);
+        }
+
+        const panelBot = panelY + panelH;
+        x.fillStyle = isSens ? "#ff3e9d" : "#1a1d2e";
+        x.fillRect(cardX, panelBot, cardW, 5);
+
+        // 5. 最下部フッターバナー（「制作：@Tosh1000950／他の診断も公開中」必須）
+        const urlW = 946, urlH = 52;
+        const urlX = cardCX - urlW / 2, urlY = cardY + cardH - 20 - urlH;
+        x.fillStyle = isSens ? "rgba(0,0,0,0.4)" : "rgba(26,29,46,0.14)";
+        roundRectPath(x, urlX + 4, urlY + 4, urlW, urlH, 14);
+        x.fill();
+        x.save();
+        roundRectPath(x, urlX, urlY, urlW, urlH, 14);
+        x.clip();
+        x.fillStyle = isSens ? "#231245" : "#f5f7ff";
+        x.fillRect(urlX, urlY, urlW, urlH);
+        x.fillStyle = isSens ? "#ff3e9d" : t.color;
+        x.fillRect(urlX, urlY, 12, urlH);
+        x.restore();
+        x.lineWidth = 3;
+        x.strokeStyle = isSens ? "#2ce6ff" : "#1a1d2e";
+        roundRectPath(x, urlX, urlY, urlW, urlH, 14);
+        x.stroke();
+        x.textAlign = "center"; x.textBaseline = "middle";
+        x.fillStyle = isSens ? "#f8f0ff" : "#1a1d2e";
+        x.font = "900 22px " + fontFamily;
+        x.fillText("制作：@Tosh1000950／他の診断も公開中", cardCX + 6, urlY + urlH / 2 + 1);
+
+        // 6. 下部コンテンツ（系統ピル・タイプ名・短文ボックス・サブ＆相性バー）
+        const zoneTop = panelBot + 14;
+        const zoneBot = urlY - 14;
+        const availH = zoneBot - zoneTop;
+
+        const grpTxt = t.group;
+        const gh = 38;
+        const nameSize = t.name.length >= 16 ? 44 : (t.name.length >= 12 ? 52 : 62);
+        const nameH = nameSize;
+
+        x.font = "700 25px " + fontFamily;
+        const shortLines = wrapBalancedJa(x, t.short, 870);
+        const sLineH = 36;
+        const sPadY = shortLines.length >= 2 ? 16 : 20;
+        const sBoxH = sPadY * 2 + shortLines.length * sLineH;
+        const compatH = 92;
+
+        const gap1 = 18;
+        const gap2 = 18;
+        const gap3 = 18;
+        const usedH = gh + gap1 + nameH + gap2 + sBoxH + gap3 + compatH;
+        const gy = zoneTop + Math.max(6, Math.floor((availH - usedH) / 2));
+
+        // 系統ピル
+        x.font = "900 21px " + fontFamily;
+        const gw = x.measureText(grpTxt).width + 40;
+        x.fillStyle = isSens ? "#ff3e9d" : t.color;
+        roundRectPath(x, cardCX - gw / 2, gy, gw, gh, gh / 2);
+        x.fill();
+        x.lineWidth = 2.5; x.strokeStyle = isSens ? "#2ce6ff" : "#1a1d2e"; x.stroke();
+        x.fillStyle = "#ffffff";
+        x.fillText(grpTxt, cardCX, gy + gh / 2 + 1);
+
+        // タイプ名（長い名前は maxWidth=940 で必ず収める）
+        const nameY = gy + gh + gap1 + nameH / 2;
+        x.font = "900 " + nameSize + "px " + fontFamily;
+        const nw = Math.min(940, x.measureText(t.name).width);
+        x.fillStyle = isSens ? "rgba(255,62,157,0.45)" : t.pastel;
+        roundRectPath(x, cardCX - nw / 2 - 14, nameY + 4, nw + 28, Math.round(nameSize * 0.46), 10);
+        x.fill();
+        x.fillStyle = isSens ? "#f8f0ff" : "#1a1d2e";
+        x.fillText(t.name, cardCX, nameY, 940);
+
+        // 短文ボックス
+        const sBoxX = cardX + 36, sBoxW = cardW - 72;
+        const sBoxY = gy + gh + gap1 + nameH + gap2;
+        x.fillStyle = isSens ? "rgba(0,0,0,0.3)" : "rgba(26,29,46,0.12)";
+        roundRectPath(x, sBoxX + 4, sBoxY + 4, sBoxW, sBoxH, 16);
+        x.fill();
+        x.save();
+        roundRectPath(x, sBoxX, sBoxY, sBoxW, sBoxH, 16);
+        x.clip();
+        x.fillStyle = isSens ? "#261547" : "#f5f7ff";
+        x.fillRect(sBoxX, sBoxY, sBoxW, sBoxH);
+        x.fillStyle = isSens ? "#ff3e9d" : t.color;
+        x.fillRect(sBoxX, sBoxY, 12, sBoxH);
+        x.restore();
+        x.lineWidth = 3; x.strokeStyle = isSens ? "#2ce6ff" : "#1a1d2e";
+        roundRectPath(x, sBoxX, sBoxY, sBoxW, sBoxH, 16);
+        x.stroke();
+        x.font = "700 25px " + fontFamily;
+        x.fillStyle = isSens ? "#f8f0ff" : "#1a1d2e";
+        shortLines.forEach((ln, i) => {
+          x.fillText(ln, cardCX + 4, sBoxY + sPadY + i * sLineH + sLineH / 2, sBoxW - 44);
+        });
+
+        // 下段2列バー（左：もう一つの顔 / 右：相性◎）
+        const compatY = sBoxY + sBoxH + gap3;
+        const halfW = (sBoxW - 14) / 2;
+        const goodT = DATA.types[t.good];
+        const goodLabel = goodIsSecret ? "？？？" : goodT.name;
+        const goodSub = goodIsSecret ? "（深夜限定シークレット）" : ("（" + goodT.group + "）");
+        const boxes = [
+          {
+            x: sBoxX,
+            bg: isSens ? "#241345" : "#f1f4ff",
+            tag: "🎭 もう一つの顔",
+            name: subT ? subT.name : "-",
+            sub: subT ? ("（" + subT.group + "）") : ""
+          },
+          {
+            x: sBoxX + halfW + 14,
+            bg: isSens ? "#1d1a46" : "#eefbf3",
+            tag: "🤝 相性◎",
+            name: goodLabel,
+            sub: goodSub
+          }
+        ];
+        boxes.forEach(bx => {
+          x.fillStyle = bx.bg;
+          roundRectPath(x, bx.x, compatY, halfW, compatH, 14);
+          x.fill();
+          x.lineWidth = 2.5; x.strokeStyle = isSens ? "#ff3e9d" : "#1a1d2e"; x.stroke();
+          x.font = "900 18px " + fontFamily;
+          x.fillStyle = isSens ? "#2ce6ff" : "#5a627d";
+          x.fillText(bx.tag, bx.x + halfW / 2, compatY + 24, halfW - 20);
+          x.font = "900 20px " + fontFamily;
+          x.fillStyle = isSens ? "#f8f0ff" : "#1a1d2e";
+          x.fillText(bx.name, bx.x + halfW / 2, compatY + 52, halfW - 20);
+          x.font = "700 15px " + fontFamily;
+          x.fillStyle = isSens ? "#d2baf0" : "#5a627d";
+          x.fillText(bx.sub, bx.x + halfW / 2, compatY + 76, halfW - 20);
+        });
+
+        x.restore(); // clip 解除
+
+        // 外枠線
+        x.lineWidth = isSens ? 8 : 7;
+        x.strokeStyle = isSens ? "#ff3e9d" : "#1a1d2e";
+        roundRectPath(x, cardX, cardY, cardW, cardH, cardR);
+        x.stroke();
+        if (isSens) {
+          x.lineWidth = 3.5;
+          x.strokeStyle = "#2ce6ff";
+          roundRectPath(x, cardX + 8, cardY + 8, cardW - 16, cardH - 16, cardR - 6);
+          x.stroke();
+          drawCardSensitiveStamp(x, imgX + imgSz - 135, imgY + imgSz - 32, 340, 68, fontFamily);
+        }
+
+        // 立ち絵穴あきカードの場合は最後に中央の丸角枠内を完全透過（alpha=0）にする
+        if (isCutout) {
+          x.save();
+          roundRectPath(x, imgX + 5, imgY + 5, imgSz - 10, imgSz - 10, 29);
+          x.clip();
+          x.clearRect(imgX, imgY, imgSz, imgSz);
+          x.restore();
+          // 穴の輪郭を内側に細く再描画
+          x.save();
+          x.setLineDash([12, 8]);
+          x.lineWidth = 4;
+          x.strokeStyle = isSens ? "#2ce6ff" : "#5b4bff";
+          roundRectPath(x, imgX + 10, imgY + 10, imgSz - 20, imgSz - 20, 24);
+          x.stroke();
+          x.restore();
+        }
+
+        c.toBlob(b => {
+          if (!b || !resultType || cardTargetKey !== key) { cardPromise = null; resolve(null); return; }
+          if (cardBlobUrl) {
+            try { URL.revokeObjectURL(cardBlobUrl); } catch(e) {}
+          }
+          cardBlobUrl = URL.createObjectURL(b);
+          const fname = CARD_FILE_PREFIX + t.id + (isCutout ? "-frame" : "") + ".png";
+          cardFileCache = new File([b], fname, { type: "image/png" });
+          $("card-img").src = cardBlobUrl;
+          const dl = $("card-dl");
+          dl.href = cardBlobUrl;
+          dl.download = fname;
+          resolve(cardFileCache);
+        }, "image/png");
+      } catch(e) {
+        cardPromise = null;
+        resolve(null);
+      }
+    };
+
+    if (useMode === "cutout") {
+      drawCanvas(null);
+      return;
+    }
+    const img = new Image();
+    img.onload = () => drawCanvas(img);
+    img.onerror = () => { cardPromise = null; resolve(null); };
+    img.src = "assets/chars/" + t.id + ".png";
+  });
+  return cardPromise;
+}
+
+async function getCardFile(){
+  const key = resultType ? (resultType.id + ":" + (subType ? subType.id : "") + ":" + cardMode) : "";
+  if (cardFileCache && cardTargetKey === key) return cardFileCache;
+  if (!resultType) return null;
+  const timeout = new Promise(resolve => setTimeout(() => resolve(null), 2500));
+  return await Promise.race([prepareCardImage(resultType, subType, cardMode), timeout]);
+}
+
+/* シェア導線（SHARE_FIX_SPEC / FOLLOW_FUNNEL_SPEC / SPEC_FINAL 完全準拠） */
+const DEFAULT_X_HINT_HTML = "💡 <b>結果カード画像つきで投稿したいとき：</b>上のボタンで画像をコピーし、開いたXの画面で <b>Ctrl+V</b>（Macは⌘+V）で貼り付けてね🎙️";
+const SHARE_IMAGE_HINT_HTML = "⚠ <b>画像を添付できなかったため、テキストのみでXを開きました。</b>下の「📸 結果カードを画像で保存」ボタンから画像を保存して、Xの画面で手動で添付してね🎙️";
+
+function resetXHint(){
+  const hint = $("x-hint");
+  if (!hint) return;
+  hint.className = "x-hint";
+  hint.innerHTML = DEFAULT_X_HINT_HTML;
+}
+
+function resetShareHint(){
+  const hint = $("share-hint");
+  if (!hint) return;
+  hint.className = "x-hint is-fallback share-hint";
+  hint.innerHTML = "";
+}
+
+function showShareImageHint(){
+  const hint = $("share-hint");
+  if (!hint) return;
+  hint.innerHTML = SHARE_IMAGE_HINT_HTML;
+  hint.className = "x-hint is-fallback share-hint is-visible";
+}
+
+function isMobileShareEnv(){
+  const ua = navigator.userAgent || "";
+  const isMobileUA = /iPhone|iPad|iPod|Android/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  return isMobileUA && typeof navigator.share === "function";
+}
+
+function initShareLayout(){
+  const box = $("share-cta-box");
+  if (!box) return;
+  box.classList.toggle("env-mobile", isMobileShareEnv());
+}
+
+function buildShareIntentUrl(combinedText){
+  return "https://twitter.com/intent/tweet?text=" + encodeURIComponent(combinedText);
+}
+
+function openIntentUrl(intent){
+  const w = window.open(intent, "_blank");
+  if (!w) location.href = intent;
+  return intent;
+}
+
+function openXIntent(){
+  return openIntentUrl(buildShareIntentUrl(getCombinedShareText()));
+}
+
+function downloadCardFile(file){
+  const dlUrl = cardBlobUrl || (file ? URL.createObjectURL(file) : null);
+  if (!dlUrl || !resultType) return false;
+  const a = document.createElement("a");
+  a.href = dlUrl;
+  a.download = CARD_FILE_PREFIX + resultType.id + (cardMode === "cutout" ? "-frame" : "") + ".png";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  if (!cardBlobUrl) {
+    setTimeout(() => { try { URL.revokeObjectURL(dlUrl); } catch(e) {} }, 1000);
+  }
+  return true;
+}
+
+async function copyCardToClipboard(file, hintEl, okMsg){
+  let copied = false;
+  if (file && navigator.clipboard && typeof navigator.clipboard.write === "function" && typeof ClipboardItem !== "undefined") {
+    try {
+      const pngBlob = new Blob([file], { type: "image/png" });
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]);
+      copied = true;
+    } catch(e) {
+      copied = false;
+    }
+  }
+  if (!hintEl) return copied;
+  if (copied) {
+    hintEl.className = "x-hint is-copied";
+    hintEl.innerHTML = okMsg;
+  } else {
+    const downloaded = downloadCardFile(file);
+    hintEl.className = "x-hint is-fallback";
+    if (downloaded) {
+      hintEl.innerHTML = "💾 <b>クリップボードにコピーできなかったため画像を保存したよ！</b>開いたXの投稿画面で保存した画像を添付してね🎙️";
+    } else {
+      hintEl.innerHTML = "⚠ カード画像の準備が間に合いませんでした。下の「📸 結果カードを画像で保存」から保存してXに添付してね🎙️";
+    }
+  }
+  return copied;
+}
+
+/* イベントハンドラ */
+$("btn-start").onclick = () => {
+  sendStat("diagnosis_start");
+  startQuiz(false);
+};
+$("btn-resume").onclick = () => startQuiz(true);
+document.querySelectorAll("[data-gender]").forEach(b => {
+  b.onclick = () => {
+    gender = b.getAttribute("data-gender");
+    idx = 0;
+    answers = [];
+    choiceOrders = createShuffledChoiceOrders();
+    shownChapters = {};
+    saveProgress();
+    showQuestion();
+  };
+});
+$("btn-back").onclick = () => {
+  if (idx > 0) {
+    idx--;
+    saveProgress();
+    showQuestion();
+  }
+};
+$("btn-chapter-next").onclick = () => {
+  saveProgress();
+  showQuestion();
+};
+$("btn-retry").onclick = () => {
+  clearSessionResult();
+  resultType = null;
+  subType = null;
+  resultInstanceId = null;
+  resetCardPreview();
+  show("scr-top");
+  refreshResume();
+};
+
+document.querySelectorAll(".mode-tab").forEach(btn => {
+  btn.onclick = () => {
+    shareMode = btn.getAttribute("data-share-mode");
+    renderPromoBuilder();
+  };
+});
+document.querySelectorAll(".tpl-pill").forEach(btn => {
+  btn.onclick = () => {
+    streamerTpl = btn.getAttribute("data-streamer-tpl");
+    renderPromoBuilder();
+  };
+});
+document.querySelectorAll(".card-mode-pill").forEach(btn => {
+  btn.onclick = async () => {
+    const nextMode = btn.getAttribute("data-card-mode");
+    if (!resultType || nextMode === cardMode) return;
+    cardMode = nextMode;
+    cardFileCache = null;
+    cardPromise = null;
+    updateCardModeUI();
+    await prepareCardImage(resultType, subType, cardMode);
+  };
+});
+
+$("btn-x-post").onclick = () => {
+  if (!resultType) return;
+  sendStat("share_x_click", { channel: "x_post", shareMode: shareMode }, { dedup: true });
+  openXIntent();
+};
+
+let quoteBusy = false;
+$("btn-quote-rt").onclick = async () => {
+  if (!resultType || quoteBusy) return;
+  const launchUrl = (DATA.meta.launchPostUrl || "").trim();
+  if (!launchUrl) return;
+  quoteBusy = true;
+  sendStat("quote_click", { shareMode: shareMode }, { dedup: true });
+  try {
+    const file = await getCardFile();
+    await copyCardToClipboard(
+      file,
+      $("x-hint"),
+      "✅ <b>カード画像をコピーしました！</b>開いたXの引用ポスト画面で <b>Ctrl+V</b>（Macは⌘+V）で貼って宣伝してね🎙️"
+    );
+    openIntentUrl(buildShareIntentUrl(getQuoteShareText()));
+  } finally {
+    quoteBusy = false;
+  }
+};
+
+let xImageBusy = false;
+$("btn-x-image").onclick = async () => {
+  if (!resultType || xImageBusy) return;
+  xImageBusy = true;
+  sendStat("share_x_click", { channel: "x_image", shareMode: shareMode }, { dedup: true });
+  try {
+    const file = await getCardFile();
+    await copyCardToClipboard(
+      file,
+      $("x-hint"),
+      "✅ <b>カード画像をコピーしました！</b>開いたXの投稿画面で <b>Ctrl+V</b>（Macは⌘+V）を押して貼り付けてね🎙️"
+    );
+    openXIntent();
+  } finally {
+    xImageBusy = false;
+  }
+};
+
+let shareBusy = false;
+async function shareResult(){
+  if (!resultType || shareBusy) return;
+  shareBusy = true;
+  sendStat("share_attempt", { shareMode: shareMode }, { dedup: true });
+  resetShareHint();
+  const combined = getCombinedShareText();
+  try {
+    let file = null;
+    try {
+      file = await getCardFile();
+    } catch(e) {
+      file = null;
+    }
+    let canShareFile = false;
+    if (file && typeof navigator.share === "function" && typeof navigator.canShare === "function") {
+      try {
+        canShareFile = Boolean(navigator.canShare({ files: [file] }));
+      } catch(e) {
+        canShareFile = false;
+      }
+    }
+    if (canShareFile) {
+      try {
+        await navigator.share({ files: [file], text: combined });
+        sendStat("share_completed", { shareMode: shareMode }, { dedup: true });
+        return;
+      } catch(e) {
+        if (e && e.name === "AbortError") {
+          sendStat("share_cancelled", { shareMode: shareMode }, { dedup: true });
+          return;
+        }
+      }
+    }
+    showShareImageHint();
+    openIntentUrl(buildShareIntentUrl(combined));
+  } finally {
+    shareBusy = false;
+  }
+}
+
+$("btn-share").onclick = shareResult;
+
+$("btn-card").onclick = async () => {
+  if (!resultType) return;
+  sendStat("card_save", { cardMode: cardMode });
+  const key = resultType.id + ":" + (subType ? subType.id : "") + ":" + cardMode;
+  if (!cardBlobUrl || cardTargetKey !== key) {
+    await prepareCardImage(resultType, subType, cardMode);
+  }
+  if (cardBlobUrl) {
+    $("card-preview").style.display = "block";
+    $("card-preview").scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+function refreshResume(){
+  $("btn-resume").style.display = loadProgress() ? "block" : "none";
+}
+
+function initApp(){
+  initMeta();
+  initAffiliateSlot();
+  renderHeroCollage();
+  renderAllGrids();
+  refreshResume();
+  initShareLayout();
+  resetXHint();
+  resetShareHint();
+  updateQuoteButtonVisibility();
+
+  // セッションリロード時に直前の結果画面を同一インスタンスIDで復元（complete重複送信なし）
+  const prevRes = loadSessionResult();
+  if (prevRes) {
+    resultInstanceId = prevRes.instanceId;
+    answers = prevRes.answers.slice();
+    gender = prevRes.gender || "unknown";
+    showResult({ isNewComplete: false });
+  }
+}
+
+initApp();
+</script>
+</body>
+</html>
